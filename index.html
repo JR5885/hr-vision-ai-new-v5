@@ -289,7 +289,12 @@
     </header>
 
     <main class="container">
-        <!-- 主頁容器 -->
+        <div class="machine-readable-banner">
+            <span id="machine-banner">🤖 [AIGEO 雙入口語意宣告] 已內建獨立子網頁路由與雙語完整切換，支援 LinkedIn 專頁串接。</span>
+            <span class="aigeo-pillars-pill" id="aigeo-pill">被搜尋 · 被理解 · 被信任</span>
+        </div>
+
+        <!-- 主頁容器 (包含 AI 沙盒與 8 欄知識庫卡片) -->
         <div id="home-view">
             <section class="sandbox-card" aria-label="AI HR Strategic Sandbox">
                 <div class="sandbox-header">
@@ -345,7 +350,7 @@
                     </div>
                 </div>
 
-                <!-- BYOK Box (滿 20 次額度時出現，附帶教學按鈕) -->
+                <!-- BYOK Box -->
                 <div id="api-key-container" class="api-key-container">
                     <h3 id="byok-title">
                         <span>🔑 20 次免費互動額度已滿！請輸入自備 API Key 繼續免費無限使用</span>
@@ -375,7 +380,7 @@
                 </div>
             </section>
 
-            <!-- AIGEO 知識庫卡片網格 -->
+            <!-- AIGEO 知識庫卡片網格 (8張卡片) -->
             <section class="aigeo-knowledge-section" aria-label="AIGEO Knowledge Base Gallery">
                 <div class="aigeo-section-header">
                     <h2 id="aigeo-sec-title">🌐 雇主品牌與人才資產累積知識庫</h2>
@@ -555,7 +560,7 @@
         let savedExpText = "";
         let lastRenderedReportData = null;
 
-        // 雙語知識庫與 AISEO 關鍵字資料庫
+        // 完整雙語知識庫與 AISEO 關鍵字資料庫
         const articlesDatabase = {
             zh: {
                 1: { tag: "人資戰略", title: "AI 履歷評分系統與 HR 專業分工：會不會取代人工判斷？", keywords: "AI 履歷篩選, HR 招募自動化, HRBP 智慧工具, AI 候選人評估", body: "在 AI 時代，許多人資夥伴會擔心 AI 履歷評分系統是否會全面取代人工判斷。事實上，AI 代理人的核心價值在於「省下重複整理與初篩時間」，將分散的職缺 JD 與候選人經歷快速轉化為量化評估報告。最終的面試追問、文化契合度把關與錄取決策，依然需要 HR 與用人主管發揮高度的專業判斷與溫度。" },
@@ -578,33 +583,6 @@
                 8: { tag: "Cross-Border Management", title: "Ensuring Compliance & Seamless Communication in Cross-Border Onboarding", keywords: "cross-border remote onboarding, remote team compliance, automated onboarding workflow", body: "As remote teams grow, compliance and cross-cultural communication are key. Standardized remote onboarding workflows and multi-language synchronization ensure global talent aligns with project goals on day one." }
             }
         };
-
-        function getUsageCount() {
-            let usage = JSON.parse(localStorage.getItem('hr_vision_quota_v9')) || { count: 0 };
-            return usage.count;
-        }
-
-        function incrementUsageCount() {
-            let usage = JSON.parse(localStorage.getItem('hr_vision_quota_v9')) || { count: 0 };
-            usage.count++;
-            localStorage.setItem('hr_vision_quota_v9', JSON.stringify(usage));
-            updateUsageBadge();
-        }
-
-        function updateUsageBadge() {
-            const userKey = document.getElementById('user-api-key').value.trim();
-            const badge = document.getElementById('usage-counter-badge');
-            if (badge) {
-                if (userKey) {
-                    badge.innerText = currentLang === 'zh' ? "⚡ 自備金鑰已啟用 (無限次免費)" : "⚡ Custom Key Active (Unlimited Free)";
-                } else {
-                    const remaining = Math.max(0, MAX_FREE_USES - getUsageCount());
-                    badge.innerText = currentLang === 'zh' 
-                        ? `免費互動剩餘：${remaining} /${MAX_FREE_USES} 次` 
-                        : `Free Uses Left: ${remaining} /${MAX_FREE_USES}`;
-                }
-            }
-        }
 
         const translations = {
             zh: {
@@ -1371,10 +1349,68 @@
             container.scrollIntoView({ behavior: 'smooth' });
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            switchLanguage('zh');
+        function openSubPage(id) {
+            const subPageUrl = `?article=${id}&lang=${currentLang}#subpage`;
+            window.open(subPageUrl, '_blank');
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const articleId = params.get('article');
+            const langParam = params.get('lang') || 'zh';
+            
+            if (articleId) {
+                document.getElementById('home-view').style.display = 'none';
+                const subView = document.getElementById('subpage-view');
+                subView.style.display = 'block';
+
+                currentLang = langParam;
+                document.getElementById('btn-zh').classList.toggle('active', currentLang === 'zh');
+                document.getElementById('btn-en').classList.toggle('active', currentLang === 'en');
+                
+                loadArticleContent(articleId, currentLang);
+                
+                const t = translations[currentLang];
+                document.getElementById('back-home-btn').innerText = t.backHome;
+                document.getElementById('sidebar-title-text').innerText = t.sidebarTitleText;
+                document.getElementById('aiseo-label-text').innerText = t.aiseoLabelText;
+
+                for (let i = 1; i <= 8; i++) {
+                    const smenu = document.getElementById(`smenu-${i}`);
+                    if (smenu) smenu.innerText = articlesDatabase[currentLang][i].title.split(/[:：]/)[0];
+                }
+            } else {
+                switchLanguage('zh');
+            }
             updateUsageBadge();
         });
+
+        function loadArticleContent(id, lang) {
+            const art = articlesDatabase[lang][id] || articlesDatabase['zh'][id];
+            document.getElementById('subpage-tag').innerText = art.tag;
+            document.getElementById('subpage-title').innerText = art.title;
+            document.getElementById('subpage-content').innerHTML = `<p>${art.body}</p>`;
+            document.getElementById('subpage-keywords').innerText = art.keywords;
+
+            document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active'));
+            const activeMenu = document.getElementById(`smenu-${id}`);
+            if (activeMenu) activeMenu.classList.add('active');
+            document.title = `${art.title} | HR Vision AI`;
+        }
+
+        function goHome(e) {
+            e.preventDefault();
+            window.location.href = window.location.pathname;
+        }
+
+        function appendTurnUI(uText, aText) {
+            document.getElementById('conversation-container').innerHTML += `<div class="dialogue-turn"><div class="turn-user">${uText}</div><div class="turn-ai">${aText}</div></div>`;
+        }
+
+        function updateLatestAIResponse(text) {
+            const turns = document.getElementsByClassName('dialogue-turn');
+            if (turns.length > 0) turns[turns.length - 1].querySelector('.turn-ai').innerText = text;
+        }
     </script>
 </body>
 </html>
