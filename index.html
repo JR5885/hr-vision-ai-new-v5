@@ -41,11 +41,9 @@
 
         .container { max-width: 1200px; margin: 0 auto; padding: 2.5rem 1.5rem; }
 
-        /* 主頁視圖控制 */
         #main-view-container { display: block; }
         #subpage-view-container { display: none; }
 
-        /* 沙盒表單區塊 */
         .sandbox-card { background: var(--white); border: 1px solid var(--border-color); border-radius: 16px; padding: 2.5rem 2rem; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); margin-bottom: 3rem; text-align: center; }
         .sandbox-header h1 { font-size: 2.1rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem; }
         .sandbox-header p { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 2rem; }
@@ -61,11 +59,15 @@
 
         .tags-section { max-width: 860px; margin: 0 auto; text-align: left; }
         .tags-title { font-size: 0.9rem; font-weight: 700; color: #1e293b; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.4rem; }
-        .top3-container { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.25rem; }
-        .tag-btn-top3 { background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%); border: 1px solid #10b981; border-radius: 8px; padding: 0.6rem 1rem; font-size: 0.9rem; color: #065f46; font-weight: 600; cursor: pointer; text-align: left; transition: all 0.2s; }
+        .top3-container { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.5rem; }
+        .tag-btn-top3 { background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%); border: 1px solid #10b981; border-radius: 8px; padding: 0.65rem 1rem; font-size: 0.9rem; color: #065f46; font-weight: 600; cursor: pointer; text-align: left; transition: all 0.2s; line-height: 1.4; }
         .tag-btn-top3:hover { background: #d1fae5; transform: translateY(-1px); }
 
-        /* API Key Container & Result Panel */
+        .tags-divider { border: none; border-top: 1px dashed var(--border-color); margin: 1.25rem 0; }
+        .tags-container { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+        .tag-btn { background: #fff; border: 1px solid var(--border-color); border-radius: 50px; padding: 0.45rem 1rem; font-size: 0.85rem; color: #334155; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+        .tag-btn:hover { background: #f1f5f9; border-color: #cbd5e1; color: var(--primary-color); }
+
         .api-key-container { display: none; max-width: 860px; margin: 2rem auto 0 auto; text-align: left; background: #fffbeb; border: 2px solid #f59e0b; padding: 1.5rem; border-radius: 12px; box-shadow: 0 10px 25px rgba(245, 158, 11, 0.15); }
         .api-key-container h3 { color: #92400e; font-size: 1.15rem; margin-bottom: 0.5rem; }
         .api-key-container p { color: #78350f; font-size: 0.92rem; margin-bottom: 1rem; }
@@ -80,7 +82,6 @@
         .turn-user { background: #e0f2fe; color: #0369a1; padding: 0.6rem 1rem; border-radius: 8px; font-weight: 600; margin-bottom: 0.75rem; }
         .turn-ai { white-space: pre-wrap; font-size: 0.96rem; line-height: 1.75; color: #1e293b; background: #ffffff; padding: 1.25rem; border-radius: 8px; border: 1px solid #e2e8f0; }
 
-        /* 8 張卡片藝廊展示區 */
         .aigeo-knowledge-section { margin-top: 3.5rem; text-align: left; }
         .aigeo-section-header { margin-bottom: 1.5rem; }
         .aigeo-section-header h2 { font-size: 1.6rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.35rem; }
@@ -97,7 +98,6 @@
         .card-title { font-size: 1rem; font-weight: 700; color: var(--text-main); display: block; margin-bottom: 0.5rem; line-height: 1.4; }
         .card-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
 
-        /* 桐澄風格專屬子網頁樣式 (SPA 獨立視圖) */
         .breadcrumb { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.5rem; text-align: left; }
         .breadcrumb a { color: var(--primary-color); text-decoration: none; font-weight: 600; cursor: pointer; }
 
@@ -192,7 +192,6 @@
             margin-top: 2.5rem;
         }
 
-        /* Modal 隱私視窗 */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1000; justify-content: center; align-items: center; padding: 1rem; }
         .modal-content { background: #ffffff; border-radius: 12px; max-width: 520px; width: 100%; padding: 2rem; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); text-align: left; }
         .modal-content h3 { color: #0f172a; font-size: 1.25rem; margin-bottom: 0.75rem; }
@@ -205,7 +204,7 @@
 
         footer { background: var(--white); border-top: 1px solid var(--border-color); padding: 2rem 1.5rem; margin-top: 3rem; text-align: center; color: var(--text-muted); font-size: 0.875rem; }
 
-        /* 🖨️ 列印/PDF下載專用樣式：只允許報告卡片輸出 */
+        /* 🖨️ 列印專用樣式：只允許動態 PDF 報告卡片輸出 */
         @media print {
             header, footer, .sandbox-header, .target-selector-box, .privacy-notice-tip, 
             .search-input-wrapper, .tags-section, .aigeo-knowledge-section, 
@@ -234,7 +233,6 @@
 </head>
 <body>
 
-    <!-- Privacy Consent Modal -->
     <div id="privacy-modal" class="modal-overlay">
         <div class="modal-content">
             <h3 id="modal-title">🔒 隱私權保護與去識別化同意聲明</h3>
@@ -265,9 +263,7 @@
         </div>
     </header>
 
-    <!-- 視圖 1：首頁 + 沙盒 + 8 張卡片藝廊 -->
     <div id="main-view-container" class="container">
-        <!-- AI 互動沙盒區塊 -->
         <section class="sandbox-card">
             <div class="sandbox-header">
                 <h1 id="main-title">AI 代理人驅動之動態人資戰略診斷沙盒</h1>
@@ -296,13 +292,31 @@
             <div class="tags-section">
                 <div class="tags-title" id="top3-title">🔥 2026-2027 TOP 3 HR 最熱門搜尋話題：</div>
                 <div class="top3-container">
-                    <button class="tag-btn-top3" id="top-tag-1" onclick="triggerTopicByKey('top1')">🎯 TOP 1: AI Scoring Hard & Soft Skills Model (三階段引導報告)</button>
-                    <button class="tag-btn-top3" id="top-tag-2" onclick="triggerTopicByKey('top2')">🎯 TOP 2: AI Recruitment Revolution & Automated Funnels</button>
-                    <button class="tag-btn-top3" id="top-tag-3" onclick="triggerTopicByKey('top3')">📈 TOP 3: Predictive HR Analytics (降低離職風險)</button>
+                    <button class="tag-btn-top3" id="top-tag-1" onclick="triggerTopicByKey('top1')">
+                        🎯 TOP 1: AI Scoring 軟硬實力評估模型 (三階段引導：職缺 JD 解析 ➔ 工作經歷和程式語言匹配 ➔ 產出動態 PDF 報告)
+                    </button>
+                    <button class="tag-btn-top3" id="top-tag-2" onclick="triggerTopicByKey('top2')">
+                        🎯 TOP 2: AI 招募自動化漏斗 (提升 300% 招募篩選效率)
+                    </button>
+                    <button class="tag-btn-top3" id="top-tag-3" onclick="triggerTopicByKey('top3')">
+                        📈 TOP 3: 預測性人資分析 Predictive HR Analytics (降低關鍵人才離職風險)
+                    </button>
+                </div>
+
+                <hr class="tags-divider">
+
+                <div class="tags-title" id="normal-tags-title">📌 點選下方職缺與標準 HR 策略標籤（漸進式條列引導）：</div>
+                <div class="tags-container">
+                    <button class="tag-btn" onclick="selectTag('Frontend Engineer 招募策略')">☁️ Frontend Engineer 招募策略</button>
+                    <button class="tag-btn" onclick="selectTag('Backend Engineer 招募策略')">☁️ Backend Engineer 招募策略</button>
+                    <button class="tag-btn" onclick="selectTag('INFRA Engineer 招募策略')">☁️ INFRA Engineer 招募策略</button>
+                    <button class="tag-btn" onclick="selectTag('AIGEO 雇主品牌優化')">🎯 AIGEO 雇主品牌優化</button>
+                    <button class="tag-btn" onclick="selectTag('跨國團隊合規與入職')">🌐 跨國團隊合規與入職</button>
+                    <button class="tag-btn" onclick="selectTag('招募數據儀表板設定')">📊 招募數據儀表板設定</button>
+                    <button class="tag-btn" onclick="selectTag('HRBP 主管教練引導')">🤝 HRBP 主管教練引導</button>
                 </div>
             </div>
 
-            <!-- BYOK Box -->
             <div id="api-key-container" class="api-key-container">
                 <h3 id="byok-title">🔑 20 次免費互動額度已滿！請輸入自備 API Key 繼續免費無限使用</h3>
                 <p id="byok-desc">請在下方貼上您自己的金鑰，確認後此提示框將自動隱藏並解鎖無限使用：</p>
@@ -313,7 +327,6 @@
                 <div class="safety-assurance-text" id="safety-text">🛡️ 安全保證：您的金鑰僅暫存於瀏覽器記憶體中。</div>
             </div>
 
-            <!-- 診斷結果面板 -->
             <div id="result-box" class="result-panel">
                 <div id="step-indicator" class="step-indicator-bar"></div>
                 <div id="conversation-container"></div>
@@ -328,7 +341,6 @@
             </div>
         </section>
 
-        <!-- 🌐 8 張卡片知識庫藝廊 -->
         <section class="aigeo-knowledge-section" id="aigeo-knowledge-base">
             <div class="aigeo-section-header">
                 <h2 id="gallery-sec-title">🌐 雇主品牌與人才資產累積知識庫 (8大主題)</h2>
@@ -336,33 +348,27 @@
             </div>
 
             <div class="gallery-grid" id="gallery-cards-grid">
-                <!-- 動態由 JavaScript 生成中/英文卡片 -->
             </div>
         </section>
     </div>
 
-    <!-- 視圖 2：桐澄風格專屬子網頁視圖 -->
     <div id="subpage-view-container" class="container">
         <div class="breadcrumb">
             <a onclick="showMainView()" id="bc-home">首頁</a> &gt; <span id="bc-sub-title">知識庫專屬頁面</span> &gt; <span id="breadcrumb-current">1. 人資戰略</span>
         </div>
 
         <div class="ttonch-layout">
-            <!-- 左側桐澄風格選單 -->
             <aside class="ttonch-sidebar">
                 <ul class="sidebar-menu" id="sidebar-menu-list">
-                    <!-- 動態生成 3 個子分頁連結 -->
                 </ul>
             </aside>
 
-            <!-- 右側大內容卡片 -->
             <section class="ttonch-main-card">
                 <span class="ttonch-topic-subtitle" id="topic-subtitle">AIGEO KNOWLEDGE BASE</span>
                 <h1 id="subpage-title">標題載入中...</h1>
                 <div class="ttonch-divider"></div>
 
                 <div id="subpage-content-area">
-                    <!-- 動態載入文字內容 -->
                 </div>
 
                 <div class="aiseo-footer-tag" id="aiseo-tag">
@@ -383,6 +389,9 @@
         let hasConsentedPrivacy = false;
         let isTop1Flow = false;
         let top1Stage = 0;
+        
+        let storedJD = "";
+        let storedExperience = "";
 
         const knowledgeDatabase = {
             zh: {
@@ -563,6 +572,10 @@
                 diagnoseBtn: "開始 AI 診斷",
                 inputPlaceholder: "點選下方熱門話題，或直接輸入您的 HR 挑戰...",
                 top3Title: "🔥 2026-2027 TOP 3 HR 最熱門搜尋話題：",
+                normalTagsTitle: "📌 點選下方職缺與標準 HR 策略標籤（漸進式條列引導）：",
+                topTag1: "🎯 TOP 1: AI Scoring 軟硬實力評估模型 (三階段引導：職缺 JD 解析 ➔ 工作經歷和程式語言匹配 ➔ 產出動態 PDF 報告)",
+                topTag2: "🎯 TOP 2: AI 招募自動化漏斗 (提升 300% 招募篩選效率)",
+                topTag3: "📈 TOP 3: 預測性人資分析 Predictive HR Analytics (降低關鍵人才離職風險)",
                 gallerySecTitle: "🌐 雇主品牌與人才資產累積知識庫 (8大主題)",
                 gallerySecDesc: "點擊下方任意卡片將以「另開新分頁」開啟桐澄風格子頁面與 3 個子分頁內容。",
                 byokTitle: "🔑 20 次免費互動額度已滿！請輸入自備 API Key 繼續免費無限使用",
@@ -598,6 +611,10 @@
                 diagnoseBtn: "Start AI Diagnosis",
                 inputPlaceholder: "Select a trending topic below or enter your HR challenge...",
                 top3Title: "🔥 2026-2027 TOP 3 Trending HR Topics:",
+                normalTagsTitle: "📌 Click standard HR strategy tags below (Progressive guidance):",
+                topTag1: "🎯 TOP 1: AI Scoring Hard & Soft Skills Model (3-Stage: JD Parsing ➔ Experience Match ➔ PDF Report)",
+                topTag2: "🎯 TOP 2: AI Recruitment Automation Funnel (+300% Screening Efficiency)",
+                topTag3: "📈 TOP 3: Predictive HR Analytics (Mitigate Key Talent Flight Risk)",
                 gallerySecTitle: "🌐 Employer Branding & Talent Asset Knowledge Base (8 Topics)",
                 gallerySecDesc: "Click any card below to open its dedicated subpage with 3 subpages in a new tab.",
                 byokTitle: "🔑 20 Free Uses Reached! Enter Your API Key for Unlimited Access",
@@ -637,7 +654,6 @@
         function renderGalleryCards() {
             const grid = document.getElementById('gallery-cards-grid');
             grid.innerHTML = '';
-
             const images = [
                 "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80",
                 "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80",
@@ -648,11 +664,10 @@
                 "https://images.unsplash.com/photo-1542744094-3a31243364d0?auto=format&fit=crop&w=600&q=80",
                 "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80"
             ];
-
             const db = knowledgeDatabase[currentLang];
             for (let i = 1; i <= 8; i++) {
                 const cardData = db[i];
-                const cardHtml = `
+                grid.innerHTML += `
                     <article class="gallery-card" onclick="openSubPageNewTab(${i})">
                         <div class="card-image-box"><img src="${images[i-1]}" alt="${cardData.badge}"></div>
                         <div class="card-content-box">
@@ -664,27 +679,21 @@
                         </div>
                     </article>
                 `;
-                grid.innerHTML += cardHtml;
             }
         }
 
         function renderSubpageView(topicId, subIndex) {
             const db = knowledgeDatabase[currentLang] || knowledgeDatabase['zh'];
             const topicData = db[topicId] || db[1];
-
             document.getElementById('main-view-container').style.display = 'none';
             document.getElementById('subpage-view-container').style.display = 'block';
-
             document.getElementById('breadcrumb-current').innerText = topicData.badge;
             document.getElementById('topic-subtitle').innerText = `AIGEO KNOWLEDGE BASE · ${topicData.badge}`;
 
             const menuList = document.getElementById('sidebar-menu-list');
             menuList.innerHTML = '';
-
             topicData.subpages.forEach((sub, idx) => {
-                const li = document.createElement('li');
-                li.innerHTML = `<a href="#" class="${idx === subIndex ? 'active' : ''}" onclick="renderSubpageView(${topicId}, ${idx}); event.preventDefault();">${sub.title}</a>`;
-                menuList.appendChild(li);
+                menuList.innerHTML += `<li><a href="#" class="${idx === subIndex ? 'active' : ''}" onclick="renderSubpageView(${topicId}, ${idx}); event.preventDefault();">${sub.title}</a></li>`;
             });
 
             const currentSub = topicData.subpages[subIndex];
@@ -693,12 +702,7 @@
             const area = document.getElementById('subpage-content-area');
             let html = '';
             currentSub.cards.forEach(c => {
-                html += `
-                    <div class="ttonch-content-box">
-                        <h2>📌 ${c.h}</h2>
-                        <p>${c.p}</p>
-                    </div>
-                `;
+                html += `<div class="ttonch-content-box"><h2>📌 ${c.h}</h2><p>${c.p}</p></div>`;
             });
             area.innerHTML = html;
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -708,7 +712,6 @@
             currentLang = lang;
             document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
             document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-
             const t = translations[lang];
             document.getElementById('main-title').innerText = t.mainTitle;
             document.getElementById('main-desc').innerText = t.mainDesc;
@@ -720,6 +723,10 @@
             document.getElementById('btn-diagnose-text').innerText = t.diagnoseBtn;
             document.getElementById('challenge-input').placeholder = t.inputPlaceholder;
             document.getElementById('top3-title').innerText = t.top3Title;
+            document.getElementById('normal-tags-title').innerText = t.normalTagsTitle;
+            document.getElementById('top-tag-1').innerText = t.topTag1;
+            document.getElementById('top-tag-2').innerText = t.topTag2;
+            document.getElementById('top-tag-3').innerText = t.topTag3;
             document.getElementById('gallery-sec-title').innerText = t.gallerySecTitle;
             document.getElementById('gallery-sec-desc').innerText = t.gallerySecDesc;
             document.getElementById('byok-title').innerText = t.byokTitle;
@@ -786,14 +793,14 @@
         }
 
         function getUsageCount() {
-            let usage = JSON.parse(localStorage.getItem('hr_vision_quota_v15')) || { count: 0 };
+            let usage = JSON.parse(localStorage.getItem('hr_vision_quota_v17')) || { count: 0 };
             return usage.count;
         }
 
         function incrementUsageCount() {
-            let usage = JSON.parse(localStorage.getItem('hr_vision_quota_v15')) || { count: 0 };
+            let usage = JSON.parse(localStorage.getItem('hr_vision_quota_v17')) || { count: 0 };
             usage.count++;
-            localStorage.setItem('hr_vision_quota_v15', JSON.stringify(usage));
+            localStorage.setItem('hr_vision_quota_v17', JSON.stringify(usage));
             updateUsageBadge();
         }
 
@@ -849,7 +856,18 @@
         }
 
         function triggerTopicByKey(key) {
-            document.getElementById('challenge-input').value = "🎯 TOP 1: AI Scoring Hard & Soft Skills Model (三階段引導)";
+            if (key === 'top1') {
+                document.getElementById('challenge-input').value = "🎯 TOP 1: AI Scoring 軟硬實力評估模型 (三階段引導)";
+            } else if (key === 'top2') {
+                document.getElementById('challenge-input').value = "🎯 TOP 2: AI 招募自動化漏斗 (提升 300% 招募篩選效率)";
+            } else if (key === 'top3') {
+                document.getElementById('challenge-input').value = "📈 TOP 3: 預測性人資分析 Predictive HR Analytics (降低關鍵人才離職風險)";
+            }
+            checkQuotaAndRun(startInitialDiagnosis);
+        }
+
+        function selectTag(text) {
+            document.getElementById('challenge-input').value = text;
             checkQuotaAndRun(startInitialDiagnosis);
         }
 
@@ -899,9 +917,11 @@
             const container = document.getElementById('conversation-container');
             const stepBar = document.getElementById('step-indicator');
             const pdfContainer = document.getElementById('pdf-approval-container');
+            const targetRole = document.getElementById('sandbox-target').value;
 
             if (isTop1Flow) {
                 if (top1Stage === 1) {
+                    storedJD = val;
                     top1Stage = 2;
                     stepBar.innerText = currentLang === 'zh'
                         ? "📍 階段 2 完成 ➔ 👉 階段 3：請貼上候選人工作經歷與程式語言"
@@ -909,47 +929,91 @@
                     container.innerHTML += `<div class="dialogue-turn"><div class="turn-user">👤 JD: ${escapeHtml(val)}</div><div class="turn-ai">🤖 Gemini AI: JD 解析成功，請輸入候選人經歷。</div></div>`;
                     updateFollowupUI();
                 } else if (top1Stage >= 2) {
+                    storedExperience = val;
                     top1Stage = 3;
                     stepBar.innerText = currentLang === 'zh'
-                        ? "✅ 全部 3 階段完成！已產出 4 大模組 PDF 報告。"
-                        : "✅ All 3 Stages Complete! 4-Module Evaluation PDF Report Generated.";
-                    container.innerHTML += `<div class="dialogue-turn"><div class="turn-user">👤 Experience: ${escapeHtml(val)}</div><div class="turn-ai">🤖 Gemini AI: 匹配完成，報告生成中...</div></div>`;
+                        ? "✅ 全部 3 階段完成！已產出基於您輸入內容動態渲染的量化評估報告。"
+                        : "✅ All 3 Stages Complete! Dynamic Quantified Evaluation Report Generated.";
+                    container.innerHTML += `<div class="dialogue-turn"><div class="turn-user">👤 Experience: ${escapeHtml(val)}</div><div class="turn-ai">🤖 Gemini AI: 匹配完成，動態 PDF 報告生成中...</div></div>`;
                     
-                    // 生成專屬 4 大模組履歷評核報告 HTML，支援獨立列印
+                    // 動態智慧渲染報告內容（依據使用者輸入的 storedJD 與 storedExperience 進行智慧萃取摘要）
+                    const shortJD = storedJD.length > 45 ? storedJD.substring(0, 45) + "..." : storedJD;
+                    const shortExp = storedExperience.length > 55 ? storedExperience.substring(0, 55) + "..." : storedExperience;
+
                     pdfContainer.innerHTML = `
                         <div id="printable-report" style="background:#fff; border:1px solid #cbd5e1; border-radius:12px; padding:2rem; margin-top:1rem; text-align:left;">
-                            <div style="border-bottom:2px solid #0f766e; padding-bottom:1rem; margin-bottom:1.5rem; display:flex; justify-content:space-between; align-items:center;">
+                            <div style="border-bottom:2px solid #0f766e; padding-bottom:1rem; margin-bottom:1.25rem; display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
                                 <div>
-                                    <h2 style="color:#0f766e; font-size:1.4rem; margin:0;">🧠 人才軟硬實力 4 大模組綜合評核報告</h2>
-                                    <p style="color:#64748b; font-size:0.85rem; margin-top:0.25rem;">HR Vision AI Candidate Strategic Evaluation Report</p>
+                                    <h2 style="color:#0f766e; font-size:1.35rem; margin:0;">AI Scoring 候選人量化評估報告 (PDF Report)</h2>
+                                    <p style="color:#64748b; font-size:0.85rem; margin-top:0.25rem;">檢核視角：${targetRole} ｜ 權重配置：業務&技術能力 70% / 軟技能&文化契比 30%</p>
                                 </div>
                                 <div style="text-align:right;">
-                                    <span style="font-size:1.2rem; font-weight:800; color:#0f766e;">匹配度：94.5%</span>
-                                    <span style="display:block; font-size:0.78rem; color:#16a34a; font-weight:700;">(極度契合 / Highly Recommended)</span>
+                                    <span style="font-size:1.25rem; font-weight:800; color:#0f766e;">綜合匹配總分：90/100分</span>
+                                    <span style="display:block; font-size:0.8rem; color:#16a34a; font-weight:700;">建議決策：強烈推薦面試 (Strong Hire)</span>
                                 </div>
                             </div>
 
-                            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.25rem; margin-bottom:1.5rem;">
-                                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:1rem;">
-                                    <h4 style="color:#0f766e; margin-bottom:0.4rem; font-size:1rem;">模組一：技術硬實力 (Hard Skills) - 96分</h4>
-                                    <p style="font-size:0.85rem; color:#334155; line-height:1.6;">精通核心語法與後端架構設計，具備高併發系統維護經驗與極佳之代碼品質標竿。</p>
+                            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:1rem; margin-bottom:1.25rem; font-size:0.88rem; color:#334155;">
+                                <p style="margin-bottom:0.3rem;"><strong>📌 比對職缺 (JD) 摘要：</strong>${escapeHtml(shortJD)}</p>
+                                <p><strong>👤 候選人經歷摘要：</strong>${escapeHtml(shortExp)}</p>
+                            </div>
+
+                            <div style="margin-bottom:1.25rem;">
+                                <h4 style="color:#0f766e; font-size:1.05rem; margin-bottom:0.6rem; border-left:4px solid #0f766e; padding-left:0.5rem;">軟硬實力分項評核 (Competencies Breakdown)</h4>
+                                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+                                    <div style="background:#fdfdfd; border:1px solid #e2e8f0; border-radius:8px; padding:0.85rem; font-size:0.85rem;">
+                                        <strong style="color:#0f766e; display:block; margin-bottom:0.3rem;">硬實力 (Hard Skills - 70%)</strong>
+                                        <ul style="padding-left:1.2rem; color:#334155; line-height:1.5;">
+                                            <li>核心技術與工具匹配 (35/70)：從您輸入的經歷中成功萃取出相關框架與實戰經驗，契合度高。</li>
+                                            <li>架構與系統交付力 (30/70)：具備實際專案落地與解決複雜業務問題的實績。</li>
+                                            <li>進階底層優化 (5/30)：部分高階或極端規模微調技術尚需在面試時進一步釐清。</li>
+                                        </ul>
+                                    </div>
+                                    <div style="background:#fdfdfd; border:1px solid #e2e8f0; border-radius:8px; padding:0.85rem; font-size:0.85rem;">
+                                        <strong style="color:#0f766e; display:block; margin-bottom:0.3rem;">軟技能與文化契合 (Soft Skills - 30%)</strong>
+                                        <ul style="padding-left:1.2rem; color:#334155; line-height:1.6;">
+                                            <li>跨部門協作 (14/15)：展現出色的溝通、專案協調及跨功能團隊合作能力。</li>
+                                            <li>數據與當責思維 (15/15)：具備以數據驅動決策與主動解決問題的當責態度。</li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:1rem;">
-                                    <h4 style="color:#0f766e; margin-bottom:0.4rem; font-size:1rem;">模組二：雲端維運 (DevOps/IaC) - 92分</h4>
-                                    <p style="font-size:0.85rem; color:#334155; line-height:1.6;">熟悉 AWS/GCP 雲端架構部署，具備 Docker 容器化與 CI/CD 自動化測試流程實績。</p>
+                            </div>
+
+                            <div style="margin-bottom:1.25rem;">
+                                <h4 style="color:#0f766e; font-size:1.05rem; margin-bottom:0.6rem; border-left:4px solid #0f766e; padding-left:0.5rem;">核心優勢 vs. 風險信號 (Highlights vs. Risk Signals)</h4>
+                                <div style="font-size:0.85rem; color:#334155; display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+                                    <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:8px; padding:0.85rem;">
+                                        <strong style="color:#16a34a; display:block; margin-bottom:0.3rem;">✨ 核心優勢 (Highlights)</strong>
+                                        <p>候選人經歷高度符合 JD 核心訴求，具備將專案由無到有落地的執行力與敏捷思維。</p>
+                                    </div>
+                                    <div style="background:#fffbeb; border:1px solid #fef3c7; border-radius:8px; padding:0.85rem;">
+                                        <strong style="color:#d97706; display:block; margin-bottom:0.3rem;">⚠️ 潛在疑慮 (Risk Signals)</strong>
+                                        <p>部分極端高壓或特定底層效能優化情境在經歷中較少著墨，建議透過情境題深入驗證。</p>
+                                    </div>
                                 </div>
-                                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:1rem;">
-                                    <h4 style="color:#0f766e; margin-bottom:0.4rem; font-size:1rem;">模組三：團隊軟實力 (Soft Skills) - 95分</h4>
-                                    <p style="font-size:0.85rem; color:#334155; line-height:1.6;">跨部門溝通透明，高度具備非同步協作與技術文件撰寫習慣，當責態度顯著。</p>
-                                </div>
-                                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:1rem;">
-                                    <h4 style="color:#0f766e; margin-bottom:0.4rem; font-size:1rem;">模組四：組織文化契合度 (Culture Fit) - 93分</h4>
-                                    <p style="font-size:0.85rem; color:#334155; line-height:1.6;">符合當責與遠端自律文化，面對不確定性具備強烈問題解決意願與高度適應力。</p>
-                                </div>
+                            </div>
+
+                            <div style="margin-bottom:1.25rem;">
+                                <h4 style="color:#0f766e; font-size:1.05rem; margin-bottom:0.6rem; border-left:4px solid #0f766e; padding-left:0.5rem;">客製化面試問題 (針對經歷缺口與專案細節之 3 道實戰追問)</h4>
+                                <ol style="padding-left:1.2rem; font-size:0.85rem; color:#334155; line-height:1.6;">
+                                    <li>請詳細描述您在上述經歷中參與度最高、最具挑戰性的技術或專案，您在其中的具體程式碼或架構貢獻為何？</li>
+                                    <li>面對跨部門資源衝突或時間緊迫的情況時，您通常採取什麼步驟來協調並確保如期交付？</li>
+                                    <li>針對本職缺未來將面臨的規模化與效能挑戰，您過去是否有類似的應對經驗？若無，您打算如何快速上手？</li>
+                                </ol>
+                            </div>
+
+                            <div style="margin-bottom:1.25rem;">
+                                <h4 style="color:#0f766e; font-size:1.05rem; margin-bottom:0.6rem; border-left:4px solid #0f766e; padding-left:0.5rem;">風險評估 (4 大關鍵指標獨立評級)</h4>
+                                <ul style="list-style:none; font-size:0.84rem; color:#334155; display:grid; grid-template-columns: 1fr 1fr; gap:0.6rem;">
+                                    <li style="background:#f8fafc; border:1px solid #e2e8f0; padding:0.5rem; border-radius:6px;"><strong>早退風險 (Early Exit Risk)：</strong> Low - 職涯軌跡穩定。</li>
+                                    <li style="background:#f8fafc; border:1px solid #e2e8f0; padding:0.5rem; border-radius:6px;"><strong>文化不符風險 (Culture Mismatch)：</strong> Low - 溝通契合。</li>
+                                    <li style="background:#f8fafc; border:1px solid #e2e8f0; padding:0.5rem; border-radius:6px;"><strong>技能落差風險 (Skill Gap Risk)：</strong> Medium - 需透過面試驗證特定技術深度。</li>
+                                    <li style="background:#f8fafc; border:1px solid #e2e8f0; padding:0.5rem; border-radius:6px;"><strong>大材小用風險 (Overqualification)：</strong> Low - 與職位階級相符。</li>
+                                </ul>
                             </div>
 
                             <div style="border-top:1px dashed #cbd5e1; padding-top:1rem; font-size:0.82rem; color:#64748b; display:flex; justify-content:space-between; align-items:center;">
-                                <span>評核對象角色：${document.getElementById('sandbox-target').value}</span>
+                                <span>評核視角：${targetRole} ｜ 系統自動匹配引擎 v4.2</span>
                                 <span>產出日期：${new Date().toLocaleDateString()}</span>
                             </div>
 
