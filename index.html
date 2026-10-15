@@ -204,6 +204,32 @@
         .btn-modal-confirm:disabled { background: #cbd5e1; cursor: not-allowed; }
 
         footer { background: var(--white); border-top: 1px solid var(--border-color); padding: 2rem 1.5rem; margin-top: 3rem; text-align: center; color: var(--text-muted); font-size: 0.875rem; }
+
+        /* 🖨️ 列印/PDF下載專用樣式：只允許報告卡片輸出 */
+        @media print {
+            header, footer, .sandbox-header, .target-selector-box, .privacy-notice-tip, 
+            .search-input-wrapper, .tags-section, .aigeo-knowledge-section, 
+            .breadcrumb, .ttonch-layout, #followup-box, #step-indicator, 
+            #conversation-container, #api-key-container, .btn-download-pdf {
+                display: none !important;
+            }
+
+            body, .container, .sandbox-card, #result-box {
+                background: #ffffff !important;
+                border: none !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+
+            #printable-report {
+                border: 1px solid #cbd5e1 !important;
+                box-shadow: none !important;
+                page-break-inside: avoid;
+            }
+        }
     </style>
 </head>
 <body>
@@ -293,7 +319,6 @@
                 <div id="conversation-container"></div>
                 <div id="pdf-approval-container"></div>
                 <div id="followup-box" class="followup-box" style="display: none; margin-top: 1.5rem;">
-                    <!-- 此處修改為👉 請輸入JD： -->
                     <label id="followup-label" style="font-weight:700; color:#0f766e; display:block; margin-bottom:0.5rem;">👉 請輸入JD：</label>
                     <div style="display:flex; gap:0.5rem;">
                         <input type="text" id="custom-followup-input" style="flex:1; padding:0.7rem; border:1px solid #cbd5e1; border-radius:6px;" placeholder="請在此貼上職缺說明 (JD)..." onkeypress="if(event.key==='Enter') checkQuotaAndRun(sendCustomFollowUp)" />
@@ -359,7 +384,6 @@
         let isTop1Flow = false;
         let top1Stage = 0;
 
-        // 繁體中文與英文 完整 8 大主題資料庫 (各含 3 子頁面)
         const knowledgeDatabase = {
             zh: {
                 1: {
@@ -762,14 +786,14 @@
         }
 
         function getUsageCount() {
-            let usage = JSON.parse(localStorage.getItem('hr_vision_quota_v14')) || { count: 0 };
+            let usage = JSON.parse(localStorage.getItem('hr_vision_quota_v15')) || { count: 0 };
             return usage.count;
         }
 
         function incrementUsageCount() {
-            let usage = JSON.parse(localStorage.getItem('hr_vision_quota_v14')) || { count: 0 };
+            let usage = JSON.parse(localStorage.getItem('hr_vision_quota_v15')) || { count: 0 };
             usage.count++;
-            localStorage.setItem('hr_vision_quota_v14', JSON.stringify(usage));
+            localStorage.setItem('hr_vision_quota_v15', JSON.stringify(usage));
             updateUsageBadge();
         }
 
@@ -890,11 +914,46 @@
                         ? "✅ 全部 3 階段完成！已產出 4 大模組 PDF 報告。"
                         : "✅ All 3 Stages Complete! 4-Module Evaluation PDF Report Generated.";
                     container.innerHTML += `<div class="dialogue-turn"><div class="turn-user">👤 Experience: ${escapeHtml(val)}</div><div class="turn-ai">🤖 Gemini AI: 匹配完成，報告生成中...</div></div>`;
+                    
+                    // 生成專屬 4 大模組履歷評核報告 HTML，支援獨立列印
                     pdfContainer.innerHTML = `
-                        <div style="background:#fff; border:2px solid #cbd5e1; border-radius:12px; padding:2rem; margin-top:1rem;">
-                            <h3>🧠 4 大模組軟硬實力評核報告</h3>
-                            <p style="margin-top:0.5rem; color:#334155;">候選人匹配度：<strong>94.5% (極度契合)</strong></p>
-                            <button style="background:#dc2626; color:#fff; border:none; padding:0.6rem 1.2rem; border-radius:6px; margin-top:1rem; cursor:pointer;" onclick="window.print()">📥 下載 PDF 報告</button>
+                        <div id="printable-report" style="background:#fff; border:1px solid #cbd5e1; border-radius:12px; padding:2rem; margin-top:1rem; text-align:left;">
+                            <div style="border-bottom:2px solid #0f766e; padding-bottom:1rem; margin-bottom:1.5rem; display:flex; justify-content:space-between; align-items:center;">
+                                <div>
+                                    <h2 style="color:#0f766e; font-size:1.4rem; margin:0;">🧠 人才軟硬實力 4 大模組綜合評核報告</h2>
+                                    <p style="color:#64748b; font-size:0.85rem; margin-top:0.25rem;">HR Vision AI Candidate Strategic Evaluation Report</p>
+                                </div>
+                                <div style="text-align:right;">
+                                    <span style="font-size:1.2rem; font-weight:800; color:#0f766e;">匹配度：94.5%</span>
+                                    <span style="display:block; font-size:0.78rem; color:#16a34a; font-weight:700;">(極度契合 / Highly Recommended)</span>
+                                </div>
+                            </div>
+
+                            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.25rem; margin-bottom:1.5rem;">
+                                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:1rem;">
+                                    <h4 style="color:#0f766e; margin-bottom:0.4rem; font-size:1rem;">模組一：技術硬實力 (Hard Skills) - 96分</h4>
+                                    <p style="font-size:0.85rem; color:#334155; line-height:1.6;">精通核心語法與後端架構設計，具備高併發系統維護經驗與極佳之代碼品質標竿。</p>
+                                </div>
+                                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:1rem;">
+                                    <h4 style="color:#0f766e; margin-bottom:0.4rem; font-size:1rem;">模組二：雲端維運 (DevOps/IaC) - 92分</h4>
+                                    <p style="font-size:0.85rem; color:#334155; line-height:1.6;">熟悉 AWS/GCP 雲端架構部署，具備 Docker 容器化與 CI/CD 自動化測試流程實績。</p>
+                                </div>
+                                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:1rem;">
+                                    <h4 style="color:#0f766e; margin-bottom:0.4rem; font-size:1rem;">模組三：團隊軟實力 (Soft Skills) - 95分</h4>
+                                    <p style="font-size:0.85rem; color:#334155; line-height:1.6;">跨部門溝通透明，高度具備非同步協作與技術文件撰寫習慣，當責態度顯著。</p>
+                                </div>
+                                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:1rem;">
+                                    <h4 style="color:#0f766e; margin-bottom:0.4rem; font-size:1rem;">模組四：組織文化契合度 (Culture Fit) - 93分</h4>
+                                    <p style="font-size:0.85rem; color:#334155; line-height:1.6;">符合當責與遠端自律文化，面對不確定性具備強烈問題解決意願與高度適應力。</p>
+                                </div>
+                            </div>
+
+                            <div style="border-top:1px dashed #cbd5e1; padding-top:1rem; font-size:0.82rem; color:#64748b; display:flex; justify-content:space-between; align-items:center;">
+                                <span>評核對象角色：${document.getElementById('sandbox-target').value}</span>
+                                <span>產出日期：${new Date().toLocaleDateString()}</span>
+                            </div>
+
+                            <button class="btn-download-pdf" style="background:#dc2626; color:#fff; border:none; padding:0.65rem 1.4rem; border-radius:6px; font-weight:700; margin-top:1.25rem; cursor:pointer;" onclick="window.print()">📥 下載 PDF 報告</button>
                         </div>
                     `;
                 }
