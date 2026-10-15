@@ -294,7 +294,7 @@
             <span class="aigeo-pillars-pill" id="aigeo-pill">被搜尋 · 被理解 · 被信任</span>
         </div>
 
-        <!-- 主頁容器 (包含 AI 沙盒與 8 欄知識庫卡片) -->
+        <!-- 主頁容器 -->
         <div id="home-view">
             <section class="sandbox-card" aria-label="AI HR Strategic Sandbox">
                 <div class="sandbox-header">
@@ -560,7 +560,7 @@
         let savedExpText = "";
         let lastRenderedReportData = null;
 
-        // 完整雙語知識庫與 AISEO 關鍵字資料庫
+        // 雙語知識庫與 AISEO 關鍵字資料庫
         const articlesDatabase = {
             zh: {
                 1: { tag: "人資戰略", title: "AI 履歷評分系統與 HR 專業分工：會不會取代人工判斷？", keywords: "AI 履歷篩選, HR 招募自動化, HRBP 智慧工具, AI 候選人評估", body: "在 AI 時代，許多人資夥伴會擔心 AI 履歷評分系統是否會全面取代人工判斷。事實上，AI 代理人的核心價值在於「省下重複整理與初篩時間」，將分散的職缺 JD 與候選人經歷快速轉化為量化評估報告。最終的面試追問、文化契合度把關與錄取決策，依然需要 HR 與用人主管發揮高度的專業判斷與溫度。" },
@@ -1059,10 +1059,7 @@
             }
 
             const userKey = document.getElementById('user-api-key').value.trim();
-            
-            // 升級：支援中英文關鍵字模糊比對，確保點擊 TOP 1 標籤時能正確觸發 AI 動作
             isTop1Flow = /top\s*1|ai\s*scoring|軟硬實力/i.test(input);
-            const isAigeoTopic = /aigeo/i.test(input);
 
             document.getElementById('result-box').style.display = 'block';
             document.getElementById('pdf-approval-container').innerHTML = '';
@@ -1099,7 +1096,7 @@
 
                 appendTurnUI(`[${target}] ${input}`, isEn ? "Generating advisory..." : "正在為您整理條列式顧問建議...");
 
-                const sysPrompt = isEn ? "You are an HR advisor. Respond in pure English bullet points." : "你是一位 HR 顧問。請用繁體中文與條列式回答。";
+                const sysPrompt = isEn ? "You are an HR advisor. Respond in pure English bullet points." : "你是一位 HR 顧問。請用繁體中文條列式回答。";
                 const usrPrompt = isEn ? `Topic: ${input} for ${target}` : `主題：${input} (角色: ${target})`;
 
                 const fallbackGeneral = isEn ? `[Advisory for "${input}"]\n1. Core Pain Points.\n2. 3 Action Steps.\n3. Role Ownership.` : `【針對「${input}」的顧問建議】\n1. 核心痛點。\n2. 3個改善步驟。\n3. 分工建議。`;
