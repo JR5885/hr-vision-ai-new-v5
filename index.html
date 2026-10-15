@@ -63,7 +63,6 @@
         .logo span { color: var(--secondary-color); font-weight: 400; font-size: 0.95rem; margin-left: 0.25rem; }
         .nav-right { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
         
-        /* LinkedIn 頂部按鈕樣式 */
         .btn-linkedin-nav { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--linkedin-blue); color: #fff; padding: 0.4rem 0.9rem; border-radius: 6px; font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: opacity 0.2s; }
         .btn-linkedin-nav:hover { opacity: 0.9; }
 
@@ -271,12 +270,12 @@
     <!-- Privacy Policy Info Modal -->
     <div id="policy-info-modal" class="modal-overlay">
         <div class="modal-content">
-            <h3>📜 隱私權與服務條款說明 (Privacy Policy)</h3>
-            <p><strong>1. Cookie 與第三方廣告：</strong> 本網站可能使用 Google AdSense 等第三方廣告聯播網，透過 Cookie 根據使用者造訪本網站及其他網站之紀錄來投放廣告。</p>
-            <p><strong>2. 資料蒐集與去識別化：</strong> 本站提供之 AI 招募戰略診斷與經歷匹配工具為即時運算，請使用者切勿輸入真實個人敏感個資。</p>
-            <p><strong>3. 聯絡我們：</strong> 若有任何政策疑問或合作洽詢，請聯繫：mark760860@gmail.com。</p>
+            <h3 id="policy-modal-title">📜 隱私權與服務條款說明 (Privacy Policy)</h3>
+            <p id="policy-modal-p1"><strong>1. Cookie 與第三方廣告：</strong> 本網站可能使用 Google AdSense 等第三方廣告聯播網，透過 Cookie 根據使用者造訪本網站及其他網站之紀錄來投放廣告。</p>
+            <p id="policy-modal-p2"><strong>2. 資料蒐集與去識別化：</strong> 本站提供之 AI 招募戰略診斷與經歷匹配工具為即時運算，請使用者切勿輸入真實個人敏感個資。</p>
+            <p id="policy-modal-p3"><strong>3. 聯絡我們：</strong> 若有任何政策疑問或合作洽詢，請聯繫：mark760860@gmail.com。</p>
             <div class="modal-buttons">
-                <button class="btn-modal-confirm" onclick="document.getElementById('policy-info-modal').style.display='none'">我知道了</button>
+                <button class="btn-modal-confirm" onclick="document.getElementById('policy-info-modal').style.display='none'" id="policy-modal-btn">我知道了</button>
             </div>
         </div>
     </div>
@@ -284,20 +283,19 @@
     <!-- About Us Modal -->
     <div id="about-modal" class="modal-overlay">
         <div class="modal-content">
-            <h3>🏢 關於我們 (About Us)</h3>
-            <p><strong>HR Vision AI & AIGEO 策略平台</strong> 致力於協助中小企業與人資團隊導入人工智慧與招募自動化。透過動態引擎與結構化知識庫，我們讓企業的價值與雇主品牌在 AI 時代被搜尋、被理解、被信任。</p>
+            <h3 id="about-modal-title">🏢 關於我們 (About Us)</h3>
+            <p id="about-modal-p"><strong>HR Vision AI & AIGEO 策略平台</strong> 致力於協助中小企業與人資團隊導入人工智慧與招募自動化。透過動態引擎與結構化知識庫，我們讓企業的價值與雇主品牌在 AI 時代被搜尋、被理解、被信任。</p>
             <div class="modal-buttons">
-                <button class="btn-modal-confirm" onclick="document.getElementById('about-modal').style.display='none'">關閉</button>
+                <button class="btn-modal-confirm" onclick="document.getElementById('about-modal').style.display='none'" id="about-modal-btn">關閉</button>
             </div>
         </div>
     </div>
 
     <header>
         <div class="nav-container">
-            <a href="#" class="logo">HR Vision AI <span>| AIGEO Strategy Platform</span></a>
+            <a href="#" class="logo" onclick="goHome(event)">HR Vision AI <span>| AIGEO Strategy Platform</span></a>
             <div class="nav-right">
-                <!-- 已串接您的 LinkedIn 企業專頁 -->
-                <a href="https://www.linkedin.com/company/interview-workshop/?viewAsMember=true" target="_blank" rel="noopener" class="btn-linkedin-nav">
+                <a href="https://www.linkedin.com/company/interview-workshop/?viewAsMember=true" target="_blank" rel="noopener" class="btn-linkedin-nav" id="linkedin-nav-btn">
                     🔗 LinkedIn 專頁
                 </a>
                 <div class="lang-switch">
@@ -310,7 +308,7 @@
 
     <main class="container">
         <div class="machine-readable-banner">
-            <span id="machine-banner">🤖 [AIGEO 雙入口語意宣告] 已內建獨立子網頁路由與 LinkedIn 企業專頁串接。</span>
+            <span id="machine-banner">🤖 [AIGEO 雙入口語意宣告] 已內建獨立子網頁路由與雙語完整切換，支援 LinkedIn 專頁串接。</span>
             <span class="aigeo-pillars-pill" id="aigeo-pill">被搜尋 · 被理解 · 被信任</span>
         </div>
 
@@ -386,7 +384,7 @@
                 </div>
             </section>
 
-            <!-- AIGEO 知識庫卡片網格 (點擊後另開新分頁進入子網頁) -->
+            <!-- AIGEO 知識庫卡片網格 -->
             <section class="aigeo-knowledge-section" aria-label="AIGEO Knowledge Base Gallery">
                 <div class="aigeo-section-header">
                     <h2 id="aigeo-sec-title">🌐 雇主品牌與人才資產累積知識庫</h2>
@@ -401,9 +399,9 @@
                         </div>
                         <div class="card-content-box">
                             <div>
-                                <span class="card-category-badge">人資戰略</span>
-                                <a class="card-title" onclick="openSubPage(1)">AI 履歷評分系統與 HR 專業分工：會不會取代人工判斷？</a>
-                                <p class="card-desc">AI 代理人負責省下重複初篩時間，最終面試把關與錄取決策仍由 HR 與用人主管負責。</p>
+                                <span class="card-category-badge" id="badge-1">人資戰略</span>
+                                <a class="card-title" onclick="openSubPage(1)" id="card-title-1">AI 履歷評分系統與 HR 專業分工：會不會取代人工判斷？</a>
+                                <p class="card-desc" id="card-desc-1">AI 代理人負責省下重複初篩時間，最終面試把關與錄取決策仍由 HR 與用人主管負責。</p>
                             </div>
                         </div>
                     </article>
@@ -415,9 +413,9 @@
                         </div>
                         <div class="card-content-box">
                             <div>
-                                <span class="card-category-badge">量化評估</span>
-                                <a class="card-title" onclick="openSubPage(2)">工程師軟硬實力 70/30 量化評分權重設定指南</a>
-                                <p class="card-desc">70% 著重核心程式與專案交付硬實力，30% 聚焦跨部門溝通與遠端當責文化契合度。</p>
+                                <span class="card-category-badge" id="badge-2">量化評估</span>
+                                <a class="card-title" onclick="openSubPage(2)" id="card-title-2">工程師軟硬實力 70/30 量化評分權重設定指南</a>
+                                <p class="card-desc" id="card-desc-2">70% 著重核心程式與專案交付硬實力，30% 聚焦跨部門溝通與遠端當責文化契合度。</p>
                             </div>
                         </div>
                     </article>
@@ -429,9 +427,9 @@
                         </div>
                         <div class="card-content-box">
                             <div>
-                                <span class="card-category-badge">雲端招募</span>
-                                <a class="card-title" onclick="openSubPage(3)">雲端後端工程師 (Backend) 招募 JD 必備 3 大技術指標</a>
-                                <p class="card-desc">涵蓋高併發分散式架構、AWS/GCP 部署經驗及 CI/CD 容器化落地實績。</p>
+                                <span class="card-category-badge" id="badge-3">雲端招募</span>
+                                <a class="card-title" onclick="openSubPage(3)" id="card-title-3">雲端後端工程師 (Backend) 招募 JD 必備 3 大技術指標</a>
+                                <p class="card-desc" id="card-desc-3">涵蓋高併發分散式架構、AWS/GCP 部署經驗及 CI/CD 容器化落地實績。</p>
                             </div>
                         </div>
                     </article>
@@ -443,9 +441,9 @@
                         </div>
                         <div class="card-content-box">
                             <div>
-                                <span class="card-category-badge">求職體驗</span>
-                                <a class="card-title" onclick="openSubPage(4)">如何透過結構化內容避免求職者在面試前夕流失？</a>
-                                <p class="card-desc">藉由透明化 AIGEO 職缺說明，讓求職者在第一時間對齊團隊期待，減少等待流失。</p>
+                                <span class="card-category-badge" id="badge-4">求職體驗</span>
+                                <a class="card-title" onclick="openSubPage(4)" id="card-title-4">如何透過結構化內容避免求職者在面試前夕流失？</a>
+                                <p class="card-desc" id="card-desc-4">藉由透明化 AIGEO 職缺說明，讓求職者在第一時間對齊團隊期待，減少等待流失。</p>
                             </div>
                         </div>
                     </article>
@@ -457,9 +455,9 @@
                         </div>
                         <div class="card-content-box">
                             <div>
-                                <span class="card-category-badge">成功案例</span>
-                                <a class="card-title" onclick="openSubPage(5)">中小企業導入三階段 AI Scoring 省下 70% 初篩時間</a>
-                                <p class="card-desc">運用四步驟人機協作流程（需求 ➔ 生成 ➔ 審核 ➔ 上架），大幅提升招募效能。</p>
+                                <span class="card-category-badge" id="badge-5">成功案例</span>
+                                <a class="card-title" onclick="openSubPage(5)" id="card-title-5">中小企業導入三階段 AI Scoring 省下 70% 初篩時間</a>
+                                <p class="card-desc" id="card-desc-5">運用四步驟人機協作流程（需求 ➔ 生成 ➔ 審核 ➔ 上架），大幅提升招募效能。</p>
                             </div>
                         </div>
                     </article>
@@ -471,9 +469,9 @@
                         </div>
                         <div class="card-content-box">
                             <div>
-                                <span class="card-category-badge">組織協作</span>
-                                <a class="card-title" onclick="openSubPage(6)">用人部門主管與 HRBP 在 AI 招募漏斗中的協作分工</a>
-                                <p class="card-desc">HRBP 負責設定評分標準與初篩，用人主管則透過 PDF 報告與實戰追問進行最終拍板。</p>
+                                <span class="card-category-badge" id="badge-6">組織協作</span>
+                                <a class="card-title" onclick="openSubPage(6)" id="card-title-6">用人部門主管與 HRBP 在 AI 招募漏斗中的協作分工</a>
+                                <p class="card-desc" id="card-desc-6">HRBP 負責設定評分標準與初篩，用人主管則透過 PDF 報告與實戰追問進行最終拍板。</p>
                             </div>
                         </div>
                     </article>
@@ -485,9 +483,9 @@
                         </div>
                         <div class="card-content-box">
                             <div>
-                                <span class="card-category-badge">品牌優化</span>
-                                <a class="card-title" onclick="openSubPage(7)">透過 AIGEO 打造雇主品牌在搜尋與 AI 的雙入口能見度</a>
-                                <p class="card-desc">累積結構化問答與成功案例，讓企業在 Google 搜尋與 AI 摘要推薦中搶佔預設答案。</p>
+                                <span class="card-category-badge" id="badge-7">品牌優化</span>
+                                <a class="card-title" onclick="openSubPage(7)" id="card-title-7">透過 AIGEO 打造雇主品牌在搜尋與 AI 的雙入口能見度</a>
+                                <p class="card-desc" id="card-desc-7">累積結構化問答與成功案例，讓企業在 Google 搜尋與 AI 摘要推薦中搶佔預設答案。</p>
                             </div>
                         </div>
                     </article>
@@ -499,9 +497,9 @@
                         </div>
                         <div class="card-content-box">
                             <div>
-                                <span class="card-category-badge">跨境管理</span>
-                                <a class="card-title" onclick="openSubPage(8)">跨國遠端團隊在入職時如何確保合規與溝通順暢？</a>
-                                <p class="card-desc">建立標準化遠端入職工作流與多語系內容同步，確保跨國人才報到首日即對齊目標。</p>
+                                <span class="card-category-badge" id="badge-8">跨境管理</span>
+                                <a class="card-title" onclick="openSubPage(8)" id="card-title-8">跨國遠端團隊在入職時如何確保合規與溝通順暢？</a>
+                                <p class="card-desc" id="card-desc-8">建立標準化遠端入職工作流與多語系內容同步，確保跨國人才報到首日即對齊目標。</p>
                             </div>
                         </div>
                     </article>
@@ -509,13 +507,12 @@
             </section>
         </div>
 
-        <!-- 獨立子網頁檢視容器 (仿照截圖左側導覽列與右側內文版型) -->
+        <!-- 獨立子網頁檢視容器 -->
         <div id="subpage-view">
-            <a href="#" class="btn-back-home" onclick="goHome(event)">← 返回首頁沙盒</a>
+            <a href="#" class="btn-back-home" onclick="goHome(event)" id="back-home-btn">← 返回首頁沙盒</a>
             <div class="subpage-container">
-                <!-- 左側導覽列 -->
                 <aside class="subpage-sidebar">
-                    <div class="sidebar-title">知識庫導覽</div>
+                    <div class="sidebar-title" id="sidebar-title-text">知識庫導覽</div>
                     <ul class="sidebar-menu">
                         <li><a href="#" onclick="openSubPage(1); return false;" id="smenu-1">AI 履歷評分與專業分工</a></li>
                         <li><a href="#" onclick="openSubPage(2); return false;" id="smenu-2">工程師 70/30 量化權重</a></li>
@@ -527,7 +524,6 @@
                         <li><a href="#" onclick="openSubPage(8); return false;" id="smenu-8">跨國遠端入職與合規</a></li>
                     </ul>
                 </aside>
-                <!-- 右側內文主畫面 -->
                 <div class="subpage-main">
                     <span id="subpage-tag" class="card-category-badge">人資戰略</span>
                     <h2 id="subpage-title">子網頁標題</h2>
@@ -535,21 +531,21 @@
                         <!-- 動態內文 -->
                     </div>
                     <div class="aiseo-badge-box">
-                        🎯 <strong>AISEO 目標關鍵字：</strong> <span id="subpage-keywords">AI 履歷篩選, HR 招募自動化</span>
+                        🎯 <strong id="aiseo-label-text">AISEO 目標關鍵字：</strong> <span id="subpage-keywords">AI 履歷篩選, HR 招募自動化</span>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- Google Policy Compliant Footer (已串接 LinkedIn) -->
+    <!-- Google Policy Compliant Footer -->
     <footer>
         <p id="footer-text">&copy; 2026 HR Vision AI. Powered by AIGEO Knowledge Engine.</p>
         <p style="margin-top: 0.5rem; font-size: 0.85rem;">
-            <a href="https://www.linkedin.com/company/interview-workshop/?viewAsMember=true" target="_blank" rel="noopener" style="color: var(--linkedin-blue); text-decoration: none; font-weight: 700; margin: 0 8px;">🔗 LinkedIn 官方專頁</a> | 
-            <a href="#" onclick="document.getElementById('policy-info-modal').style.display='flex'; return false;" style="color: var(--secondary-color); text-decoration: none; margin: 0 8px;">隱私權政策 (Privacy Policy)</a> | 
-            <a href="#" onclick="alert('聯絡與客服信箱：mark760860@gmail.com'); return false;" style="color: var(--secondary-color); text-decoration: none; margin: 0 8px;">聯絡我們 (Contact Us)</a> | 
-            <a href="#" onclick="document.getElementById('about-modal').style.display='flex'; return false;" style="color: var(--secondary-color); text-decoration: none; margin: 0 8px;">關於我們 (About Us)</a>
+            <a href="https://www.linkedin.com/company/interview-workshop/?viewAsMember=true" target="_blank" rel="noopener" style="color: var(--linkedin-blue); text-decoration: none; font-weight: 700; margin: 0 8px;" id="footer-linkedin">🔗 LinkedIn 官方專頁</a> | 
+            <a href="#" onclick="document.getElementById('policy-info-modal').style.display='flex'; return false;" style="color: var(--secondary-color); text-decoration: none; margin: 0 8px;" id="footer-privacy">隱私權政策 (Privacy Policy)</a> | 
+            <a href="#" onclick="alert(currentLang === 'zh' ? '聯絡與客服信箱：mark760860@gmail.com' : 'Contact Email: mark760860@gmail.com'); return false;" style="color: var(--secondary-color); text-decoration: none; margin: 0 8px;" id="footer-contact">聯絡我們 (Contact Us)</a> | 
+            <a href="#" onclick="document.getElementById('about-modal').style.display='flex'; return false;" style="color: var(--secondary-color); text-decoration: none; margin: 0 8px;" id="footer-about">關於我們 (About Us)</a>
         </p>
     </footer>
 
@@ -566,87 +562,61 @@
         let savedExpText = "";
         let lastRenderedReportData = null;
 
-        // 8 週知識庫內容與專屬 AISEO 關鍵字資料庫
+        // 雙語知識庫與 AISEO 關鍵字資料庫
         const articlesDatabase = {
-            1: {
-                tag: "人資戰略",
-                title: "AI 履歷評分系統與 HR 專業分工：會不會取代人工判斷？",
-                keywords: "AI 履歷篩選, HR 招募自動化, HRBP 智慧工具, AI 候選人評估",
-                body: "在 AI 時代，許多人資夥伴會擔心 AI 履歷評分系統是否會全面取代人工判斷。事實上，AI 代理人的核心價值在於「省下重複整理與初篩時間」，將分散的職缺 JD 與候選人經歷快速轉化為量化評估報告。最終的面試追問、文化契合度把關與錄取決策，依然需要 HR 與用人主管發揮高度的專業判斷與溫度。"
+            zh: {
+                1: { tag: "人資戰略", title: "AI 履歷評分系統與 HR 專業分工：會不會取代人工判斷？", keywords: "AI 履歷篩選, HR 招募自動化, HRBP 智慧工具, AI 候選人評估", body: "在 AI 時代，許多人資夥伴會擔心 AI 履歷評分系統是否會全面取代人工判斷。事實上，AI 代理人的核心價值在於「省下重複整理與初篩時間」，將分散的職缺 JD 與候選人經歷快速轉化為量化評估報告。最終的面試追問、文化契合度把關與錄取決策，依然需要 HR 與用人主管發揮高度的專業判斷與溫度。" },
+                2: { tag: "量化評估", title: "工程師軟硬實力 70/30 量化評分權重設定指南", keywords: "工程師招募標準, 軟硬實力評估, 技術人才評分表, HR 招募指標", body: "針對技術崗位（如前端、後端、AI 工程師），如何建立客觀且統一的面試標準？本指南建議採用 70% 與 30% 權重分配：70% 著重於核心程式語言、框架與專案交付實績等硬實力；30% 則聚焦於跨部門溝通協作、遠端當責與自主管理能力，確保技術人才與團隊高強度迭代文化的契合度。" },
+                3: { tag: "雲端招募", title: "雲端後端工程師 (Backend) 招募 JD 必備 3 大技術指標", keywords: "雲端後端工程師 JD, Backend Engineer 招募, 分散式架構面試, AWS GCP 部署經驗", body: "招募優秀的雲端後端工程師時，職缺工作說明 (JD) 必須具備高度精準性。核心 3 大技術指標包含：（1）高併發分散式架構與 API 開發實績；（2）雲端服務平台 (AWS/GCP) 部署與架構經驗；（3）自動化 CI/CD 流程與容器化 (Docker/Kubernetes) 落地能力。" },
+                4: { tag: "求職體驗", title: "如何透過結構化內容避免求職者在面試前夕流失？", keywords: "求職者體驗優化, 招募漏斗流失率, AIGEO 雇主品牌, 結構化職缺說明", body: "傳統招募流程中最常遇到的痛點之一，便是好不容易發出面試邀約，候選人卻在面試前夕無故爽約或放棄。透過透明化與結構化的 AIGEO 職缺說明，讓求職者在投遞第一時間就能清楚了解團隊期待與考核標準，減少資訊不對稱，大幅提升候選人的信任感與參與意願。" },
+                5: { tag: "成功案例", title: "中小企業導入三階段 AI Scoring 省下 70% 初篩時間", keywords: "AI 招募案例, 中小企業數位轉型, 履歷初篩自動化, 招募效率提升", body: "某 50 人規模的軟體公司在導入三階段 AI Scoring 系統後，成功將原本需要人工反覆比對的履歷初篩時間縮短了 70%。透過四步驟人機協作流程（01 需求 ➔ 02 AI 生成結構化初稿 ➔ 03 HR 快速審核 ➔ 04 發布歸檔），讓招募團隊得以將精力投注於高價值的深度面試與人才培育。" },
+                6: { tag: "組織協作", title: "用人部門主管與 HRBP 在 AI 招募漏斗中的協作分工", keywords: "HRBP 與用人主管協作, 招募漏斗管理, 技術主管面試培訓, 組織人資效能", body: "在導入 AI 招募系統後，HRBP 與用人部門主管的角色分工更加明確。HRBP 與招募專員負責設定評分標準、發布結構化 JD 與執行第一輪 AI 篩選；用人主管則負責檢視量化 PDF 評估報告、執行 3 道客製化實戰追問題目，並進行最終錄取拍板，大幅提升面試一致性。" },
+                7: { tag: "品牌優化", title: "透過 AIGEO 打造雇主品牌在搜尋與 AI 的雙入口能見度", keywords: "AIGEO 優化, 雇主品牌行銷, AI 搜尋摘要引用, 預設答案優化", body: "流量規則已改變：傳統廣告與人力銀行曝光像租房子，預算一停流量就流失。透過持續累積結構化問答與成功案例（AIGEO），企業不僅能在傳統 Google 關鍵字搜尋中排名居前，更能直接進入 AI 摘要與推薦的引用來源中，搶佔產業的「預設答案」地位。" },
+                8: { tag: "跨境管理", title: "跨國遠端團隊在入職時如何確保合規與溝通順暢？", keywords: "跨國遠端入職, 遠端團隊合規, Onboarding 自動化, 跨境人資管理", body: "隨著跨國遠端團隊成為常態，入職 (Onboarding) 的合規性與跨文化溝通成為一大挑戰。透過標準化的遠端入職自動化工作流與多語系內容同步，企業能確保跨國人才在報到首日即對齊專案目標與資安合規規範，降低異地協作的磨合成本。" }
             },
-            2: {
-                tag: "量化評估",
-                title: "工程師軟硬實力 70/30 量化評分權重設定指南",
-                keywords: "工程師招募標準, 軟硬實力評估, 技術人才評分表, HR 招募指標",
-                body: "針對技術崗位（如前端、後端、AI 工程師），如何建立客觀且統一的面試標準？本指南建議採用 70% 與 30% 權重分配：70% 著重於核心程式語言、框架與專案交付實績等硬實力；30% 則聚焦於跨部門溝通協作、遠端當責與自主管理能力，確保技術人才與團隊高強度迭代文化的契合度。"
-            },
-            3: {
-                tag: "雲端招募",
-                title: "雲端後端工程師 (Backend) 招募 JD 必備 3 大技術指標",
-                keywords: "雲端後端工程師 JD, Backend Engineer 招募, 分散式架構面試, AWS GCP 部署經驗",
-                body: "招募優秀的雲端後端工程師時，職缺工作說明 (JD) 必須具備高度精準性。核心 3 大技術指標包含：（1）高併發分散式架構與 API 開發實績；（2）雲端服務平台 (AWS/GCP) 部署與架構經驗；（3）自動化 CI/CD 流程與容器化 (Docker/Kubernetes) 落地能力。"
-            },
-            4: {
-                tag: "求職體驗",
-                title: "如何透過結構化內容避免求職者在面試前夕流失？",
-                keywords: "求職者體驗優化, 招募漏斗流失率, AIGEO 雇主品牌, 結構化職缺說明",
-                body: "傳統招募流程中最常遇到的痛點之一，便是好不容易發出面試邀約，候選人卻在面試前夕無故爽約或放棄。透過透明化與結構化的 AIGEO 職缺說明，讓求職者在投遞第一時間就能清楚了解團隊期待與考核標準，減少資訊不對稱，大幅提升候選人的信任感與參與意願。"
-            },
-            5: {
-                tag: "成功案例",
-                title: "中小企業導入三階段 AI Scoring 省下 70% 初篩時間",
-                keywords: "AI 招募案例, 中小企業數位轉型, 履歷初篩自動化, 招募效率提升",
-                body: "某 50 人規模的軟體公司在導入三階段 AI Scoring 系統後，成功將原本需要人工反覆比對的履歷初篩時間縮短了 70%。透過四步驟人機協作流程（01 提出需求 ➔ 02 AI 生成結構化初稿 ➔ 03 HR 快速審核 ➔ 04 發布歸檔），讓招募團隊得以將精力投注於高價值的深度面試與人才培育。"
-            },
-            6: {
-                tag: "組織協作",
-                title: "用人部門主管與 HRBP 在 AI 招募漏斗中的協作分工",
-                keywords: "HRBP 與用人主管協作, 招募漏斗管理, 技術主管面試培訓, 組織人資效能",
-                body: "在導入 AI 招募系統後，HRBP 與用人部門主管的角色分工更加明確。HRBP 與招募專員負責設定評分標準、發布結構化 JD 與執行第一輪 AI 篩選；用人主管則負責檢視量化 PDF 評估報告、執行 3 道客製化實戰追問題目，並進行最終錄取拍板，大幅提升面試一致性。"
-            },
-            7: {
-                tag: "品牌優化",
-                title: "透過 AIGEO 打造雇主品牌在搜尋與 AI 的雙入口能見度",
-                keywords: "AIGEO 優化, 雇主品牌行銷, AI 搜尋摘要引用, 預設答案優化",
-                body: "流量規則已改變：傳統廣告與人力銀行曝光像租房子，預算一停流量就流失。透過持續累積結構化問答與成功案例（AIGEO），企業不僅能在傳統 Google 關鍵字搜尋中排名居前，更能直接進入 AI 摘要與推薦的引用來源中，搶佔產業的「預設答案」地位。"
-            },
-            8: {
-                tag: "跨境管理",
-                title: "跨國遠端團隊在入職時如何確保合規與溝通順暢？",
-                keywords: "跨國遠端入職, 遠端團隊合規, Onboarding 自動化, 跨境人資管理",
-                body: "隨著跨國遠端團隊成為常態，入職 (Onboarding) 的合規性與跨文化溝通成為一大挑戰。透過標準化的遠端入職自動化工作流與多語系內容同步，企業能確保跨國人才在報到首日即對齊專案目標與資安合規規範，降低異地協作的磨合成本。"
+            en: {
+                1: { tag: "HR Strategy", title: "AI Resume Scoring vs. HR Expertise: Will AI Replace Human Judgment?", keywords: "AI resume screening, HR recruitment automation, HRBP tools, candidate evaluation", body: "In the AI era, many HR professionals worry whether AI resume scoring will replace human judgment. In fact, AI agents save repetitive screening time by converting scattered JDs into structured reports. Final interviews and hiring decisions still rely on human empathy and expertise." },
+                2: { tag: "Quantitative Evaluation", title: "Setting 70/30 Hard & Soft Skills Scoring Weights for Engineers", keywords: "engineer hiring standards, hard vs soft skills, technical scorecard, HR metrics", body: "How do we build objective interview standards for technical roles? We recommend a 70/30 weighting: 70% for core programming and project delivery; 30% for cross-functional communication, remote ownership, and agile culture fit." },
+                3: { tag: "Cloud Recruitment", title: "Top 3 Technical Indicators in Cloud Backend Engineer JDs", keywords: "Backend Engineer JD, cloud recruitment, distributed systems interview, AWS GCP deployment", body: "Writing precise JDs for cloud backend engineers is critical. The 3 core technical indicators are: (1) High-concurrency distributed architecture and API delivery; (2) AWS/GCP cloud deployment experience; (3) Automated CI/CD and containerization (Docker/Kubernetes)." },
+                4: { tag: "Candidate Experience", title: "Preventing Candidate Drop-Off Prior to Interviews via Structured Content", keywords: "candidate experience optimization, recruitment funnel leakage, AIGEO employer branding", body: "A common recruitment pain point is candidates dropping out before interviews. Transparent AIGEO job descriptions align expectations from the first click, reducing asymmetry and boosting candidate trust." },
+                5: { tag: "Success Stories", title: "How a 50-Person Software SME Saved 70% Screening Time Using AI Scoring", keywords: "AI recruitment case study, SME digital transformation, automated resume screening", body: "A 50-person software company reduced initial resume screening time by 70% using 3-stage AI Scoring. By following a 4-step workflow (Prompt ➔ Draft ➔ Review ➔ Publish), the team focuses entirely on high-value candidate engagement." },
+                6: { tag: "Team Collaboration", title: "Division of Labor Between Hiring Managers and HRBPs in AI Funnels", keywords: "HRBP and manager collaboration, recruitment funnel management, tech lead interview training", body: "With AI recruitment systems, HRBPs set scoring criteria and run initial screening, while hiring managers review PDF reports, run tailored probing questions, and make final hiring decisions." },
+                7: { tag: "Brand Optimization", title: "Building Dual-Gateway Employer Brand Visibility via AIGEO", keywords: "AIGEO optimization, employer branding, AI search summaries, default answer optimization", body: "Traffic rules have changed: Traditional ads stop when budgets dry up. Through structured Q&As and case studies (AIGEO), companies secure top rankings in Google Search and default answer citations in AI Overviews." },
+                8: { tag: "Cross-Border Management", title: "Ensuring Compliance & Seamless Communication in Cross-Border Onboarding", keywords: "cross-border remote onboarding, remote team compliance, automated onboarding workflow", body: "As remote teams grow, compliance and cross-cultural communication are key. Standardized remote onboarding workflows and multi-language synchronization ensure global talent aligns with project goals on day one." }
             }
         };
 
-        // 點擊卡片另開新分頁進入子網頁
         function openSubPage(id) {
             const subPageUrl = `?article=${id}#subpage`;
             window.open(subPageUrl, '_blank');
         }
 
-        // 檢查網址參數，若有 article 參數則切換為子網頁版型
         window.addEventListener('DOMContentLoaded', () => {
             const params = new URLSearchParams(window.location.search);
             const articleId = params.get('article');
-            if (articleId && articlesDatabase[articleId]) {
+            if (articleId && articlesDatabase['zh'][articleId]) {
                 document.getElementById('home-view').style.display = 'none';
                 const subView = document.getElementById('subpage-view');
                 subView.style.display = 'block';
 
-                const art = articlesDatabase[articleId];
-                document.getElementById('subpage-tag').innerText = art.tag;
-                document.getElementById('subpage-title').innerText = art.title;
-                document.getElementById('subpage-content').innerHTML = `<p>${art.body}</p>`;
-                document.getElementById('subpage-keywords').innerText = art.keywords;
-
-                document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active'));
-                const activeMenu = document.getElementById(`smenu-${articleId}`);
-                if (activeMenu) activeMenu.classList.add('active');
-
-                document.title = `${art.title} | HR Vision AI`;
+                loadArticleContent(articleId, currentLang);
+            } else {
+                switchLanguage('zh');
             }
-            switchLanguage('zh');
         });
+
+        function loadArticleContent(id, lang) {
+            const art = articlesDatabase[lang][id] || articlesDatabase['zh'][id];
+            document.getElementById('subpage-tag').innerText = art.tag;
+            document.getElementById('subpage-title').innerText = art.title;
+            document.getElementById('subpage-content').innerHTML = `<p>${art.body}</p>`;
+            document.getElementById('subpage-keywords').innerText = art.keywords;
+
+            document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active'));
+            const activeMenu = document.getElementById(`smenu-${id}`);
+            if (activeMenu) activeMenu.classList.add('active');
+            document.title = `${art.title} | HR Vision AI`;
+        }
 
         function goHome(e) {
             e.preventDefault();
@@ -655,7 +625,7 @@
 
         const translations = {
             zh: {
-                machineBanner: "🤖 [AIGEO 雙入口語意宣告] 已內建獨立子網頁路由、LinkedIn 專頁串接與動態解析引擎。",
+                machineBanner: "🤖 [AIGEO 雙入口語意宣告] 已內建獨立子網頁路由與雙語完整切換，支援 LinkedIn 專頁串接。",
                 aigeoPill: "被搜尋 · 被理解 · 被信任",
                 mainTitle: "AI 代理人驅動之動態人資戰略診斷沙盒",
                 mainDesc: "點選 TOP 1 啟動「三階段 JD 與經歷動態匹配 + 軟硬實力 4 大模組 PDF 報告」；點選其他話題啟動「條列式漸進顧問引導」。",
@@ -704,10 +674,19 @@
                 modalCancel: "取消",
                 modalConfirm: "同意並開始",
                 aigeoSecTitle: "🌐 雇主品牌與人才資產累積知識庫",
-                aigeoSecDesc: "點擊下方任意卡片將以另開分頁形式載入專屬子網頁與 AISEO 目標關鍵字。"
+                aigeoSecDesc: "點擊下方任意卡片將以另開分頁形式載入專屬子網頁與 AISEO 目標關鍵字。",
+                linkedinBtn: "🔗 LinkedIn 專頁",
+                backHome: "← 返回首頁沙盒",
+                sidebarTitleText: "知識庫導覽",
+                aiseoLabelText: "AISEO 目標關鍵字：",
+                footerText: "© 2026 HR Vision AI. Powered by AIGEO Knowledge Engine.",
+                footerLinkedin: "🔗 LinkedIn 官方專頁",
+                footerPrivacy: "隱私權政策 (Privacy Policy)",
+                footerContact: "聯絡我們 (Contact Us)",
+                footerAbout: "關於我們 (About Us)"
             },
             en: {
-                machineBanner: "🤖 [AIGEO Dual-Gateway] Sub-pages routing, LinkedIn integration & dynamic engine.",
+                machineBanner: "🤖 [AIGEO Dual-Gateway] Sub-pages routing and bilingual switching embedded.",
                 aigeoPill: "Be Found · Be Understood · Be Trusted",
                 mainTitle: "AI Agent-Driven HR Strategic Diagnosis Sandbox",
                 mainDesc: "Select TOP 1 for 3-Step JD/Experience Dynamic Matching & 4-Module PDF Report.",
@@ -734,7 +713,16 @@
                 modalCancel: "Cancel",
                 modalConfirm: "Agree & Proceed",
                 aigeoSecTitle: "🌐 Employer Brand & Talent Asset Knowledge Base",
-                aigeoSecDesc: "Click any card to open a dedicated sub-page in a new tab."
+                aigeoSecDesc: "Click any card to open a dedicated sub-page in a new tab.",
+                linkedinBtn: "🔗 LinkedIn Page",
+                backHome: "← Back to Home Sandbox",
+                sidebarTitleText: "Knowledge Base",
+                aiseoLabelText: "AISEO Target Keywords:",
+                footerText: "© 2026 HR Vision AI. Powered by AIGEO Knowledge Engine.",
+                footerLinkedin: "🔗 Official LinkedIn",
+                footerPrivacy: "Privacy Policy",
+                footerContact: "Contact Us",
+                footerAbout: "About Us"
             }
         };
 
@@ -773,6 +761,32 @@
             document.getElementById('modal-confirm-btn').innerText = t.modalConfirm;
             document.getElementById('aigeo-sec-title').innerText = t.aigeoSecTitle;
             document.getElementById('aigeo-sec-desc').innerText = t.aigeoSecDesc;
+            document.getElementById('linkedin-nav-btn').innerText = t.linkedinBtn;
+            document.getElementById('back-home-btn').innerText = t.backHome;
+            document.getElementById('sidebar-title-text').innerText = t.sidebarTitleText;
+            document.getElementById('aiseo-label-text').innerText = t.aiseoLabelText;
+            document.getElementById('footer-text').innerText = t.footerText;
+            document.getElementById('footer-linkedin').innerText = t.footerLinkedin;
+            document.getElementById('footer-privacy').innerText = t.footerPrivacy;
+            document.getElementById('footer-contact').innerText = t.footerContact;
+            document.getElementById('footer-about').innerText = t.footerAbout;
+
+            // 更新 8 張知識庫卡片的中文/英文標題與描述
+            for (let i = 1; i <= 8; i++) {
+                const art = articlesDatabase[lang][i];
+                document.getElementById(`badge-${i}`).innerText = art.tag;
+                document.getElementById(`card-title-${i}`).innerText = art.title;
+                // 同步更新左側選單標題
+                const smenu = document.getElementById(`smenu-${i}`);
+                if (smenu) smenu.innerText = art.title.split(/[:：]/)[0];
+            }
+
+            // 若目前正在子網頁檢視中，也同步更新子網頁文字
+            const params = new URLSearchParams(window.location.search);
+            const articleId = params.get('article');
+            if (articleId) {
+                loadArticleContent(articleId, lang);
+            }
         }
 
         function triggerTopicByKey(key) {
