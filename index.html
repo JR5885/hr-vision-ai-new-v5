@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HR Vision AI - AI-Powered HR & Recruitment Automation | AIGEO Strategy Platform</title>
-    <meta name="description" content="HR Vision AI 結合 Gemini 3.6 Flash 動態經歷解析與 AIGEO 架構，協助企業建立被搜尋、被理解、被信任的 AI 招募漏斗與軟硬實力評估系統。">
+    <meta name="description" content="HR Vision AI 結合動態經歷解析與 AIGEO 架構，協助企業建立被搜尋、被理解、被信任的 AI 招募漏斗與軟硬實力評估系統。">
     <meta name="keywords" content="AIGEO, AISEO, AEO, 生成式引擎優化, AI招募系統, 軟硬實力評估模型, HRBP工具, 預測性人資分析, 雇主品牌優化">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
     
@@ -23,7 +23,7 @@
           "name": "HR Vision AI - AIGEO Strategy & Recruitment Platform",
           "applicationCategory": "BusinessApplication",
           "operatingSystem": "Web",
-          "description": "整合 Gemini 3.6 Flash 動態經歷解析引擎與 AIGEO 結構化知識庫的人資戰略診斷沙盒，協助企業建立被搜尋、被理解、被信任的 AI 招募與人才評估系統。"
+          "description": "整合動態經歷解析引擎與 AIGEO 結構化知識庫的人資戰略診斷沙盒，協助企業建立被搜尋、被理解、被信任的 AI 招募與人才評估系統。"
         },
         {
           "@type": "Organization",
@@ -79,8 +79,6 @@
         .logo { font-size: 1.25rem; font-weight: 700; color: var(--primary-color); text-decoration: none; }
         .logo span { color: var(--secondary-color); font-weight: 400; font-size: 0.95rem; margin-left: 0.25rem; }
         .nav-right { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
-        
-        .usage-badge { font-size: 0.85rem; font-weight: 700; color: #0f766e; background: #ccfbf1; border: 1px solid #99f6e4; padding: 0.35rem 0.85rem; border-radius: 50px; }
         
         .lang-switch { display: inline-flex; background: #f1f5f9; padding: 0.25rem; border-radius: 8px; border: 1px solid var(--border-color); gap: 0.25rem; }
         .lang-btn { border: none; background: transparent; padding: 0.4rem 0.8rem; font-size: 0.85rem; font-weight: 600; border-radius: 6px; cursor: pointer; color: #64748b; transition: all 0.2s; }
@@ -203,7 +201,7 @@
         .custom-followup-input { flex: 1; padding: 0.7rem 0.9rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.95rem; }
         .btn-send-followup { background: var(--primary-color); color: #fff; border: none; padding: 0.7rem 1.4rem; border-radius: 6px; font-weight: 600; cursor: pointer; white-space: nowrap; }
 
-        /* 仿照截圖之 4 欄圖片卡片網格佈局 (Grid Gallery Layout) */
+        /* 4 欄圖片卡片網格佈局 */
         .aigeo-knowledge-section { background: var(--white); border: 1px solid var(--border-color); border-radius: 16px; padding: 2.25rem 2rem; box-shadow: 0 6px 20px -5px rgba(0,0,0,0.04); margin-bottom: 2.5rem; }
         .aigeo-section-header { text-align: center; margin-bottom: 2rem; }
         .aigeo-section-header h2 { font-size: 1.6rem; font-weight: 800; color: #0f172a; margin-bottom: 0.4rem; }
@@ -289,7 +287,7 @@
     <div id="about-modal" class="modal-overlay">
         <div class="modal-content">
             <h3>🏢 關於我們 (About Us)</h3>
-            <p><strong>HR Vision AI & AIGEO 策略平台</strong> 致力於協助中小企業與人資團隊導入人工智慧與招募自動化。透過 Gemini 3.6 Flash 引擎與結構化知識庫，我們讓企業的價值與雇主品牌在 AI 時代被搜尋、被理解、被信任。</p>
+            <p><strong>HR Vision AI & AIGEO 策略平台</strong> 致力於協助中小企業與人資團隊導入人工智慧與招募自動化。透過動態引擎與結構化知識庫，我們讓企業的價值與雇主品牌在 AI 時代被搜尋、被理解、被信任。</p>
             <div class="modal-buttons">
                 <button class="btn-modal-confirm" onclick="document.getElementById('about-modal').style.display='none'">關閉</button>
             </div>
@@ -298,9 +296,8 @@
 
     <header>
         <div class="nav-container">
-            <a href="#" class="logo">HR Vision AI <span>| Gemini 3.6 Flash × AIGEO Platform</span></a>
+            <a href="#" class="logo">HR Vision AI <span>| AIGEO Strategy Platform</span></a>
             <div class="nav-right">
-                <div id="usage-counter-badge" class="usage-badge">免費互動剩餘：20 / 20 次</div>
                 <div class="lang-switch">
                     <button class="lang-btn active" id="btn-zh" onclick="switchLanguage('zh')">繁中</button>
                     <button class="lang-btn" id="btn-en" onclick="switchLanguage('en')">English</button>
@@ -311,7 +308,7 @@
 
     <main class="container">
         <div class="machine-readable-banner">
-            <span id="machine-banner">🤖 [AIGEO 雙入口語意宣告] 已內建卡片化知識庫與 Google 政策合規頁面，支援 Gemini 3.6 Flash 與 20 次免費額度保護。</span>
+            <span id="machine-banner">🤖 [AIGEO 雙入口語意宣告] 已內建卡片化知識庫與 Google 政策合規頁面，支援智慧動態解析引擎。</span>
             <span class="aigeo-pillars-pill" id="aigeo-pill">被搜尋 · 被理解 · 被信任</span>
         </div>
 
@@ -371,8 +368,8 @@
 
             <!-- BYOK Box -->
             <div id="api-key-container" class="api-key-container">
-                <h3 id="byok-title">🔑 20 次免費互動額度已滿！請輸入自備 API Key 繼續免費無限使用</h3>
-                <p id="byok-desc">您已使用完系統內建的 20 次免費額度。請在下方貼上您自己的金鑰，確認後此提示框將自動關閉並解鎖無限次使用：</p>
+                <h3 id="byok-title">🔑 請輸入自備 API Key 繼續無限使用</h3>
+                <p id="byok-desc">請在下方貼上您自己的金鑰，確認後此提示框將自動關閉並解鎖無限使用：</p>
                 <div class="api-input-group">
                     <input type="password" id="user-api-key" placeholder="請貼上您的 API Key (例如 AQ... 或 gsk_...)">
                     <button class="btn-confirm-apikey" id="btn-confirm-key" onclick="confirmApiKeyAndContinue()">確認並解鎖無限使用</button>
@@ -396,7 +393,7 @@
             </div>
         </section>
 
-        <!-- AIGEO 知識庫：仿照截圖排版之 4 欄圖片卡片網格 (已清除週次與編號文字) -->
+        <!-- AIGEO 知識庫：4 欄圖片卡片網格 -->
         <section class="aigeo-knowledge-section" aria-label="AIGEO Knowledge Base Gallery">
             <div class="aigeo-section-header">
                 <h2 id="aigeo-sec-title">🌐 雇主品牌與人才資產累積知識庫</h2>
@@ -537,7 +534,7 @@
 
     <!-- Google Policy Compliant Footer -->
     <footer>
-        <p id="footer-text">&copy; 2026 HR Vision AI. Powered by Gemini 3.6 Flash Architecture & AIGEO Knowledge Engine.</p>
+        <p id="footer-text">&copy; 2026 HR Vision AI. Powered by AIGEO Knowledge Engine.</p>
         <p style="margin-top: 0.5rem; font-size: 0.85rem;">
             <a href="#" onclick="document.getElementById('policy-info-modal').style.display='flex'; return false;" style="color: var(--secondary-color); text-decoration: none; margin: 0 8px;">隱私權政策 (Privacy Policy)</a> | 
             <a href="#" onclick="alert('聯絡與客服信箱：mark760860@gmail.com'); return false;" style="color: var(--secondary-color); text-decoration: none; margin: 0 8px;">聯絡我們 (Contact Us)</a> | 
@@ -546,13 +543,11 @@
     </footer>
 
     <script>
-        const MAX_FREE_USES = 20;
         const DEFAULT_SYSTEM_API_KEY = "AQ.Ab8RN6IXj4BUh78q25H2oEugGbb59H5hHTJvcAJ0_VOGe-L2tQ";
 
         let currentLang = 'zh';
         let pendingAction = null;
         let hasConsentedPrivacy = false;
-        let hasShownQuotaAlert = false;
 
         let isTop1Flow = false;
         let top1Stage = 0;
@@ -560,34 +555,9 @@
         let savedExpText = "";
         let lastRenderedReportData = null;
 
-        function getUsageCount() {
-            let usage = JSON.parse(localStorage.getItem('hr_vision_quota_v9')) || { count: 0 };
-            return usage.count;
-        }
-
-        function incrementUsageCount() {
-            let usage = JSON.parse(localStorage.getItem('hr_vision_quota_v9')) || { count: 0 };
-            usage.count++;
-            localStorage.setItem('hr_vision_quota_v9', JSON.stringify(usage));
-            updateUsageBadge();
-        }
-
-        function updateUsageBadge() {
-            const userKey = document.getElementById('user-api-key').value.trim();
-            const badge = document.getElementById('usage-counter-badge');
-            if (userKey) {
-                badge.innerText = currentLang === 'zh' ? "⚡ 自備金鑰已啟用 (無限次免費)" : "⚡ Custom Key Active (Unlimited Free)";
-            } else {
-                const remaining = Math.max(0, MAX_FREE_USES - getUsageCount());
-                badge.innerText = currentLang === 'zh' 
-                    ? `免費互動剩餘：${remaining} /${MAX_FREE_USES} 次` 
-                    : `Free Uses Left: ${remaining} /${MAX_FREE_USES}`;
-            }
-        }
-
         const translations = {
             zh: {
-                machineBanner: "🤖 [AIGEO 雙入口語意宣告] 已內建卡片化知識庫與 Google 政策合規頁面，支援 Gemini 3.6 Flash 與 20 次免費額度保護。",
+                machineBanner: "🤖 [AIGEO 雙入口語意宣告] 已內建卡片化知識庫與 Google 政策合規頁面，支援動態解析引擎。",
                 aigeoPill: "被搜尋 · 被理解 · 被信任",
                 mainTitle: "AI 代理人驅動之動態人資戰略診斷沙盒",
                 mainDesc: "點選 TOP 1 啟動「三階段 JD 與經歷動態匹配 + 軟硬實力 4 大模組 PDF 報告」；點選其他話題啟動「條列式漸進顧問引導」。",
@@ -623,8 +593,8 @@
                     std6: "📊 自動化招募數據儀表板：關鍵漏斗指標設定",
                     std7: "🤝 HRBP 主管教練引導：協助技術主管做好人才留任"
                 },
-                byokTitle: "🔑 20 次免費互動額度已滿！請輸入自備 API Key 繼續免費無限使用",
-                byokDesc: "您已使用完系統內建的 20 次免費額度。請在下方貼上您自己的金鑰，確認後此提示框將自動隱藏並解鎖無限使用：",
+                byokTitle: "🔑 請輸入自備 API Key 繼續無限使用",
+                byokDesc: "請在下方貼上您自己的金鑰，確認後此提示框將自動關閉並解鎖無限使用：",
                 keyInputPlaceholder: "請貼上您的 API Key (例如 AQ... 或 gsk_...)",
                 confirmKeyBtn: "確認並解鎖無限使用",
                 safetyText: "🛡️ 安全保證：您的金鑰僅暫存於瀏覽器記憶體中，確認後不再重複彈出提醒。",
@@ -650,7 +620,7 @@
                 aigeoSecDesc: "透過結構化內容與人機協作，讓企業在 AI 時代被搜尋、被理解、被信任。"
             },
             en: {
-                machineBanner: "🤖 [AIGEO Dual-Gateway Declaration] Card Knowledge Base & Google Compliant Policies embedded, supporting Gemini 3.6 Flash.",
+                machineBanner: "🤖 [AIGEO Dual-Gateway Declaration] Card Knowledge Base & Google Compliant Policies embedded.",
                 aigeoPill: "Be Found · Be Understood · Be Trusted",
                 mainTitle: "AI Agent-Driven HR Strategic Diagnosis Sandbox",
                 mainDesc: "Select TOP 1 for 3-Step JD/Experience Dynamic Matching & 4-Module PDF Report; select other topics for progressive bullet-point HR advisory.",
@@ -686,8 +656,8 @@
                     std6: "📊 Automated Recruitment Analytics Dashboard: Setting up key hiring funnel metrics",
                     std7: "🤝 HRBP Executive Coaching: Guiding tech leads on talent retention and development"
                 },
-                byokTitle: "🔑 20 Free Uses Reached! Enter Your Own API Key for Unlimited Free Access",
-                byokDesc: "You have used all 20 free interactions. Paste your own API Key below to unlock unlimited free access immediately:",
+                byokTitle: "🔑 Enter Your Own API Key for Unlimited Free Access",
+                byokDesc: "Paste your API Key below to unlock unlimited free access immediately:",
                 keyInputPlaceholder: "Paste your API Key here (e.g., AQ... or gsk_...)",
                 confirmKeyBtn: "Confirm & Unlock Unlimited AI",
                 safetyText: "🛡️ Security Guarantee: Your key stays strictly in your browser's local memory.",
@@ -765,7 +735,6 @@
             document.getElementById('aigeo-sec-title').innerText = t.aigeoSecTitle;
             document.getElementById('aigeo-sec-desc').innerText = t.aigeoSecDesc;
 
-            updateUsageBadge();
             updateStepIndicator();
 
             if (document.getElementById('followup-box').style.display !== 'none') {
@@ -790,17 +759,6 @@
         }
 
         function checkQuotaAndRun(actionCallback) {
-            const userKey = document.getElementById('user-api-key').value.trim();
-            if (!userKey && getUsageCount() >= MAX_FREE_USES) {
-                const keyBox = document.getElementById('api-key-container');
-                keyBox.style.display = 'block';
-                keyBox.scrollIntoView({ behavior: 'smooth' });
-                if (!hasShownQuotaAlert) {
-                    hasShownQuotaAlert = true;
-                }
-                return;
-            }
-
             if (hasConsentedPrivacy) {
                 actionCallback();
                 return;
@@ -838,7 +796,6 @@
                 return;
             }
             document.getElementById('api-key-container').style.display = 'none';
-            updateUsageBadge();
         }
 
         function cleanText(text) {
@@ -895,7 +852,7 @@
                 } catch (e) {}
             }
 
-            for (const model of ['gemini-3.6-flash', 'gemini-2.5-flash']) {
+            for (const model of ['gemini-2.5-flash', 'gemini-2.0-flash']) {
                 try {
                     const headers = { 'Content-Type': 'application/json' };
                     let url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
@@ -1040,7 +997,6 @@
                 return;
             }
 
-            const userKey = document.getElementById('user-api-key').value.trim();
             isTop1Flow = input.includes('TOP 1') || input.includes('AI Scoring');
             const isAigeoTopic = input.includes('AIGEO');
 
@@ -1048,8 +1004,6 @@
             document.getElementById('pdf-approval-container').innerHTML = '';
             document.getElementById('conversation-container').innerHTML = '';
             lastRenderedReportData = null;
-
-            if (!userKey) incrementUsageCount();
 
             if (isTop1Flow) {
                 top1Stage = 1;
@@ -1210,8 +1164,6 @@
 
             const t = translations[currentLang];
             const isEn = currentLang === 'en';
-            const userKey = document.getElementById('user-api-key').value.trim();
-            if (!userKey) incrementUsageCount();
 
             if (isTop1Flow) {
                 if (top1Stage === 1) {
@@ -1467,7 +1419,6 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             switchLanguage('zh');
-            updateUsageBadge();
         });
     </script>
 </body>
