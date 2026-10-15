@@ -135,7 +135,7 @@
         .aigeo-section-header h2 { font-size: 1.5rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.35rem; }
         .aigeo-section-header p { font-size: 0.95rem; color: var(--text-muted); }
 
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; }
         .gallery-card { background: var(--white); border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; }
         .gallery-card:hover { transform: translateY(-4px); box-shadow: 0 12px 20px -5px rgba(0,0,0,0.08); }
         .card-image-box { width: 100%; height: 160px; overflow: hidden; position: relative; background: #e2e8f0; }
@@ -146,6 +146,125 @@
         .card-title { font-size: 1rem; font-weight: 700; color: var(--text-main); cursor: pointer; text-decoration: none; display: block; margin-bottom: 0.5rem; line-height: 1.4; transition: color 0.2s; }
         .card-title:hover { color: var(--secondary-color); }
         .card-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
+
+        /* 子頁面容器與導覽列樣式 */
+        .subpage-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+            margin-top: 3.5rem;
+            text-align: left;
+        }
+
+        @media (max-width: 820px) {
+            .subpage-container { grid-template-columns: 1fr; }
+        }
+
+        .subpage-sidebar {
+            border-right: 1px solid var(--border-color);
+            padding-right: 1.25rem;
+        }
+
+        @media (max-width: 820px) {
+            .subpage-sidebar {
+                border-right: none;
+                padding-right: 0;
+                border-bottom: 1px solid var(--border-color);
+                padding-bottom: 1.5rem;
+            }
+        }
+
+        .sidebar-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .main-topic-group { margin-bottom: 1.25rem; }
+        .main-topic-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.4rem;
+        }
+
+        .sidebar-menu { list-style: none; display: flex; flex-direction: column; gap: 0.35rem; }
+        .sidebar-menu li a {
+            display: block;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.88rem;
+            color: #334155;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .sidebar-menu li a:hover, .sidebar-menu li a.active {
+            background: #ccfbf1;
+            color: #0f766e;
+        }
+
+        .subpage-main { padding-left: 0.5rem; }
+        .subpage-main h1 { font-size: 1.8rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem; }
+        .subpage-main .sub-badge {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 0.25rem 0.65rem;
+            border-radius: 4px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-card {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-card h2 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #0f766e;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .content-card p {
+            font-size: 0.98rem;
+            color: #334155;
+            line-height: 1.75;
+            margin-bottom: 0.75rem;
+        }
+
+        .content-card p:last-child { margin-bottom: 0; }
+
+        .aiseo-badge-box {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            padding: 1rem 1.25rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #065f46;
+            font-weight: 600;
+        }
 
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1000; justify-content: center; align-items: center; padding: 1rem; }
         .modal-content { background: #ffffff; border-radius: 12px; max-width: 520px; width: 100%; padding: 2rem; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); text-align: left; }
@@ -295,7 +414,7 @@
             </div>
         </section>
 
-        <!-- 雇主品牌與人才資產累積知識庫 -->
+        <!-- 🌐 雇主品牌與人才資產累積知識庫 (Knowledge Base Gallery) -->
         <section class="aigeo-knowledge-section" id="aigeo-knowledge-base" aria-label="AIGEO Knowledge Base Gallery">
             <div class="aigeo-section-header">
                 <h2 id="aigeo-sec-title">🌐 雇主品牌與人才資產累積知識庫</h2>
@@ -354,68 +473,106 @@
                         <div>
                             <span class="card-category-badge" id="badge-4">求職體驗</span>
                             <a class="card-title" onclick="openSubPage(4)" id="card-title-4">如何透過結構化內容避免求職者在面試前夕流失？</a>
-                            <p class="card-desc" id="card-desc-4">藉由透明化 AIGEO 職缺說明，讓求職者在第一時間對齊團隊期待，減少等待流失。</p>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- 卡片 5 -->
-                <article class="gallery-card">
-                    <div class="card-image-box">
-                        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=600&q=80" alt="軟體公司省時案例">
-                    </div>
-                    <div class="card-content-box">
-                        <div>
-                            <span class="card-category-badge" id="badge-5">成功案例</span>
-                            <a class="card-title" onclick="openSubPage(5)" id="card-title-5">中小企業導入三階段 AI Scoring 省下 70% 初篩時間</a>
-                            <p class="card-desc" id="card-desc-5">運用四步驟人機協作流程（需求 ➔ 生成 ➔ 審核 ➔ 上架），大幅提升招募效能。</p>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- 卡片 6 -->
-                <article class="gallery-card">
-                    <div class="card-image-box">
-                        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=600&q=80" alt="HRBP 與主管分工">
-                    </div>
-                    <div class="card-content-box">
-                        <div>
-                            <span class="card-category-badge" id="badge-6">組織協作</span>
-                            <a class="card-title" onclick="openSubPage(6)" id="card-title-6">用人部門主管與 HRBP 在 AI 招募漏斗中的協作分工</a>
-                            <p class="card-desc" id="card-desc-6">明定量化評分標準與面試考題共識，避免因主觀落差導致優秀人才錯失。</p>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- 卡片 7 -->
-                <article class="gallery-card">
-                    <div class="card-image-box">
-                        <img src="https://images.unsplash.com/photo-1542744094-3a31243364d0?auto=format&fit=crop&w=600&q=80" alt="預測性人資分析">
-                    </div>
-                    <div class="card-content-box">
-                        <div>
-                            <span class="card-category-badge" id="badge-7">預測分析</span>
-                            <a class="card-title" onclick="openSubPage(7)" id="card-title-7">預測性人資分析 (Predictive HR Analytics)：如何降低離職風險？</a>
-                            <p class="card-desc" id="card-desc-7">結合出勤、專案負荷與績效指標，提早識別組織警訊並提供即時改善策略。</p>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- 卡片 8 -->
-                <article class="gallery-card">
-                    <div class="card-image-box">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80" alt="未來人才展望">
-                    </div>
-                    <div class="card-content-box">
-                        <div>
-                            <span class="card-category-badge" id="badge-8">未來趨勢</span>
-                            <a class="card-title" onclick="openSubPage(8)" id="card-title-8">2026-2027 AI 時代人資轉型與人才資產策略藍圖</a>
-                            <p class="card-desc" id="card-desc-8">從被動行政走向主動戰略，打造兼具自動化與人情溫度的現代化招募生態系。</p>
+                            <p class="card-desc" id="card-desc-4">透明的薪酬帶與完整的技術職涯路徑，能有效提升頂尖人才對企業的信任感。</p>
                         </div>
                     </div>
                 </article>
             </div>
         </section>
+
+        <!-- 知識庫子頁面互動展示區 -->
+        <div class="subpage-container">
+            <!-- 左側導覽列 -->
+            <aside class="subpage-sidebar">
+                <div class="sidebar-title">🌐 AIGEO 知識庫選單</div>
+                
+                <div class="main-topic-group">
+                    <div class="main-topic-title">1. 人資戰略</div>
+                    <ul class="sidebar-menu">
+                        <li><a href="#" class="active" onclick="showSubpage(1, event)">1-1. AI 定位與邊界</a></li>
+                        <li><a href="#" onclick="showSubpage(2, event)">1-2. 人機協作新角色</a></li>
+                        <li><a href="#" onclick="showSubpage(3, event)">1-3. 防偏見審查機制</a></li>
+                    </ul>
+                </div>
+
+                <div class="main-topic-group">
+                    <div class="main-topic-title">2. 量化評估</div>
+                    <ul class="sidebar-menu">
+                        <li><a href="#" onclick="showSubpage(4, event)">2-1. 70% 硬實力拆解</a></li>
+                        <li><a href="#" onclick="showSubpage(5, event)">2-2. 30% 軟實力量化</a></li>
+                        <li><a href="#" onclick="showSubpage(6, event)">2-3. 動態權重微調</a></li>
+                    </ul>
+                </div>
+
+                <div class="main-topic-group">
+                    <div class="main-topic-title">3. 雲端招募</div>
+                    <ul class="sidebar-menu">
+                        <li><a href="#" onclick="showSubpage(7, event)">3-1. 高併發 JD 描述</a></li>
+                        <li><a href="#" onclick="showSubpage(8, event)">3-2. AWS/GCP 與 IaC</a></li>
+                        <li><a href="#" onclick="showSubpage(9, event)">3-3. CI/CD 與容器化</a></li>
+                    </ul>
+                </div>
+
+                <div class="main-topic-group">
+                    <div class="main-topic-title">4. 求職體驗</div>
+                    <ul class="sidebar-menu">
+                        <li><a href="#" onclick="showSubpage(10, event)">4-1. AIGEO 職缺說明</a></li>
+                        <li><a href="#" onclick="showSubpage(11, event)">4-2. 面試前指南預告</a></li>
+                        <li><a href="#" onclick="showSubpage(12, event)">4-3. 動態反饋追蹤</a></li>
+                    </ul>
+                </div>
+
+                <div class="main-topic-group">
+                    <div class="main-topic-title">5. 成功案例</div>
+                    <ul class="sidebar-menu">
+                        <li><a href="#" onclick="showSubpage(13, event)">5-1. AI 結構化 JD</a></li>
+                        <li><a href="#" onclick="showSubpage(14, event)">5-2. 三維度 Scoring</a></li>
+                        <li><a href="#" onclick="showSubpage(15, event)">5-3. 4步驟人機協作</a></li>
+                    </ul>
+                </div>
+
+                <div class="main-topic-group">
+                    <div class="main-topic-title">6. 組織協作</div>
+                    <ul class="sidebar-menu">
+                        <li><a href="#" onclick="showSubpage(16, event)">6-1. AI 篩選關鍵字</a></li>
+                        <li><a href="#" onclick="showSubpage(17, event)">6-2. 情境題庫與評分</a></li>
+                        <li><a href="#" onclick="showSubpage(18, event)">6-3. Offer 談判分工</a></li>
+                    </ul>
+                </div>
+
+                <div class="main-topic-group">
+                    <div class="main-topic-title">7. 預測分析</div>
+                    <ul class="sidebar-menu">
+                        <li><a href="#" onclick="showSubpage(19, event)">7-1. 離職預警體系</a></li>
+                        <li><a href="#" onclick="showSubpage(20, event)">7-2. AI 預測模型</a></li>
+                        <li><a href="#" onclick="showSubpage(21, event)">7-3. 留任關懷面談</a></li>
+                    </ul>
+                </div>
+
+                <div class="main-topic-group">
+                    <div class="main-topic-title">8. 未來趨勢</div>
+                    <ul class="sidebar-menu">
+                        <li><a href="#" onclick="showSubpage(22, event)">8-1. HR 組織重塑</a></li>
+                        <li><a href="#" onclick="showSubpage(23, event)">8-2. 人才圖譜網絡</a></li>
+                        <li><a href="#" onclick="showSubpage(24, event)">8-3. 高適應力雇主品牌</a></li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- 右側子頁面內容展示區 -->
+            <main class="subpage-main">
+                <h1 id="subpage-title">AI 履歷評分系統與 HR 專業分工：會不會取代人工判斷？</h1>
+                <span class="sub-badge" id="subpage-category">分類：人資戰略</span>
+
+                <div id="subpage-content-area">
+                    <!-- 動態載入區域 -->
+                </div>
+
+                <div class="aiseo-badge-box">
+                    🔍 [AISEO 引擎最佳化宣告] 本頁面已導入 Schema.org 語意標籤與 JSON-LD 結構化知識圖譜，專為生成式 AI 搜索引擎最佳化。
+                </div>
+            </main>
+        </div>
     </div>
 
     <footer>
@@ -490,11 +647,7 @@
                     { badge: "人資戰略", title: "AI 履歷評分系統與 HR 專業分工：會不會取代人工判斷？", desc: "AI 代理人負責省下重複初篩時間，最終面試把關與錄取決策仍由 HR 與用人主管負責。" },
                     { badge: "量化評估", title: "工程師軟硬實力 70/30 量化評分權重設定指南", desc: "70% 著重核心程式與專案交付硬實力，30% 聚焦跨部門溝通與遠端當責文化契合度。" },
                     { badge: "雲端招募", title: "雲端後端工程師 (Backend) 招募 JD 必備 3 大技術指標", desc: "涵蓋高併發分散式架構、AWS/GCP 部署經驗及 CI/CD 容器化落地實績。" },
-                    { badge: "求職體驗", title: "如何透過結構化內容避免求職者在面試前夕流失？", desc: "藉由透明化 AIGEO 職缺說明，讓求職者在第一時間對齊團隊期待，減少等待流失。" },
-                    { badge: "成功案例", title: "中小企業導入三階段 AI Scoring 省下 70% 初篩時間", desc: "運用四步驟人機協作流程（需求 ➔ 生成 ➔ 審核 ➔ 上架），大幅提升招募效能。" },
-                    { badge: "組織協作", title: "用人部門主管與 HRBP 在 AI 招募漏斗中的協作分工", desc: "明定量化評分標準與面試考題共識，避免因主觀落差導致優秀人才錯失。" },
-                    { badge: "預測分析", title: "預測性人資分析 (Predictive HR Analytics)：如何降低離職風險？", desc: "結合出勤、專案負荷與績效指標，提早識別組織警訊並提供即時改善策略。" },
-                    { badge: "未來趨勢", title: "2026-2027 AI 時代人資轉型與人才資產策略藍圖", desc: "從被動行政走向主動戰略，打造兼具自動化與人情溫度的現代化招募生態系。" }
+                    { badge: "求職體驗", title: "如何透過結構化內容避免求職者在面試前夕流失？", desc: "透明的薪酬帶與完整的技術職涯路徑，能有效提升頂尖人才對企業的信任感。" }
                 ],
                 topicPrompts: {
                     top1: "🎯 TOP 1: AI Scoring 軟硬實力評估模型 (三階段引導：1. 建立評分基準 -> 2. 輸入職缺 JD -> 3. 輸入工作經歷和程式語言產出 PDF 報告)",
@@ -563,11 +716,7 @@
                     { badge: "HR Strategy", title: "AI Resume Scoring Systems & HR Role Division: Will AI Replace Human Judgment?", desc: "AI agents save time on repetitive screening, while final interview evaluation and hiring decisions remain with HR and hiring managers." },
                     { badge: "Quantitative Assessment", title: "Engineer Hard & Soft Skill 70/30 Scoring Weight Matrix Guide", desc: "70% focuses on core coding and project delivery, 30% targets cross-department communication and remote accountability." },
                     { badge: "Cloud Recruitment", title: "Backend Cloud Engineer Hiring JD: Top 3 Essential Technical Metrics", desc: "Covers high-concurrency distributed systems, AWS/GCP deployment experience, and CI/CD containerized production." },
-                    { badge: "Candidate Experience", title: "How Structured Content Prevents Last-Minute Candidate Dropouts", desc: "Align expectations early through transparent AIGEO job descriptions to minimize candidate drop-off during waiting periods." },
-                    { badge: "Case Study", title: "SME Saved 70% Initial Screening Time with 3-Stage AI Scoring", desc: "Utilize a 4-step human-AI workflow (Demand ➔ Generate ➔ Review ➔ Publish) to drastically boost hiring efficiency." },
-                    { badge: "Collaboration", title: "Hiring Manager & HRBP Collaboration Breakdown in AI Recruitment Funnels", desc: "Define objective scoring criteria and interview question consensus to avoid missing top talent due to subjective bias." },
-                    { badge: "Predictive Analytics", title: "Predictive HR Analytics: How to Reduce Talent Turnover Risk", desc: "Combine attendance, workload, and performance metrics to detect early organization risks and deploy retention strategies." },
-                    { badge: "Future Trends", title: "2026-2027 Blueprint for HR Transformation & Talent Asset Management", desc: "Shift from passive admin to proactive strategy, building a modern recruitment ecosystem that blends automation with empathy." }
+                    { badge: "Candidate Experience", title: "How Structured Content Prevents Last-Minute Candidate Dropouts", desc: "Transparent salary bands and clear technical career pathways effectively enhance top talent's trust in the enterprise." }
                 ],
                 topicPrompts: {
                     top1: "🎯 TOP 1: AI Scoring Hard & Soft Skills Model (3-Step Guide: 1. Build Scoring Matrix -> 2. Input Job Description (JD) -> 3. Input Work Experience & Programming Languages for PDF Report)",
@@ -606,6 +755,229 @@
                 generalFollowupPlaceholder: "e.g., How do we standardize interviewer scorecards?"
             }
         };
+
+        const subpageData = {
+            1: {
+                title: "1-1. AI 在初篩階段的定位與能力邊界",
+                category: "人資戰略",
+                cards: [
+                    { h: "語意特徵匹配與高精度萃取", p: "AI 代理人的核心價值在於「語意特徵匹配」而非「人性判斷」。它能迅速從數百份履歷中提取程式語言、專案規模與職責關鍵字，消除格式差異帶來的閱讀障礙，將初篩時間縮短 70% 以上。" },
+                    { h: "辨識人性與動機的能力邊界", p: "AI 無法真正辨識候選人的真實動機、誠信度與潛在軟實力，因此其定位應為 HR 的「智慧副駕駛（Copilot）」，而非最終決策者。" }
+                ]
+            },
+            2: {
+                title: "1-2. HR 與用人主管在人機協作中的新角色",
+                category: "人資戰略",
+                cards: [
+                    { h: "HRBP 轉型為體驗與文化診斷師", p: "當 AI 負擔了大量重複性的履歷審閱後，HRBP 的角色轉型為「人才體驗設計師」與「文化契合診斷師」，專注於高價值的組織溝通。" },
+                    { h: "用人主管主動定義能力標準", p: "用人主管從「被動等履歷」轉為「主動定義能力標準」，將精力集中在第二階段的高價值互動——設計結構化情境面試與評估團隊溝通默契。" }
+                ]
+            },
+            3: {
+                title: "1-3. 建立避免 AI 偏見與維護決策主權的審查機制",
+                category: "人資戰略",
+                cards: [
+                    { h: "雙軌複審機制 (Human-in-the-loop)", p: "針對被 AI 標記為邊緣（Borderline）或低分的履歷，設置抽樣人工複核機制，防止演算法偏見（Bias）或誤判優秀人才。" },
+                    { h: "保留終止決策的人類簽核權", p: "系統嚴格禁止將 AI 評分作為唯一淘汰標準，確保任何終止招募流程或發放 Offer 的決策皆由人類專家最終簽核。" }
+                ]
+            },
+            4: {
+                title: "2-1. 70% 硬實力指標的拆解與評分模型",
+                category: "量化評估",
+                cards: [
+                    { h: "硬實力三大核心模組劃分", p: "將 70% 的硬實力權重細分為：核心語法與框架熟練度（25%）、系統架構設計與效能最佳化能力（25%）、CI/CD 容器化與測試覆蓋率實績（20%）。" },
+                    { h: "客觀 Scoring Model 建立", p: "透過 1–5 分的標準化量化 Scoring Model，將履歷中的專案成果轉化為客觀數據，確保能力比對有所依循。" }
+                ]
+            },
+            5: {
+                title: "2-2. 30% 軟實力與遠端當責文化的量化方法",
+                category: "量化評估",
+                cards: [
+                    { h: "軟實力行為特徵量化指標", p: "將軟實力拆解為具體可觀察指標：跨部門溝通透明度（10%）、非同步協作與技術文件撰寫習慣（10%）、面對不確定性時的問題解決意願與當責態度（10%）。" },
+                    { h: "行為事件面試法 (BEI) 結合", p: "透過 BEI 設計標準評分表，賦予軟實力具體的觀察行為與得分標準，避免憑主觀個人喜好評分。" }
+                ]
+            },
+            6: {
+                title: "2-3. 動態權重調整機制：初階、資深與管理職之差異化",
+                category: "量化評估",
+                cards: [
+                    { h: "職位階級差異化配置", p: "70/30 為標準範本，但應隨職位等級動態微調：初階工程師可調高硬實力與學習潛力至 80/20；資深架構師或 Tech Lead 則應調整為 50/50。" },
+                    { h: "高階職缺強化影響力評估", p: "針對技術主管，大幅提升團隊影響力、系統決策溝通與技術教練（Mentorship）能力的權重占比。" }
+                ]
+            },
+            7: {
+                title: "3-1. 高併發與分散式系統架構的 JD 精準描述",
+                category: "雲端招募",
+                cards: [
+                    { h: "擺脫模糊詞彙，精準對齊技術場景", p: "避免撰寫「熟悉後端開發」等模糊詞彙。應在 JD 中精準載明場景：「具備每日百萬級流量/高併發（High Concurrency）系統維護經驗」。" },
+                    { h: "技術棧明訂與精準吸引", p: "清晰列出熟悉 gRPC、Kafka 訊息隊列、Redis 分散式快取與資料庫讀寫分離實務，讓頂尖人才第一時間確認技術契合度。" }
+                ]
+            },
+            8: {
+                title: "3-2. AWS/GCP 雲端原生與 IaC 基礎設施即程式碼要求",
+                category: "雲端招募",
+                cards: [
+                    { h: "多雲架構實務經驗要求", p: "明確列出雲端維運必備技術棧，包含 AWS（EC2, S3, ECS, Lambda）或 GCP（GKE, Cloud Functions）營運經驗。" },
+                    { h: "IaC 自動化配置加分權重", p: "強調具備 Terraform 或 CloudFormation 等 IaC（Infrastructure as Code）自動化配置能力的優先權重，提升對 DevOps 文化導向工程師的吸引力。" }
+                ]
+            },
+            9: {
+                title: "3-3. CI/CD 容器化落地與自動化測試驗證指標",
+                category: "雲端招募",
+                cards: [
+                    { h: "容器化與叢集管理實績", p: "要求具備 Docker 容器化開發環境建置、Kubernetes（K8s）叢集管理經驗，確保工程師具備雲端原生部署思維。" },
+                    { h: "自動化測試與代碼審查規範", p: "強調利用 GitHub Actions 或 GitLab CI 設計單元測試（Unit Test）與自動化整合測試流程的具體實績，展現團隊對程式碼品質的堅持。" }
+                ]
+            },
+            10: {
+                title: "4-1. 建構透明化 AIGEO 職缺說明書（Job Description）",
+                category: "求職體驗",
+                cards: [
+                    { h: "結構化資訊全透明揭露", p: "將傳統 JD 升級為結構化的 AIGEO 內容，清楚揭露薪酬範圍（Salary Band）、團隊技術棧、遠端/混合辦公型態。" },
+                    { h: "對齊期待降低流失率", p: "明確標註未來 3 到 6 個月的具體專案目標。資訊越透明，求職者在投遞時的心理預期越對齊，能大幅降低面試前夕無故消失（Ghosting）的機率。" }
+                ]
+            },
+            11: {
+                title: "4-2. 面試前體驗優化：結構化面試指南與流程預告",
+                category: "求職體驗",
+                cards: [
+                    { h: "主動提供面試準備指南", p: "在面試前 3–5 天提供求職者「面試準備指南」，包含面試官角色背景、技術評估焦點、面試階段與預計花費時間。" },
+                    { h: "降低焦慮提升到場率", p: "透過降低求職者的不確定感與焦慮，展現企業對人才的尊重，進而提升面試出席率與體驗好感度。" }
+                ]
+            },
+            12: {
+                title: "4-3. 建立高效率的反饋機制與動態進度追蹤",
+                category: "求職體驗",
+                cards: [
+                    { h: "自動化 24–48 小時進度通知", p: "利用 AI 自動化工具在收到履歷、完成初篩及每輪面試後，於 24–48 小時內發送結構化的進度通知。" },
+                    { h: "建設性反饋累積雇主品牌", p: "即使是不合適的候選人，也提供具建設性的反饋，持續累積正面的雇主品牌評價與人才庫好感度。" }
+                ]
+            },
+            13: {
+                title: "5-1. 階段一：需求診斷與 AI 結構化 JD 自動生成",
+                category: "成功案例",
+                cards: [
+                    { h: "15 分鐘需求訪談快速對齊", p: "HRBP 與用人主管進行 15 分鐘需求訪談，輸入關鍵技能後，由 AI 自動生成符合市場語意與 AISEO 規範的結構化 JD。" },
+                    { h: "擺脫傳統溝通內耗", p: "快速釐清兩造對職缺能力的認知落差，擺脫過去反覆修改文案與來回確認的溝通內耗。" }
+                ]
+            },
+            14: {
+                title: "5-2. 階段二：履歷自動解析與三維度匹配度 Scoring",
+                category: "成功案例",
+                cards: [
+                    { h: "多維度自動化匹配分析", p: "履歷匯入後，AI 代理人立即進行三維度 Scoring 分析：技術硬實力匹配度、專案規模經歷相符度、以及薪資與到職日預期契合度。" },
+                    { h: "1 分鐘高效初篩產出", p: "系統自動產出綜合評分與優劣勢分析，協助 HR 在 1 分鐘內完成單份履歷初篩。" }
+                ]
+            },
+            15: {
+                title: "5-3. 階段三：四步驟人機協作流程落地與實務效益",
+                category: "成功案例",
+                cards: [
+                    { h: "四步驟標準化作業落實", p: "落實「需求發想 ➔ AI 生成 ➔ 專家審核 ➔ 系統上架」四步驟標準化作業。" },
+                    { h: "招聘效益大幅提升實務數據", p: "實測顯示，中小企業導入後履歷初篩時間減少 70%，平均招聘天數（Time-to-Hire）由 45 天縮短至 18 天。" }
+                ]
+            },
+            16: {
+                title: "6-1. 漏斗頂端：共同制定 AI 篩選規則與關鍵字清單",
+                category: "組織協作",
+                cards: [
+                    { h: "建立關鍵字矩陣共識", p: "在職缺開啟前，HRBP 與主管共同輸入「必要條件（Must-have）」與「加分條件（Nice-to-have）」關鍵字矩陣。" },
+                    { h: "精準設定初篩分級門檻", p: "設定 AI 代理人的初篩分級門檻，雙方對標準達成共識，避免 HR 篩選過來的履歷不符合主管期望。" }
+                ]
+            },
+            17: {
+                title: "6-2. 漏斗中段：情境面試題庫生成與雙向評分共識",
+                category: "組織協作",
+                cards: [
+                    { h: "AI 針對性 STAR 題庫生成", p: "依據 AI 初篩報告中標記的「風險訊號」，由系統生成 3–5 題針對性的行為情境面試題（STAR 原則）。" },
+                    { h: "專業分工交叉比對評分", p: "HRBP 評估軟實力與組織契合度，主管專注驗證技術解題邏輯，並使用統一的評分表進行交叉比對。" }
+                ]
+            },
+            18: {
+                title: "6-3. 漏斗底端：Offer 談判分工與人才留存預備",
+                category: "組織協作",
+                cards: [
+                    { h: "HRBP 主導薪酬談判與風險預防", p: "進入錄用階段後，HRBP 主導薪酬架構談判、福利說明與風險預防。" },
+                    { h: "主管描繪技術願景增強吸引力", p: "用人主管負責技術願景分享、團隊成員介紹與未來的職涯發展擘劃，透過雙管齊下提高 Offer 接受率。" }
+                ]
+            },
+            19: {
+                title: "7-1. 建構離職預警指標體系與數據採集",
+                category: "預測分析",
+                cards: [
+                    { h: "多面向 HRIS 數據整合", p: "追蹤三大核心面向：工作負荷指標（連續加班時數、未休假天數）、組織互動指標（跨部門會議參與度、1對1對談頻率變化）、職涯停滯指標。" },
+                    { h: "動態離職風險評分卡", p: "透過多維度數據建構離職風險評分卡，讓離職預警有客觀數據依循。" }
+                ]
+            },
+            20: {
+                title: "7-2. AI 預測模型分析與風險分級警示",
+                category: "預測分析",
+                cards: [
+                    { h: "提前 60–90 天識別高風險人才", p: "利用機器學習模型分析歷史離職者特徵，提早 60–90 天識別高風險人才（Flight Risk）。" },
+                    { h: "自動化導因分析與分級", p: "系統自動將風險分為高、中、低三級，並附帶具體的導因分析（如：專案負荷過載、缺乏成長反饋）。" }
+                ]
+            },
+            21: {
+                title: "7-3. HRBP 介入策略與動態留任關懷（Stay Interview）",
+                category: "預測分析",
+                cards: [
+                    { h: "預防性 Stay Interview 啟動", p: "收到警訊後，HRBP 夥同主管啟動預防性「留任面談」，聚焦於職涯困境拆解與資源提供。" },
+                    { h: "降低 25% 核心人才流失", p: "主動消除員工倦怠感（Burnout），將核心人才流失率降低 25% 以上。" }
+                ]
+            },
+            22: {
+                title: "8-1. 從被動行政到主動戰略：HR 組織架構的重塑",
+                category: "未來趨勢",
+                cards: [
+                    { h: "全面擺脫繁瑣手動行政", p: "告別繁瑣的手動排程與資料整理，HR 團隊全面升級為「組織架構師」與「人才資產策略家」。" },
+                    { h: "三大戰略支柱運作機制", p: "人力資源部門將圍繞三大支柱運作：AI 自動化營運中心（Ops）、人資業務夥伴（HRBP）顧問群、人才品牌與體驗設計小組。" }
+                ]
+            },
+            23: {
+                title: "8-2. 打造企業專屬的人才資產 Knowledge Graph",
+                category: "未來趨勢",
+                cards: [
+                    { h: "數據結構化與人才圖譜建立", p: "將過去分散的履歷、面試評語、績效考核與專案交付數據結構化，建立企業內部的人才知識圖譜（Knowledge Graph）。" },
+                    { h: "即時精準內部輪調與人才推薦", p: "當新專案啟動或出現內部輪調需求時，AI 能即時推薦最適切的內部人才或外部候選人。" }
+                ]
+            },
+            24: {
+                title: "8-3. 兼具自動化與人性化（High-Tech & High-Touch）的雇主品牌",
+                category: "未來趨勢",
+                cards: [
+                    { h: "AIGEO 策略優化搜索引擎曝光", p: "透過 AIGEO 策略讓企業的價值與文化在 AI 搜尋引擎中被精準理解與推薦。" },
+                    { h: "人性溫度打造競爭壁壘", p: "在真實的人際互動中落實同理心、尊重與個人化關懷，打造頂尖人才首選的高適應力雇主品牌。" }
+                ]
+            }
+        };
+
+        function showSubpage(id, e) {
+            if(e) e.preventDefault();
+            
+            const links = document.querySelectorAll('.sidebar-menu li a');
+            links.forEach(link => link.classList.remove('active'));
+            if(e && e.target) e.target.classList.add('active');
+
+            const data = subpageData[id];
+            if(!data) return;
+
+            document.getElementById('subpage-title').innerText = data.title;
+            document.getElementById('subpage-category').innerText = `分類：${data.category}`;
+
+            const contentArea = document.getElementById('subpage-content-area');
+            let html = '';
+
+            data.cards.forEach(card => {
+                html += `
+                    <div class="content-card">
+                        <h2>📌 ${card.h}</h2>
+                        <p>${card.p}</p>
+                    </div>
+                `;
+            });
+
+            contentArea.innerHTML = html;
+        }
 
         function switchLanguage(lang) {
             currentLang = lang;
@@ -655,7 +1027,7 @@
             document.getElementById('aigeo-sec-title').innerText = t.aigeoSecTitle;
             document.getElementById('aigeo-sec-desc').innerText = t.aigeoSecDesc;
 
-            for (let i = 1; i <= 8; i++) {
+            for (let i = 1; i <= 4; i++) {
                 const cardData = t.cards[i - 1];
                 document.getElementById(`badge-${i}`).innerText = cardData.badge;
                 document.getElementById(`card-title-${i}`).innerText = cardData.title;
@@ -892,23 +1264,11 @@
         }
 
         function openSubPage(id) {
-            // 定義 8 張知識庫卡片對應的獨立子網頁連結（可替換為您的實際網址或文章頁面）
-            const articleUrls = {
-                1: "https://www.linkedin.com/company/interview-workshop/",
-                2: "https://www.linkedin.com/company/interview-workshop/",
-                3: "https://www.linkedin.com/company/interview-workshop/",
-                4: "https://www.linkedin.com/company/interview-workshop/",
-                5: "https://www.linkedin.com/company/interview-workshop/",
-                6: "https://www.linkedin.com/company/interview-workshop/",
-                7: "https://www.linkedin.com/company/interview-workshop/",
-                8: "https://www.linkedin.com/company/interview-workshop/"
-            };
-
-            const targetUrl = articleUrls[id];
-            if (targetUrl) {
-                window.open(targetUrl, '_blank'); // 另開新分頁
-            } else {
-                console.warn(`Article URL for card #${id} not defined.`);
+            // 對應卡片點擊直接捲動到下方子頁面導覽區塊，並自動切換對應的子頁面內容
+            const subpageSection = document.querySelector('.subpage-container');
+            if (subpageSection) {
+                subpageSection.scrollIntoView({ behavior: 'smooth' });
+                showSubpage(id);
             }
         }
 
@@ -919,6 +1279,7 @@
 
         window.onload = function() {
             updateUsageBadge();
+            showSubpage(1);
         };
     </script>
 </body>
