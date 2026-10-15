@@ -80,14 +80,14 @@
         .tag-btn { background: #fff; border: 1px solid var(--border-color); border-radius: 50px; padding: 0.45rem 1rem; font-size: 0.85rem; color: #334155; cursor: pointer; }
         .tag-btn:hover { background: #f1f5f9; }
 
-        /* 知識庫卡片樣式 (使用真實辦公室/工作場景真人寫真 Unsplash 高清照片) */
+        /* 知識庫卡片樣式 */
         .kb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; text-align: left; margin-top: 1rem; }
         .kb-card { background: #fff; border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; display: flex; flex-direction: column; }
         .kb-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
         .kb-card-img { width: 100%; height: 160px; background: #e2e8f0; object-fit: cover; }
         .kb-card-body { padding: 1.25rem; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
         .kb-card-title { font-size: 1.05rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem; }
-        .kb-card-text { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.5; }
+        .kb-card-text { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.0rem; line-height: 1.5; }
         .kb-card-tag { align-self: flex-start; font-size: 0.75rem; font-weight: 600; color: #0f766e; background: #ccfbf1; padding: 0.2rem 0.6rem; border-radius: 4px; }
 
         /* Subpage 容器樣式 */
@@ -104,6 +104,7 @@
         .subpage-content-pane { display: none; background: #f8fafc; border: 1px solid var(--border-color); border-radius: 10px; padding: 1.5rem; font-size: 0.95rem; line-height: 1.7; color: #1e293b; }
         .subpage-content-pane.active { display: block; }
 
+        /* API Key 容器與教學區塊樣式 */
         .api-key-container { display: none; max-width: 860px; margin: 2rem auto 0 auto; text-align: left; background: #fffbeb; border: 2px solid #f59e0b; padding: 1.5rem; border-radius: 12px; box-shadow: 0 10px 25px rgba(245, 158, 11, 0.15); }
         .api-key-container h3 { color: #92400e; font-size: 1.15rem; margin-bottom: 0.5rem; }
         .api-key-container p { color: #78350f; font-size: 0.92rem; margin-bottom: 1rem; }
@@ -112,6 +113,15 @@
         .btn-confirm-apikey { background: #d97706; color: #fff; border: none; padding: 0.75rem 1.5rem; border-radius: 6px; font-weight: 600; cursor: pointer; white-space: nowrap; }
         .btn-confirm-apikey:hover { background: #b45309; }
         .safety-assurance-text { font-size: 0.82rem; color: #047857; font-weight: 700; background: #ecfdf5; border: 1px solid #a7f3d0; padding: 0.35rem 0.75rem; border-radius: 6px; display: inline-block; }
+
+        /* API 申請教學區樣式 */
+        .api-tutorial-toggle { margin-top: 1rem; border-top: 1px dashed #fcd34d; padding-top: 0.85rem; }
+        .btn-toggle-tutorial { background: none; border: none; color: #b45309; font-weight: 700; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; gap: 0.3rem; padding: 0; }
+        .btn-toggle-tutorial:hover { color: #78350f; text-decoration: underline; }
+        .api-tutorial-content { display: none; margin-top: 0.75rem; background: #fff; border: 1px solid #fde68a; border-radius: 8px; padding: 1rem; font-size: 0.88rem; color: #78350f; line-height: 1.6; }
+        .api-tutorial-content ol { padding-left: 1.2rem; margin-top: 0.4rem; }
+        .api-tutorial-content li { margin-bottom: 0.4rem; }
+        .api-tutorial-content a { color: #0284c7; font-weight: 600; text-decoration: underline; }
 
         .result-panel { max-width: 860px; margin: 2rem auto 0 auto; padding: 1.75rem; background: #f8fafc; border: 1px solid var(--border-color); border-radius: 12px; text-align: left; display: none; }
         
@@ -240,15 +250,39 @@
                 </div>
             </div>
 
-            <!-- BYOK Box -->
+            <!-- BYOK Box 包含新增的「如何申請 API Key 教學區」 -->
             <div id="api-key-container" class="api-key-container">
                 <h3 id="byok-title">🔑 20 次免費互動額度已滿！請輸入自備 API Key 繼續免費無限使用</h3>
                 <p id="byok-desc">您已使用完系統內建的 20 次免費額度。請在下方貼上您自己的金鑰（支援 AQ. 憑證、Groq 金鑰或 Gemini 金鑰），確認後此提示框將自動關閉並解鎖無限次使用：</p>
+                
                 <div class="api-input-group">
                     <input type="password" id="user-api-key" placeholder="請貼上您的 API Key (例如 AQ... 或 gsk_...)">
                     <button class="btn-confirm-apikey" id="btn-confirm-key" onclick="confirmApiKeyAndContinue()">確認並解鎖無限使用</button>
                 </div>
-                <div class="safety-assurance-text" id="safety-text">🛡️ 安全保證：您的金鑰僅暫存於瀏覽器記憶體中，確認後不再重複彈出提醒。</div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem;">
+                    <div class="safety-assurance-text" id="safety-text">🛡️ 安全保證：您的金鑰僅暫存於瀏覽器記憶體中，確認後不再重複彈出提醒。</div>
+                </div>
+
+                <!-- 點擊展開的 API 申請教學區 -->
+                <div class="api-tutorial-toggle">
+                    <button class="btn-toggle-tutorial" onclick="toggleApiTutorial()">
+                        📖 點此展開：如何免費申請取得 Gemini / Groq API Key？ ▼
+                    </button>
+                    <div id="api-tutorial-box" class="api-tutorial-content">
+                        <strong>📌 如何快速取得您的專屬 API Key：</strong>
+                        <ol>
+                            <li><strong>申請 Gemini API Key (Google AI Studio)：</strong><br>
+                                前往 <a href="https://aistudio.google.com/" target="_blank">Google AI Studio 官方網站</a>，使用 Google 帳號登入，點擊左上角「Get API key」即可免費建立並複製您的金鑰。
+                            </li>
+                            <li><strong>申請 Groq API Key (高速度備用金鑰)：</strong><br>
+                                前往 <a href="https://console.groq.com/" target="_blank">Groq Console 官網</a>，註冊後至 API Keys 專區即可免費生成一組開頭為 <code>gsk_</code> 的金鑰。
+                            </li>
+                            <li><strong>完成設定：</strong> 將複製好的金鑰貼入上方輸入框，點擊「確認並解鎖無限使用」即可立即恢復無限制對話與診斷功能！
+                            </li>
+                        </ol>
+                    </div>
+                </div>
             </div>
 
             <!-- Diagnosis Result & Interactive Follow-up Panel -->
@@ -451,6 +485,16 @@
             }
         }
 
+        // 切換 API 申請教學區的展開/收合
+        function toggleApiTutorial() {
+            const box = document.getElementById('api-tutorial-box');
+            if (box.style.display === 'block') {
+                box.style.display = 'none';
+            } else {
+                box.style.display = 'block';
+            }
+        }
+
         // 主 Tab 切換邏輯 (沙盒診斷 vs 專業知識庫)
         function switchMainTab(tabName) {
             const tabSandbox = document.getElementById('tab-sandbox');
@@ -563,7 +607,7 @@
                 inputPlaceholder: "點選下方熱門話題，或直接輸入您的 HR 挑戰...",
                 top3Title: "🔥 2026-2027 TOP 3 HR 最熱門搜尋話題：",
                 standardTitle: "📌 點選下方職缺與標準 HR 策略標籤（漸進式條列引導）：",
-                top1Btn: "🎯 TOP 1: AI Scoring 軟硬實力評估模型 (三階段引導：職缺 JD 解析 ➔ 工作經歷和程式語言匹配 ➔ 產出動態 PDF 報告)",
+                top1Btn: "🎯 TOP 1: AI Scoring Hard & Soft Skills Model (三階段引導：職缺 JD 解析 ➔ 工作經歷和程式語言匹配 ➔ 產出動態 PDF 報告)",
                 top2Btn: "🎯 TOP 2: AI 招募自動化漏斗 (提升 300% 招募篩選效率)",
                 top3Btn: "📈 TOP 3: 預測性人資分析 Predictive HR Analytics (降低關鍵人才離職風險)",
                 std1Btn: "☁️ Frontend Engineer 招募策略",
@@ -856,7 +900,7 @@
         }
 
         function generateAiResponseTop1Stage3(jd, exp, role) {
-            return `🎉 【Gemini 3.6 Flash - 階段 3：動態經歷匹配與報告生成完成】\n\n根據您提供的 JD 與候選人經歷，系統已動態生成以下 4 大模組專業評估報告：\n\n` + renderAiScoringReportCard(jd, exp, role);
+            return `🎉 【Gemini 3.6 Flash - 階段 3：動態經歷匹配與報告生成完成】\n\n根據您提供的 JD 與候選人經歷, 系統已動態生成以下 4 大模組專業評估報告：\n\n` + renderAiScoringReportCard(jd, exp, role);
         }
 
         function renderAiScoringReportCard(jd, exp, role) {
