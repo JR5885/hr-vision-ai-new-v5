@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HR Vision AI - AI-Powered HR & Recruitment Automation System | AIGEO Strategy Platform</title>
-    <meta name="description" content="HR Vision AI combines artificial intelligence with recruitment process automation, featuring smart hiring funnels.">
+    <meta name="description" content="HR Vision AI combines artificial intelligence with recruitment process automation, featuring Gemini 3.6 Flash engines and smart hiring funnels.">
     <style>
         :root {
             --primary-color: #0f766e;
@@ -36,6 +36,30 @@
         .lang-btn.active { background: var(--white); color: var(--primary-color); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+
+        .machine-readable-banner {
+            background: #e0f2fe;
+            border: 1px solid #bae6fd;
+            color: #0369a1;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .aigeo-pillars-pill {
+            background: #0284c7;
+            color: #fff;
+            padding: 0.2rem 0.7rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
 
         .sandbox-card { background: var(--white); border: 1px solid var(--border-color); border-radius: 16px; padding: 2.5rem 2rem; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); margin-bottom: 3rem; text-align: center; }
         .sandbox-header h1 { font-size: 2.1rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem; }
@@ -70,12 +94,14 @@
         .tag-btn:hover { background: #f1f5f9; }
 
         .api-key-container { display: none; max-width: 860px; margin: 2rem auto 0 auto; text-align: left; background: #fffbeb; border: 2px solid #f59e0b; padding: 1.5rem; border-radius: 12px; box-shadow: 0 10px 25px rgba(245, 158, 11, 0.15); }
-        .api-key-container h3 { color: #92400e; font-size: 1.15rem; margin-bottom: 0.5rem; }
+        .api-key-container h3 { color: #92400e; font-size: 1.15rem; margin-bottom: 0.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
         .api-key-container p { color: #78350f; font-size: 0.92rem; margin-bottom: 1rem; }
         .api-input-group { display: flex; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
         .api-input-group input { flex: 1; min-width: 240px; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.95rem; }
         .btn-confirm-apikey { background: #d97706; color: #fff; border: none; padding: 0.75rem 1.5rem; border-radius: 6px; font-weight: 600; cursor: pointer; white-space: nowrap; }
         .btn-confirm-apikey:hover { background: #b45309; }
+        .btn-tutorial-link { background: transparent; border: 1px solid #d97706; color: #d97706; padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.82rem; font-weight: 700; cursor: pointer; }
+        .btn-tutorial-link:hover { background: #fef3c7; }
         .safety-assurance-text { font-size: 0.82rem; color: #047857; font-weight: 700; background: #ecfdf5; border: 1px solid #a7f3d0; padding: 0.35rem 0.75rem; border-radius: 6px; display: inline-block; }
 
         .result-panel { max-width: 860px; margin: 2rem auto 0 auto; padding: 1.75rem; background: #f8fafc; border: 1px solid var(--border-color); border-radius: 12px; text-align: left; display: none; }
@@ -168,9 +194,9 @@
         .btn-back-home:hover { background: #e2e8f0; }
 
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1000; justify-content: center; align-items: center; padding: 1rem; }
-        .modal-content { background: #ffffff; border-radius: 12px; max-width: 520px; width: 100%; padding: 2rem; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); text-align: left; }
+        .modal-content { background: #ffffff; border-radius: 12px; max-width: 560px; width: 100%; padding: 2rem; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); text-align: left; max-height: 85vh; overflow-y: auto; }
         .modal-content h3 { color: #0f172a; font-size: 1.25rem; margin-bottom: 0.75rem; }
-        .modal-content p { color: #475569; font-size: 0.92rem; line-height: 1.6; margin-bottom: 1.25rem; }
+        .modal-content p { color: #475569; font-size: 0.92rem; line-height: 1.6; margin-bottom: 1rem; }
         .modal-checkbox-wrapper { display: flex; align-items: flex-start; gap: 0.6rem; background: #f8fafc; border: 1px solid var(--border-color); padding: 0.85rem; border-radius: 8px; margin-bottom: 1.5rem; }
         .modal-checkbox-wrapper input[type="checkbox"] { margin-top: 0.2rem; width: 1.1rem; height: 1.1rem; cursor: pointer; }
         .modal-checkbox-wrapper label { font-size: 0.88rem; color: #334155; cursor: pointer; font-weight: 500; }
@@ -182,7 +208,7 @@
         footer { background: var(--white); border-top: 1px solid var(--border-color); padding: 2rem 1.5rem; margin-top: 3rem; text-align: center; color: var(--text-muted); font-size: 0.875rem; }
 
         @media print {
-            header, .machine-readable-banner, .sandbox-header, .target-selector-box, .privacy-notice-tip, .search-input-wrapper, .tags-section, .step-indicator-bar, #conversation-container, .followup-box, .btn-download-pdf, .edit-hint-tag, footer {
+            header, .machine-readable-banner, .sandbox-header, .target-selector-box, .privacy-notice-tip, .search-input-wrapper, .tags-section, .step-indicator-bar, #conversation-container, .followup-box, .btn-download-pdf, .edit-hint-tag, .aigeo-knowledge-section, footer {
                 display: none !important;
             }
             .sandbox-card, .result-panel { border: none !important; box-shadow: none !important; padding: 0 !important; margin: 0 !important; }
@@ -196,7 +222,7 @@
     <div id="privacy-modal" class="modal-overlay">
         <div class="modal-content">
             <h3 id="modal-title">🔒 隱私權保護與去識別化同意聲明</h3>
-            <p id="modal-desc">為符合個資保護規範，本沙盒採用即時運算。進行 AI 診斷前請落實「去識別化」，切勿輸入真實姓名或電話（本提示僅出現一次）。</p>
+            <p id="modal-desc">為符合個資保護規範與 Google 發布商政策，本沙盒採用即時運算。進行 AI 診斷前請落實「去識別化」，切勿輸入真實姓名或電話（本提示僅出現一次）。</p>
             <div class="modal-checkbox-wrapper">
                 <input type="checkbox" id="privacy-checkbox" onchange="toggleConfirmBtn()">
                 <label for="privacy-checkbox" id="modal-label">我已了解並同意使用「去識別化」資料進行即時分析。</label>
@@ -208,15 +234,29 @@
         </div>
     </div>
 
+    <!-- API Key Tutorial Modal (彈出式免費 API Key 申請教程) -->
+    <div id="tutorial-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h3 id=" tutorial-modal-title">📖 如何免費申請 Gemini API Key 教學</h3>
+            <p id="tutorial-step-1"><strong>第 1 步：</strong>前往 Google AI Studio 官方網站（<a href="https://aistudio.google.com/" target="_blank" rel="noopener" style="color: var(--secondary-color);">aistudio.google.com</a>）。</p>
+            <p id="tutorial-step-2"><strong>第 2 步：</strong>使用您的 Google 帳號登入，點擊左上角的 「<strong>Get API key</strong>」（取得 API 金鑰）。</p>
+            <p id="tutorial-step-3"><strong>第 3 步：</strong>點擊「<strong>Create API key in new project</strong>」，系統將立即生成一組免費金鑰（以 `AIza` 開頭）。</p>
+            <p id="tutorial-step-4"><strong>第 4 步：</strong>將複製的金鑰貼回沙盒下方的輸入框中，即可馬上解鎖無限次免費 AI 診斷！</p>
+            <div class="modal-buttons">
+                <button class="btn-modal-confirm" onclick="document.getElementById('tutorial-modal').style.display='none'" id="tutorial-close-btn">我知道了，關閉教程</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Privacy Policy Info Modal -->
     <div id="policy-info-modal" class="modal-overlay">
         <div class="modal-content">
-            <h3>📜 隱私權與服務條款說明 (Privacy Policy)</h3>
-            <p><strong>1. Cookie 與第三方廣告：</strong> 本網站可能使用 Google AdSense 等第三方廣告聯播網，透過 Cookie 根據使用者造訪本網站及其他網站之紀錄來投放廣告。</p>
-            <p><strong>2. 資料蒐集與去識別化：</strong> 本站提供之 AI 招募戰略診斷與經歷匹配工具為即時運算，請使用者切勿輸入真實個人敏感個資。</p>
-            <p><strong>3. 聯絡我們：</strong> 若有任何政策疑問或合作洽詢，請聯繫：mark760860@gmail.com。</p>
+            <h3 id="policy-modal-title">📜 隱私權與服務條款說明 (Privacy Policy)</h3>
+            <p id="policy-modal-p1"><strong>1. Cookie 與第三方廣告：</strong> 本網站可能使用 Google AdSense 等第三方廣告聯播網，透過 Cookie 根據使用者造訪本網站及其他網站之紀錄來投放廣告。</p>
+            <p id="policy-modal-p2"><strong>2. 資料蒐集與去識別化：</strong> 本站提供之 AI 招募戰略診斷與經歷匹配工具為即時運算，請使用者切勿輸入真實個人敏感個資。</p>
+            <p id="policy-modal-p3"><strong>3. 聯絡我們：</strong> 若有任何政策疑問或合作洽詢，請聯繫：mark760860@gmail.com。</p>
             <div class="modal-buttons">
-                <button class="btn-modal-confirm" onclick="document.getElementById('policy-info-modal').style.display='none'">我知道了</button>
+                <button class="btn-modal-confirm" onclick="document.getElementById('policy-info-modal').style.display='none'" id="policy-modal-btn">我知道了</button>
             </div>
         </div>
     </div>
@@ -224,10 +264,10 @@
     <!-- About Us Modal -->
     <div id="about-modal" class="modal-overlay">
         <div class="modal-content">
-            <h3>🏢 關於我們 (About Us)</h3>
-            <p><strong>HR Vision AI & AIGEO 策略平台</strong> 致力於協助中小企業與人資團隊導入人工智慧與招募自動化。透過結構化知識庫，我們讓企業的價值與雇主品牌在 AI 時代被搜尋、被理解、被信任。</p>
+            <h3 id="about-modal-title">🏢 關於我們 (About Us)</h3>
+            <p id="about-modal-p"><strong>HR Vision AI & AIGEO 策略平台</strong> 致力於協助中小企業與人資團隊導入人工智慧與招募自動化。透過動態引擎與結構化知識庫，我們讓企業的價值與雇主品牌在 AI 時代被搜尋、被理解、被信任。</p>
             <div class="modal-buttons">
-                <button class="btn-modal-confirm" onclick="document.getElementById('about-modal').style.display='none'">關閉</button>
+                <button class="btn-modal-confirm" onclick="document.getElementById('about-modal').style.display='none'" id="about-modal-btn">關閉</button>
             </div>
         </div>
     </div>
@@ -239,7 +279,6 @@
                 <a href="https://www.linkedin.com/company/interview-workshop/?viewAsMember=true" target="_blank" rel="noopener" class="btn-linkedin-nav" id="linkedin-nav-btn">
                     🔗 LinkedIn 專頁
                 </a>
-                <div id="usage-counter-badge" class="usage-badge">免費互動剩餘：20 / 20 次</div>
                 <div class="lang-switch">
                     <button class="lang-btn active" id="btn-zh" onclick="switchLanguage('zh')">繁中</button>
                     <button class="lang-btn" id="btn-en" onclick="switchLanguage('en')">English</button>
@@ -305,12 +344,15 @@
                     </div>
                 </div>
 
-                <!-- BYOK Box -->
+                <!-- BYOK Box (附帶 API Key 申請教程按鈕) -->
                 <div id="api-key-container" class="api-key-container">
-                    <h3 id="byok-title">🔑 20 次免費互動額度已滿！請輸入自備 API Key 繼續免費無限使用</h3>
+                    <h3 id="byok-title">
+                        <span>🔑 20 次免費互動額度已滿！請輸入自備 API Key 繼續無限使用</span>
+                        <button class="btn-tutorial-link" onclick="document.getElementById('tutorial-modal').style.display='flex'" id="tutorial-link-btn">📖 免費 API Key 申請教程</button>
+                    </h3>
                     <p id="byok-desc">您已使用完系統內建的 20 次免費額度。請在下方貼上您自己的金鑰，確認後此提示框將自動關閉並解鎖無限次使用：</p>
                     <div class="api-input-group">
-                        <input type="password" id="user-api-key" placeholder="請貼上您的 API Key (例如 AQ... 或 gsk_...)">
+                        <input type="password" id="user-api-key" placeholder="請貼上您的 API Key (例如 AQ... 或 AIza...)">
                         <button class="btn-confirm-apikey" id="btn-confirm-key" onclick="confirmApiKeyAndContinue()">確認並解鎖無限使用</button>
                     </div>
                     <div class="safety-assurance-text" id="safety-text">🛡️ 安全保證：您的金鑰僅暫存於瀏覽器記憶體中，確認後不再重複彈出提醒。</div>
@@ -720,6 +762,7 @@
             document.getElementById('opt-cand').innerText = t.optCand;
             document.getElementById('opt-train').innerText = t.optTrain;
             document.getElementById('opt-mgr').innerText = t.optMgr;
+
             document.getElementById('btn-diagnose-text').innerText = t.diagnoseBtn;
             document.getElementById('challenge-input').placeholder = t.inputPlaceholder;
             document.getElementById('top3-title').innerText = t.top3Title;
@@ -743,11 +786,13 @@
             document.getElementById('safety-text').innerText = t.safetyText;
             document.getElementById('btn-send-followup').innerText = t.sendBtn;
             document.getElementById('privacy-tip').innerText = t.privacyTip;
+
             document.getElementById('modal-title').innerText = t.modalTitle;
             document.getElementById('modal-desc').innerText = t.modalDesc;
             document.getElementById('modal-label').innerText = t.modalLabel;
             document.getElementById('modal-cancel-btn').innerText = t.modalCancel;
             document.getElementById('modal-confirm-btn').innerText = t.modalConfirm;
+
             document.getElementById('aigeo-sec-title').innerText = t.aigeoSecTitle;
             document.getElementById('aigeo-sec-desc').innerText = t.aigeoSecDesc;
             document.getElementById('linkedin-nav-btn').innerText = t.linkedinBtn;
@@ -779,12 +824,6 @@
 
             if (lastRenderedReportData && top1Stage === 3) {
                 renderFlexibleCompetencyReport(lastRenderedReportData);
-            }
-
-            const params = new URLSearchParams(window.location.search);
-            const articleId = params.get('article');
-            if (articleId) {
-                loadArticleContent(articleId, lang);
             }
         }
 
@@ -1149,53 +1188,185 @@
             updateLatestAIResponse(reply);
         }
 
-        window.addEventListener('DOMContentLoaded', () => {
-            const params = new URLSearchParams(window.location.search);
-            const articleId = params.get('article');
-            const langParam = params.get('lang') || 'zh';
-            
-            if (articleId) {
-                document.getElementById('home-view').style.display = 'none';
-                const subView = document.getElementById('subpage-view');
-                subView.style.display = 'block';
+        function parseFlexibleCompetencyData(text, dynamicBase, lang) {
+            const extractTag = (tag, defaultVal) => {
+                const regex = new RegExp(`\\[${tag}\\]:\\s*([\\s\\S]*?)(?=\\n\\[[A-Z_]+\\]:|$)`, 'i');
+                const match = text.match(regex);
+                return (match && match[1] && match[1].trim().length > 3) ? match[1].trim() : defaultVal;
+            };
 
-                currentLang = langParam;
-                document.getElementById('btn-zh').classList.toggle('active', currentLang === 'zh');
-                document.getElementById('btn-en').classList.toggle('active', currentLang === 'en');
-                
-                loadArticleContent(articleId, currentLang);
-                
-                const t = translations[currentLang];
-                document.getElementById('back-home-btn').innerText = t.backHome;
-                document.getElementById('sidebar-title-text').innerText = t.sidebarTitleText;
-                document.getElementById('aiseo-label-text').innerText = t.aiseoLabelText;
+            const rawScore = extractTag('SCORE', String(dynamicBase.score));
+            const numMatch = rawScore.match(/\d+/);
+            const finalScore = numMatch ? Math.min(100, Math.max(40, parseInt(numMatch[0], 10))) : dynamicBase.score;
 
-                for (let i = 1; i <= 8; i++) {
-                    const smenu = document.getElementById(`smenu-${i}`);
-                    if (smenu) smenu.innerText = articlesDatabase[currentLang][i].title.split(/[:：]/)[0];
-                }
-            } else {
-                switchLanguage('zh');
-            }
-            updateUsageBadge();
-        });
+            const isEn = lang === 'en';
+            const actionText = isEn
+                ? (finalScore >= 85 ? "Strong Hire (Proceed)" : (finalScore >= 70 ? "Proceed to Interview" : "Hold / Review"))
+                : (finalScore >= 85 ? "強烈推薦面試 (Strong Hire)" : (finalScore >= 70 ? "建議安排面試 (Proceed)" : "暫緩或需補件 (Hold / Review)"));
 
-        function loadArticleContent(id, lang) {
-            const art = articlesDatabase[lang][id] || articlesDatabase['zh'][id];
-            document.getElementById('subpage-tag').innerText = art.tag;
-            document.getElementById('subpage-title').innerText = art.title;
-            document.getElementById('subpage-content').innerHTML = `<p>${art.body}</p>`;
-            document.getElementById('subpage-keywords').innerText = art.keywords;
-
-            document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active'));
-            const activeMenu = document.getElementById(`smenu-${id}`);
-            if (activeMenu) activeMenu.classList.add('active');
-            document.title = `${art.title} | HR Vision AI`;
+            return {
+                score: finalScore,
+                action: actionText,
+                techEval: extractTag('TECH_EVAL', dynamicBase.techEval),
+                softEval: extractTag('SOFT_EVAL', dynamicBase.softEval),
+                highlights: extractTag('HIGHLIGHTS', dynamicBase.highlights),
+                risks: extractTag('RISKS', dynamicBase.risks),
+                questions: extractTag('QUESTIONS', dynamicBase.questions),
+                earlyExit: extractTag('EARLY_EXIT', dynamicBase.earlyExit),
+                cultureRisk: extractTag('CULTURE_MISMATCH', dynamicBase.cultureRisk),
+                skillGap: extractTag('SKILL_GAP', dynamicBase.skillGap),
+                overqual: extractTag('OVERQUALIFICATION', dynamicBase.overqual)
+            };
         }
 
-        function goHome(e) {
-            e.preventDefault();
-            window.location.href = window.location.pathname;
+        function renderFlexibleCompetencyReport(data) {
+            const isEn = currentLang === 'en';
+            const target = document.getElementById('sandbox-target').value;
+
+            const defaultJdText = isEn ? 'Configured per Cloud & Technical PM standards' : '依標準雲端與專案管理職能設定';
+            const defaultExpText = isEn ? 'Evaluated based on candidate work experience' : '依候選人提供之工作經歷評估';
+
+            const jdSnippet = savedJDText ? savedJDText.substring(0, 80) + (savedJDText.length > 80 ? '...' : '') : defaultJdText;
+            const expSnippet = savedExpText ? savedExpText.substring(0, 80) + (savedExpText.length > 80 ? '...' : '') : defaultExpText;
+
+            const labels = isEn ? {
+                reportTitle: "📊 AI Scoring Quantitative Candidate Evaluation Report",
+                scoreLabel: "Overall Match Score:",
+                ptsUnit: "/ 100 pts",
+                metaLine: `Perspective: ${target} · Weighting: Hard Skills 70% / Soft Skills 30%`,
+                jdSumLabel: "Target Job Description (JD):",
+                expSumLabel: "Candidate Experience:",
+                actionHeader: "Recommended Action:",
+                breakdownHeading: "🧠 Competencies Breakdown",
+                editHint: "✏️ Click any text below to edit inline.",
+                mod1Title: "1. Competency Assessment (Hard Skills / Soft Skills & Culture Fit)",
+                mod1TechLabel: "💻 Business & Technical Skills (70%)",
+                mod1SoftLabel: "🤝 Soft Skills & Culture Fit (30%)",
+                mod2Title: "2. Highlights & Risk Signals",
+                mod2HighLabel: "🌟 Core Strengths (Highlights)",
+                mod2RiskLabel: "⚡ Potential Concerns (Risk Signals)",
+                mod3Title: "3. Customized Interview Questions",
+                mod4Title: "4. ⚠️ Risk Assessment (4 Key Indicators)",
+                r1Name: "① Early Exit Risk",
+                r2Name: "② Culture Mismatch Risk",
+                r3Name: "③ Skill Gap Risk",
+                r4Name: "④ Overqualification Risk",
+                printBtn: "📥 Download / Print PDF Report"
+            } : {
+                reportTitle: "📊 AI Scoring 候選人量化評估報告 (PDF Report)",
+                scoreLabel: "綜合匹配總分：",
+                ptsUnit: "/ 100 分",
+                metaLine: `檢核視角：${target} · 權重配置：業務 & 技術能力 70% / 軟技能 & 文化契合 30%`,
+                jdSumLabel: "比對職缺 (JD) 摘要：",
+                expSumLabel: "候選人經歷摘要：",
+                actionHeader: "建議決策 (Action)：",
+                breakdownHeading: "🧠 軟硬實力分項評核 (Competencies Breakdown)",
+                editHint: "✏️ 報告內容已依經歷動態生成，點擊任意文字可直接微調",
+                mod1Title: "1. 能力評估（業務 & 技術能力 ／ 軟技能 & 文化契合）",
+                mod1TechLabel: "💻 業務 & 技術能力 (Hard Skills - 70%)",
+                mod1SoftLabel: "🤝 軟技能 & 文化契合 (Soft Skills & Culture Fit - 30%)",
+                mod2Title: "2. 亮點 & 風險信號（Highlights vs. Risk Signals）",
+                mod2HighLabel: "🌟 核心優勢 (Highlights)",
+                mod2RiskLabel: "⚡ 潛在疑慮 (Risk Signals)",
+                mod3Title: "3. 定制面試問題（針對經歷缺口與專案細節之 3 道實戰追問）",
+                mod4Title: "4. ⚠️ 風險評估（4 大關鍵指標獨立評級與原因）",
+                r1Name: "① Early Exit Risk（早退風險）",
+                r2Name: "② Culture Mismatch Risk（文化不符風險）",
+                r3Name: "③ Skill Gap Risk（技能落差風險）",
+                r4Name: "④ Overqualification Risk（大材小用風險）",
+                printBtn: "📥 下載 / 列印專業 PDF 評估報告"
+            };
+
+            const container = document.getElementById('pdf-approval-container');
+            container.innerHTML = `
+                <div id="pdf-export-area" class="ai-scoring-card">
+                    <div class="scoring-header">
+                        <div class="scoring-title-area">
+                            <h3>${labels.reportTitle}</h3>
+                            <p style="color: #0f766e; font-weight: 800; font-size: 1.2rem; margin: 0.35rem 0;">${labels.scoreLabel} <span contenteditable="true">${data.score}</span> ${labels.ptsUnit}</p>
+                            <div class="scoring-meta-line">${labels.metaLine}</div>
+                            <div class="scoring-summary-text">
+                                • <strong>${labels.jdSumLabel}</strong> <span contenteditable="true">${jdSnippet}</span><br>
+                                • <strong>${labels.expSumLabel}</strong> <span contenteditable="true">${expSnippet}</span>
+                            </div>
+                        </div>
+                        <div class="scoring-action-badge" contenteditable="true">
+                            ${labels.actionHeader}<br>
+                            <strong>${data.action}</strong>
+                        </div>
+                    </div>
+
+                    <div class="scoring-skills-section">
+                        <div class="breakdown-main-heading">
+                            <span>${labels.breakdownHeading}</span>
+                            <span class="edit-hint-tag">${labels.editHint}</span>
+                        </div>
+
+                        <!-- 1. Competency Assessment -->
+                        <div class="breakdown-module">
+                            <div class="breakdown-module-title">${labels.mod1Title}</div>
+                            <div class="sub-competency-grid">
+                                <div class="sub-competency-box">
+                                    <span class="sub-box-label">${labels.mod1TechLabel}</span>
+                                    <div class="sub-box-content" contenteditable="true">${data.techEval}</div>
+                                </div>
+                                <div class="sub-competency-box">
+                                    <span class="sub-box-label">${labels.mod1SoftLabel}</span>
+                                    <div class="sub-box-content" contenteditable="true">${data.softEval}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2. Highlights & Risk Signals -->
+                        <div class="breakdown-module">
+                            <div class="breakdown-module-title">${labels.mod2Title}</div>
+                            <div class="sub-competency-grid">
+                                <div class="sub-competency-box highlight-box">
+                                    <span class="sub-box-label" style="color: #065f46;">${labels.mod2HighLabel}</span>
+                                    <div class="sub-box-content" contenteditable="true">${data.highlights}</div>
+                                </div>
+                                <div class="sub-competency-box risk-signal-box">
+                                    <span class="sub-box-label" style="color: #92400e;">${labels.mod2RiskLabel}</span>
+                                    <div class="sub-box-content" contenteditable="true">${data.risks}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3. Customized Interview Questions -->
+                        <div class="breakdown-module">
+                            <div class="breakdown-module-title">${labels.mod3Title}</div>
+                            <div class="interview-q-list" contenteditable="true">${data.questions}</div>
+                        </div>
+
+                        <!-- 4. Risk Assessment -->
+                        <div class="breakdown-module" style="margin-bottom: 0;">
+                            <div class="breakdown-module-title">${labels.mod4Title}</div>
+                            <div class="risk-4-grid">
+                                <div class="risk-metric-card">
+                                    <div class="risk-metric-name"><span>${labels.r1Name}</span></div>
+                                    <div class="risk-metric-desc" contenteditable="true">${data.earlyExit}</div>
+                                </div>
+                                <div class="risk-metric-card">
+                                    <div class="risk-metric-name"><span>${labels.r2Name}</span></div>
+                                    <div class="risk-metric-desc" contenteditable="true">${data.cultureRisk}</div>
+                                </div>
+                                <div class="risk-metric-card">
+                                    <div class="risk-metric-name"><span>${labels.r3Name}</span></div>
+                                    <div class="risk-metric-desc" contenteditable="true">${data.skillGap}</div>
+                                </div>
+                                <div class="risk-metric-card">
+                                    <div class="risk-metric-name"><span>${labels.r4Name}</span></div>
+                                    <div class="risk-metric-desc" contenteditable="true">${data.overqual}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 1.25rem;">
+                    <button class="btn-download-pdf" onclick="window.print()">${labels.printBtn}</button>
+                </div>
+            `;
+            container.scrollIntoView({ behavior: 'smooth' });
         }
     </script>
 </body>
