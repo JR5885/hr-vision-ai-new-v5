@@ -80,11 +80,11 @@
         .tag-btn { background: #fff; border: 1px solid var(--border-color); border-radius: 50px; padding: 0.45rem 1rem; font-size: 0.85rem; color: #334155; cursor: pointer; }
         .tag-btn:hover { background: #f1f5f9; }
 
-        /* 知識庫卡片樣式 */
-        .kb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; text-align: left; margin-top: 1rem; }
+        /* 知識庫卡片樣式 (使用真實辦公室/工作場景真人寫真 Unsplash 高清照片) */
+        .kb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; text-align: left; margin-top: 1rem; }
         .kb-card { background: #fff; border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; display: flex; flex-direction: column; }
         .kb-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
-        .kb-card-img { width: 100%; height: 140px; background: #e2e8f0; object-fit: cover; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; }
+        .kb-card-img { width: 100%; height: 160px; background: #e2e8f0; object-fit: cover; }
         .kb-card-body { padding: 1.25rem; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
         .kb-card-title { font-size: 1.05rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem; }
         .kb-card-text { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.5; }
@@ -169,7 +169,7 @@
             <div class="nav-right">
                 <div class="nav-tabs">
                     <button class="nav-tab-btn active" id="tab-sandbox" onclick="switchMainTab('sandbox')">沙盒診斷</button>
-                    <button class="nav-tab-btn" id="tab-kb" onclick="switchMainTab('kb')">知識庫</button>
+                    <button class="nav-tab-btn" id="tab-kb" onclick="switchMainTab('kb')">專業知識庫</button>
                 </div>
                 <div id="usage-counter-badge" class="usage-badge">免費互動剩餘：20 / 20 次</div>
                 <div class="lang-switch">
@@ -267,11 +267,11 @@
             </div>
         </section>
 
-        <!-- 知識庫主頁面 -->
+        <!-- 專業知識庫主頁面 -->
         <section id="view-kb" class="sandbox-card" style="display: none;">
             <div id="kb-main-view">
                 <div class="sandbox-header">
-                    <h1 id="kb-main-title">HR Vision 專業知識庫</h1>
+                    <h1 id="kb-main-title">專業知識庫</h1>
                     <p id="kb-main-desc">探索領先的 AI 人資戰略、自動化招募架構與深度白皮書，點選卡片查看詳細內容。</p>
                 </div>
                 <div class="kb-grid" id="kb-cards-grid">
@@ -326,14 +326,14 @@
         let savedExpText = "";
         let lastRenderedReportData = null;
 
-        // 8張知識庫卡片詳細資料庫 (含 3 個 subpage 內容)
+        // 8張知識庫卡片詳細資料庫 (含真實真人、辦公室與工作場景照片 Unsplash 高畫質圖庫網址)
         const kbCardsData = [
             {
                 id: 1,
                 title: "AI Scoring 軟硬實力評估模型",
                 desc: "透過大語言模型進行多階段動態經歷與程式語言自動化匹配分析。",
                 tag: "核心演算法",
-                icon: "🎯",
+                imageUrl: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80",
                 subpages: [
                     { title: "核心架構與定義", content: "AI Scoring 模型結合了自然語言處理 (NLP) 與深度特徵萃取技術。透過解析履歷中的程式語言、框架與專案背景，與職缺 JD 進行矩陣式對齊，實現高精準度的客觀評分機制。" },
                     { title: "實務應用與案例", content: "企業在面對每天數百份履歷時，常因面試官主觀意識導致標準不一。導入 AI Scoring 後，系統可自動產出包含軟硬實力、風險訊號及面試題庫的 4 大模組 PDF 報告，篩選效率提升 300%。" },
@@ -345,7 +345,7 @@
                 title: "AI 招募自動化漏斗優化",
                 desc: "打造零人工干預的智慧應徵管道，全面提升招募轉換率。",
                 tag: "招募自動化",
-                icon: "⚡",
+                imageUrl: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=600&q=80",
                 subpages: [
                     { title: "核心架構與定義", content: "自動化漏斗串接履歷投遞、智慧篩選、自動預約面試與適性測驗，將傳統耗時 3 週的流程縮短至 72 小時內完成初篩。" },
                     { title: "實務應用與案例", content: "針對高流動率的雲端工程師職缺，系統會自動發送線上程式測驗並即時回傳評分，HR 僅需介入最終複試，大幅降低人事營運成本。" },
@@ -357,7 +357,7 @@
                 title: "預測性人資分析與離職預警",
                 desc: "運用大數據與機器學習提前識別關鍵人才流失風險。",
                 tag: "預測分析",
-                icon: "📈",
+                imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80",
                 subpages: [
                     { title: "核心架構與定義", content: "分析員工出勤、專案負載、薪酬滿意度與組織互動頻率，建立離職機率預測模型，在員工萌生去意前主動發出警示。" },
                     { title: "實務應用與案例", content: "科技業研發主管可透過儀表板掌握團隊穩定度指數，當核心架構師的壓力指標超標時，系統會自動提醒 HRBP 進行關懷訪談。" },
@@ -369,7 +369,7 @@
                 title: "雲端工程師招募與題庫策略",
                 desc: "針對 Frontend、Backend 與 INFRA 架構師的精準考核指南。",
                 tag: "技術招募",
-                icon: "☁️",
+                imageUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80",
                 subpages: [
                     { title: "核心架構與定義", content: "針對現代雲端原生架構（Cloud-Native）設計的專業能力檢核表，涵蓋分散式系統設計、容器化技術與資安合規標準。" },
                     { title: "實務應用與案例", content: "提供各職位專屬的面試題庫與情境題（例如：系統遭遇突發流量飆高時的排查步驟），協助用人主管快速鑑別技術深度。" },
@@ -381,7 +381,7 @@
                 title: "AIGEO 雇主品牌搜尋優化",
                 desc: "在 AI 搜尋時代搶佔頂尖人才心佔率的關鍵戰略。",
                 tag: "雇主品牌",
-                icon: "🌐",
+                imageUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80",
                 subpages: [
                     { title: "核心架構與定義", content: "優化企業在各大生成式 AI 搜尋引擎與語意圖譜中的能見度，確保當求職者詢問「最佳AI創新公司」時企業名列前茅。" },
                     { title: "實務應用與案例", content: "透過結構化資料標記與技術白皮書發表，建立企業在技術社群中的權威形象，吸引主動投遞的優秀人才佔比提升 50%。" },
@@ -393,7 +393,7 @@
                 title: "跨國團隊合規與遠端入職",
                 desc: "無縫對接全球勞動法規與多文化遠端工作者 Onboarding。",
                 tag: "全球合規",
-                icon: "🌍",
+                imageUrl: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=600&q=80",
                 subpages: [
                     { title: "核心架構與定義", content: "自動化處理跨國薪資、稅務、智慧財產權歸屬與各地勞動合約範本，降低跨國雇用法律風險。" },
                     { title: "實務應用與案例", content: "新進員工透過數位化入職平台在 24 小時內完成文件簽署、資安培訓與設備領用，大幅提升遠端團隊歸屬感。" },
@@ -405,7 +405,7 @@
                 title: "自動化招募數據儀表板設定",
                 desc: "透過視覺化指標追蹤招募漏斗、成本與各渠道ROI。",
                 tag: "數據儀表",
-                icon: "📊",
+                imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
                 subpages: [
                     { title: "核心架構與定義", content: "建立即時更新的 Recruitment Analytics Dashboard，整合 Time-to-Fill、Cost-per-Hire 與 Offer Acceptance Rate 等關鍵指標。" },
                     { title: "實務應用與案例", content: "管理階層可一目了然各招聘管道的性價比，精準將行銷預算配置在轉換率最高的高效能獵才渠道。" },
@@ -417,7 +417,7 @@
                 title: "HRBP 主管教練與人才留任指南",
                 desc: "賦能 HRBP 成為企業營運夥伴與基層主管的最佳領導教練。",
                 tag: "人才發展",
-                icon: "🤝",
+                imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=600&q=80",
                 subpages: [
                     { title: "核心架構與定義", content: "提供 HRBP 標準化教練框架與溝通腳本，協助技術主管解決團隊衝突、績效面談與人才留任挑戰。" },
                     { title: "實務應用與案例", content: "透過角色扮演與模擬情境訓練，提升主管的領導力與同理心溝通技巧，使部門離職率顯著下降。" },
@@ -451,7 +451,7 @@
             }
         }
 
-        // 主 Tab 切換邏輯 (沙盒診斷 vs 知識庫)
+        // 主 Tab 切換邏輯 (沙盒診斷 vs 專業知識庫)
         function switchMainTab(tabName) {
             const tabSandbox = document.getElementById('tab-sandbox');
             const tabKb = document.getElementById('tab-kb');
@@ -473,7 +473,7 @@
             }
         }
 
-        // 渲染 8 張知識庫卡片
+        // 渲染 8 張知識庫真實寫真照片卡片
         function renderKbCards() {
             const grid = document.getElementById('kb-cards-grid');
             grid.innerHTML = '';
@@ -482,7 +482,7 @@
                 cardEl.className = 'kb-card';
                 cardEl.onclick = () => openKbSubpage(card.id);
                 cardEl.innerHTML = `
-                    <div class="kb-card-img">${card.icon}</div>
+                    <img src="${card.imageUrl}" alt="${card.title}" class="kb-card-img" loading="lazy">
                     <div class="kb-card-body">
                         <div>
                             <h3 class="kb-card-title">${card.title}</h3>
@@ -586,8 +586,8 @@
                 modalCancel: "取消",
                 modalConfirm: "同意並開始",
                 tabSandbox: "沙盒診斷",
-                tabKb: "知識庫",
-                kbMainTitle: "HR Vision 專業知識庫",
+                tabKb: "專業知識庫",
+                kbMainTitle: "專業知識庫",
                 kbMainDesc: "探索領先的 AI 人資戰略、自動化招募架構與深度白皮書，點選卡片查看詳細內容。"
             },
             en: {
@@ -627,8 +627,8 @@
                 modalCancel: "Cancel",
                 modalConfirm: "Agree & Proceed",
                 tabSandbox: "Sandbox Diagnosis",
-                tabKb: "Knowledge Base",
-                kbMainTitle: "HR Vision Professional Knowledge Base",
+                tabKb: "Professional Knowledge Base",
+                kbMainTitle: "Professional Knowledge Base",
                 kbMainDesc: "Explore leading AI HR strategies, automated recruitment architectures, and deep dive whitepapers by clicking any card."
             }
         };
