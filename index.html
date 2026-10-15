@@ -892,7 +892,24 @@
         }
 
         function openSubPage(id) {
-            alert(currentLang === 'zh' ? `即將開啟知識庫卡片 #${id} 專屬頁面` : `Opening Knowledge Base Card #${id} page`);
+            // 定義 8 張知識庫卡片對應的獨立子網頁連結（可替換為您的實際網址或文章頁面）
+            const articleUrls = {
+                1: "https://www.linkedin.com/company/interview-workshop/",
+                2: "https://www.linkedin.com/company/interview-workshop/",
+                3: "https://www.linkedin.com/company/interview-workshop/",
+                4: "https://www.linkedin.com/company/interview-workshop/",
+                5: "https://www.linkedin.com/company/interview-workshop/",
+                6: "https://www.linkedin.com/company/interview-workshop/",
+                7: "https://www.linkedin.com/company/interview-workshop/",
+                8: "https://www.linkedin.com/company/interview-workshop/"
+            };
+
+            const targetUrl = articleUrls[id];
+            if (targetUrl) {
+                window.open(targetUrl, '_blank'); // 另開新分頁
+            } else {
+                console.warn(`Article URL for card #${id} not defined.`);
+            }
         }
 
         function escapeHtml(text) {
