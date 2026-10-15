@@ -602,13 +602,11 @@
                 subView.style.display = 'block';
 
                 currentLang = langParam;
-                // 同步切換語系按鈕狀態
                 document.getElementById('btn-zh').classList.toggle('active', currentLang === 'zh');
                 document.getElementById('btn-en').classList.toggle('active', currentLang === 'en');
                 
                 loadArticleContent(articleId, currentLang);
                 
-                // 載入子網頁的翻譯 UI
                 const t = translations[currentLang];
                 document.getElementById('linkedin-nav-btn').innerText = t.linkedinBtn;
                 document.getElementById('back-home-btn').innerText = t.backHome;
@@ -685,8 +683,8 @@
                     std6: "📊 自動化招募數據儀表板：關鍵漏斗指標設定",
                     std7: "🤝 HRBP 主管教練引導：協助技術主管做好人才留任"
                 },
-                byokTitle: "🔑 請輸入自備 API Key 繼續無限使用",
-                byokDesc: "請在下方貼上您自己的金鑰，確認後此提示框將自動關閉並解鎖無限使用：",
+                byokTitle: "🔑 20 次免費互動額度已滿！請輸入自備 API Key 繼續免費無限使用",
+                byokDesc: "您已使用完系統內建的 20 次免費額度。請在下方貼上您自己的金鑰，確認後此提示框將自動關閉並解鎖無限使用：",
                 keyInputPlaceholder: "請貼上您的 API Key (例如 AQ... 或 gsk_...)",
                 confirmKeyBtn: "確認並解鎖無限使用",
                 safetyText: "🛡️ 安全保證：您的金鑰僅暫存於瀏覽器記憶體中，確認後不再重複彈出提醒。",
@@ -829,15 +827,12 @@
             document.getElementById('footer-contact').innerText = t.footerContact;
             document.getElementById('footer-about').innerText = t.footerAbout;
 
-            // 動態更新 8 張知識庫卡片的語系與內文
+            // 修正：確實將 8 張知識庫卡片的標題、描述與分類標籤轉換為對應語言
             for (let i = 1; i <= 8; i++) {
                 const art = articlesDatabase[lang][i];
                 document.getElementById(`badge-${i}`).innerText = art.tag;
                 document.getElementById(`card-title-${i}`).innerText = art.title;
                 document.getElementById(`card-desc-${i}`).innerText = art.body.substring(0, 75) + "...";
-                
-                const smenu = document.getElementById(`smenu-${i}`);
-                if (smenu) smenu.innerText = art.title.split(/[:：]/)[0];
             }
 
             updateStepIndicator();
@@ -1515,7 +1510,7 @@
                                     <div class="risk-metric-name"><span>${labels.r2Name}</span></div>
                                     <div class="risk-metric-desc" contenteditable="true">${data.cultureRisk}</div>
                                 </div>
-                                <div class="netrisk-metric-card">
+                                <div class="risk-metric-card">
                                     <div class="risk-metric-name"><span>${labels.r3Name}</span></div>
                                     <div class="risk-metric-desc" contenteditable="true">${data.skillGap}</div>
                                 </div>
