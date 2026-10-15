@@ -279,7 +279,6 @@
                 <a href="https://www.linkedin.com/company/interview-workshop/?viewAsMember=true" target="_blank" rel="noopener" class="btn-linkedin-nav" id="linkedin-nav-btn">
                     🔗 LinkedIn 專頁
                 </a>
-                <div id="usage-counter-badge" class="usage-badge">免費互動剩餘：20 / 20 次</div>
                 <div class="lang-switch">
                     <button class="lang-btn active" id="btn-zh" onclick="switchLanguage('zh')">繁中</button>
                     <button class="lang-btn" id="btn-en" onclick="switchLanguage('en')">English</button>
@@ -294,7 +293,7 @@
             <span class="aigeo-pillars-pill" id="aigeo-pill">被搜尋 · 被理解 · 被信任</span>
         </div>
 
-        <!-- 主頁容器 (包含 AI 沙盒與 8 欄知識庫卡片) -->
+        <!-- 主頁容器 (沙盒與卡片) -->
         <div id="home-view">
             <section class="sandbox-card" aria-label="AI HR Strategic Sandbox">
                 <div class="sandbox-header">
@@ -380,7 +379,7 @@
                 </div>
             </section>
 
-            <!-- AIGEO 知識庫卡片網格 (8張卡片) -->
+            <!-- AIGEO 知識庫卡片網格 -->
             <section class="aigeo-knowledge-section" aria-label="AIGEO Knowledge Base Gallery">
                 <div class="aigeo-section-header">
                     <h2 id="aigeo-sec-title">🌐 雇主品牌與人才資產累積知識庫</h2>
@@ -1242,7 +1241,7 @@
                 actionHeader: "建議決策 (Action)：",
                 breakdownHeading: "🧠 軟硬實力分項評核 (Competencies Breakdown)",
                 editHint: "✏️ 報告內容已依經歷動態生成，點擊任意文字可直接微調",
-                mod1Title: "1. 能力評估（業務 & 技術能力 ／ 軟技能 & 文化契合）",
+                mod1Title: "1. 能力評惠（業務 & 技術能力 ／ 軟技能 & 文化契合）",
                 mod1TechLabel: "💻 業務 & 技術能力 (Hard Skills - 70%)",
                 mod1SoftLabel: "🤝 軟技能 & 文化契合 (Soft Skills & Culture Fit - 30%)",
                 mod2Title: "2. 亮點 & 風險信號（Highlights vs. Risk Signals）",
@@ -1349,16 +1348,11 @@
             container.scrollIntoView({ behavior: 'smooth' });
         }
 
-        function openSubPage(id) {
-            const subPageUrl = `?article=${id}&lang=${currentLang}#subpage`;
-            window.open(subPageUrl, '_blank');
-        }
-
-        window.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', () => {
             const params = new URLSearchParams(window.location.search);
             const articleId = params.get('article');
             const langParam = params.get('lang') || 'zh';
-            
+
             if (articleId) {
                 document.getElementById('home-view').style.display = 'none';
                 const subView = document.getElementById('subpage-view');
@@ -1401,15 +1395,6 @@
         function goHome(e) {
             e.preventDefault();
             window.location.href = window.location.pathname;
-        }
-
-        function appendTurnUI(uText, aText) {
-            document.getElementById('conversation-container').innerHTML += `<div class="dialogue-turn"><div class="turn-user">${uText}</div><div class="turn-ai">${aText}</div></div>`;
-        }
-
-        function updateLatestAIResponse(text) {
-            const turns = document.getElementsByClassName('dialogue-turn');
-            if (turns.length > 0) turns[turns.length - 1].querySelector('.turn-ai').innerText = text;
         }
     </script>
 </body>
