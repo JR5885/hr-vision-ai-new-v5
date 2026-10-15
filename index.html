@@ -18,15 +18,22 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        body { color: var(--text-main); background-color: var(--bg-light); line-height: 1.65; }
+        body { color: var(--text-main); background-color: var(--bg-light); line-height: 1.65; scroll-behavior: smooth; }
         header { background-color: var(--white); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 100; }
         .nav-container { max-width: 1100px; margin: 0 auto; padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
         .logo { font-size: 1.25rem; font-weight: 700; color: var(--primary-color); text-decoration: none; }
         .logo span { color: var(--secondary-color); font-weight: 400; font-size: 0.95rem; margin-left: 0.25rem; }
-        .nav-right { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+        .nav-right { display: flex; align-items: center; gap: 0.85rem; flex-wrap: wrap; }
         
         .usage-badge { font-size: 0.85rem; font-weight: 700; color: #0f766e; background: #ccfbf1; border: 1px solid #99f6e4; padding: 0.35rem 0.85rem; border-radius: 50px; }
         
+        .btn-nav-link {
+            display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.85rem; font-weight: 600;
+            color: var(--text-muted); background: #f1f5f9; border: 1px solid var(--border-color); padding: 0.4rem 0.85rem;
+            border-radius: 8px; text-decoration: none; transition: all 0.2s;
+        }
+        .btn-nav-link:hover { background: #e2e8f0; color: var(--text-main); }
+
         .btn-linkedin-nav {
             display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.85rem; font-weight: 600;
             color: #0a66c2; background: #e8f4f9; border: 1px solid #cce4f0; padding: 0.4rem 0.85rem;
@@ -39,10 +46,6 @@
         .lang-btn.active { background: var(--white); color: var(--primary-color); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 2.5rem 1.5rem; }
-
-        .machine-readable-banner {
-            background: #e0f2fe; border: 1px solid #bae6fd; color: #0369a1; padding: 0.75rem 1.25rem; border-radius: 8px; font-size: 0.9rem; margin-bottom: 1.5rem; font-weight: 600;
-        }
 
         .sandbox-card { background: var(--white); border: 1px solid var(--border-color); border-radius: 16px; padding: 2.5rem 2rem; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); margin-bottom: 3rem; text-align: center; }
         .sandbox-header h1 { font-size: 2.1rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem; }
@@ -93,7 +96,7 @@
         .turn-user { background: #e0f2fe; color: #0369a1; padding: 0.6rem 1rem; border-radius: 8px; font-weight: 600; margin-bottom: 0.75rem; }
         .turn-ai { white-space: pre-wrap; font-size: 0.96rem; line-height: 1.75; color: #1e293b; background: #ffffff; padding: 1.25rem; border-radius: 8px; border: 1px solid #e2e8f0; }
 
-        /* AI Scoring 評估報告卡片樣式 */
+        /* AI Scoring 卡片樣式 */
         .ai-scoring-card { background: #ffffff; color: #0f172a; border-radius: 14px; padding: 2.25rem; margin-top: 1.25rem; border: 2px solid #cbd5e1; box-shadow: 0 12px 28px -5px rgba(0, 0, 0, 0.07); }
         .scoring-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid var(--border-color); padding-bottom: 1.5rem; margin-bottom: 1.75rem; flex-wrap: wrap; gap: 1.25rem; }
         .scoring-title-area { flex: 1; min-width: 280px; }
@@ -126,6 +129,24 @@
         .custom-followup-input { flex: 1; padding: 0.7rem 0.9rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.95rem; }
         .btn-send-followup { background: var(--primary-color); color: #fff; border: none; padding: 0.7rem 1.4rem; border-radius: 6px; font-weight: 600; cursor: pointer; white-space: nowrap; }
 
+        /* 知識庫畫廊區塊樣式 */
+        .aigeo-knowledge-section { margin-top: 3.5rem; text-align: left; }
+        .aigeo-section-header { margin-bottom: 1.5rem; }
+        .aigeo-section-header h2 { font-size: 1.5rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.35rem; }
+        .aigeo-section-header p { font-size: 0.95rem; color: var(--text-muted); }
+
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; }
+        .gallery-card { background: var(--white); border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; }
+        .gallery-card:hover { transform: translateY(-4px); box-shadow: 0 12px 20px -5px rgba(0,0,0,0.08); }
+        .card-image-box { width: 100%; height: 160px; overflow: hidden; position: relative; background: #e2e8f0; }
+        .card-image-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+        .gallery-card:hover .card-image-box img { transform: scale(1.05); }
+        .card-content-box { padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between; flex: 1; }
+        .card-category-badge { display: inline-block; font-size: 0.75rem; font-weight: 700; color: var(--primary-color); background: #ccfbf1; padding: 0.2rem 0.55rem; border-radius: 4px; margin-bottom: 0.6rem; }
+        .card-title { font-size: 1rem; font-weight: 700; color: var(--text-main); cursor: pointer; text-decoration: none; display: block; margin-bottom: 0.5rem; line-height: 1.4; transition: color 0.2s; }
+        .card-title:hover { color: var(--secondary-color); }
+        .card-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
+
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1000; justify-content: center; align-items: center; padding: 1rem; }
         .modal-content { background: #ffffff; border-radius: 12px; max-width: 520px; width: 100%; padding: 2rem; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); text-align: left; }
         .modal-content h3 { color: #0f172a; font-size: 1.25rem; margin-bottom: 0.75rem; }
@@ -141,7 +162,7 @@
         footer { background: var(--white); border-top: 1px solid var(--border-color); padding: 2rem 1.5rem; margin-top: 3rem; text-align: center; color: var(--text-muted); font-size: 0.875rem; }
 
         @media print {
-            header, .machine-readable-banner, .sandbox-header, .target-selector-box, .privacy-notice-tip, .search-input-wrapper, .tags-section, .step-indicator-bar, #conversation-container, .followup-box, .btn-download-pdf, .edit-hint-tag, footer {
+            header, .sandbox-header, .target-selector-box, .privacy-notice-tip, .search-input-wrapper, .tags-section, .step-indicator-bar, #conversation-container, .followup-box, .btn-download-pdf, .edit-hint-tag, .aigeo-knowledge-section, footer {
                 display: none !important;
             }
             .sandbox-card, .result-panel { border: none !important; box-shadow: none !important; padding: 0 !important; margin: 0 !important; }
@@ -172,9 +193,17 @@
             <a href="#" class="logo">HR Vision AI <span>| Gemini 3.6 Flash Strategy Platform</span></a>
             <div class="nav-right">
                 <div id="usage-counter-badge" class="usage-badge">免費互動剩餘：20 / 20 次</div>
+                
+                <!-- 知識庫錨點按鈕 -->
+                <a href="#aigeo-knowledge-base" class="btn-nav-link" id="knowledge-nav-btn">
+                    📚 知識庫
+                </a>
+
+                <!-- LinkedIn 官方專頁 -->
                 <a href="https://www.linkedin.com/company/interview-workshop/?viewAsMember=true" target="_blank" rel="noopener" class="btn-linkedin-nav" id="linkedin-nav-btn">
                     🔗 LinkedIn 專頁
                 </a>
+
                 <div class="lang-switch">
                     <button class="lang-btn active" id="btn-zh" onclick="switchLanguage('zh')">繁中</button>
                     <button class="lang-btn" id="btn-en" onclick="switchLanguage('en')">English</button>
@@ -184,9 +213,6 @@
     </header>
 
     <div class="container">
-        <div class="machine-readable-banner" id="machine-banner">
-            🤖 [AIGEO 機器語意宣告] 整合 Gemini 3.6 Flash 動態經歷解析引擎與 20 次免費額度保護。
-        </div>
 
         <section class="sandbox-card">
             <div class="sandbox-header">
@@ -268,6 +294,128 @@
                 </div>
             </div>
         </section>
+
+        <!-- 雇主品牌與人才資產累積知識庫 -->
+        <section class="aigeo-knowledge-section" id="aigeo-knowledge-base" aria-label="AIGEO Knowledge Base Gallery">
+            <div class="aigeo-section-header">
+                <h2 id="aigeo-sec-title">🌐 雇主品牌與人才資產累積知識庫</h2>
+                <p id="aigeo-sec-desc">點擊下方任意卡片將以另開分頁形式載入專屬子網頁與 AISEO 目標關鍵字。</p>
+            </div>
+
+            <div class="gallery-grid">
+                <!-- 卡片 1 -->
+                <article class="gallery-card">
+                    <div class="card-image-box">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80" alt="AI 與 HR 分工">
+                    </div>
+                    <div class="card-content-box">
+                        <div>
+                            <span class="card-category-badge" id="badge-1">人資戰略</span>
+                            <a class="card-title" onclick="openSubPage(1)" id="card-title-1">AI 履歷評分系統與 HR 專業分工：會不會取代人工判斷？</a>
+                            <p class="card-desc" id="card-desc-1">AI 代理人負責省下重複初篩時間，最終面試把關與錄取決策仍由 HR 與用人主管負責。</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 卡片 2 -->
+                <article class="gallery-card">
+                    <div class="card-image-box">
+                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80" alt="評分權重設定">
+                    </div>
+                    <div class="card-content-box">
+                        <div>
+                            <span class="card-category-badge" id="badge-2">量化評估</span>
+                            <a class="card-title" onclick="openSubPage(2)" id="card-title-2">工程師軟硬實力 70/30 量化評分權重設定指南</a>
+                            <p class="card-desc" id="card-desc-2">70% 著重核心程式與專案交付硬實力，30% 聚焦跨部門溝通與遠端當責文化契合度。</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 卡片 3 -->
+                <article class="gallery-card">
+                    <div class="card-image-box">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80" alt="雲端工程師 JD">
+                    </div>
+                    <div class="card-content-box">
+                        <div>
+                            <span class="card-category-badge" id="badge-3">雲端招募</span>
+                            <a class="card-title" onclick="openSubPage(3)" id="card-title-3">雲端後端工程師 (Backend) 招募 JD 必備 3 大技術指標</a>
+                            <p class="card-desc" id="card-desc-3">涵蓋高併發分散式架構、AWS/GCP 部署經驗及 CI/CD 容器化落地實績。</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 卡片 4 -->
+                <article class="gallery-card">
+                    <div class="card-image-box">
+                        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=600&q=80" alt="結構化內容防流失">
+                    </div>
+                    <div class="card-content-box">
+                        <div>
+                            <span class="card-category-badge" id="badge-4">求職體驗</span>
+                            <a class="card-title" onclick="openSubPage(4)" id="card-title-4">如何透過結構化內容避免求職者在面試前夕流失？</a>
+                            <p class="card-desc" id="card-desc-4">藉由透明化 AIGEO 職缺說明，讓求職者在第一時間對齊團隊期待，減少等待流失。</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 卡片 5 -->
+                <article class="gallery-card">
+                    <div class="card-image-box">
+                        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=600&q=80" alt="軟體公司省時案例">
+                    </div>
+                    <div class="card-content-box">
+                        <div>
+                            <span class="card-category-badge" id="badge-5">成功案例</span>
+                            <a class="card-title" onclick="openSubPage(5)" id="card-title-5">中小企業導入三階段 AI Scoring 省下 70% 初篩時間</a>
+                            <p class="card-desc" id="card-desc-5">運用四步驟人機協作流程（需求 ➔ 生成 ➔ 審核 ➔ 上架），大幅提升招募效能。</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 卡片 6 -->
+                <article class="gallery-card">
+                    <div class="card-image-box">
+                        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=600&q=80" alt="HRBP 與主管分工">
+                    </div>
+                    <div class="card-content-box">
+                        <div>
+                            <span class="card-category-badge" id="badge-6">組織協作</span>
+                            <a class="card-title" onclick="openSubPage(6)" id="card-title-6">用人部門主管與 HRBP 在 AI 招募漏斗中的協作分工</a>
+                            <p class="card-desc" id="card-desc-6">明定量化評分標準與面試考題共識，避免因主觀落差導致優秀人才錯失。</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 卡片 7 -->
+                <article class="gallery-card">
+                    <div class="card-image-box">
+                        <img src="https://images.unsplash.com/photo-1542744094-3a31243364d0?auto=format&fit=crop&w=600&q=80" alt="預測性人資分析">
+                    </div>
+                    <div class="card-content-box">
+                        <div>
+                            <span class="card-category-badge" id="badge-7">預測分析</span>
+                            <a class="card-title" onclick="openSubPage(7)" id="card-title-7">預測性人資分析 (Predictive HR Analytics)：如何降低離職風險？</a>
+                            <p class="card-desc" id="card-desc-7">結合出勤、專案負荷與績效指標，提早識別組織警訊並提供即時改善策略。</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 卡片 8 -->
+                <article class="gallery-card">
+                    <div class="card-image-box">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80" alt="未來人才展望">
+                    </div>
+                    <div class="card-content-box">
+                        <div>
+                            <span class="card-category-badge" id="badge-8">未來趨勢</span>
+                            <a class="card-title" onclick="openSubPage(8)" id="card-title-8">2026-2027 AI 時代人資轉型與人才資產策略藍圖</a>
+                            <p class="card-desc" id="card-desc-8">從被動行政走向主動戰略，打造兼具自動化與人情溫度的現代化招募生態系。</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
     </div>
 
     <footer>
@@ -312,7 +460,6 @@
 
         const translations = {
             zh: {
-                machineBanner: "🤖 [AIGEO 機器語意宣告] 整合 Gemini 3.6 Flash 動態經歷解析引擎與 20 次免費額度保護。",
                 mainTitle: "AI 代理人驅動之動態人資戰略診斷沙盒",
                 mainDesc: "點選 TOP 1 啟動「三階段 JD 與經歷動態匹配 + 軟硬實力 4 大模組 PDF 報告」；點選其他話題啟動「條列式漸進顧問引導」。",
                 labelTarget: "選擇檢核對象角色：",
@@ -335,7 +482,20 @@
                 std5Btn: "🌐 跨國團隊合規與入職",
                 std6Btn: "📊 招募數據儀表板設定",
                 std7Btn: "🤝 HRBP 主管教練引導",
+                knowledgeBtn: "📚 知識庫",
                 linkedinBtn: "🔗 LinkedIn 專頁",
+                aigeoSecTitle: "🌐 雇主品牌與人才資產累積知識庫",
+                aigeoSecDesc: "點擊下方任意卡片將以另開分頁形式載入專屬子網頁與 AISEO 目標關鍵字。",
+                cards: [
+                    { badge: "人資戰略", title: "AI 履歷評分系統與 HR 專業分工：會不會取代人工判斷？", desc: "AI 代理人負責省下重複初篩時間，最終面試把關與錄取決策仍由 HR 與用人主管負責。" },
+                    { badge: "量化評估", title: "工程師軟硬實力 70/30 量化評分權重設定指南", desc: "70% 著重核心程式與專案交付硬實力，30% 聚焦跨部門溝通與遠端當責文化契合度。" },
+                    { badge: "雲端招募", title: "雲端後端工程師 (Backend) 招募 JD 必備 3 大技術指標", desc: "涵蓋高併發分散式架構、AWS/GCP 部署經驗及 CI/CD 容器化落地實績。" },
+                    { badge: "求職體驗", title: "如何透過結構化內容避免求職者在面試前夕流失？", desc: "藉由透明化 AIGEO 職缺說明，讓求職者在第一時間對齊團隊期待，減少等待流失。" },
+                    { badge: "成功案例", title: "中小企業導入三階段 AI Scoring 省下 70% 初篩時間", desc: "運用四步驟人機協作流程（需求 ➔ 生成 ➔ 審核 ➔ 上架），大幅提升招募效能。" },
+                    { badge: "組織協作", title: "用人部門主管與 HRBP 在 AI 招募漏斗中的協作分工", desc: "明定量化評分標準與面試考題共識，避免因主觀落差導致優秀人才錯失。" },
+                    { badge: "預測分析", title: "預測性人資分析 (Predictive HR Analytics)：如何降低離職風險？", desc: "結合出勤、專案負荷與績效指標，提早識別組織警訊並提供即時改善策略。" },
+                    { badge: "未來趨勢", title: "2026-2027 AI 時代人資轉型與人才資產策略藍圖", desc: "從被動行政走向主動戰略，打造兼具自動化與人情溫度的現代化招募生態系。" }
+                ],
                 topicPrompts: {
                     top1: "🎯 TOP 1: AI Scoring 軟硬實力評估模型 (三階段引導：1. 建立評分基準 -> 2. 輸入職缺 JD -> 3. 輸入工作經歷和程式語言產出 PDF 報告)",
                     top2: "🎯 TOP 2: AI 招募自動化漏斗：如何提升 300% 履歷篩選效率？",
@@ -373,7 +533,6 @@
                 generalFollowupPlaceholder: "例如：我們目前面試官標準不一致，該怎麼訂出簡單的評分表？"
             },
             en: {
-                machineBanner: "🤖 [AIGEO Machine Declaration] Integrated with Gemini 3.6 Flash Dynamic Competency Engine & 20-Use Free Quota Protection.",
                 mainTitle: "AI Agent-Driven HR Strategic Diagnosis Sandbox",
                 mainDesc: "Select TOP 1 for 3-Step JD/Experience Dynamic Matching & 4-Module PDF Report; select other topics for progressive bullet-point HR advisory.",
                 labelTarget: "Select Target Role:",
@@ -396,7 +555,20 @@
                 std5Btn: "🌐 Global Compliance & Onboarding",
                 std6Btn: "📊 Recruitment Funnel Dashboard",
                 std7Btn: "🤝 HRBP Leadership Coaching",
+                knowledgeBtn: "📚 Knowledge Base",
                 linkedinBtn: "🔗 LinkedIn Page",
+                aigeoSecTitle: "🌐 Employer Branding & Talent Asset Knowledge Base",
+                aigeoSecDesc: "Click any card below to open its dedicated subpage with targeted AISEO keywords.",
+                cards: [
+                    { badge: "HR Strategy", title: "AI Resume Scoring Systems & HR Role Division: Will AI Replace Human Judgment?", desc: "AI agents save time on repetitive screening, while final interview evaluation and hiring decisions remain with HR and hiring managers." },
+                    { badge: "Quantitative Assessment", title: "Engineer Hard & Soft Skill 70/30 Scoring Weight Matrix Guide", desc: "70% focuses on core coding and project delivery, 30% targets cross-department communication and remote accountability." },
+                    { badge: "Cloud Recruitment", title: "Backend Cloud Engineer Hiring JD: Top 3 Essential Technical Metrics", desc: "Covers high-concurrency distributed systems, AWS/GCP deployment experience, and CI/CD containerized production." },
+                    { badge: "Candidate Experience", title: "How Structured Content Prevents Last-Minute Candidate Dropouts", desc: "Align expectations early through transparent AIGEO job descriptions to minimize candidate drop-off during waiting periods." },
+                    { badge: "Case Study", title: "SME Saved 70% Initial Screening Time with 3-Stage AI Scoring", desc: "Utilize a 4-step human-AI workflow (Demand ➔ Generate ➔ Review ➔ Publish) to drastically boost hiring efficiency." },
+                    { badge: "Collaboration", title: "Hiring Manager & HRBP Collaboration Breakdown in AI Recruitment Funnels", desc: "Define objective scoring criteria and interview question consensus to avoid missing top talent due to subjective bias." },
+                    { badge: "Predictive Analytics", title: "Predictive HR Analytics: How to Reduce Talent Turnover Risk", desc: "Combine attendance, workload, and performance metrics to detect early organization risks and deploy retention strategies." },
+                    { badge: "Future Trends", title: "2026-2027 Blueprint for HR Transformation & Talent Asset Management", desc: "Shift from passive admin to proactive strategy, building a modern recruitment ecosystem that blends automation with empathy." }
+                ],
                 topicPrompts: {
                     top1: "🎯 TOP 1: AI Scoring Hard & Soft Skills Model (3-Step Guide: 1. Build Scoring Matrix -> 2. Input Job Description (JD) -> 3. Input Work Experience & Programming Languages for PDF Report)",
                     top2: "🎯 TOP 2: AI Recruitment Automated Funnels: How to boost resume screening efficiency by 300%?",
@@ -441,7 +613,6 @@
             document.getElementById('btn-en').classList.toggle('active', lang === 'en');
             
             const t = translations[lang];
-            document.getElementById('machine-banner').innerText = t.machineBanner;
             document.getElementById('main-title').innerText = t.mainTitle;
             document.getElementById('main-desc').innerText = t.mainDesc;
             document.getElementById('label-target').innerText = t.labelTarget;
@@ -479,7 +650,17 @@
             document.getElementById('followup-label').innerText = t.generalFollowupLabel;
             document.getElementById('custom-followup-input').placeholder = t.generalFollowupPlaceholder;
 
+            document.getElementById('knowledge-nav-btn').innerHTML = t.knowledgeBtn;
             document.getElementById('linkedin-nav-btn').innerHTML = t.linkedinBtn;
+            document.getElementById('aigeo-sec-title').innerText = t.aigeoSecTitle;
+            document.getElementById('aigeo-sec-desc').innerText = t.aigeoSecDesc;
+
+            for (let i = 1; i <= 8; i++) {
+                const cardData = t.cards[i - 1];
+                document.getElementById(`badge-${i}`).innerText = cardData.badge;
+                document.getElementById(`card-title-${i}`).innerText = cardData.title;
+                document.getElementById(`card-desc-${i}`).innerText = cardData.desc;
+            }
 
             updateUsageBadge();
         }
@@ -551,7 +732,6 @@
             resultBox.style.display = 'block';
             resultBox.scrollIntoView({ behavior: 'smooth' });
 
-            // 判斷是否為 TOP 1 流程
             isTop1Flow = inputVal.includes("TOP 1");
             top1Stage = isTop1Flow ? 1 : 0;
 
@@ -560,7 +740,7 @@
             const followupBox = document.getElementById('followup-box');
             const pdfContainer = document.getElementById('pdf-approval-container');
             
-            pdfContainer.innerHTML = ''; // 清空先前的報告
+            pdfContainer.innerHTML = '';
 
             if (isTop1Flow) {
                 stepBar.style.display = 'block';
@@ -595,7 +775,7 @@
             if (isTop1Flow) {
                 if (top1Stage === 1) {
                     savedJDText = val;
-                    top1Stage = 2; // 進入第 2 階段完成，準備等待第 3 階段輸入
+                    top1Stage = 2;
                     stepBar.innerText = translations[currentLang].step2Bar;
                     document.getElementById('followup-label').innerText = translations[currentLang].stage3Label;
                     document.getElementById('custom-followup-input').placeholder = translations[currentLang].stage3Placeholder;
@@ -608,7 +788,7 @@
                     `;
                 } else if (top1Stage >= 2) {
                     savedExpText = val;
-                    top1Stage = 3; // 第 3 階段完成
+                    top1Stage = 3;
                     stepBar.innerText = translations[currentLang].step3Bar;
                     document.getElementById('followup-label').innerText = translations[currentLang].stageDoneLabel;
                     document.getElementById('custom-followup-input').placeholder = translations[currentLang].stageDonePlaceholder;
@@ -620,7 +800,6 @@
                         </div>
                     `;
 
-                    // 生成並注入 4 大模組 PDF 評估報告
                     renderReportCard(pdfContainer);
                 }
             } else {
@@ -710,6 +889,10 @@
                 </div>
             `;
             pdfContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function openSubPage(id) {
+            alert(currentLang === 'zh' ? `即將開啟知識庫卡片 #${id} 專屬頁面` : `Opening Knowledge Base Card #${id} page`);
         }
 
         function escapeHtml(text) {
