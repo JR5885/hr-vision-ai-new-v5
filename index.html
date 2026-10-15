@@ -175,7 +175,7 @@
         .card-title:hover { text-decoration: underline; }
         .card-desc { font-size: 0.85rem; color: #334155; line-height: 1.55; }
 
-        /* 子網頁版型容器 (仿照桐澄空間設計) */
+        /* 子網頁版型容器 */
         #subpage-view { display: none; background: #ffffff; border: 1px solid var(--border-color); border-radius: 16px; padding: 2.5rem; margin-bottom: 2.5rem; box-shadow: 0 10px 25px rgba(0,0,0,0.04); }
         .subpage-container { display: grid; grid-template-columns: 260px 1fr; gap: 2.5rem; }
         @media (max-width: 820px) { .subpage-container { grid-template-columns: 1fr; } }
@@ -294,7 +294,7 @@
             <span class="aigeo-pillars-pill" id="aigeo-pill">被搜尋 · 被理解 · 被信任</span>
         </div>
 
-        <!-- 主頁容器 (沙盒與 8 欄知識庫卡片) -->
+        <!-- 主頁容器 (包含 AI 沙盒與 8 欄知識庫卡片) -->
         <div id="home-view">
             <section class="sandbox-card" aria-label="AI HR Strategic Sandbox">
                 <div class="sandbox-header">
@@ -560,7 +560,7 @@
         let savedExpText = "";
         let lastRenderedReportData = null;
 
-        // 雙語知識庫與 AISEO 關鍵字資料庫
+        // 完整雙語知識庫與 AISEO 關鍵字資料庫
         const articlesDatabase = {
             zh: {
                 1: { tag: "人資戰略", title: "AI 履歷評分系統與 HR 專業分工：會不會取代人工判斷？", keywords: "AI 履歷篩選, HR 招募自動化, HRBP 智慧工具, AI 候選人評估", body: "在 AI 時代，許多人資夥伴會擔心 AI 履歷評分系統是否會全面取代人工判斷。事實上，AI 代理人的核心價值在於「省下重複整理與初篩時間」，將分散的職缺 JD 與候選人經歷快速轉化為量化評估報告。最終的面試追問、文化契合度把關與錄取決策，依然需要 HR 與用人主管發揮高度的專業判斷與溫度。" },
@@ -1059,6 +1059,8 @@
             }
 
             const userKey = document.getElementById('user-api-key').value.trim();
+            
+            // 升級：支援中英文關鍵字模糊比對，確保點擊 TOP 1 標籤時能正確觸發 AI 動作
             isTop1Flow = /top\s*1|ai\s*scoring|軟硬實力/i.test(input);
             const isAigeoTopic = /aigeo/i.test(input);
 
@@ -1097,7 +1099,7 @@
 
                 appendTurnUI(`[${target}] ${input}`, isEn ? "Generating advisory..." : "正在為您整理條列式顧問建議...");
 
-                const sysPrompt = isEn ? "You are an HR advisor. Respond in pure English bullet points." : "你是一位 HR 顧問。請用繁體中文條列式回答。";
+                const sysPrompt = isEn ? "You are an HR advisor. Respond in pure English bullet points." : "你是一位 HR 顧問。請用繁體中文與條列式回答。";
                 const usrPrompt = isEn ? `Topic: ${input} for ${target}` : `主題：${input} (角色: ${target})`;
 
                 const fallbackGeneral = isEn ? `[Advisory for "${input}"]\n1. Core Pain Points.\n2. 3 Action Steps.\n3. Role Ownership.` : `【針對「${input}」的顧問建議】\n1. 核心痛點。\n2. 3個改善步驟。\n3. 分工建議。`;
@@ -1168,192 +1170,6 @@
             updateLatestAIResponse(reply);
         }
 
-        function parseFlexibleCompetencyData(text, dynamicBase, lang) {
-            const extractTag = (tag, defaultVal) => {
-                const regex = new RegExp(`\\[${tag}\\]:\\s*([\\s\\S]*?)(?=\\n\\[[A-Z_]+\\]:|$)`, 'i');
-                const match = text.match(regex);
-                return (match && match[1] && match[1].trim().length > 3) ? match[1].trim() : defaultVal;
-            };
-
-            const rawScore = extractTag('SCORE', String(dynamicBase.score));
-            const numMatch = rawScore.match(/\d+/);
-            const finalScore = numMatch ? Math.min(100, Math.max(40, parseInt(numMatch[0], 10))) : dynamicBase.score;
-
-            const isEn = lang === 'en';
-            const actionText = isEn
-                ? (finalScore >= 85 ? "Strong Hire (Proceed)" : (finalScore >= 70 ? "Proceed to Interview" : "Hold / Review"))
-                : (finalScore >= 85 ? "強烈推薦面試 (Strong Hire)" : (finalScore >= 70 ? "建議安排面試 (Proceed)" : "暫緩或需補件 (Hold / Review)"));
-
-            return {
-                score: finalScore,
-                action: actionText,
-                techEval: extractTag('TECH_EVAL', dynamicBase.techEval),
-                softEval: extractTag('SOFT_EVAL', dynamicBase.softEval),
-                highlights: extractTag('HIGHLIGHTS', dynamicBase.highlights),
-                risks: extractTag('RISKS', dynamicBase.risks),
-                questions: extractTag('QUESTIONS', dynamicBase.questions),
-                earlyExit: extractTag('EARLY_EXIT', dynamicBase.earlyExit),
-                cultureRisk: extractTag('CULTURE_MISMATCH', dynamicBase.cultureRisk),
-                skillGap: extractTag('SKILL_GAP', dynamicBase.skillGap),
-                overqual: extractTag('OVERQUALIFICATION', dynamicBase.overqual)
-            };
-        }
-
-        function renderFlexibleCompetencyReport(data) {
-            const isEn = currentLang === 'en';
-            const target = document.getElementById('sandbox-target').value;
-
-            const defaultJdText = isEn ? 'Configured per Cloud & Technical PM standards' : '依標準雲端與專案管理職能設定';
-            const defaultExpText = isEn ? 'Evaluated based on candidate work experience' : '依候選人提供之工作經歷評估';
-
-            const jdSnippet = savedJDText ? savedJDText.substring(0, 80) + (savedJDText.length > 80 ? '...' : '') : defaultJdText;
-            const expSnippet = savedExpText ? savedExpText.substring(0, 80) + (savedExpText.length > 80 ? '...' : '') : defaultExpText;
-
-            const labels = isEn ? {
-                reportTitle: "📊 AI Scoring Quantitative Candidate Evaluation Report",
-                scoreLabel: "Overall Match Score:",
-                ptsUnit: "/ 100 pts",
-                metaLine: `Perspective: ${target} · Weighting: Hard Skills 70% / Soft Skills 30%`,
-                jdSumLabel: "Target Job Description (JD):",
-                expSumLabel: "Candidate Experience:",
-                actionHeader: "Recommended Action:",
-                breakdownHeading: "🧠 Competencies Breakdown",
-                editHint: "✏️ Click any text below to edit inline.",
-                mod1Title: "1. Competency Assessment (Hard Skills / Soft Skills & Culture Fit)",
-                mod1TechLabel: "💻 Business & Technical Skills (70%)",
-                mod1SoftLabel: "🤝 Soft Skills & Culture Fit (30%)",
-                mod2Title: "2. Highlights & Risk Signals",
-                mod2HighLabel: "🌟 Core Strengths (Highlights)",
-                mod2RiskLabel: "⚡ Potential Concerns (Risk Signals)",
-                mod3Title: "3. Customized Interview Questions",
-                mod4Title: "4. ⚠️ Risk Assessment (4 Key Indicators)",
-                r1Name: "① Early Exit Risk",
-                r2Name: "② Culture Mismatch Risk",
-                r3Name: "③ Skill Gap Risk",
-                r4Name: "④ Overqualification Risk",
-                printBtn: "📥 Download / Print PDF Report"
-            } : {
-                reportTitle: "📊 AI Scoring 候選人量化評估報告 (PDF Report)",
-                scoreLabel: "綜合匹配總分：",
-                ptsUnit: "/ 100 分",
-                metaLine: `檢核視角：${target} · 權重配置：業務 & 技術能力 70% / 軟技能 & 文化契合 30%`,
-                jdSumLabel: "比對職缺 (JD) 摘要：",
-                expSumLabel: "候選人經歷摘要：",
-                actionHeader: "建議決策 (Action)：",
-                breakdownHeading: "🧠 軟硬實力分項評核 (Competencies Breakdown)",
-                editHint: "✏️ 報告內容已依經歷動態生成，點擊任意文字可直接微調",
-                mod1Title: "1. 能力評估（業務 & 技術能力 ／ 軟技能 & 文化契合）",
-                mod1TechLabel: "💻 業務 & 技術能力 (Hard Skills - 70%)",
-                mod1SoftLabel: "🤝 軟技能 & 文化契合 (Soft Skills & Culture Fit - 30%)",
-                mod2Title: "2. 亮點 & 風險信號（Highlights vs. Risk Signals）",
-                mod2HighLabel: "🌟 核心優勢 (Highlights)",
-                mod2RiskLabel: "⚡ 潛在疑慮 (Risk Signals)",
-                mod3Title: "3. 定制面試問題（針對經歷缺口與專案細節之 3 道實戰追問）",
-                mod4Title: "4. ⚠️ 風險評估（4 大關鍵指標獨立評級與原因）",
-                r1Name: "① Early Exit Risk（早退風險）",
-                r2Name: "② Culture Mismatch Risk（文化不符風險）",
-                r3Name: "③ Skill Gap Risk（技能落差風險）",
-                r4Name: "④ Overqualification Risk（大材小用風險）",
-                printBtn: "📥 下載 / 列印專業 PDF 評估報告"
-            };
-
-            const container = document.getElementById('pdf-approval-container');
-            container.innerHTML = `
-                <div id="pdf-export-area" class="ai-scoring-card">
-                    <div class="scoring-header">
-                        <div class="scoring-title-area">
-                            <h3>${labels.reportTitle}</h3>
-                            <p style="color: #0f766e; font-weight: 800; font-size: 1.2rem; margin: 0.35rem 0;">${labels.scoreLabel} <span contenteditable="true">${data.score}</span> ${labels.ptsUnit}</p>
-                            <div class="scoring-meta-line">${labels.metaLine}</div>
-                            <div class="scoring-summary-text">
-                                • <strong>${labels.jdSumLabel}</strong> <span contenteditable="true">${jdSnippet}</span><br>
-                                • <strong>${labels.expSumLabel}</strong> <span contenteditable="true">${expSnippet}</span>
-                            </div>
-                        </div>
-                        <div class="scoring-action-badge" contenteditable="true">
-                            ${labels.actionHeader}<br>
-                            <strong>${data.action}</strong>
-                        </div>
-                    </div>
-
-                    <div class="scoring-skills-section">
-                        <div class="breakdown-main-heading">
-                            <span>${labels.breakdownHeading}</span>
-                            <span class="edit-hint-tag">${labels.editHint}</span>
-                        </div>
-
-                        <!-- 1. Competency Assessment -->
-                        <div class="breakdown-module">
-                            <div class="breakdown-module-title">${labels.mod1Title}</div>
-                            <div class="sub-competency-grid">
-                                <div class="sub-competency-box">
-                                    <span class="sub-box-label">${labels.mod1TechLabel}</span>
-                                    <div class="sub-box-content" contenteditable="true">${data.techEval}</div>
-                                </div>
-                                <div class="sub-competency-box">
-                                    <span class="sub-box-label">${labels.mod1SoftLabel}</span>
-                                    <div class="sub-box-content" contenteditable="true">${data.softEval}</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 2. Highlights & Risk Signals -->
-                        <div class="breakdown-module">
-                            <div class="breakdown-module-title">${labels.mod2Title}</div>
-                            <div class="sub-competency-grid">
-                                <div class="sub-competency-box highlight-box">
-                                    <span class="sub-box-label" style="color: #065f46;">${labels.mod2HighLabel}</span>
-                                    <div class="sub-box-content" contenteditable="true">${data.highlights}</div>
-                                </div>
-                                <div class="sub-competency-box risk-signal-box">
-                                    <span class="sub-box-label" style="color: #92400e;">${labels.mod2RiskLabel}</span>
-                                    <div class="sub-box-content" contenteditable="true">${data.risks}</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 3. Customized Interview Questions -->
-                        <div class="breakdown-module">
-                            <div class="breakdown-module-title">${labels.mod3Title}</div>
-                            <div class="interview-q-list" contenteditable="true">${data.questions}</div>
-                        </div>
-
-                        <!-- 4. Risk Assessment -->
-                        <div class="breakdown-module" style="margin-bottom: 0;">
-                            <div class="breakdown-module-title">${labels.mod4Title}</div>
-                            <div class="risk-4-grid">
-                                <div class="risk-metric-card">
-                                    <div class="risk-metric-name"><span>${labels.r1Name}</span></div>
-                                    <div class="risk-metric-desc" contenteditable="true">${data.earlyExit}</div>
-                                </div>
-                                <div class="risk-metric-card">
-                                    <div class="risk-metric-name"><span>${labels.r2Name}</span></div>
-                                    <div class="risk-metric-desc" contenteditable="true">${data.cultureRisk}</div>
-                                </div>
-                                <div class="risk-metric-card">
-                                    <div class="risk-metric-name"><span>${labels.r3Name}</span></div>
-                                    <div class="risk-metric-desc" contenteditable="true">${data.skillGap}</div>
-                                </div>
-                                <div class="risk-metric-card">
-                                    <div class="risk-metric-name"><span>${labels.r4Name}</span></div>
-                                    <div class="risk-metric-desc" contenteditable="true">${data.overqual}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div style="text-align: center; margin-top: 1.25rem;">
-                    <button class="btn-download-pdf" onclick="window.print()">${labels.printBtn}</button>
-                </div>
-            `;
-            container.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function openSubPage(id) {
-            const subPageUrl = `?article=${id}&lang=${currentLang}#subpage`;
-            window.open(subPageUrl, '_blank');
-        }
-
         window.addEventListener('DOMContentLoaded', () => {
             const params = new URLSearchParams(window.location.search);
             const articleId = params.get('article');
@@ -1401,15 +1217,6 @@
         function goHome(e) {
             e.preventDefault();
             window.location.href = window.location.pathname;
-        }
-
-        function appendTurnUI(uText, aText) {
-            document.getElementById('conversation-container').innerHTML += `<div class="dialogue-turn"><div class="turn-user">${uText}</div><div class="turn-ai">${aText}</div></div>`;
-        }
-
-        function updateLatestAIResponse(text) {
-            const turns = document.getElementsByClassName('dialogue-turn');
-            if (turns.length > 0) turns[turns.length - 1].querySelector('.turn-ai').innerText = text;
         }
     </script>
 </body>
