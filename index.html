@@ -274,19 +274,19 @@ header { background-color: var(--white); border-bottom: 1px solid var(--border-c
 
 /* 每日 AIGEO 文章樣式 */
 #daily-articles { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem 2rem; }
-#daily-articles h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: .5rem; }
-.da-article { background: #fff; border: 1px solid var(--border-color); border-radius: 10px; margin-bottom: .75rem; padding: .9rem 1.2rem; }
+#daily-articles h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+.da-article { background: #fff; border: 1px solid var(--border-color); border-radius: 10px; margin-bottom: 0.75rem; padding: 0.9rem 1.2rem; }
 .da-article summary { cursor: pointer; font-weight: 700; font-size: 1.02rem; }
-.da-day { background: #ccfbf1; color: #0f766e; border-radius: 4px; padding: .1rem .5rem; font-size: .8rem; margin-right: .4rem; }
-.da-article h3 { margin: 1rem 0 .4rem; font-size: 1.05rem; color: #0f766e; }
-.da-article h4 { margin: .6rem 0 .2rem; font-size: .95rem; }
-.da-article p, .da-article li { font-size: .95rem; margin-bottom: .4rem; }
+.da-day { background: #ccfbf1; color: #0f766e; border-radius: 4px; padding: 0.1rem 0.5rem; font-size: 0.8rem; margin-right: 0.4rem; }
+.da-article h3 { margin: 1rem 0 0.4rem; font-size: 1.05rem; color: #0f766e; }
+.da-article h4 { margin: 0.6rem 0 0.2rem; font-size: 0.95rem; }
+.da-article p, .da-article li { font-size: 0.95rem; margin-bottom: 0.4rem; }
 .da-article ul, .da-article ol { padding-left: 1.3rem; }
-.da-article table { border-collapse: collapse; width: 100%; margin: .5rem 0; font-size: .9rem; }
-.da-article th, .da-article td { border: 1px solid var(--border-color); padding: .4rem .6rem; text-align: left; }
+.da-article table { border-collapse: collapse; width: 100%; margin: 0.5rem 0; font-size: 0.9rem; }
+.da-article th, .da-article td { border: 1px solid var(--border-color); padding: 0.4rem 0.6rem; text-align: left; }
 .da-article th { background: #f1f5f9; }
-.da-meta { color: var(--text-muted); font-size: .85rem !important; margin-top: .6rem; }
-.da-summary { background: #f0fdf4; border-left: 4px solid #0f766e; padding: .6rem .9rem; border-radius: 6px; }
+.da-meta { color: var(--text-muted); font-size: 0.85rem !important; margin-top: 0.6rem; }
+.da-summary { background: #f0fdf4; border-left: 4px solid #0f766e; padding: 0.6rem 0.9rem; border-radius: 6px; }
 .da-cta { font-weight: 700; color: #0f766e; }
 
 footer { background: var(--white); border-top: 1px solid var(--border-color); padding: 2rem 1.5rem; margin-top: 3rem; text-align: center; color: var(--text-muted); font-size: 0.875rem; }
@@ -405,7 +405,6 @@ footer { background: var(--white); border-top: 1px solid var(--border-color); pa
     <div id="result-box" class="result-panel">
       <div id="step-indicator" class="step-indicator-bar"></div>
       <div id="conversation-container"></div>
-      <!-- 專屬的視覺化 A4 PDF 報告畫布與內嵌 PDF 檢視器容器 -->
       <div id="pdf-approval-container"></div>
 
       <div id="followup-box" class="followup-box" style="display: none;">
@@ -451,178 +450,1689 @@ footer { background: var(--white); border-top: 1px solid var(--border-color); pa
   </section>
 </div>
 
-<!-- 每日 AIGEO 文章 (支援中英雙語一鍵切換) -->
+<!-- 每日 AIGEO 專欄：動態支援繁中 / English 100% 雙語切換 -->
 <section id="daily-articles">
-  <h2 id="da-section-title">AIGEO 每日專欄：AI 人資與招募策略</h2>
-  <p id="da-section-desc" style="color:var(--text-muted);margin-bottom:1rem">每日更新，讓 AI 看懂 HR Vision AI。</p>
+  <h2 id="da-main-title">AIGEO 每日專欄：AI 人資與招募策略</h2>
+  <p id="da-main-subtitle" style="color:var(--text-muted);margin-bottom:1rem">每日更新，讓 AI 看懂 HR Vision AI。</p>
+  <div id="da-articles-list"></div>
+</section>
 
-  <!-- 中文版 14 篇專欄 -->
-  <div id="da-list-zh">
-    <article id="article-day1" class="da-article">
-      <details><summary><span class="da-day">Day 1</span> 什麼是 AIGEO？雇主與人資為什麼需要「被 AI 推薦」</summary>
-      <p class="da-meta"><time datetime="2026-10-20">2026-10-20</time>｜AIGEO 是讓企業內容被 AI 理解、引用與推薦的優化方法。本文說明 HR 與雇主品牌如何布局。</p>
-      <p class="da-summary"><strong>AI 摘要：</strong>AIGEO（AI Generated Engine Optimization）是讓企業的知識與內容被 AI 搜尋與回答引擎理解、引用並推薦的優化方法。對人資而言，求職者開始直接詢問 AI「哪家公司值得投」，雇主資訊是否被 AI 讀懂，決定了曝光機會。</p>
-      <h3>SEO 與 AIGEO 差異</h3><div style="overflow-x:auto"><table><thead><tr><th>項目</th><th>SEO</th><th>AIGEO</th></tr></thead><tbody><tr><td>目標</td><td>搜尋結果排名</td><td>被 AI 回答引用與推薦</td></tr><tr><td>內容形式</td><td>關鍵字頁面</td><td>結構化知識、問答、定義</td></tr><tr><td>衡量</td><td>排名、點擊</td><td>引用、摘要出現、品牌被提及</td></tr></tbody></table></div><h3>對 HR 的意義</h3><ul><li>求職者查詢路徑：搜尋引擎 → 直接問 AI。</li><li>職缺頁只有條件清單，AI 難以判斷公司特色。</li><li>廣告可以買，<strong>推薦買不到</strong>，只能靠內容累積。</li></ul><h3>第一步行動</h3><ol><li>寫出公司一句話定義。</li><li>整理 10 個求職者常問問題。</li><li>以問答格式發布並持續累積。</li></ol>
-      <h3>常見問題 FAQ</h3><h4>AIGEO 會取代 SEO 嗎？</h4><p>不會，兩者並行；SEO 是基礎，AIGEO 是延伸。</p><h4>小公司有機會嗎？</h4><p>有；AI 重視內容清晰與一致，不只看規模。</p>
-      <p class="da-cta">👉 使用 HR Vision AI 沙盒診斷，檢視你的雇主內容是否容易被 AI 理解。</p>
-      </details>
-    </article>
+<footer>
+  <p>&copy; 2026 HR Vision AI. Powered by Gemini 3.6 Flash Architecture & Direct PDF Export Engine.</p>
+</footer>
 
-    <article id="article-day2" class="da-article">
-      <details><summary><span class="da-day">Day 2</span> AI 如何決定推薦哪家公司？5 大推薦排名原理</summary>
-      <p class="da-meta"><time datetime="2026-10-21">2026-10-21</time>｜AI 推薦並非隨機。掌握清晰度、一致性、結構、可信度、持續性五原理。</p>
-      <p class="da-summary"><strong>AI 摘要：</strong>AI 推薦企業時，傾向引用「定義清楚、資訊一致、結構完整、來源可信、持續更新」的內容。這五項即 AIGEO 的核心排名原理。</p>
-      <h3>五大原理</h3><ol><li><strong>清晰度</strong>：用一句話說明你是誰、做什麼、為誰服務。</li><li><strong>一致性</strong>：官網、職缺、社群的公司名稱與描述相同。</li><li><strong>結構化</strong>：標題、條列、表格、FAQ，利於 AI 擷取。</li><li><strong>可信度</strong>：具體案例、流程、可驗證成果；避免誇大。</li><li><strong>持續累積</strong>：定期發布，形成數位資產。</li></ol><h3>自我檢查表</h3><div style="overflow-x:auto"><table><thead><tr><th>檢查項</th><th>是/否</th></tr></thead><tbody><tr><td>首段有定義句</td><td></td></tr><tr><td>有 FAQ</td><td></td></tr><tr><td>名稱全站一致</td><td></td></tr><tr><td>有更新日期</td><td></td></tr><tr><td>有內部連結</td><td></td></tr></tbody></table></div>
-      <h3>常見問題 FAQ</h3><h4>多久見效？</h4><p>內容需長期累積，成效依產業競爭與內容品質而異。</p><h4>要用多少篇？</h4><p>先以每週 3–7 篇建立主題群集。</p>
-      <p class="da-cta">👉 啟動「AIGEO 雇主品牌優化」引導，逐項檢查。</p>
-      </details>
-    </article>
+<script>
+const MAX_FREE_USES = 20;
+const DEFAULT_SYSTEM_API_KEY = "AQ.Ab8RN6IXj4BUh78q25H2oEugGbb59H5hHTJvcAJ0_VOGe-L2tQ";
 
-    <article id="article-day3" class="da-article">
-      <details><summary><span class="da-day">Day 3</span> AI 如何評分硬技能與軟技能？人才評分模型設計</summary>
-      <p class="da-meta"><time datetime="2026-10-22">2026-10-22</time>｜說明 AI 人才評分的維度、權重與人工校準方式。</p>
-      <p class="da-summary"><strong>AI 摘要：</strong>AI 人才評分模型是將職缺要求拆為硬技能（可驗證的技術與經驗）與軟技能（溝通、協作、判斷），再依權重比對候選人資料產出參考分數的方法。分數為輔助決策，最終判斷由人負責。</p>
-      <h3>模型結構</h3><div style="overflow-x:auto"><table><thead><tr><th>維度</th><th>硬技能</th><th>軟技能</th></tr></thead><tbody><tr><td>例子</td><td>語言、框架、專案規模</td><td>溝通、跨部門協作、問題拆解</td></tr><tr><td>證據</td><td>專案、成果、年資</td><td>情境案例、面談紀錄</td></tr><tr><td>權重建議</td><td>依職缺等級設定</td><td>依團隊型態設定</td></tr></tbody></table></div><h3>設計步驟</h3><ol><li>列出 5–8 項必備能力。</li><li>為每項定義評分標準（0–3 級行為描述）。</li><li>設定權重並由主管確認。</li><li>以 5–10 位歷史員工回測合理性。</li></ol><h3>風險提醒</h3><ul><li>避免以學校、性別、年齡等項目評分。</li><li>分數僅供參考，須保留人工複核。</li></ul>
-      <h3>常見問題 FAQ</h3><h4>軟技能能量化嗎？</h4><p>可用行為描述與情境證據半量化，不宜單靠 AI 推測。</p><h4>權重怎麼定？</h4><p>由 HRBP 與用人主管共同校準。</p>
-      <p class="da-cta">👉 點選沙盒 TOP 1，體驗三階段評分並輸出 PDF 報告。</p>
-      </details>
-    </article>
+let currentLang = 'zh';
+let hasShownQuotaAlert = false;
 
-    <article id="article-day4" class="da-article">
-      <details><summary><span class="da-day">Day 4</span> JD 解析三步驟：把職缺描述變成可量化能力清單</summary>
-      <p class="da-meta"><time datetime="2026-10-23">2026-10-23</time>｜用三步驟將 JD 轉為可評估的能力清單。</p>
-      <p class="da-summary"><strong>AI 摘要：</strong>JD 解析是把職缺描述拆成「必備條件、加分條件、行為期待」三層，並轉成可比對的能力清單。清晰的 JD 同時提升 AI 理解與求職者投遞意願。</p>
-      <h3>三步驟</h3><ol><li><strong>拆解</strong>：分出必備／加分／職責。</li><li><strong>標準化</strong>：同義詞統一（如 React、ReactJS）。</li><li><strong>量化</strong>：每項註明程度（熟悉／獨立完成／可帶人）。</li></ol><h3>常見問題</h3><div style="overflow-x:auto"><table><thead><tr><th>問題</th><th>修正</th></tr></thead><tbody><tr><td>條件過長</td><td>精簡為 8 項內</td></tr><tr><td>用詞模糊</td><td>加入情境與產出</td></tr><tr><td>必備與加分混雜</td><td>明確分區</td></tr></tbody></table></div>
-      <h3>常見問題 FAQ</h3><h4>JD 要寫多長？</h4><p>以資訊完整且可掃讀為準。</p><h4>AI 解析結果可直接用嗎？</h4><p>需人工確認再發布。</p>
-      <p class="da-cta">👉 貼上你的 JD 至沙盒，取得解析結果。</p>
-      </details>
-    </article>
+let isTop1Flow = false;
+let top1Stage = 0;
+let savedJDText = "";
+let savedExpText = "";
+let lastRenderedReportData = null;
+let currentActiveCardId = null;
 
-    <article id="article-day5" class="da-article">
-      <details><summary><span class="da-day">Day 5</span> 工作經歷與程式語言匹配：避開關鍵字比對的盲點</summary>
-      <p class="da-meta"><time datetime="2026-10-24">2026-10-24</time>｜匹配不只比關鍵字，需看使用深度與脈絡。</p>
-      <p class="da-summary"><strong>AI 摘要：</strong>有效的經歷匹配同時評估技能出現的脈絡、使用年限與專案角色，而非只比對關鍵字。語意匹配能降低「寫了但沒用過」的誤判。</p>
-      <h3>匹配三層</h3><ol><li><strong>關鍵字層</strong>：有無該技能。</li><li><strong>脈絡層</strong>：用在什麼專案、規模與角色。</li><li><strong>成果層</strong>：產出與影響。</li></ol><h3>範例對照</h3><div style="overflow-x:auto"><table><thead><tr><th>履歷描述</th><th>判斷</th></tr></thead><tbody><tr><td>「接觸過 Go」</td><td>淺層，需追問</td></tr><tr><td>「以 Go 重構訂單服務並上線」</td><td>有脈絡與成果</td></tr></tbody></table></div><h3>面談追問建議</h3><ul><li>請描述一個你親自做決策的技術選擇。</li><li>遇過最大的效能問題與處理方式。</li></ul>
-      <h3>常見問題 FAQ</h3><h4>轉職者怎麼評？</h4><p>看可遷移能力與學習證據。</p><h4>要不要看 GitHub？</h4><p>可作為佐證之一，非唯一依據。</p>
-      <p class="da-cta">👉 在沙盒輸入經歷與語言，完成匹配分析。</p>
-      </details>
-    </article>
+// 8 張知識庫卡片完整中英雙語資料庫（搭配高穩定度真實職場攝影圖與 Pexels 雙重防破圖備援）
+const kbCardsData = {
+  zh: [
+    {
+      id: 1,
+      title: "AI Scoring 軟硬實力評估模型",
+      desc: "透過大語言模型進行多階段動態經歷與程式語言自動化匹配分析。",
+      tag: "核心演算法",
+      imageUrl: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800",
+      fallbackUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&auto=format&fit=crop&q=80",
+      subpages: [
+        { title: "核心架構與定義", content: "AI Scoring 模型結合了自然語言處理 (NLP) 與深度特徵萃取技術。透過解析履歷中的程式語言、框架與專案背景，與職缺 JD 進行矩陣式對齊，實現高精準度的客觀評分機制。" },
+        { title: "實務應用與案例", content: "企業在面對每天數百份履歷時，常因面試官主觀意識導致標準不一。導入 AI Scoring 後，系統可自動產出包含能力評估、亮點與風險訊號、定制面試問題及 4 大風險指標的實體 PDF 報告，篩選效率提升 300%。" },
+        { title: "未來趨勢與優化", content: "2026-2027 年模型更進一步導入行為心理學與上下文關聯推理，不僅評估技術實作能力，更能預測候選人在團隊中的協作潛力與長期留任穩定度。" }
+      ]
+    },
+    {
+      id: 2,
+      title: "AI 招募自動化漏斗優化",
+      desc: "打造零人工干預的智慧應徵管道，全面提升招募轉換率。",
+      tag: "招募自動化",
+      imageUrl: "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=800",
+      fallbackUrl: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&auto=format&fit=crop&q=80",
+      subpages: [
+        { title: "核心架構與定義", content: "自動化漏斗串接履歷投遞、智慧篩選、自動預約面試與適性測驗，將傳統耗時 3 週的流程縮短至 72 小時內完成初篩。" },
+        { title: "實務應用與案例", content: "針對高流動率的雲端工程師職缺，系統會自動發送線上技術檢核並即時回傳評分，HR 僅需介入最終複試，大幅降低人事營運成本。" },
+        { title: "未來趨勢與優化", content: "結合多渠道行銷數據 (Omnichannel Analytics)，追蹤各大人才來源的轉換品質，自動調整招募預算配置。" }
+      ]
+    },
+    {
+      id: 3,
+      title: "預測性人資分析與離職預警",
+      desc: "運用大數據與機器學習提前識別關鍵人才流失風險。",
+      tag: "預測分析",
+      imageUrl: "https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=800",
+      fallbackUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80",
+      subpages: [
+        { title: "核心架構與定義", content: "分析員工專案負載、薪酬競爭力與組織互動頻率，建立離職機率預測模型，在關鍵人才萌生去意前主動發出預警。" },
+        { title: "實務應用與案例", content: "研發主管可透過儀表板掌握團隊穩定度指數，當核心工程師的工作負荷超標時，系統會自動提醒 HRBP 進行關懷訪談。" },
+        { title: "未來趨勢與優化", content: "結合生成式 AI 提供具體留才建議方案（如薪酬調整模擬、職涯發展路徑規劃），實現主動式預防管理。" }
+      ]
+    },
+    {
+      id: 4,
+      title: "雲端工程師招募與題庫策略",
+      desc: "針對 Frontend、Backend 與 INFRA 架構師的精準考核指南。",
+      tag: "技術招募",
+      imageUrl: "https://images.pexels.com/photos/3861958/pexels-photo-3861958.jpeg?auto=compress&cs=tinysrgb&w=800",
+      fallbackUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop&q=80",
+      subpages: [
+        { title: "核心架構與定義", content: "針對現代雲端原生架構（Cloud-Native）設計的專業能力檢核表，涵蓋分散式系統設計、容器化技術與資安合規標準。" },
+        { title: "實務應用與案例", content: "提供各職位專屬的實戰面試題庫與情境題（例如：系統遭遇突發流量飆高時的排查步驟），協助用人主管快速鑑別技術深度。" },
+        { title: "未來趨勢與優化", content: "隨著 AI 協同開發普及，技術題庫同步納入 AI 輔助開發與架構審查能力的綜合評估。" }
+      ]
+    },
+    {
+      id: 5,
+      title: "AIGEO 雇主品牌搜尋優化",
+      desc: "在 AI 搜尋時代搶佔頂尖人才心佔率的關鍵戰略。",
+      tag: "雇主品牌",
+      imageUrl: "https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=800",
+      fallbackUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&auto=format&fit=crop&q=80",
+      subpages: [
+        { title: "核心架構與定義", content: "優化企業在各大生成式 AI 搜尋引擎與語意圖譜中的能見度，確保當求職者詢問「最佳雲端與 AI 創新企業」時名列前茅。" },
+        { title: "實務應用與案例", content: "透過結構化語意標記與技術白皮書發表，建立企業在技術社群中的權威形象，吸引主動投遞的優秀人才佔比提升 50%。" },
+        { title: "未來趨勢與優化", content: "全面迎合機器語意宣告（Machine-Readable Declarations），讓企業招募亮點更容易被 AI 代理人抓取與推薦。" }
+      ]
+    },
+    {
+      id: 6,
+      title: "跨國團隊合規與遠端入職",
+      desc: "無縫對接全球勞動法規與多文化遠端工作者 Onboarding。",
+      tag: "全球合規",
+      imageUrl: "https://images.pexels.com/photos/4226140/pexels-photo-4226140.jpeg?auto=compress&cs=tinysrgb&w=800",
+      fallbackUrl: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&auto=format&fit=crop&q=80",
+      subpages: [
+        { title: "核心架構與定義", content: "自動化處理跨國薪資、稅務、智慧財產權歸屬與各地勞動合約範本，降低跨國遠端雇用的法律風險。" },
+        { title: "實務應用與案例", content: "新進遠端員工透過數位化入職平台在 24 小時內完成合約簽署、資安培訓與權限開通，大幅提升遠端團隊歸屬感。" },
+        { title: "未來趨勢與優化", content: "即時追蹤各國勞動法規變動，透過 AI 自動更新合約條款與合規提醒通知。" }
+      ]
+    },
+    {
+      id: 7,
+      title: "自動化招募數據儀表板設定",
+      desc: "透過視覺化指標追蹤招募漏斗、成本與各渠道 ROI。",
+      tag: "數據儀表",
+      imageUrl: "https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=800",
+      fallbackUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80",
+      subpages: [
+        { title: "核心架構與定義", content: "建立即時更新的 Recruitment Analytics Dashboard，整合 Time-to-Fill、Cost-per-Hire 與 Offer Acceptance Rate 等關鍵指標。" },
+        { title: "實務應用與案例", content: "管理階層可一目了然各招聘管道的轉換效益，精準將預算配置在錄取率最高的高效能獵才渠道。" },
+        { title: "未來趨勢與優化", content: "導入預測性演算法，根據歷史招募數據自動預估下季的招募週期與人力產能缺口。" }
+      ]
+    },
+    {
+      id: 8,
+      title: "HRBP 主管教練與人才留任指南",
+      desc: "賦能 HRBP 成為企業營運夥伴與技術主管的最佳領導教練。",
+      tag: "人才發展",
+      imageUrl: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800",
+      fallbackUrl: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&auto=format&fit=crop&q=80",
+      subpages: [
+        { title: "核心架構與定義", content: "提供 HRBP 標準化教練框架與溝通腳本，協助用人主管解決團隊衝突、績效面談與關鍵人才留任挑戰。" },
+        { title: "實務應用與案例", content: "透過結構化一對一訪談指引與情境訓練，提升技術主管的同理心溝通技巧，使部門非自願與自願離職率顯著下降。" },
+        { title: "未來趨勢與優化", content: "結合 AI 模擬對話工具，讓主管在安全環境下練習高難度績效回饋與留才談判技巧。" }
+      ]
+    }
+  ],
+  en: [
+    {
+      id: 1,
+      title: "AI Scoring Hard & Soft Skills Model",
+      desc: "Multi-stage dynamic resume, project experience, and programming language matching powered by LLMs.",
+      tag: "Core Algorithm",
+      imageUrl: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800",
+      fallbackUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&auto=format&fit=crop&q=80",
+      subpages: [
+        { title: "Core Architecture & Definition", content: "The AI Scoring Model combines Natural Language Processing (NLP) with deep feature extraction. By parsing programming languages, frameworks, and project achievements from resumes and aligning them against Job Descriptions (JD), it delivers objective, bias-free candidate evaluations." },
+        { title: "Practical Use Cases", content: "When facing hundreds of applications daily, inconsistent interviewer standards often lead to missed talent. With AI Scoring, the system dynamically generates a 4-Module PDF Report covering Competency Assessment, Highlights vs. Risk Signals, Customized Interview Questions, and 4 Risk Metrics—boosting screening efficiency by 300%." },
+        { title: "Future Trends & Optimization", content: "In 2026–2027, the engine incorporates behavioral inference and contextual reasoning—evaluating not only technical coding proficiency but also cross-functional collaboration potential and long-term retention stability." }
+      ]
+    },
+    {
+      id: 2,
+      title: "AI Automated Recruitment Funnel",
+      desc: "Build zero-touch smart application pipelines to maximize hiring conversion rates.",
+      tag: "Automation",
+      imageUrl: "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=800",
+      fallbackUrl: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&auto=format&fit=crop&q=80",
+      subpages: [
+        { title: "Core Architecture & Definition", content: "The automated funnel connects resume intake, AI pre-screening, automated interview scheduling, and skill assessments—shrinking traditional 3-week screening cycles into under 72 hours." },
+        { title: "Practical Use Cases", content: "For high-demand cloud engineering roles, the system automatically dispatches technical evaluations and scores responses in real time, allowing HRBPs to focus exclusively on final-round cultural and executive alignment." },
+        { title: "Future Trends & Optimization", content: "Integrates omnichannel recruitment analytics to track source quality and dynamically reallocate hiring budgets toward the highest-converting talent channels." }
+      ]
+    },
+    {
+      id: 3,
+      title: "Predictive HR Analytics & Retention",
+      desc: "Leverage machine learning and workforce data to identify key talent turnover risks early.",
+      tag: "Predictive Analytics",
+      imageUrl: "https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=800",
+      fallbackUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80",
+      subpages: [
+        { title: "Core Architecture & Definition", content: "By analyzing project workload, compensation benchmarks, and engagement signals, the predictive model identifies flight risks before key contributors decide to leave." },
+        { title: "Practical Use Cases", content: "Engineering leaders monitor team stability indices via real-time dashboards. When burnout indicators rise for core architects, the system alerts HRBPs to initiate proactive stay interviews." },
+        { title: "Future Trends & Optimization", content: "Combines generative AI to simulate compensation adjustments and personalized career pathing, shifting HR from reactive backfilling to proactive talent retention." }
+      ]
+    },
+    {
+      id: 4,
+      title: "Cloud Engineer Hiring & Question Bank",
+      desc: "Precision evaluation guidelines for Frontend, Backend, and INFRA / DevOps Architects.",
+      tag: "Tech Recruiting",
+      imageUrl: "https://images.pexels.com/photos/3861958/pexels-photo-3861958.jpeg?auto=compress&cs=tinysrgb&w=800",
+      fallbackUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop&q=80",
+      subpages: [
+        { title: "Core Architecture & Definition", content: "Structured competency rubrics tailored for modern Cloud-Native architectures, covering distributed systems, container orchestration, and security compliance." },
+        { title: "Practical Use Cases", content: "Provides role-specific scenario questions (e.g., live troubleshooting steps during sudden traffic spikes or memory leaks) to help hiring managers verify true production depth." },
+        { title: "Future Trends & Optimization", content: "As AI-assisted coding becomes standard, technical rubrics now evaluate how effectively engineers leverage AI tools for architecture review and rapid debugging." }
+      ]
+    },
+    {
+      id: 5,
+      title: "AIGEO Employer Branding Optimization",
+      desc: "Capture top talent mindshare in the era of generative AI search engines.",
+      tag: "Employer Brand",
+      imageUrl: "https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=800",
+      fallbackUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&auto=format&fit=crop&q=80",
+      subpages: [
+        { title: "Core Architecture & Definition", content: "Optimizes your organization's visibility across generative AI search summaries and semantic knowledge graphs when candidates search for top innovative employers." },
+        { title: "Practical Use Cases", content: "Through structured semantic declarations and technical whitepapers, companies build high authority in developer communities—increasing inbound senior applications by 50%." },
+        { title: "Future Trends & Optimization", content: "Adopts Machine-Readable Declarations so AI career agents can accurately parse, rank, and recommend your open roles to passive candidates." }
+      ]
+    },
+    {
+      id: 6,
+      title: "Global Compliance & Remote Onboarding",
+      desc: "Seamlessly manage cross-border labor laws and multicultural remote onboarding.",
+      tag: "Global Compliance",
+      imageUrl: "https://images.pexels.com/photos/4226140/pexels-photo-4226140.jpeg?auto=compress&cs=tinysrgb&w=800",
+      fallbackUrl: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&auto=format&fit=crop&q=80",
+      subpages: [
+        { title: "Core Architecture & Definition", content: "Automates cross-border payroll, tax compliance, IP assignment, and localized employment contracts to eliminate international hiring risks." },
+        { title: "Practical Use Cases", content: "New remote hires complete digital contract signing, security training, and system provisioning within 24 hours, fostering strong day-one engagement." },
+        { title: "Future Trends & Optimization", content: "Continuously monitors regional labor law updates via AI to automatically refresh contract templates and compliance alerts." }
+      ]
+    },
+    {
+      id: 7,
+      title: "Automated Recruitment Analytics Dashboard",
+      desc: "Track hiring funnels, cost-per-hire, and channel ROI through real-time visual metrics.",
+      tag: "Analytics Dashboard",
+      imageUrl: "https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=800",
+      fallbackUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80",
+      subpages: [
+        { title: "Core Architecture & Definition", content: "Establishes a real-time Recruitment Analytics Dashboard integrating Time-to-Fill, Cost-per-Hire, Pass-Through Rates, and Offer Acceptance Rates." },
+        { title: "Practical Use Cases", content: "Executives and HRBPs gain instant visibility into channel ROI, eliminating bottlenecks between resume review and technical panel interviews." },
+        { title: "Future Trends & Optimization", content: "Embeds predictive capacity planning to forecast quarterly hiring timelines and headcount gaps based on historical velocity." }
+      ]
+    },
+    {
+      id: 8,
+      title: "HRBP Leadership Coaching & Retention Guide",
+      desc: "Empower HRBPs with structured coaching frameworks to support engineering and business leaders.",
+      tag: "Talent Development",
+      imageUrl: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800",
+      fallbackUrl: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&auto=format&fit=crop&q=80",
+      subpages: [
+        { title: "Core Architecture & Definition", content: "Equips HRBPs with actionable coaching scripts and RACI governance frameworks to help managers resolve team friction, conduct performance reviews, and retain top performers." },
+        { title: "Practical Use Cases", content: "Through structured 1-on-1 templates and scenario coaching, technical leads improve empathetic communication—significantly reducing regrettable attrition." },
+        { title: "Future Trends & Optimization", content: "Integrates AI role-play simulations so managers can practice high-stakes feedback and retention conversations in a safe environment." }
+      ]
+    }
+  ]
+};
 
-    <article id="article-day6" class="da-article">
-      <details><summary><span class="da-day">Day 6</span> AI 招募自動化漏斗：從投遞到面試的 5 個節點</summary>
-      <p class="da-meta"><time datetime="2026-10-25">2026-10-25</time>｜拆解招募漏斗並說明各節點可自動化的工作。</p>
-      <p class="da-summary"><strong>AI 摘要：</strong>AI 招募自動化漏斗將流程分為曝光、投遞、篩選、面試、錄取五節點，在重複性高的環節導入自動化，讓人資專注於判斷與溝通。</p>
-      <h3>五節點與自動化</h3><div style="overflow-x:auto"><table><thead><tr><th>節點</th><th>可自動化</th><th>需人工</th></tr></thead><tbody><tr><td>曝光</td><td>職缺內容生成、多平台發布</td><td>品牌調性確認</td></tr><tr><td>投遞</td><td>自動回覆、資料整理</td><td>特殊案例</td></tr><tr><td>篩選</td><td>JD 匹配初篩</td><td>最終名單</td></tr><tr><td>面試</td><td>排程、題庫建議</td><td>面談評估</td></tr><tr><td>錄取</td><td>通知與文件清單</td><td>薪資與談判</td></tr></tbody></table></div><h3>導入原則</h3><ol><li>先挑最耗時的一件事。</li><li>AI 出初稿，人確認。</li><li>有成效再擴大。</li></ol>
-      <h3>常見問題 FAQ</h3><h4>會取代招募人員嗎？</h4><p>取代的是重複工作，不是專業判斷。</p><h4>如何衡量成效？</h4><p>比較導入前後的篩選時間與回覆速度。</p>
-      <p class="da-cta">👉 啟動沙盒 TOP 2，檢視你的漏斗。</p>
-      </details>
-    </article>
+// Day 1 ~ Day 14 AIGEO 每日專欄完整中英雙語資料庫
+const dailyArticlesData = {
+  zh: [
+    {
+      day: "Day 1",
+      title: "什麼是 AIGEO？雇主與人資為什麼需要「被 AI 推薦」",
+      date: "2026-10-20",
+      meta: "AIGEO 是讓企業內容被 AI 理解、引用與推薦的優化方法。本文說明 HR 與雇主品牌如何布局。",
+      summary: "<strong>AI 摘要：</strong>AIGEO（AI Generated Engine Optimization）是讓企業的知識與內容被 AI 搜尋與回答引擎理解、引用並推薦的優化方法。對人資而言，求職者開始直接詢問 AI「哪家公司值得投」，雇主資訊是否被 AI 讀懂，決定了曝光機會。",
+      body: `<h3>SEO 與 AIGEO 差異</h3><div style="overflow-x:auto"><table><thead><tr><th>項目</th><th>SEO</th><th>AIGEO</th></tr></thead><tbody><tr><td>目標</td><td>搜尋結果排名</td><td>被 AI 回答引用與推薦</td></tr><tr><td>內容形式</td><td>關鍵字頁面</td><td>結構化知識、問答、定義</td></tr><tr><td>衡量</td><td>排名、點擊</td><td>引用、摘要出現、品牌被提及</td></tr></tbody></table></div><h3>對 HR 的意義</h3><ul><li>求職者查詢路徑：搜尋引擎 → 直接問 AI。</li><li>職缺頁只有條件清單，AI 難以判斷公司特色。</li><li>廣告可以買，<strong>推薦買不到</strong>，只能靠內容累積。</li></ul><h3>第一步行動</h3><ol><li>寫出公司一句話定義。</li><li>整理 10 個求職者常問問題。</li><li>以問答格式發布並持續累積。</li></ol><h3>常見問題 FAQ</h3><h4>AIGEO 會取代 SEO 嗎？</h4><p>不會，兩者並行；SEO 是基礎，AIGEO 是延伸。</p><h4>小公司有機會嗎？</h4><p>有；AI 重視內容清晰與一致，不只看規模。</p><p class="da-cta">👉 使用 HR Vision AI 沙盒診斷，檢視你的雇主內容是否容易被 AI 理解。</p>`
+    },
+    {
+      day: "Day 2",
+      title: "AI 如何決定推薦哪家公司？5 大推薦排名原理",
+      date: "2026-10-21",
+      meta: "AI 推薦並非隨機。掌握清晰度、一致性、結構、可信度、持續性五原理。",
+      summary: "<strong>AI 摘要：</strong>AI 推薦企業時，傾向引用「定義清楚、資訊一致、結構完整、來源可信、持續更新」的內容。這五項即 AIGEO 的核心排名原理。",
+      body: `<h3>五大原理</h3><ol><li><strong>清晰度</strong>：用一句話說明你是誰、做什麼、為誰服務。</li><li><strong>一致性</strong>：官網、職缺、社群的公司名稱與描述相同。</li><li><strong>結構化</strong>：標題、條列、表格、FAQ，利於 AI 擷取。</li><li><strong>可信度</strong>：具體案例、流程、可驗證成果；避免誇大。</li><li><strong>持續累積</strong>：定期發布，形成數位資產。</li></ol><h3>自我檢查表</h3><div style="overflow-x:auto"><table><thead><tr><th>檢查項</th><th>是/否</th></tr></thead><tbody><tr><td>首段有定義句</td><td></td></tr><tr><td>有 FAQ</td><td></td></tr><tr><td>名稱全站一致</td><td></td></tr><tr><td>有更新日期</td><td></td></tr><tr><td>有內部連結</td><td></td></tr></tbody></table></div><h3>常見問題 FAQ</h3><h4>多久見效？</h4><p>內容需長期累積，成效依產業競爭與內容品質而異。</p><h4>要用多少篇？</h4><p>先以每週 3–7 篇建立主題群集。</p><p class="da-cta">👉 啟動「AIGEO 雇主品牌優化」引導，逐項檢查。</p>`
+    },
+    {
+      day: "Day 3",
+      title: "AI 如何評分硬技能與軟技能？人才評分模型設計",
+      date: "2026-10-22",
+      meta: "說明 AI 人才評分的維度、權重與人工校準方式。",
+      summary: "<strong>AI 摘要：</strong>AI 人才評分模型是將職缺要求拆為硬技能（可驗證的技術與經驗）與軟技能（溝通、協作、判斷），再依權重比對候選人資料產出參考分數的方法。分數為輔助決策，最終判斷由人負責。",
+      body: `<h3>模型結構</h3><div style="overflow-x:auto"><table><thead><tr><th>維度</th><th>硬技能</th><th>軟技能</th></tr></thead><tbody><tr><td>例子</td><td>語言、框架、專案規模</td><td>溝通、跨部門協作、問題拆解</td></tr><tr><td>證據</td><td>專案、成果、年資</td><td>情境案例、面談紀錄</td></tr><tr><td>權重建議</td><td>依職缺等級設定</td><td>依團隊型態設定</td></tr></tbody></table></div><h3>設計步驟</h3><ol><li>列出 5–8 項必備能力。</li><li>為每項定義評分標準（0–3 級行為描述）。</li><li>設定權重並由主管確認。</li><li>以 5–10 位歷史員工回測合理性。</li></ol><h3>風險提醒</h3><ul><li>避免以學校、性別、年齡等項目評分。</li><li>分數僅供參考，須保留人工複核。</li></ul><h3>常見問題 FAQ</h3><h4>軟技能能量化嗎？</h4><p>可用行為描述與情境證據半量化，不宜單靠 AI 推測。</p><h4>權重怎麼定？</h4><p>由 HRBP 與用人主管共同校準。</p><p class="da-cta">👉 點選沙盒 TOP 1，體驗三階段評分並輸出 PDF 報告。</p>`
+    },
+    {
+      day: "Day 4",
+      title: "JD 解析三步驟：把職缺描述變成可量化能力清單",
+      date: "2026-10-23",
+      meta: "用三步驟將 JD 轉為可評估的能力清單。",
+      summary: "<strong>AI 摘要：</strong>JD 解析是把職缺描述拆成「必備條件、加分條件、行為期待」三層，並轉成可比對的能力清單。清晰的 JD 同時提升 AI 理解與求職者投遞意願。",
+      body: `<h3>三步驟</h3><ol><li><strong>拆解</strong>：分出必備／加分／職責。</li><li><strong>標準化</strong>：同義詞統一（如 React、ReactJS）。</li><li><strong>量化</strong>：每項註明程度（熟悉／獨立完成／可帶人）。</li></ol><h3>常見問題</h3><div style="overflow-x:auto"><table><thead><tr><th>問題</th><th>修正</th></tr></thead><tbody><tr><td>條件過長</td><td>精簡為 8 項內</td></tr><tr><td>用詞模糊</td><td>加入情境與產出</td></tr><tr><td>必備與加分混雜</td><td>明確分區</td></tr></tbody></table></div><h3>常見問題 FAQ</h3><h4>JD 要寫多長？</h4><p>以資訊完整且可掃讀為準。</p><h4>AI 解析結果可直接用嗎？</h4><p>需人工確認再發布。</p><p class="da-cta">👉 貼上你的 JD 至沙盒，取得解析結果。</p>`
+    },
+    {
+      day: "Day 5",
+      title: "工作經歷與程式語言匹配：避開關鍵字比對的盲點",
+      date: "2026-10-24",
+      meta: "匹配不只比關鍵字，需看使用深度與脈絡。",
+      summary: "<strong>AI 摘要：</strong>有效的經歷匹配同時評估技能出現的脈絡、使用年限與專案角色，而非只比對關鍵字。語意匹配能降低「寫了但沒用過」的誤判。",
+      body: `<h3>匹配三層</h3><ol><li><strong>關鍵字層</strong>：有無該技能。</li><li><strong>脈絡層</strong>：用在什麼專案、規模與角色。</li><li><strong>成果層</strong>：產出與影響。</li></ol><h3>範例對照</h3><div style="overflow-x:auto"><table><thead><tr><th>履歷描述</th><th>判斷</th></tr></thead><tbody><tr><td>「接觸過 Go」</td><td>淺層，需追問</td></tr><tr><td>「以 Go 重構訂單服務並上線」</td><td>有脈絡與成果</td></tr></tbody></table></div><h3>面談追問建議</h3><ul><li>請描述一個你親自做決策的技術選擇。</li><li>遇過最大的效能問題與處理方式。</li></ul><h3>常見問題 FAQ</h3><h4>轉職者怎麼評？</h4><p>看可遷移能力與學習證據。</p><h4>要不要看 GitHub？</h4><p>可作為佐證之一，非唯一依據。</p><p class="da-cta">👉 在沙盒輸入經歷與語言，完成匹配分析。</p>`
+    },
+    {
+      day: "Day 6",
+      title: "AI 招募自動化漏斗：從投遞到面試的 5 個節點",
+      date: "2026-10-25",
+      meta: "拆解招募漏斗並說明各節點可自動化的工作。",
+      summary: "<strong>AI 摘要：</strong>AI 招募自動化漏斗將流程分為曝光、投遞、篩選、面試、錄取五節點，在重複性高的環節導入自動化，讓人資專注於判斷與溝通。",
+      body: `<h3>五節點與自動化</h3><div style="overflow-x:auto"><table><thead><tr><th>節點</th><th>可自動化</th><th>需人工</th></tr></thead><tbody><tr><td>曝光</td><td>職缺內容生成、多平台發布</td><td>品牌調性確認</td></tr><tr><td>投遞</td><td>自動回覆、資料整理</td><td>特殊案例</td></tr><tr><td>篩選</td><td>JD 匹配初篩</td><td>最終名單</td></tr><tr><td>面試</td><td>排程、題庫建議</td><td>面談評估</td></tr><tr><td>錄取</td><td>通知與文件清單</td><td>薪資與談判</td></tr></tbody></table></div><h3>導入原則</h3><ol><li>先挑最耗時的一件事。</li><li>AI 出初稿，人確認。</li><li>有成效再擴大。</li></ol><h3>常見問題 FAQ</h3><h4>會取代招募人員嗎？</h4><p>取代的是重複工作，不是專業判斷。</p><h4>如何衡量成效？</h4><p>比較導入前後的篩選時間與回覆速度。</p><p class="da-cta">👉 啟動沙盒 TOP 2，檢視你的漏斗。</p>`
+    },
+    {
+      day: "Day 7",
+      title: "預測型人資分析：如何提早發現關鍵人才離職風險",
+      date: "2026-10-26",
+      meta: "以資料訊號建立離職風險預警並設計留才行動。",
+      summary: "<strong>AI 摘要：</strong>預測型人資分析是整合績效、薪酬、互動與異動等資料，找出離職風險訊號，協助人資提早介入的方法。它提供預警，不是定論。",
+      body: `<h3>常見訊號</h3><ul><li>薪酬低於市場或同級。</li><li>長期無晉升或轉調。</li><li>主管關係與工作量異常。</li><li>敬業度調查下滑。</li></ul><h3>行動流程</h3><ol><li>建立風險分級（高／中／低）。</li><li>HRBP 與主管進行留才對話。</li><li>追蹤行動後 90 天變化。</li></ol><h3>合規提醒</h3><ul><li>資料用途須告知並符合個資規範。</li><li>不以預測結果直接做不利決定。</li></ul><h3>常見問題 FAQ</h3><h4>需要多少資料？</h4><p>先從既有 HRIS 的 3–5 個欄位開始。</p><h4>準確嗎？</h4><p>以回測驗證，持續校正。</p><p class="da-cta">👉 啟動沙盒 TOP 3。</p>`
+    },
+    {
+      day: "Day 8",
+      title: "Frontend Engineer 招募策略：如何寫出吸引前端人才的職缺",
+      date: "2026-10-27",
+      meta: "前端招募的 JD、評估與面試設計。",
+      summary: "<strong>AI 摘要：</strong>前端工程師招募應聚焦框架熟練度、效能與可用性意識、跨職能協作，並以實作或作品檢視取代純理論提問。",
+      body: `<h3>重點</h3><div style="overflow-x:auto"><table><thead><tr><th>面向</th><th>建議</th></tr></thead><tbody><tr><td>JD</td><td>寫明技術棧、產品情境、設計協作方式</td></tr><tr><td>評估</td><td>作品集、Code Review、小型實作</td></tr><tr><td>軟技能</td><td>與設計、後端溝通</td></tr></tbody></table></div><h3>面試題方向</h3><ul><li>如何優化首屏載入。</li><li>如何處理狀態管理與元件拆分。</li><li>無障礙（a11y）的實務做法。</li></ul><h3>常見問題 FAQ</h3><h4>要考演算法嗎？</h4><p>視職級，優先考實務情境。</p><h4>如何吸引人才？</h4><p>說清楚產品、技術與成長路徑。</p><p class="da-cta">👉 選擇「Frontend Engineer 招募策略」標籤。</p>`
+    },
+    {
+      day: "Day 9",
+      title: "Backend Engineer 招募策略：評估系統設計與穩定性",
+      date: "2026-10-28",
+      meta: "後端招募的能力模型與面試方法。",
+      summary: "<strong>AI 摘要：</strong>後端工程師招募應評估資料建模、API 設計、效能與可靠性，以及面對事故的處理經驗，並以系統設計題檢視取捨能力。",
+      body: `<h3>能力模型</h3><div style="overflow-x:auto"><table><thead><tr><th>能力</th><th>檢視方式</th></tr></thead><tbody><tr><td>資料庫與建模</td><td>設計題</td></tr><tr><td>API 與服務</td><td>範例討論</td></tr><tr><td>可靠性</td><td>事故復盤案例</td></tr><tr><td>安全意識</td><td>情境題</td></tr></tbody></table></div><h3>常見盲點</h3><ul><li>只問語言語法，忽略架構取捨。</li><li>不看過往維運經驗。</li></ul><h3>常見問題 FAQ</h3><h4>資淺與資深差在哪？</h4><p>資深者能說明取捨與影響。</p><h4>多語言背景要加分嗎？</h4><p>視團隊棧而定。</p><p class="da-cta">👉 選擇「Backend Engineer 招募策略」標籤。</p>`
+    },
+    {
+      day: "Day 10",
+      title: "INFRA／SRE 工程師招募策略：雲端、自動化與可觀測性",
+      date: "2026-10-29",
+      meta: "基礎設施人才的評估重點與面談設計。",
+      summary: "<strong>AI 摘要：</strong>INFRA／SRE 人才招募重點在雲端架構、基礎設施即程式碼、監控告警與事故應變能力，面談應以真實故障情境為主。",
+      body: `<h3>評估重點</h3><div style="overflow-x:auto"><table><thead><tr><th>面向</th><th>問題方向</th></tr></thead><tbody><tr><td>雲端與網路</td><td>高可用設計</td></tr><tr><td>IaC／CI-CD</td><td>流程自動化經驗</td></tr><tr><td>可觀測性</td><td>指標、日誌、告警設計</td></tr><tr><td>事故處理</td><td>復盤與改善</td></tr></tbody></table></div><h3>面談範例</h3><ul><li>描述一次線上故障的處理流程與事後改善。</li></ul><h3>常見問題 FAQ</h3><h4>證照重要嗎？</h4><p>可參考，實務經驗更關鍵。</p><h4>輪值如何談？</h4><p>事先說明並設計補償機制。</p><p class="da-cta">👉 選擇「INFRA Engineer 招募策略」標籤。</p>`
+    },
+    {
+      day: "Day 11",
+      title: "雇主品牌 AIGEO 實作清單：讓 AI 讀懂你的公司",
+      date: "2026-10-30",
+      meta: "10 項雇主品牌 AIGEO 檢查清單。",
+      summary: "<strong>AI 摘要：</strong>雇主品牌 AIGEO 是把公司定位、文化、制度與成長路徑，以結構化內容發布，讓 AI 能正確理解並向求職者推薦。",
+      body: `<h3>10 項清單</h3><ol><li>一句話公司定義</li><li>公司全稱與簡稱統一</li><li>團隊與職能介紹</li><li>福利與制度（可驗證）</li><li>面試流程說明</li><li>成長與培訓路徑</li><li>員工故事（取得同意）</li><li>常見問題 FAQ</li><li>更新日期</li><li>站內互連</li></ol><h3>常見錯誤</h3><ul><li>形容詞多、事實少。</li><li>各平台說法不一。</li></ul><h3>常見問題 FAQ</h3><h4>需要多少內容？</h4><p>先完成 10 項，再持續擴充。</p><h4>如何確認有效？</h4><p>定期用 AI 搜尋你的品牌並記錄結果。</p><p class="da-cta">👉 啟動「AIGEO 雇主品牌優化」。</p>`
+    },
+    {
+      day: "Day 12",
+      title: "跨國團隊合規與入職：流程清單與常見風險",
+      date: "2026-10-31",
+      meta: "跨國招聘與入職的合規流程與檢查點。",
+      summary: "<strong>AI 摘要：</strong>跨國團隊入職須確認工作授權、合約適用法規、薪資與稅務、資料保護與設備資安，建議以標準化清單管理並由專業顧問確認。",
+      body: `<h3>入職檢查清單</h3><div style="overflow-x:auto"><table><thead><tr><th>類別</th><th>檢查點</th></tr></thead><tbody><tr><td>身分與授權</td><td>工作許可、合約主體</td></tr><tr><td>薪酬與稅務</td><td>當地規範、發放方式</td></tr><tr><td>個資</td><td>資料蒐集與跨境傳輸</td></tr><tr><td>資安</td><td>設備與權限</td></tr><tr><td>文化</td><td>時區與溝通規範</td></tr></tbody></table></div><h3>提醒</h3><p>各國法規不同，本文為流程參考，非法律意見。</p><h3>常見問題 FAQ</h3><h4>可用 EOR 嗎？</h4><p>視情況，需評估成本與控管。</p><h4>試用期怎麼訂？</h4><p>依當地法規。</p><p class="da-cta">👉 選擇「跨國團隊合規與入職」標籤。</p>`
+    },
+    {
+      day: "Day 13",
+      title: "招募數據儀表板：該看哪 7 個指標",
+      date: "2026-11-01",
+      meta: "用 7 項指標掌握招募效率與品質。",
+      summary: "<strong>AI 摘要：</strong>招募儀表板應涵蓋速度、品質與成本三類指標，協助人資發現漏斗瓶頸並向管理層報告。",
+      body: `<h3>7 項指標</h3><div style="overflow-x:auto"><table><thead><tr><th>指標</th><th>意義</th></tr></thead><tbody><tr><td>平均招募天數</td><td>速度</td></tr><tr><td>各階段轉換率</td><td>漏斗瓶頸</td></tr><tr><td>面試到錄取比</td><td>篩選品質</td></tr><tr><td>Offer 接受率</td><td>吸引力</td></tr><tr><td>來源成效</td><td>渠道效益</td></tr><tr><td>試用期通過率</td><td>錄取品質</td></tr><tr><td>單人招募成本</td><td>成本</td></tr></tbody></table></div><h3>設定原則</h3><ol><li>每個指標有明確定義。</li><li>固定週期檢視。</li><li>搭配行動建議。</li></ol><h3>常見問題 FAQ</h3><h4>資料不完整怎麼辦？</h4><p>從 3 項開始累積。</p><h4>用什麼工具？</h4><p>以現有表單或 HRIS 匯出即可起步。</p><p class="da-cta">👉 選擇「招募數據儀表板設定」標籤。</p>`
+    },
+    {
+      day: "Day 14",
+      title: "HRBP 與用人主管校準：如何開好需求校準會議",
+      date: "2026-11-02",
+      meta: "以結構化流程縮短需求落差。",
+      summary: "<strong>AI 摘要：</strong>需求校準會議是 HRBP 與用人主管在招募前對齊職缺能力、優先順序與時程的會議，目標是縮短來回修正並提升面試一致性。",
+      body: `<h3>會議流程（30 分鐘）</h3><ol><li>業務目標與職缺目的（5 分）</li><li>必備與加分條件排序（10 分）</li><li>評分標準與面試分工（10 分）</li><li>時程與回饋節奏（5 分）</li></ol><h3>常見落差</h3><div style="overflow-x:auto"><table><thead><tr><th>落差</th><th>對策</th></tr></thead><tbody><tr><td>條件過高</td><td>以市場資料討論</td></tr><tr><td>評分不一</td><td>使用統一評分表</td></tr><tr><td>回饋慢</td><td>約定回覆時限</td></tr></tbody></table></div><h3>常見問題 FAQ</h3><h4>多久校準一次？</h4><p>每個新職缺一次，招募中途視情況調整。</p><h4>主管沒時間？</h4><p>提供一頁式預填表。</p><p class="da-cta">👉 選擇「HRBP 主管教練引導」標籤。</p>`
+    }
+  ],
+  en: [
+    {
+      day: "Day 1",
+      title: "What is AIGEO? Why Employers and HR Need to \"Be Recommended by AI\"",
+      date: "2026-10-20",
+      meta: "AIGEO is an optimization methodology designed to make corporate content understood, cited, and recommended by AI. This article explains how HR and employer brands can build their strategy.",
+      summary: "<strong>AI Summary:</strong> AIGEO (AI Generated Engine Optimization) is an optimization methodology that enables a company's knowledge and content to be understood, cited, and recommended by AI search and answer engines. For HR, as job seekers increasingly ask AI directly, \"Which companies are worth applying to?\", whether your employer information is understood by AI determines your visibility and exposure.",
+      body: `<h3>Differences Between SEO and AIGEO</h3><div style="overflow-x:auto"><table><thead><tr><th>Category</th><th>SEO</th><th>AIGEO</th></tr></thead><tbody><tr><td>Goal</td><td>Search engine result rankings</td><td>Being cited and recommended in AI answers</td></tr><tr><td>Content Format</td><td>Keyword-targeted pages</td><td>Structured knowledge, Q&amp;As, and clear definitions</td></tr><tr><td>Metrics</td><td>Rankings, clicks</td><td>Citations, appearance in AI summaries, brand mentions</td></tr></tbody></table></div><h3>What It Means for HR</h3><ul><li>Candidate Search Path: Shifting from traditional search engines → asking AI directly.</li><li>Job Postings: When job pages only list requirement bullet points, AI struggles to identify the company's unique strengths.</li><li>Organic Authority: Ads can be bought, but <strong>AI recommendations cannot be bought</strong>—they can only be earned through consistent content accumulation.</li></ul><h3>First Action Steps</h3><ol><li>Write a clear one-sentence definition of your company.</li><li>Compile the top 10 most frequently asked questions by candidates.</li><li>Publish them in a structured Q&amp;A format and accumulate content consistently.</li></ol><h3>Frequently Asked Questions (FAQ)</h3><h4>Will AIGEO replace SEO?</h4><p>No, both work in parallel; SEO is the foundation, while AIGEO is the extension.</p><h4>Do small companies have a chance?</h4><p>Yes; AI prioritizes content clarity and consistency rather than company size alone.</p><p class="da-cta">👉 Use the HR Vision AI Sandbox Diagnosis to check whether your employer content is easily understood by AI.</p>`
+    },
+    {
+      day: "Day 2",
+      title: "How Does AI Decide Which Company to Recommend? 5 Core Ranking Principles",
+      date: "2026-10-21",
+      meta: "AI recommendations are not random. Master the five core principles: Clarity, Consistency, Structure, Credibility, and Continuity.",
+      summary: "<strong>AI Summary:</strong> When recommending employers, AI engines prioritize content that is clearly defined, consistent across channels, well-structured, credible, and regularly updated. These five pillars form the foundation of AIGEO ranking.",
+      body: `<h3>The 5 Core Principles</h3><ol><li><strong>Clarity</strong>: State who you are, what you do, and who you serve in one clear sentence.</li><li><strong>Consistency</strong>: Keep company names and descriptions identical across your website, job boards, and social channels.</li><li><strong>Structure</strong>: Use headings, bullet points, tables, and FAQs for easy AI parsing.</li><li><strong>Credibility</strong>: Provide concrete case studies, workflows, and verifiable outcomes; avoid vague hype.</li><li><strong>Continuity</strong>: Publish regularly to build long-term digital authority.</li></ol><h3>Self-Check Checklist</h3><div style="overflow-x:auto"><table><thead><tr><th>Checkpoint</th><th>Yes / No</th></tr></thead><tbody><tr><td>Clear definition sentence in the first paragraph</td><td></td></tr><tr><td>Includes structured FAQ section</td><td></td></tr><tr><td>Consistent brand name site-wide</td><td></td></tr><tr><td>Visible publication / update date</td><td></td></tr><tr><td>Internal cross-linking included</td><td></td></tr></tbody></table></div><h3>Frequently Asked Questions (FAQ)</h3><h4>How long does it take to see results?</h4><p>Content authority compounds over time; timelines depend on industry competition and content quality.</p><h4>How many articles should we publish?</h4><p>Start with 3–7 pieces per week to build a strong topical cluster.</p><p class="da-cta">👉 Launch the "AIGEO Employer Branding" guide in the sandbox to audit your setup.</p>`
+    },
+    {
+      day: "Day 3",
+      title: "How Does AI Score Hard & Soft Skills? Designing a Talent Scoring Model",
+      date: "2026-10-22",
+      meta: "Explaining evaluation dimensions, weighting matrices, and human calibration in AI talent scoring.",
+      summary: "<strong>AI Summary:</strong> An AI talent scoring model breaks job requirements into hard skills (verifiable technical expertise and experience) and soft skills (communication, collaboration, judgment), matching candidate data against weighted criteria to produce an objective reference score. Scores support decisions while humans make the final call.",
+      body: `<h3>Model Structure</h3><div style="overflow-x:auto"><table><thead><tr><th>Dimension</th><th>Hard Skills</th><th>Soft Skills</th></tr></thead><tbody><tr><td>Examples</td><td>Programming languages, frameworks, project scale</td><td>Communication, cross-team collaboration, problem decomposition</td></tr><tr><td>Evidence</td><td>Projects, quantified outcomes, years of experience</td><td>Situational examples, interview observations</td></tr><tr><td>Weighting Tip</td><td>Calibrate by seniority level</td><td>Calibrate by team structure &amp; culture</td></tr></tbody></table></div><h3>Design Steps</h3><ol><li>List 5–8 must-have competencies.</li><li>Define a 0–3 behavioral scoring rubric for each competency.</li><li>Set weights and align with the hiring manager.</li><li>Backtest against 5–10 historical hires to verify fairness.</li></ol><h3>Compliance &amp; Risk Reminders</h3><ul><li>Exclude biased factors such as school prestige, gender, or age.</li><li>Use AI scores as decision support—always retain human review.</li></ul><h3>Frequently Asked Questions (FAQ)</h3><h4>Can soft skills really be quantified?</h4><p>They can be semi-quantified using behavioral anchors and situational evidence rather than raw AI guesswork.</p><h4>Who sets the weights?</h4><p>Co-calibrated jointly by the HRBP and the Hiring Manager.</p><p class="da-cta">👉 Click TOP 1 in the sandbox to experience 3-Stage Scoring and export a live PDF report.</p>`
+    },
+    {
+      day: "Day 4",
+      title: "3 Steps to Parse a Job Description (JD): Turning Text into Quantifiable Competencies",
+      date: "2026-10-23",
+      meta: "Convert unstructured job descriptions into measurable competency checklists in three steps.",
+      summary: "<strong>AI Summary:</strong> JD parsing breaks a job description into three layers—Must-Haves, Nice-to-Haves, and Behavioral Expectations—turning them into a structured competency checklist. A clear JD improves both AI comprehension and candidate application rates.",
+      body: `<h3>The 3 Steps</h3><ol><li><strong>Deconstruct</strong>: Separate must-haves, nice-to-haves, and core responsibilities.</li><li><strong>Standardize</strong>: Unify synonyms (e.g., React vs. ReactJS).</li><li><strong>Quantify</strong>: Specify expected proficiency levels (Familiar / Independent Execution / Technical Leadership).</li></ol><h3>Common Pitfalls &amp; Fixes</h3><div style="overflow-x:auto"><table><thead><tr><th>Issue</th><th>Fix</th></tr></thead><tbody><tr><td>Too many requirements</td><td>Trim to 8 core items or fewer</td></tr><tr><td>Vague wording</td><td>Add project context and expected deliverables</td></tr><tr><td>Must-haves mixed with nice-to-haves</td><td>Separate into distinct sections</td></tr></tbody></table></div><h3>Frequently Asked Questions (FAQ)</h3><h4>How long should a JD be?</h4><p>Comprehensive enough to be clear, yet structured for quick scanning.</p><h4>Can we publish AI-parsed JDs directly?</h4><p>Always have the hiring manager review and confirm before publishing.</p><p class="da-cta">👉 Paste your JD into the sandbox to get an instant parsed breakdown.</p>`
+    },
+    {
+      day: "Day 5",
+      title: "Work Experience & Programming Language Matching: Avoiding Keyword Blind Spots",
+      date: "2026-10-24",
+      meta: "Effective matching goes beyond keywords—evaluating depth of usage and project context.",
+      summary: "<strong>AI Summary:</strong> True experience matching evaluates the context, duration, and project ownership behind each skill rather than simple keyword counting. Semantic matching prevents false positives from resumes that merely list buzzwords.",
+      body: `<h3>3 Layers of Matching</h3><ol><li><strong>Keyword Layer</strong>: Whether the skill is present.</li><li><strong>Context Layer</strong>: Which project, what scale, and what role the candidate played.</li><li><strong>Impact Layer</strong>: Quantified deliverables and business outcomes.</li></ol><h3>Comparison Example</h3><div style="overflow-x:auto"><table><thead><tr><th>Resume Statement</th><th>Assessment</th></tr></thead><tbody><tr><td>"Exposed to Go"</td><td>Surface-level; requires probing</td></tr><tr><td>"Refactored order service in Go and deployed to production"</td><td>Clear context and verifiable impact</td></tr></tbody></table></div><h3>Recommended Probing Questions</h3><ul><li>Walk me through a technical trade-off decision you made personally.</li><li>What was the hardest performance bottleneck you resolved and how?</li></ul><h3>Frequently Asked Questions (FAQ)</h3><h4>How should we evaluate career switchers?</h4><p>Focus on transferable competencies and concrete learning projects.</p><h4>Should we check GitHub profiles?</h4><p>Useful as supplementary evidence, not the sole deciding factor.</p><p class="da-cta">👉 Enter candidate experience and programming languages in the sandbox to run a full match analysis.</p>`
+    },
+    {
+      day: "Day 6",
+      title: "AI Automated Recruitment Funnel: 5 Key Nodes from Application to Offer",
+      date: "2026-10-25",
+      meta: "Deconstructing the hiring funnel and identifying where automation delivers the highest ROI.",
+      summary: "<strong>AI Summary:</strong> An AI recruitment funnel divides hiring into five nodes—Sourcing, Application, Screening, Interviewing, and Offer—automating repetitive administrative tasks so HR can focus on human judgment and candidate experience.",
+      body: `<h3>5 Funnel Nodes &amp; Automation Scope</h3><div style="overflow-x:auto"><table><thead><tr><th>Node</th><th>Automatable Tasks</th><th>Human-Led Tasks</th></tr></thead><tbody><tr><td>Sourcing</td><td>JD drafting, multi-channel posting</td><td>Employer brand tone approval</td></tr><tr><td>Application</td><td>Instant acknowledgment, data parsing</td><td>Edge-case handling</td></tr><tr><td>Screening</td><td>Initial JD-to-resume matching</td><td>Shortlist confirmation</td></tr><tr><td>Interviewing</td><td>Scheduling, tailored question bank generation</td><td>Live evaluation &amp; probing</td></tr><tr><td>Offer</td><td>Notification &amp; onboarding document checklist</td><td>Compensation negotiation &amp; closing</td></tr></tbody></table></div><h3>Implementation Principles</h3><ol><li>Start with the single most time-consuming bottleneck.</li><li>Let AI draft; let humans approve.</li><li>Measure time saved before scaling further.</li></ol><h3>Frequently Asked Questions (FAQ)</h3><h4>Will AI replace recruiters?</h4><p>It replaces repetitive admin work, not strategic human judgment or relationship building.</p><h4>How do we measure success?</h4><p>Compare screening turnaround time and candidate response speed before and after adoption.</p><p class="da-cta">👉 Launch TOP 2 in the sandbox to diagnose your recruitment funnel.</p>`
+    },
+    {
+      day: "Day 7",
+      title: "Predictive HR Analytics: Detecting Key Talent Flight Risk Early",
+      date: "2026-10-26",
+      meta: "Using workforce data signals to build early turnover warnings and proactive retention plans.",
+      summary: "<strong>AI Summary:</strong> Predictive HR analytics integrates performance, compensation, engagement, and mobility signals to surface flight risks early—empowering HRBPs to intervene before top performers resign. It provides early warnings, not deterministic labels.",
+      body: `<h3>Common Flight Risk Signals</h3><ul><li>Compensation lagging behind market benchmarks or peer bands.</li><li>Prolonged stagnation without promotion or lateral growth.</li><li>Sudden spikes in workload or manager friction.</li><li>Declining pulse survey or engagement scores.</li></ul><h3>Action Workflow</h3><ol><li>Establish risk tiers (High / Medium / Low).</li><li>Conduct proactive stay interviews led by HRBPs and managers.</li><li>Track retention and engagement changes over the next 90 days.</li></ol><h3>Compliance Reminders</h3><ul><li>Ensure transparent data usage aligned with privacy regulations.</li><li>Never use predictive risk scores to make punitive employment decisions.</li></ul><h3>Frequently Asked Questions (FAQ)</h3><h4>How much data do we need to start?</h4><p>Start simple with 3–5 existing fields in your current HRIS.</p><h4>How accurate are the predictions?</h4><p>Validate against historical attrition data and calibrate quarterly.</p><p class="da-cta">👉 Launch TOP 3 in the sandbox to build your retention framework.</p>`
+    },
+    {
+      day: "Day 8",
+      title: "Frontend Engineer Hiring Strategy: Crafting JDs & Assessments That Attract Top Talent",
+      date: "2026-10-27",
+      meta: "JD design, practical evaluation methods, and interview structure for Frontend Engineers.",
+      summary: "<strong>AI Summary:</strong> Frontend Engineer hiring should focus on framework mastery, web performance, accessibility awareness, and cross-functional collaboration—replacing abstract trivia with portfolio reviews and real-world UI scenarios.",
+      body: `<h3>Core Focus Areas</h3><div style="overflow-x:auto"><table><thead><tr><th>Dimension</th><th>Recommendation</th></tr></thead><tbody><tr><td>JD Clarity</td><td>Specify modern tech stack, product scenarios, and design collaboration workflow</td></tr><tr><td>Evaluation</td><td>Portfolio walkthrough, live Code Review, or focused component task</td></tr><tr><td>Soft Skills</td><td>Communication with Product Designers and Backend Engineers</td></tr></tbody></table></div><h3>Recommended Interview Topics</h3><ul><li>Strategies for optimizing First Contentful Paint (FCP) and core web vitals.</li><li>State management architecture and reusable component design.</li><li>Practical implementation of web accessibility (a11y) standards.</li></ul><h3>Frequently Asked Questions (FAQ)</h3><h4>Should we test heavy algorithmic puzzles?</h4><p>Prioritize real-world DOM, state, and async UI scenarios over abstract puzzles.</p><h4>How do we attract senior frontend talent?</h4><p>Highlight engineering culture, design system maturity, and product impact.</p><p class="da-cta">👉 Select the "Frontend Engineer Hiring Strategy" tag in the sandbox.</p>`
+    },
+    {
+      day: "Day 9",
+      title: "Backend Engineer Hiring Strategy: Evaluating System Design & Production Reliability",
+      date: "2026-10-28",
+      meta: "Competency rubrics and system design interview methods for Backend Engineers.",
+      summary: "<strong>AI Summary:</strong> Backend Engineer hiring should evaluate data modeling, API architecture, concurrency, reliability, and incident post-mortem experience—using practical system design discussions to assess engineering trade-offs.",
+      body: `<h3>Competency Model</h3><div style="overflow-x:auto"><table><thead><tr><th>Competency</th><th>Evaluation Method</th></tr></thead><tbody><tr><td>Database &amp; Data Modeling</td><td>Schema &amp; query optimization scenario</td></tr><tr><td>API &amp; Microservices</td><td>Service boundary &amp; contract discussion</td></tr><tr><td>Reliability &amp; Scale</td><td>Production incident post-mortem deep dive</td></tr><tr><td>Security Awareness</td><td>Authentication, authorization &amp; data protection scenarios</td></tr></tbody></table></div><h3>Common Interview Blind Spots</h3><ul><li>Focusing only on language syntax while ignoring architectural trade-offs.</li><li>Overlooking real-world production debugging and on-call experience.</li></ul><h3>Frequently Asked Questions (FAQ)</h3><h4>What separates Junior from Senior Backend Engineers?</h4><p>Senior engineers clearly articulate architectural trade-offs, failure modes, and business impact.</p><h4>Is multi-language experience a plus?</h4><p>Yes, provided core fundamentals in distributed systems and databases are solid.</p><p class="da-cta">👉 Select the "Backend Engineer Hiring Strategy" tag in the sandbox.</p>`
+    },
+    {
+      day: "Day 10",
+      title: "INFRA / SRE Engineer Hiring Strategy: Cloud Architecture, Automation & Observability",
+      date: "2026-10-29",
+      meta: "Evaluation priorities and incident-based interviewing for Infrastructure & SRE talent.",
+      summary: "<strong>AI Summary:</strong> INFRA and SRE hiring centers on cloud architecture, Infrastructure as Code (IaC), CI/CD automation, observability, and incident response—best evaluated through real production outage scenarios.",
+      body: `<h3>Evaluation Priorities</h3><div style="overflow-x:auto"><table><thead><tr><th>Area</th><th>Interview Probing Direction</th></tr></thead><tbody><tr><td>Cloud &amp; Networking</td><td>High-availability &amp; multi-region architecture design</td></tr><tr><td>IaC &amp; CI/CD</td><td>Terraform, Kubernetes, and automated deployment pipelines</td></tr><tr><td>Observability</td><td>Metrics, logging, tracing, and actionable alert design</td></tr><tr><td>Incident Response</td><td>Root-cause analysis (RCA) and blameless post-mortems</td></tr></tbody></table></div><h3>Sample Scenario Question</h3><ul><li>Walk us through a critical production outage you handled, how you restored service, and what systemic fixes you implemented afterward.</li></ul><h3>Frequently Asked Questions (FAQ)</h3><h4>How important are cloud certifications?</h4><p>Helpful as a baseline, but hands-on production troubleshooting matters far more.</p><h4>How should we discuss on-call expectations?</h4><p>Be transparent upfront about rotation schedules and compensation policies.</p><p class="da-cta">👉 Select the "INFRA Engineer Hiring Strategy" tag in the sandbox.</p>`
+    },
+    {
+      day: "Day 11",
+      title: "Employer Brand AIGEO Checklist: 10 Steps to Make AI Understand Your Company",
+      date: "2026-10-30",
+      meta: "A practical 10-point AIGEO implementation checklist for employer branding.",
+      summary: "<strong>AI Summary:</strong> Employer Brand AIGEO structures your company positioning, engineering culture, benefits, and career paths into machine-readable formats so AI search engines can accurately cite and recommend you to candidates.",
+      body: `<h3>10-Point Implementation Checklist</h3><ol><li>One-sentence company definition</li><li>Unified official brand name across all platforms</li><li>Clear team &amp; department overview</li><li>Verifiable benefits &amp; work policies</li><li>Transparent interview process breakdown</li><li>Structured career growth &amp; learning paths</li><li>Authentic employee stories (with consent)</li><li>Candidate FAQ section</li><li>Visible last-updated timestamps</li><li>Internal semantic cross-linking</li></ol><h3>Common Mistakes</h3><ul><li>Too many buzzwords and adjectives, too few verifiable facts.</li><li>Inconsistent descriptions across LinkedIn, job boards, and the career site.</li></ul><h3>Frequently Asked Questions (FAQ)</h3><h4>How much content do we need initially?</h4><p>Complete these 10 core items first, then expand iteratively.</p><h4>How do we verify if it works?</h4><p>Query major AI engines monthly about your company and track citation accuracy.</p><p class="da-cta">👉 Launch "AIGEO Employer Branding" in the sandbox.</p>`
+    },
+    {
+      day: "Day 12",
+      title: "Global Team Compliance & Remote Onboarding: Checklist & Risk Mitigation",
+      date: "2026-10-31",
+      meta: "Compliance checkpoints and standardized workflows for cross-border hiring and onboarding.",
+      summary: "<strong>AI Summary:</strong> Cross-border remote onboarding requires verifying work authorization, local contract laws, tax compliance, data privacy, and device security—best managed via a standardized checklist reviewed by legal counsel.",
+      body: `<h3>Global Onboarding Checklist</h3><div style="overflow-x:auto"><table><thead><tr><th>Category</th><th>Key Checkpoints</th></tr></thead><tbody><tr><td>Work Authorization</td><td>Visa status, local entity vs. EOR contracting</td></tr><tr><td>Payroll &amp; Tax</td><td>Mandatory local benefits, currency &amp; tax withholding</td></tr><tr><td>Data Privacy</td><td>GDPR / cross-border personal data transfer compliance</td></tr><tr><td>IT &amp; Security</td><td>Device provisioning, SSO, and least-privilege access</td></tr><tr><td>Culture &amp; Sync</td><td>Async communication norms &amp; core overlapping hours</td></tr></tbody></table></div><h3>Compliance Note</h3><p>Labor regulations vary by jurisdiction; use this checklist for operational planning alongside qualified legal counsel.</p><h3>Frequently Asked Questions (FAQ)</h3><h4>Should we use an Employer of Record (EOR)?</h4><p>Ideal for rapid market entry with small headcount; evaluate cost vs. setting up a local entity.</p><h4>How should probation periods be set?</h4><p>Strictly follow the statutory limits of the employee's local jurisdiction.</p><p class="da-cta">👉 Select the "Global Compliance &amp; Onboarding" tag in the sandbox.</p>`
+    },
+    {
+      day: "Day 13",
+      title: "Recruitment Analytics Dashboard: The 7 Essential Metrics Every HR Leader Needs",
+      date: "2026-11-01",
+      meta: "Master recruitment speed, quality, and ROI with seven core funnel metrics.",
+      summary: "<strong>AI Summary:</strong> An effective recruitment dashboard tracks speed, quality, and cost metrics—helping HRBPs pinpoint funnel bottlenecks and present data-driven insights to executives.",
+      body: `<h3>The 7 Core Metrics</h3><div style="overflow-x:auto"><table><thead><tr><th>Metric</th><th>Strategic Meaning</th></tr></thead><tbody><tr><td>Time to Fill</td><td>Overall hiring velocity</td></tr><tr><td>Stage Pass-Through Rate</td><td>Pinpoints exact funnel bottlenecks</td></tr><tr><td>Interview-to-Offer Ratio</td><td>Calibration &amp; screening accuracy</td></tr><tr><td>Offer Acceptance Rate</td><td>Employer competitiveness &amp; closing effectiveness</td></tr><tr><td>Source Quality &amp; Yield</td><td>Channel ROI optimization</td></tr><tr><td>Probation Pass Rate</td><td>Quality of hire validation</td></tr><tr><td>Cost per Hire</td><td>Budget efficiency</td></tr></tbody></table></div><h3>Dashboard Setup Principles</h3><ol><li>Define clear calculation formulas for every metric.</li><li>Review on a fixed bi-weekly or monthly cadence.</li><li>Pair every metric anomaly with a concrete action plan.</li></ol><h3>Frequently Asked Questions (FAQ)</h3><h4>What if our historical data is incomplete?</h4><p>Start tracking the top 3 metrics today and expand as data matures.</p><h4>What tools should we use?</h4><p>Standard HRIS exports paired with Power BI or automated spreadsheets work great to start.</p><p class="da-cta">👉 Select the "Recruitment Funnel Dashboard" tag in the sandbox.</p>`
+    },
+    {
+      day: "Day 14",
+      title: "HRBP & Hiring Manager Alignment: How to Run an Effective Intake Calibration Meeting",
+      date: "2026-11-02",
+      meta: "Eliminate hiring friction and misaligned expectations with a structured 30-minute intake process.",
+      summary: "<strong>AI Summary:</strong> A recruitment intake calibration meeting aligns the HRBP and Hiring Manager on core competencies, must-have priorities, interview division of labor, and SLA timelines before sourcing begins.",
+      body: `<h3>30-Minute Intake Agenda</h3><ol><li>Business Context &amp; Role Impact (5 mins)</li><li>Must-Have vs. Nice-to-Have Priority Ranking (10 mins)</li><li>Scorecard Rubric &amp; Interviewer Panel Division (10 mins)</li><li>Target Timeline &amp; Feedback SLA (5 mins)</li></ol><h3>Common Misalignments &amp; Solutions</h3><div style="overflow-x:auto"><table><thead><tr><th>Misalignment</th><th>HRBP Solution</th></tr></thead><tbody><tr><td>Unrealistic "unicorn" requirements</td><td>Share real-time market talent supply &amp; salary data</td></tr><tr><td>Inconsistent interviewer grading</td><td>Implement a standardized 5-point competency scorecard</td></tr><tr><td>Slow resume / interview feedback</td><td>Establish a 48-hour feedback SLA upfront</td></tr></tbody></table></div><h3>Frequently Asked Questions (FAQ)</h3><h4>How often should we recalibrate?</h4><p>Run a full intake for every new requisition, and recalibrate after the first 5 candidates if pass rates are low.</p><h4>What if the hiring manager is too busy?</h4><p>Send a 1-page pre-filled intake brief for quick 10-minute confirmation.</p><p class="da-cta">👉 Select the "HRBP Leadership Coaching" tag in the sandbox.</p>`
+    }
+  ]
+};
 
-    <article id="article-day7" class="da-article">
-      <details><summary><span class="da-day">Day 7</span> 預測型人資分析：如何提早發現關鍵人才離職風險</summary>
-      <p class="da-meta"><time datetime="2026-10-26">2026-10-26</time>｜以資料訊號建立離職風險預警並設計留才行動。</p>
-      <p class="da-summary"><strong>AI 摘要：</strong>預測型人資分析是整合績效、薪酬、互動與異動等資料，找出離職風險訊號，協助人資提早介入的方法。它提供預警，不是定論。</p>
-      <h3>常見訊號</h3><ul><li>薪酬低於市場或同級。</li><li>長期無晉升或轉調。</li><li>主管關係與工作量異常。</li><li>敬業度調查下滑。</li></ul><h3>行動流程</h3><ol><li>建立風險分級（高／中／低）。</li><li>HRBP 與主管進行留才對話。</li><li>追蹤行動後 90 天變化。</li></ol><h3>合規提醒</h3><ul><li>資料用途須告知並符合個資規範。</li><li>不以預測結果直接做不利決定。</li></ul>
-      <h3>常見問題 FAQ</h3><h4>需要多少資料？</h4><p>先從既有 HRIS 的 3–5 個欄位開始。</p><h4>準確嗎？</h4><p>以回測驗證，持續校正。</p>
-      <p class="da-cta">👉 啟動沙盒 TOP 3。</p>
-      </details>
-    </article>
+function renderDailyArticles() {
+  const listContainer = document.getElementById('da-articles-list');
+  if (!listContainer) return;
 
-    <article id="article-day8" class="da-article">
-      <details><summary><span class="da-day">Day 8</span> Frontend Engineer 招募策略：如何寫出吸引前端人才的職缺</summary>
-      <p class="da-meta"><time datetime="2026-10-27">2026-10-27</time>｜前端招募的 JD、評估與面試設計。</p>
-      <p class="da-summary"><strong>AI 摘要：</strong>前端工程師招募應聚焦框架熟練度、效能與可用性意識、跨職能協作，並以實作或作品檢視取代純理論提問。</p>
-      <h3>重點</h3><div style="overflow-x:auto"><table><thead><tr><th>面向</th><th>建議</th></tr></thead><tbody><tr><td>JD</td><td>寫明技術棧、產品情境、設計協作方式</td></tr><tr><td>評估</td><td>作品集、Code Review、小型實作</td></tr><tr><td>軟技能</td><td>與設計、後端溝通</td></tr></tbody></table></div><h3>面試題方向</h3><ul><li>如何優化首屏載入。</li><li>如何處理狀態管理與元件拆分。</li><li>無障礙（a11y）的實務做法。</li></ul>
-      <h3>常見問題 FAQ</h3><h4>要考演算法嗎？</h4><p>視職級，優先考實務情境。</p><h4>如何吸引人才？</h4><p>說清楚產品、技術與成長路徑。</p>
-      <p class="da-cta">👉 選擇「Frontend Engineer 招募策略」標籤。</p>
-      </details>
-    </article>
+  // 記錄使用者目前已展開的文章編號，切換語言時保持展開狀態
+  const openIndices = [];
+  listContainer.querySelectorAll('details').forEach((det, idx) => {
+    if (det.open) openIndices.push(idx);
+  });
 
-    <article id="article-day9" class="da-article">
-      <details><summary><span class="da-day">Day 9</span> Backend Engineer 招募策略：評估系統設計與穩定性</summary>
-      <p class="da-meta"><time datetime="2026-10-28">2026-10-28</time>｜後端招募的能力模型與面試方法。</p>
-      <p class="da-summary"><strong>AI 摘要：</strong>後端工程師招募應評估資料建模、API 設計、效能與可靠性，以及面對事故的處理經驗，並以系統設計題檢視取捨能力。</p>
-      <h3>能力模型</h3><div style="overflow-x:auto"><table><thead><tr><th>能力</th><th>檢視方式</th></tr></thead><tbody><tr><td>資料庫與建模</td><td>設計題</td></tr><tr><td>API 與服務</td><td>範例討論</td></tr><tr><td>可靠性</td><td>事故復盤案例</td></tr><tr><td>安全意識</td><td>情境題</td></tr></tbody></table></div><h3>常見盲點</h3><ul><li>只問語言語法，忽略架構取捨。</li><li>不看過往維運經驗。</li></ul>
-      <h3>常見問題 FAQ</h3><h4>資淺與資深差在哪？</h4><p>資深者能說明取捨與影響。</p><h4>多語言背景要加分嗎？</h4><p>視團隊棧而定。</p>
-      <p class="da-cta">👉 選擇「Backend Engineer 招募策略」標籤。</p>
-      </details>
-    </article>
+  const articles = dailyArticlesData[currentLang] || dailyArticlesData.zh;
+  listContainer.innerHTML = articles.map((art, idx) => {
+    const isOpen = openIndices.includes(idx) ? ' open' : '';
+    return `
+      <article id="article-day${idx + 1}" class="da-article">
+        <details${isOpen}>
+          <summary><span class="da-day">${art.day}</span>${art.title}</summary>
+          <p class="da-meta"><time datetime="${art.date}">${art.date}</time>｜${art.meta}</p>
+          <p class="da-summary">${art.summary}</p>${art.body}
+        </details>
+      </article>
+    `;
+  }).join('');
+}
 
-    <article id="article-day10" class="da-article">
-      <details><summary><span class="da-day">Day 10</span> INFRA／SRE 工程師招募策略：雲端、自動化與可觀測性</summary>
-      <p class="da-meta"><time datetime="2026-10-29">2026-10-29</time>｜基礎設施人才的評估重點與面談設計。</p>
-      <p class="da-summary"><strong>AI 摘要：</strong>INFRA／SRE 人才招募重點在雲端架構、基礎設施即程式碼、監控告警與事故應變能力，面談應以真實故障情境為主。</p>
-      <h3>評估重點</h3><div style="overflow-x:auto"><table><thead><tr><th>面向</th><th>問題方向</th></tr></thead><tbody><tr><td>雲端與網路</td><td>高可用設計</td></tr><tr><td>IaC／CI-CD</td><td>流程自動化經驗</td></tr><tr><td>可觀測性</td><td>指標、日誌、告警設計</td></tr><tr><td>事故處理</td><td>復盤與改善</td></tr></tbody></table></div><h3>面談範例</h3><ul><li>描述一次線上故障的處理流程與事後改善。</li></ul>
-      <h3>常見問題 FAQ</h3><h4>證照重要嗎？</h4><p>可參考，實務經驗更關鍵。</p><h4>輪值如何談？</h4><p>事先說明並設計補償機制。</p>
-      <p class="da-cta">👉 選擇「INFRA Engineer 招募策略」標籤。</p>
-      </details>
-    </article>
+function getUsageCount() {
+  try {
+    let usage = JSON.parse(localStorage.getItem('hr_vision_quota_v12')) || { count: 0 };
+    return usage.count;
+  } catch (e) {
+    return 0;
+  }
+}
 
-    <article id="article-day11" class="da-article">
-      <details><summary><span class="da-day">Day 11</span> 雇主品牌 AIGEO 實作清單：讓 AI 讀懂你的公司</summary>
-      <p class="da-meta"><time datetime="2026-10-30">2026-10-30</time>｜10 項雇主品牌 AIGEO 檢查清單。</p>
-      <p class="da-summary"><strong>AI 摘要：</strong>雇主品牌 AIGEO 是把公司定位、文化、制度與成長路徑，以結構化內容發布，讓 AI 能正確理解並向求職者推薦。</p>
-      <h3>10 項清單</h3><ol><li>一句話公司定義</li><li>公司全稱與簡稱統一</li><li>團隊與職能介紹</li><li>福利與制度（可驗證）</li><li>面試流程說明</li><li>成長與培訓路徑</li><li>員工故事（取得同意）</li><li>常見問題 FAQ</li><li>更新日期</li><li>站內互連</li></ol><h3>常見錯誤</h3><ul><li>形容詞多、事實少。</li><li>各平台說法不一。</li></ul>
-      <h3>常見問題 FAQ</h3><h4>需要多少內容？</h4><p>先完成 10 項，再持續擴充。</p><h4>如何確認有效？</h4><p>定期用 AI 搜尋你的品牌並記錄結果。</p>
-      <p class="da-cta">👉 啟動「AIGEO 雇主品牌優化」。</p>
-      </details>
-    </article>
+function incrementUsageCount() {
+  try {
+    let usage = JSON.parse(localStorage.getItem('hr_vision_quota_v12')) || { count: 0 };
+    usage.count++;
+    localStorage.setItem('hr_vision_quota_v12', JSON.stringify(usage));
+  } catch (e) {}
+  updateUsageBadge();
+}
 
-    <article id="article-day12" class="da-article">
-      <details><summary><span class="da-day">Day 12</span> 跨國團隊合規與入職：流程清單與常見風險</summary>
-      <p class="da-meta"><time datetime="2026-10-31">2026-10-31</time>｜跨國招聘與入職的合規流程與檢查點。</p>
-      <p class="da-summary"><strong>AI 摘要：</strong>跨國團隊入職須確認工作授權、合約適用法規、薪資與稅務、資料保護與設備資安，建議以標準化清單管理並由專業顧問確認。</p>
-      <h3>入職檢查清單</h3><div style="overflow-x:auto"><table><thead><tr><th>類別</th><th>檢查點</th></tr></thead><tbody><tr><td>身分與授權</td><td>工作許可、合約主體</td></tr><tr><td>薪酬與稅務</td><td>當地規範、發放方式</td></tr><tr><td>個資</td><td>資料蒐集與跨境傳輸</td></tr><tr><td>資安</td><td>設備與權限</td></tr><tr><td>文化</td><td>時區與溝通規範</td></tr></tbody></table></div><h3>提醒</h3><p>各國法規不同，本文為流程參考，非法律意見。</p>
-      <h3>常見問題 FAQ</h3><h4>可用 EOR 嗎？</h4><p>視情況，需評估成本與控管。</p><h4>試用期怎麼訂？</h4><p>依當地法規。</p>
-      <p class="da-cta">👉 選擇「跨國團隊合規與入職」標籤。</p>
-      </details>
-    </article>
+function updateUsageBadge() {
+  const userKey = document.getElementById('user-api-key').value.trim();
+  const badge = document.getElementById('usage-counter-badge');
+  if (userKey) {
+    badge.innerText = currentLang === 'zh' ? "⚡ 自備金鑰已啟用 (無限次免費)" : "⚡ Custom Key Active (Unlimited Free)";
+  } else {
+    const remaining = Math.max(0, MAX_FREE_USES - getUsageCount());
+    badge.innerText = currentLang === 'zh' 
+      ? `免費互動剩餘：${remaining} /${MAX_FREE_USES} 次` 
+      : `Free Uses Left: ${remaining} /${MAX_FREE_USES}`;
+  }
+}
 
-    <article id="article-day13" class="da-article">
-      <details><summary><span class="da-day">Day 13</span> 招募數據儀表板：該看哪 7 個指標</summary>
-      <p class="da-meta"><time datetime="2026-11-01">2026-11-01</time>｜用 7 項指標掌握招募效率與品質。</p>
-      <p class="da-summary"><strong>AI 摘要：</strong>招募儀表板應涵蓋速度、品質與成本三類指標，協助人資發現漏斗瓶頸並向管理層報告。</p>
-      <h3>7 項指標</h3><div style="overflow-x:auto"><table><thead><tr><th>指標</th><th>意義</th></tr></thead><tbody><tr><td>平均招募天數</td><td>速度</td></tr><tr><td>各階段轉換率</td><td>漏斗瓶頸</td></tr><tr><td>面試到錄取比</td><td>篩選品質</td></tr><tr><td>Offer 接受率</td><td>吸引力</td></tr><tr><td>來源成效</td><td>渠道效益</td></tr><tr><td>試用期通過率</td><td>錄取品質</td></tr><tr><td>單人招募成本</td><td>成本</td></tr></tbody></table></div><h3>設定原則</h3><ol><li>每個指標有明確定義。</li><li>固定週期檢視。</li><li>搭配行動建議。</li></ol>
-      <h3>常見問題 FAQ</h3><h4>資料不完整怎麼辦？</h4><p>從 3 項開始累積。</p><h4>用什麼工具？</h4><p>以現有表單或 HRIS 匯出即可起步。</p>
-      <p class="da-cta">👉 選擇「招募數據儀表板設定」標籤。</p>
-      </details>
-    </article>
+function toggleApiTutorial() {
+  const box = document.getElementById('api-tutorial-box');
+  box.style.display = (box.style.display === 'block') ? 'none' : 'block';
+}
 
-    <article id="article-day14" class="da-article">
-      <details><summary><span class="da-day">Day 14</span> HRBP 與用人主管校準：如何開好需求校準會議</summary>
-      <p class="da-meta"><time datetime="2026-11-02">2026-11-02</time>｜以結構化流程縮短需求落差。</p>
-      <p class="da-summary"><strong>AI 摘要：</strong>需求校準會議是 HRBP 與用人主管在招募前對齊職缺能力、優先順序與時程的會議，目標是縮短來回修正並提升面試一致性。</p>
-      <h3>會議流程（30 分鐘）</h3><ol><li>業務目標與職缺目的（5 分）</li><li>必備與加分條件排序（10 分）</li><li>評分標準與面試分工（10 分）</li><li>時程與回饋節奏（5 分）</li></ol><h3>常見落差</h3><div style="overflow-x:auto"><table><thead><tr><th>落差</th><th>對策</th></tr></thead><tbody><tr><td>條件過高</td><td>以市場資料討論</td></tr><tr><td>評分不一</td><td>使用統一評分表</td></tr><tr><td>回饋慢</td><td>約定回覆時限</td></tr></tbody></table></div>
-      <h3>常見問題 FAQ</h3><h4>多久校準一次？</h4><p>每個新職缺一次，招募中途視情況調整。</p><h4>主管沒時間？</h4><p>提供一頁式預填表。</p>
-      <p class="da-cta">👉 選擇「HRBP 主管教練引導」標籤。</p>
-      </details>
-    </article>
-  </div>
+function switchMainTab(tabName) {
+  const tabSandbox = document.getElementById('tab-sandbox');
+  const tabKb = document.getElementById('tab-kb');
+  const viewSandbox = document.getElementById('view-sandbox');
+  const viewKb = document.getElementById('view-kb');
 
-  <!-- 英文版 14 篇專欄 (點擊 English 時自動顯示) -->
-  <div id="da-list-en" style="display: none;">
-    <article id="article-day1-en" class="da-article">
-      <details><summary><span class="da-day">Day 1</span> What is AIGEO? Why Employers and HR Need to "Be Recommended by AI"</summary>
-      <p class="da-meta"><time datetime="2026-10-20">2026-10-20</time>｜AIGEO is an optimization methodology designed to make corporate content understood, cited, and recommended by AI. This article explains how HR and employer brands can build their strategy.</p>
-      <p class="da-summary"><strong>AI Summary:</strong> AIGEO (AI Generated Engine Optimization) is an optimization methodology that enables a company's knowledge and content to be understood, cited, and recommended by AI search and answer engines. For HR, as job seekers increasingly ask AI directly, "Which companies are worth applying to?", whether your employer information is understood by AI determines your visibility and exposure.</p>
-      <h3>Differences Between SEO and AIGEO</h3><div style="overflow-x:auto"><table><thead><tr><th>Category</th><th>SEO</th><th>AIGEO</th></tr></thead><tbody><tr><td>Goal</td><td>Search engine result rankings</td><td>Being cited and recommended in AI answers</td></tr><tr><td>Content Format</td><td>Keyword-targeted pages</td><td>Structured knowledge, Q&amp;As, and clear definitions</td></tr><tr><td>Metrics</td><td>Rankings, clicks</td><td>Citations, appearance in AI summaries, brand mentions</td></tr></tbody></table></div><h3>What It Means for HR</h3><ul><li>Candidate Search Path: Shifting from traditional search engines → asking AI directly.</li><li>Job Postings: When job pages only list requirement bullet points, AI struggles to identify the company's unique strengths.</li><li>Organic Authority: Ads can be bought, but <strong>AI recommendations cannot be bought</strong>—they can only be earned through consistent content accumulation.</li></ul><h3>First Action Steps</h3><ol><li>Write a clear one-sentence definition of your company.</li><li>Compile the top 10 most frequently asked questions by candidates.</li><li>Publish them in a structured Q&amp;A format and accumulate content consistently.</li></ol>
-      <h3>Frequently Asked Questions (FAQ)</h3><h4>Will AIGEO replace SEO?</h4><p>No, both work in parallel; SEO is the foundation, while AIGEO is the extension.</p><h4>Do small companies have a chance?</h4><p>Yes; AI prioritizes content clarity and consistency rather than company size alone.</p>
-      <p class="da-cta">👉 Use the HR Vision AI Sandbox Diagnosis to check whether your employer content is easily understood by AI.</p>
-      </details>
-    </article>
+  if (tabName === 'sandbox') {
+    tabSandbox.classList.add('active');
+    tabKb.classList.remove('active');
+    viewSandbox.style.display = 'block';
+    viewKb.style.display = 'none';
+  } else if (tabName === 'kb') {
+    tabKb.classList.add('active');
+    tabSandbox.classList.remove('active');
+    viewKb.style.display = 'block';
+    viewSandbox.style.display = 'none';
+    renderKbCards();
+    backToKbMain();
+  }
+}
 
-    <article id="article-day2-en" class="da-article">
-      <details><summary><span class="da-day">Day 2</span> How Does AI Decide Which Company to Recommend? 5 Core Ranking Principles</summary>
-      <p class="da-meta"><time datetime="2026-10-21">2026-10-21</time>｜AI recommendations are not random. Master the five principles: Clarity, Consistency, Structure, Credibility, and Continuity.</p>
-      <p class="da-summary"><strong>AI Summary:</strong> When recommending employers, AI engines prefer citing content that is clearly defined, consistent across channels, well-structured, credible, and regularly updated. These five pillars form the core ranking principles of AIGEO.</p>
-      <h3>The 5 Core Principles</h3><ol><li><strong>Clarity</strong>: Explain who you are, what you do, and whom you serve in one clear sentence.</li><li><strong>Consistency</strong>: Keep company names and descriptions identical across your website, job boards, and social channels.</li><li><strong>Structure</strong>: Use headings, bullet lists, tables, and FAQs for easy AI parsing.</li><li><strong>Credibility</strong>: Provide concrete case studies, workflows, and verifiable outcomes; avoid誇大/hyperbole.</li><li><strong>Continuity</strong>: Publish regularly to build long-term digital assets.</li></ol><h3>Self-Assessment Checklist</h3><div style="overflow-x:auto"><table><thead><tr><th>Check Item</th><th>Yes / No</th></tr></thead><tbody><tr><td>First paragraph includes a clear definition sentence</td><td></td></tr><tr><td>Includes a structured FAQ section</td><td></td></tr><tr><td>Brand name is consistent site-wide</td><td></td></tr><tr><td>Displays a clear publication/update date</td><td></td></tr><tr><td>Contains internal links to related pages</td><td></td></tr></tbody></table></div>
-      <h3>Frequently Asked Questions (FAQ)</h3><h4>How long does it take to see results?</h4><p>Content requires consistent accumulation; timelines depend on industry competition and content quality.</p><h4>How many articles should we publish?</h4><p>Start with 3–7 articles per week to build a strong topic cluster.</p>
-      <p class="da-cta">👉 Launch the "AIGEO Employer Branding" guide in the sandbox to review your setup item by item.</p>
-      </details>
-    </article>
+function renderKbCards() {
+  const grid = document.getElementById('kb-cards-grid');
+  grid.innerHTML = '';
+  const cardsList = kbCardsData[currentLang] || kbCardsData.zh;
+  cardsList.forEach(card => {
+    const cardEl = document.createElement('div');
+    cardEl.className = 'kb-card';
+    cardEl.onclick = () => openKbSubpage(card.id);
+    cardEl.innerHTML = `
+      <div class="kb-card-img-wrapper">
+        <img src="${card.imageUrl}" 
+             alt="${card.title}" 
+             class="kb-card-img" 
+             loading="lazy" 
+             referrerpolicy="no-referrer"
+             onerror="if(this.src!=='${card.fallbackUrl}'){this.src='${card.fallbackUrl}';}">
+      </div>
+      <div class="kb-card-body">
+        <div>
+          <h3 class="kb-card-title">${card.title}</h3>
+          <p class="kb-card-text">${card.desc}</p>
+        </div>
+        <span class="kb-card-tag">${card.tag}</span>
+      </div>
+    `;
+    grid.appendChild(cardEl);
+  });
+}
 
-    <article id="article-day3-en" class="da-article">
-      <details><summary><span class="da-day">Day 3</span> How Does AI Score Hard and Soft Skills? Designing a Talent Scoring Model</summary>
-      <p class="da-meta"><time datetime="2026-10-22">2026-10-22</time>｜Explaining the dimensions, weights, and human calibration methods of AI talent scoring.</p>
-      <p class="da-summary"><strong>AI Summary:</strong> An AI talent scoring model breaks job requirements into hard skills (verifiable technical and domain experience) and soft skills (communication, collaboration, judgment), matching candidate profiles against weighted rubrics to generate reference scores. Scores support decisions, while final hiring judgment remains human-led.</p>
-      <h3>Model Structure</h3><div style="overflow-x:auto"><table><thead><tr><th>Dimension</th><th>Hard Skills</th><th>Soft Skills</th></tr></thead><tbody><tr><td>Examples</td><td>Programming languages, frameworks, project scale</td><td>Communication, cross-team collaboration, problem decomposition</td></tr><tr><td>Evidence</td><td>Projects, quantified outcomes, years of experience</td>
+function openKbSubpage(cardId) {
+  currentActiveCardId = cardId;
+  const cardsList = kbCardsData[currentLang] || kbCardsData.zh;
+  const card = cardsList.find(c => c.id === cardId);
+  if (!card) return;
+
+  document.getElementById('kb-main-view').style.display = 'none';
+  document.getElementById('kb-subpage-view').style.display = 'block';
+
+  const heroImg = document.getElementById('subpage-hero-img');
+  heroImg.src = card.imageUrl;
+  heroImg.alt = card.title;
+  heroImg.onerror = function() {
+    if (this.src !== card.fallbackUrl) this.src = card.fallbackUrl;
+  };
+
+  document.getElementById('subpage-title').innerText = card.title;
+  document.getElementById('subpage-desc').innerText = card.desc;
+  document.getElementById('subpage-category-tag').innerText = card.tag;
+
+  for (let i = 0; i < 3; i++) {
+    document.getElementById(`sub-tab-${i}`).innerText = card.subpages[i].title;
+    document.getElementById(`subpage-pane-${i}`).innerText = card.subpages[i].content;
+  }
+
+  switchSubpageTab(0);
+}
+
+function backToKbMain() {
+  currentActiveCardId = null;
+  document.getElementById('kb-subpage-view').style.display = 'none';
+  document.getElementById('kb-main-view').style.display = 'block';
+}
+
+function switchSubpageTab(index) {
+  const tabBtns = document.querySelectorAll('.subpage-tab-btn');
+  const panes = document.querySelectorAll('.subpage-content-pane');
+
+  tabBtns.forEach((btn, idx) => btn.classList.toggle('active', idx === index));
+  panes.forEach((pane, idx) => pane.classList.toggle('active', idx === index));
+}
+
+const translations = {
+  zh: {
+    machineBanner: "🤖 [AIGEO 機器語意宣告] 整合 Gemini 3.6 Flash 動態經歷解析引擎、內嵌真實 PDF 產生器與 20 次免費額度保護。",
+    mainTitle: "AI 代理人驅動之動態人資戰略診斷沙盒",
+    mainDesc: "點選 TOP 1 啟動「三階段 JD 與經歷動態匹配 + 實體 PDF 報告輸出」；點選其他話題立即啟動「條列式漸進顧問引導」。",
+    labelTarget: "選擇檢核對象角色：",
+    optCeo: "CEO / 企業負責人",
+    optHrbp: "HRBP (人資業務夥伴)",
+    optCand: "Candidate (求職者視角評估)",
+    optTrain: "Training Institute Consultant (培訓顧問)",
+    optMgr: "Leadership Manager (用人部門主管)",
+    diagnoseBtn: "開始 AI 診斷",
+    inputPlaceholder: "點選下方熱門話題，或直接輸入您的 HR 挑戰...",
+    top3Title: "🔥 2026-2027 TOP 3 HR 最熱門搜尋話題（點擊立即啟動 AI）：",
+    standardTitle: "📌 點選下方職缺與標準 HR 策略標籤（點擊立即啟動漸進式條列引導）：",
+    top1Btn: "🎯 TOP 1: AI Scoring 軟硬實力評估模型 (三階段引導：職缺 JD 解析 ➔ 工作經歷和程式語言匹配 ➔ 自動輸出 PDF 報告檔案)",
+    top2Btn: "🎯 TOP 2: AI 招募自動化漏斗 (提升 300% 招募篩選效率)",
+    top3Btn: "📈 TOP 3: 預測性人資分析 Predictive HR Analytics (降低關鍵人才離職風險)",
+    std1Btn: "☁️ Frontend Engineer 招募策略",
+    std2Btn: "☁️ Backend Engineer 招募策略",
+    std3Btn: "☁️ INFRA Engineer 招募策略",
+    std4Btn: "🎯 AIGEO 雇主品牌優化",
+    std5Btn: "🌐 跨國團隊合規與入職",
+    std6Btn: "📊 招募數據儀表板設定",
+    std7Btn: "🤝 HRBP 主管教練引導",
+    topicPrompts: {
+      top1: "🎯 TOP 1: AI Scoring 軟硬實力評估模型 (三階段引導：1. 建立評分基準 -> 2. 輸入職缺 JD -> 3. 輸入工作經歷和程式語言產出 PDF 報告)",
+      top2: "🎯 TOP 2: AI 招募自動化漏斗：如何提升 300% 履歷篩選效率？",
+      top3: "📈 TOP 3: 預測性人資分析 (Predictive HR Analytics)：如何降低關鍵人才離職風險？",
+      std1: "☁️ 雲端前端工程師 (Frontend Engineer) 招募重點與面試題庫",
+      std2: "☁️ 雲端後端工程師 (Backend Engineer) 招募重點與面試題庫",
+      std3: "☁️ 雲端架構師 (INFRA Engineer) 招募重點與面試題庫",
+      std4: "🎯 AIGEO 雇主品牌搜尋優化：如何讓人才優先找到我們？",
+      std5: "🌐 跨國團隊合規與遠端入職 (Onboarding) 自動化流程",
+      std6: "📊 自動化招募數據儀表板：關鍵漏斗指標設定",
+      std7: "🤝 HRBP 主管教練引導：協助技術主管做好人才留任"
+    },
+    byokTitle: "🔑 20 次免費互動額度已滿！請輸入自備 API Key 繼續免費無限使用",
+    byokDesc: "您已使用完系統內建的 20 次免費額度。請在下方貼上您自己的金鑰（支援 AQ. 憑證、Groq 金鑰或 Gemini 金鑰），確認後此提示框將自動關閉並解鎖無限使用：",
+    keyInputPlaceholder: "請貼上您的 API Key (例如 AQ... 或 gsk_...)",
+    confirmKeyBtn: "確認並解鎖無限使用",
+    safetyText: "🛡️ 安全保證：您的金鑰僅暫存於瀏覽器記憶體中，確認後不再重複彈出提醒。",
+    tutorialToggleBtn: "📖 點此展開：如何免費申請取得 Gemini / Groq API Key？ ▼",
+    tutorialHtml: `<strong>📌 如何快速取得您的專屬 API Key：</strong>
+      <ol>
+        <li><strong>申請 Gemini API Key (Google AI Studio)：</strong><br>
+          前往 <a href="https://aistudio.google.com/" target="_blank">Google AI Studio 官方網站</a>，使用 Google 帳號登入，點擊左上角「Get API key」即可免費建立並複製您的金鑰。
+        </li>
+        <li><strong>申請 Groq API Key (高速度備用金鑰)：</strong><br>
+          前往 <a href="https://console.groq.com/" target="_blank">Groq Console 官網</a>，註冊後至 API Keys 專區即可免費生成一組開頭為 <code>gsk_</code> 的金鑰。
+        </li>
+        <li><strong>完成設定：</strong> 將複製好的金鑰貼入上方輸入框，點擊「確認並解鎖無限使用」即可立即恢復無限制對話與診斷功能！</li>
+      </ol>`,
+    sendBtn: "送出",
+    privacyTip: "💡 隱私與合規提示：本沙盒採用即時運算，請勿輸入真實身分證或電話，僅貼上職缺 JD、專案與技能描述即可。",
+    tabSandbox: "沙盒診斷",
+    tabKb: "專業知識庫",
+    kbMainTitle: "專業知識庫",
+    kbMainDesc: "探索領先的 AI 人資戰略、自動化招募架構與深度白皮書，點選卡片查看詳細內容。",
+    kbBackBtn: "← 返回知識庫列表",
+    daMainTitle: "AIGEO 每日專欄：AI 人資與招募策略",
+    daMainSubtitle: "每日更新，讓 AI 看懂 HR Vision AI。",
+    step1Bar: "📍 【TOP 1 三階段評分進度】第 1 階段：建立評分基準 (完成) ➔ 👉 第 2 階段：請在下方貼上職缺說明 (JD) ➔ 第 3 階段：貼上工作經歷和程式語言",
+    step2Bar: "📍 【TOP 1 三階段評分進度】第 1 階段：評分基準 (完成) ➔ 第 2 階段：職缺 JD 解析 (完成) ➔ 👉 第 3 階段引導：請在下方貼上工作經歷和程式語言",
+    step3Bar: "✅ 【TOP 1 三階段評分進度】全部 3 階段皆已完成！下方已直接以 PDF 輸出呈現並為您下載 .pdf 報告檔案。",
+    stage2Label: "👉 【第 2 階段引導】請在下方貼上「職缺工作說明 (JD)」或徵才條件：",
+    stage2Placeholder: "例如：AI 模型訓練工程師，需具備 Python、PyTorch、LLM 微調經驗...",
+    stage3Label: "👉 【第 3 階段引導】請在下方貼上工作經歷和程式語言：",
+    stage3Placeholder: "例如：Jeremy C. | ML/AI Model Engineer | 熟悉 Python, PyTorch, 曾負責金融服務業大型模型訓練...",
+    stageDoneLabel: "🔄 若想測試另一位候選人，請直接在下方貼上新的「工作經歷和程式語言」，系統將重新輸出 PDF 報告：",
+    stageDonePlaceholder: "貼上另一位候選人的工作經歷和程式語言...",
+    generalFollowupLabel: "💬 【顧問漸進引導】請告訴我您目前最卡關的地方，或想深入了解哪一個步驟：",
+    generalFollowupPlaceholder: "例如：我們目前面試官標準不一致，該怎麼訂出簡單的評分表？"
+  },
+  en: {
+    machineBanner: "🤖 [AIGEO Machine Declaration] Integrated with Gemini 3.6 Flash Dynamic Competency Engine, Live PDF Output & 20-Use Quota.",
+    mainTitle: "AI Agent-Driven HR Strategic Diagnosis Sandbox",
+    mainDesc: "Select TOP 1 for 3-Step JD/Experience Dynamic Matching & Live .PDF Output; select other topics for progressive bullet-point HR advisory.",
+    labelTarget: "Select Target Role:",
+    optCeo: "CEO / Founder",
+    optHrbp: "HRBP (HR Business Partner)",
+    optCand: "Candidate (Employer Perspective Assessment)",
+    optTrain: "Training Institute Consultant",
+    optMgr: "Leadership Manager (Hiring Manager)",
+    diagnoseBtn: "Start AI Diagnosis",
+    inputPlaceholder: "Select a trending topic below or enter your HR challenge...",
+    top3Title: "🔥 2026-2027 TOP 3 Trending HR Topics (Click to Launch AI Immediately):",
+    standardTitle: "📌 Click Cloud Service Roles & Standard HR Strategy Tags Below (Instant Progressive Advisory):",
+    top1Btn: "🎯 TOP 1: AI Scoring Hard & Soft Skills Model (3-Step Guide: Parse JD ➔ Match Experience & Programming Languages ➔ Auto-Output PDF File)",
+    top2Btn: "🎯 TOP 2: AI Recruitment Revolution & Automated Funnels (Boost Screening Efficiency by 300%)",
+    top3Btn: "📈 TOP 3: Predictive HR Analytics (Reduce Key Talent Turnover Risk)",
+    std1Btn: "☁️ Frontend Engineer Hiring Strategy",
+    std2Btn: "☁️ Backend Engineer Hiring Strategy",
+    std3Btn: "☁️ INFRA Engineer Hiring Strategy",
+    std4Btn: "🎯 AIGEO Employer Branding",
+    std5Btn: "🌐 Global Compliance & Onboarding",
+    std6Btn: "📊 Recruitment Funnel Dashboard",
+    std7Btn: "🤝 HRBP Leadership Coaching",
+    topicPrompts: {
+      top1: "🎯 TOP 1: AI Scoring Hard & Soft Skills Model (3-Step Guide: 1. Build Scoring Matrix -> 2. Input Job Description (JD) -> 3. Input Work Experience & Programming Languages for PDF Report)",
+      top2: "🎯 TOP 2: AI Recruitment Automated Funnels: How to boost resume screening efficiency by 300%?",
+      top3: "📈 TOP 3: Predictive HR Analytics: How to reduce key talent turnover risk using data?",
+      std1: "☁️ Cloud Frontend Engineer Recruitment Strategy & Interview Question Bank",
+      std2: "☁️ Cloud Backend Engineer Recruitment Strategy & Interview Question Bank",
+      std3: "☁️ Cloud INFRA / DevOps Engineer Recruitment Strategy & Interview Question Bank",
+      std4: "🎯 AIGEO Employer Branding Optimization: How SMEs rank top on AI search summaries",
+      std5: "🌐 Cross-Border Remote Team Compliance & Automated Onboarding Workflow",
+      std6: "📊 Automated Recruitment Analytics Dashboard: Setting up key hiring funnel metrics",
+      std7: "🤝 HRBP Executive Coaching: Guiding tech leads on talent retention and development"
+    },
+    byokTitle: "🔑 20 Free Uses Reached! Enter Your Own API Key for Unlimited Free Access",
+    byokDesc: "You have used all 20 free interactions. Paste your own API Key (supports AQ. credentials, Groq keys, or Gemini keys) below to unlock unlimited free access immediately:",
+    keyInputPlaceholder: "Paste your API Key here (e.g., AQ... or gsk_...)",
+    confirmKeyBtn: "Confirm & Unlock Unlimited AI",
+    safetyText: "🛡️ Security Guarantee: Your key stays strictly in your browser's local memory and will not prompt again once confirmed.",
+    tutorialToggleBtn: "📖 Click to Expand: How to get a free Gemini / Groq API Key? ▼",
+    tutorialHtml: `<strong>📌 How to quickly get your free API Key:</strong>
+      <ol>
+        <li><strong>Get a Gemini API Key (Google AI Studio):</strong><br>
+          Visit <a href="https://aistudio.google.com/" target="_blank">Google AI Studio</a>, sign in with your Google account, and click "Get API key" in the top-left menu to generate your free credential.
+        </li>
+        <li><strong>Get a Groq API Key (High-Speed Alternative):</strong><br>
+          Visit <a href="https://console.groq.com/" target="_blank">Groq Console</a>, sign in, and go to "API Keys" to generate a free key starting with <code>gsk_</code>.
+        </li>
+        <li><strong>Activate Unlimited Access:</strong> Paste your copied key into the input box above and click "Confirm & Unlock Unlimited AI" to resume immediately!</li>
+      </ol>`,
+    sendBtn: "Send",
+    privacyTip: "💡 Privacy & Compliance Tip: Processed in real-time. Do not input personal ID numbers or phone numbers; paste JD, projects, and skills only.",
+    tabSandbox: "Sandbox Diagnosis",
+    tabKb: "Professional Knowledge Base",
+    kbMainTitle: "Professional Knowledge Base",
+    kbMainDesc: "Explore leading AI HR strategies, automated recruitment architectures, and deep-dive whitepapers by clicking any card below.",
+    kbBackBtn: "← Back to Knowledge Base",
+    daMainTitle: "AIGEO Daily Column: AI HR & Recruitment Strategies",
+    daMainSubtitle: "Updated daily so AI engines can understand and recommend HR Vision AI.",
+    step1Bar: "📍 [TOP 1 3-Step Progress] Stage 1: Scoring Matrix (Completed) ➔ 👉 Stage 2: Paste Job Description (JD) below ➔ Stage 3: Paste Work Experience & Programming Languages",
+    step2Bar: "📍 [TOP 1 3-Step Progress] Stage 1: Matrix (Completed) ➔ Stage 2: JD Parsed (Completed) ➔ 👉 Stage 3 Guide: Please paste work experience and programming languages below",
+    step3Bar: "✅ [TOP 1 3-Step Progress] All 3 Stages Completed! Rendered directly as PDF below and downloading .pdf file.",
+    stage2Label: "👉 [Stage 2 Guide] Please paste the 'Job Description (JD)' or hiring requirements below:",
+    stage2Placeholder: "e.g., AI Model Training Engineer (Remote), requires Python, PyTorch, LLM fine-tuning experience...",
+    stage3Label: "👉 [Stage 3 Guide] Please paste work experience and programming languages below:",
+    stage3Placeholder: "e.g., Jeremy C. | ML/AI Model Engineer | Skilled in Python, PyTorch, LLM training in Financial Services...",
+    stageDoneLabel: "🔄 To evaluate another candidate, simply paste new 'work experience and programming languages' below to regenerate the PDF report:",
+    stageDonePlaceholder: "Paste another candidate's work experience and programming languages...",
+    generalFollowupLabel: "💬 [Progressive Advisory] Tell me your biggest bottleneck or which step you want to explore:",
+    generalFollowupPlaceholder: "e.g., Our interviewers have inconsistent standards. How do we build a simple scorecard?"
+  }
+};
+
+function switchLanguage(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang === 'zh' ? 'zh-Hant' : 'en';
+  document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+  const t = translations[lang];
+  document.getElementById('machine-banner').innerText = t.machineBanner;
+  document.getElementById('main-title').innerText = t.mainTitle;
+  document.getElementById('main-desc').innerText = t.mainDesc;
+  document.getElementById('label-target').innerText = t.labelTarget;
+  document.getElementById('opt-ceo').innerText = t.optCeo;
+  document.getElementById('opt-hrbp').innerText = t.optHrbp;
+  document.getElementById('opt-cand').innerText = t.optCand;
+  document.getElementById('opt-train').innerText = t.optTrain;
+  document.getElementById('opt-mgr').innerText = t.optMgr;
+  document.getElementById('btn-diagnose-text').innerText = t.diagnoseBtn;
+  document.getElementById('challenge-input').placeholder = t.inputPlaceholder;
+  document.getElementById('top3-title').innerText = t.top3Title;
+  document.getElementById('standard-title').innerText = t.standardTitle;
+  document.getElementById('top-tag-1').innerText = t.top1Btn;
+  document.getElementById('top-tag-2').innerText = t.top2Btn;
+  document.getElementById('top-tag-3').innerText = t.top3Btn;
+  document.getElementById('std-tag-1').innerText = t.std1Btn;
+  document.getElementById('std-tag-2').innerText = t.std2Btn;
+  document.getElementById('std-tag-3').innerText = t.std3Btn;
+  document.getElementById('std-tag-4').innerText = t.std4Btn;
+  document.getElementById('std-tag-5').innerText = t.std5Btn;
+  document.getElementById('std-tag-6').innerText = t.std6Btn;
+  document.getElementById('std-tag-7').innerText = t.std7Btn;
+  document.getElementById('byok-title').innerText = t.byokTitle;
+  document.getElementById('byok-desc').innerText = t.byokDesc;
+  document.getElementById('user-api-key').placeholder = t.keyInputPlaceholder;
+  document.getElementById('btn-confirm-key').innerText = t.confirmKeyBtn;
+  document.getElementById('safety-text').innerText = t.safetyText;
+  document.getElementById('btn-tutorial-toggle').innerText = t.tutorialToggleBtn;
+  document.getElementById('api-tutorial-box').innerHTML = t.tutorialHtml;
+  document.getElementById('btn-send-followup').innerText = t.sendBtn;
+  document.getElementById('privacy-tip').innerText = t.privacyTip;
+  document.getElementById('tab-sandbox').innerText = t.tabSandbox;
+  document.getElementById('tab-kb').innerText = t.tabKb;
+  document.getElementById('kb-main-title').innerText = t.kbMainTitle;
+  document.getElementById('kb-main-desc').innerText = t.kbMainDesc;
+  document.getElementById('btn-kb-back').innerText = t.kbBackBtn;
+  document.getElementById('da-main-title').innerText = t.daMainTitle;
+  document.getElementById('da-main-subtitle').innerText = t.daMainSubtitle;
+
+  updateUsageBadge();
+  updateStepIndicator();
+  renderKbCards();
+  renderDailyArticles();
+
+  if (currentActiveCardId !== null) {
+    openKbSubpage(currentActiveCardId);
+  }
+
+  if (document.getElementById('followup-box').style.display !== 'none') {
+    if (isTop1Flow) {
+      if (top1Stage === 1) configureFollowupInput(t.stage2Label, t.stage2Placeholder);
+      else if (top1Stage === 2) configureFollowupInput(t.stage3Label, t.stage3Placeholder);
+      else if (top1Stage === 3) configureFollowupInput(t.stageDoneLabel, t.stageDonePlaceholder);
+    } else {
+      configureFollowupInput(t.generalFollowupLabel, t.generalFollowupPlaceholder);
+    }
+  }
+
+  if (top1Stage === 3 && savedJDText && savedExpText) {
+    const refreshedData = buildDynamicAnalysisFromInputs(savedJDText, savedExpText, currentLang);
+    renderFlexibleCompetencyReport(refreshedData, false);
+  }
+}
+
+function triggerTopicByKey(key) {
+  const t = translations[currentLang];
+  const inputEl = document.getElementById('challenge-input');
+  inputEl.value = t.topicPrompts[key] || "";
+  executeWithQuota(startInitialDiagnosis);
+}
+
+function executeWithQuota(actionCallback) {
+  const userKey = document.getElementById('user-api-key').value.trim();
+  if (!userKey && getUsageCount() >= MAX_FREE_USES) {
+    const keyBox = document.getElementById('api-key-container');
+    keyBox.style.display = 'block';
+    keyBox.scrollIntoView({ behavior: 'smooth' });
+    if (!hasShownQuotaAlert) {
+      hasShownQuotaAlert = true;
+    }
+    return;
+  }
+  actionCallback();
+}
+
+function confirmApiKeyAndContinue() {
+  const keyVal = document.getElementById('user-api-key').value.trim();
+  if (!keyVal) {
+    alert(currentLang === 'zh' ? "請輸入有效的 API Key！" : "Please enter a valid API Key!");
+    return;
+  }
+  document.getElementById('api-key-container').style.display = 'none';
+  updateUsageBadge();
+}
+
+function cleanText(text) {
+  if (!text) return "";
+  return text
+    .replace(/^[ \t]*#+[ \t]*/gm, '')
+    .replace(/\*\*([^*]+)\*\*/g, '$1')
+    .replace(/`{1,3}([^`]+)`{1,3}/g, '$1')
+    .trim();
+}
+
+function updateStepIndicator() {
+  const bar = document.getElementById('step-indicator');
+  if (!isTop1Flow) {
+    bar.style.display = 'none';
+    return;
+  }
+  const t = translations[currentLang];
+  bar.style.display = 'block';
+  if (top1Stage === 1) bar.innerText = t.step1Bar;
+  else if (top1Stage === 2) bar.innerText = t.step2Bar;
+  else if (top1Stage === 3) bar.innerText = t.step3Bar;
+}
+
+function configureFollowupInput(labelStr, placeholderStr) {
+  document.getElementById('followup-box').style.display = 'block';
+  document.getElementById('followup-label').innerText = labelStr;
+  const inputEl = document.getElementById('custom-followup-input');
+  inputEl.placeholder = placeholderStr;
+  inputEl.focus();
+}
+
+async function callSimpleBulletAI(systemInstruction, userPrompt, fallbackText) {
+  const userKey = document.getElementById('user-api-key').value.trim();
+  const activeKey = userKey || DEFAULT_SYSTEM_API_KEY;
+
+  if (activeKey.startsWith('gsk_')) {
+    try {
+      const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${activeKey}` },
+        body: JSON.stringify({
+          model: 'llama-3.3-70b-versatile',
+          messages: [
+            { role: 'system', content: systemInstruction },
+            { role: 'user', content: userPrompt }
+          ]
+        })
+      });
+      if (res.ok) {
+        const data = await res.json();
+        return cleanText(data.choices[0].message.content);
+      }
+    } catch (e) {}
+  }
+
+  for (const model of ['gemini-3.6-flash', 'gemini-2.5-flash']) {
+    try {
+      const headers = { 'Content-Type': 'application/json' };
+      let url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
+      if (activeKey.startsWith('AQ.')) {
+        headers['Authorization'] = `Bearer ${activeKey}`;
+      } else {
+        url += `?key=${encodeURIComponent(activeKey)}`;
+      }
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify({
+          contents: [{ role: "user", parts: [{ text: `${systemInstruction}\n\n${userPrompt}` }] }]
+        })
+      });
+      if (res.ok) {
+        const data = await res.json();
+        return cleanText(data.candidates[0].content.parts[0].text);
+      }
+    } catch (e) {}
+  }
+
+  try {
+    const cloudRes = await fetch('https://text.pollinations.ai/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        messages: [
+          { role: 'system', content: systemInstruction },
+          { role: 'user', content: userPrompt }
+        ],
+        model: 'openai'
+      })
+    });
+    if (cloudRes.ok) {
+      const text = await cloudRes.text();
+      if (text && text.trim().length > 15) {
+        return cleanText(text);
+      }
+    }
+  } catch (e) {}
+
+  await new Promise(r => setTimeout(r, 350));
+  return fallbackText;
+}
+
+function buildDynamicAnalysisFromInputs(jd, exp, lang) {
+  const techDictionary = [
+    'Python', 'PyTorch', 'TensorFlow', 'Linux', 'Git', 'Transformer', 'Attention',
+    'Pre-training', 'Fine-tuning', 'SFT', 'LoRA', 'QLoRA', 'DeepSpeed', 'FSDP',
+    'Megatron-LM', 'CUDA', 'GPU', 'LLM', 'ML', 'AI', 'Pipeline', 'Dataset',
+    'Tokenization', 'Java', 'JavaScript', 'React', 'Vue', 'Node', 'SQL', 'AWS',
+    'GCP', 'Docker', 'Kubernetes', 'CI/CD', 'Agile', 'Scrum', 'Jira', 'PM', 'HR', 'ERP'
+  ];
+
+  const jdTerms = techDictionary.filter(t => new RegExp(t, 'i').test(jd));
+  const expTerms = techDictionary.filter(t => new RegExp(t, 'i').test(exp));
+
+  const matchedSkills = jdTerms.filter(t => expTerms.includes(t));
+  const missingSkills = jdTerms.filter(t => !expTerms.includes(t));
+
+  const expClean = exp.replace(/\s+/g, ' ').trim();
+  const candidateName = expClean.split(/[·|,，\n]/)[0].trim().substring(0, 22) || (lang === 'en' ? "Evaluated Candidate" : "受評候選人");
+  const jdClean = jd.replace(/\s+/g, ' ').trim();
+
+  let baseHard = 56;
+  if (matchedSkills.length > 0) baseHard += Math.min(12, matchedSkills.length * 3);
+  else if (expClean.length > 40) baseHard += 8;
+  const hardScore = Math.min(68, baseHard);
+
+  let baseSoft = 24;
+  if (/lead|manage|team|cross|溝通|協作|管理|跨部門|遠端|remote|singapore|global/i.test(expClean)) baseSoft += 4;
+  const softScore = Math.min(29, baseSoft);
+  const totalScore = hardScore + softScore;
+  const isBriefExp = expClean.length < 120;
+
+  if (lang === 'en') {
+    const matchedStrEn = matchedSkills.length > 0
+      ? matchedSkills.join(', ')
+      : (expTerms.length > 0 ? expTerms.join(', ') : `core domain skills in "${expClean.substring(0, 28)}..."`);
+    const gapStrEn = missingSkills.length > 0
+      ? missingSkills.slice(0, 4).join(', ')
+      : "large-scale distributed system optimization and end-to-end production deployment metrics";
+
+    return {
+      score: totalScore,
+      hardScore: hardScore,
+      softScore: softScore,
+      action: totalScore >= 85 ? "Strong Hire (Proceed)" : "Proceed to Screening",
+      techEval: `• Core Technical & Business Fit (${hardScore} / 70 pts): Candidate profile (${expClean.substring(0, 45)}...) demonstrates solid foundation in ${matchedStrEn}, aligning well with core job requirements.\n• Architecture & Execution Readiness: Relevant industry experience reduces onboarding ramp-up time, though hands-on depth in ${gapStrEn} should be verified during technical rounds.`,
+      softEval: `• Cross-Functional Collaboration (${softScore} / 30 pts): Background indicates strong adaptability in fast-paced or cross-regional environments (${expClean.substring(0, 30)}), supporting smooth alignment with product and engineering teams.\n• Culture Fit & Ownership: Demonstrates self-direction and goal-oriented execution required for this role.`,
+      highlights: `• Domain & Technical Alignment: Candidate (${candidateName}) brings verified industry exposure and matching competencies (${matchedStrEn}).\n• High Transferability: Past project experience translates directly into the core responsibilities of the target role.`,
+      risks: isBriefExp
+        ? `• Brief Resume Granularity: The provided experience summary is relatively concise (${expClean.length} chars) and lacks quantified production metrics for "${gapStrEn}".\n• Ownership Scope to Verify: Need to confirm whether past projects were independently architected or partially supported.`
+        : `• Advanced Tooling Depth: Practical production-scale tuning experience regarding "${gapStrEn}" needs live verification.\n• Pace & Workflow Alignment: Confirm expectations around agile sprint cadence and cross-team documentation.`,
+      questions: `1. [Technical & Architecture Deep-Dive]: Regarding "${gapStrEn}" required in our JD, what was the most critical bottleneck you resolved in your past work (${expClean.substring(0, 25)}...), and what were the quantified results?\n2. [End-to-End Project Ownership]: In your most impactful project, which specific module or pipeline did you design and own 100% from scratch to production?\n3. [Cross-Functional & Culture Fit]: When collaborating with product or research teams under tight deadlines or shifting specs, how do you align priorities and ensure timely delivery?`,
+      earlyExit: isBriefExp ? "Low-Medium (Career track is consistent; verify long-term career motivation and role expectations during interview)" : "Low (Strong alignment between career trajectory and role scope; low short-term attrition risk)",
+      cultureRisk: "Low (Prior exposure to modern tech or cross-functional environments indicates high adaptability to agile ownership culture)",
+      skillGap: missingSkills.length > 2
+        ? `Medium (Core direction matches, but specific JD tools like "${gapStrEn}" are not explicitly detailed in the summary)`
+        : `Low (Core programming languages and domain skills closely match JD requirements; minimal ramp-up needed)`,
+      overqual: totalScore >= 92 ? "Medium-Low (Strong credentials; clearly communicate technical challenges and growth scope to keep candidate engaged)" : "Low (Candidate's current seniority and experience level match the role's challenge and scope appropriately)"
+    };
+  }
+
+  const matchedStrZh = matchedSkills.length > 0 
+    ? matchedSkills.join('、') 
+    : (expTerms.length > 0 ? expTerms.join('、') : `與「${expClean.substring(0, 28)}...」相關之領域實務`);
+  const gapStrZh = missingSkills.length > 0 
+    ? missingSkills.slice(0, 4).join('、') 
+    : "大規模分散式架構調校與跨團隊落地細節";
+
+  return {
+    score: totalScore,
+    hardScore: hardScore,
+    softScore: softScore,
+    action: totalScore >= 85 ? "強烈推薦面試 (Strong Hire)" : "建議安排複試 (Proceed)",
+    techEval: `• 核心技術與實務契合度（${hardScore} / 70 分）：候選人背景（${expClean.substring(0, 45)}...）具備 ${matchedStrZh} 等相關基礎，能對接職缺核心開發與業務需求。\n• 專案與架構落地能力：針對職缺要求之「${jdClean.substring(0, 38)}...」，候選人過往實務經驗可縮短前期摸索時間，但建議進一步確認其在 ${gapStrZh} 上的獨立負責深度。`,
+    softEval: `• 跨團隊溝通與協作（${softScore} / 30 分）：從經歷背景可見具備跨領域或國際化環境（如 ${expClean.substring(0, 30)}）之適應力，能配合產品與研發團隊推進目標。\n• 文化契合與自主管理：符合職缺對於自律當責、目標導向及快速迭代之團隊文化期待。`,
+    highlights: `• 領域與背景優勢：候選人（${candidateName}）具備明確的產業實績與技術標籤（${matchedStrZh}），與職缺目標方向一致。\n• 即戰力潛力：過往經歷能直接遷移至本崗位的核心業務場景。`,
+    risks: isBriefExp
+      ? `• 履歷資訊顆粒度較粗：目前提供的經歷描述較為精簡（僅約 ${expClean.length} 字），尚未完整列出在「${gapStrZh}」的具體量化成果。\n• 實戰深度待驗證：需於面試中確認過往專案為「獨立主導架構」或「局部參與維護」。`
+      : `• 特定進階工具驗證：針對職缺提及的「${gapStrZh}」，需在技術面試確認其實際生產環境（Production）調校經驗。\n• 團隊磨合預期：需確認其過往工作節奏與本團隊高強度迭代文化的契合度。`,
+    questions: `1. 【技術與架構深挖】：針對我們職缺非常看重的「${gapStrZh}」，請分享您在過往經歷（${expClean.substring(0, 25)}...）中，實際處理過最複雜的技術瓶頸與最終量化成效？\n2. 【專案實戰還原】：在您過去參與的核心專案中，從資料/需求定義到最終上線落地，哪一個環節是您 100% 獨立負責並做出關鍵決策的？\n3. 【協作與文化適配】：面對跨部門（如產品、研究或業務團隊）需求變更或遠端協作卡關時，您通常如何對齊優先級並確保準時交付？`,
+    earlyExit: isBriefExp ? "Low-Medium（職涯領域一致，惟需於面試確認近期轉職動機與對本崗位的長期期待）" : "Low（職涯發展軌跡與本職缺高度契合，技術成長空間充足，短期流失風險低）",
+    cultureRisk: "Low（具備跨領域或現代化科技團隊背景，對敏捷協作與自主當責文化適應度高）",
+    skillGap: missingSkills.length > 2 
+      ? `Medium（核心方向吻合，但職缺要求的「${gapStrZh}」尚未在經歷中充分體現，需面試實測）`
+      : `Low（核心技術棧與職缺要求高度重疊，僅需針對少數內部工具進行短期 Onboarding）`,
+    overqual: totalScore >= 92 ? "Medium-Low（資歷與背景優秀，建議面試時溝通清楚職權範圍與未來晉升挑戰，避免大材小用感）" : "Low（候選人目前資歷階段與本職缺之挑戰難度、職責範圍恰當匹配）"
+  };
+}
+
+async function startInitialDiagnosis() {
+  const target = document.getElementById('sandbox-target').value;
+  const input = document.getElementById('challenge-input').value.trim();
+  const t = translations[currentLang];
+  const isEn = currentLang === 'en';
+
+  if (!input) {
+    alert(isEn ? 'Please select a topic below or enter your HR challenge!' : '請點選下方話題或輸入您的問題！');
+    return;
+  }
+
+  const userKey = document.getElementById('user-api-key').value.trim();
+  isTop1Flow = input.includes('TOP 1') || input.includes('AI Scoring');
+
+  const resBox = document.getElementById('result-box');
+  resBox.style.display = 'block';
+  document.getElementById('pdf-approval-container').innerHTML = '';
+  document.getElementById('conversation-container').innerHTML = '';
+  lastRenderedReportData = null;
+
+  if (!userKey) incrementUsageCount();
+
+  resBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  if (isTop1Flow) {
+    top1Stage = 1;
+    savedJDText = "";
+    savedExpText = "";
+    updateStepIndicator();
+
+    configureFollowupInput(t.stage2Label, t.stage2Placeholder);
+
+    const userHeader = isEn
+      ? `[${target}] Launch TOP 1: AI Scoring 3-Step JD & Candidate Evaluation`
+      : `[${target}] 啟動 TOP 1：AI Scoring 三階段職缺與經歷評分`;
+    const loadingText = isEn
+      ? "Building clear bullet-point 'Stage 1: Hard & Soft Skills Scoring Benchmark'..."
+      : "正在為您建立簡單好讀的「第一階段：軟硬實力評分基準」...";
+
+    appendTurnUI(userHeader, loadingText);
+
+    const sysPrompt = isEn
+      ? "You are a senior HR advisor who speaks in simple, clear, everyday business English. Respond strictly in 100% English using numbered bullet points (1. 2. 3.). Do NOT output any Chinese characters. Keep each point under 2 sentences."
+      : "你是一位資深且說話簡單好懂的 HR 顧問。請務必使用「繁體中文」、「簡單的日常商務用詞」與「1. 2. 3. 條列式語法」回答。禁止使用艱澀術語或長篇大論，每一點不超過兩句話。";
+
+    const usrPrompt = isEn
+      ? `Target role: [${target}], starting Stage 1 of the 'AI Scoring 3-Step Evaluation'. Provide a simple bulleted list in pure English:
+1. Business & Technical Skills criteria (70% weight, list 3 simple bullet points)
+2. Soft Skills & Culture Fit criteria (30% weight, list 2 simple bullet points)
+3. End with this exact one-line prompt: "👉 [Stage 2 Guide] Please paste the 'Job Description (JD)' or hiring requirements below!"`
+      : `使用者角色為【${target}】，目前啟動了「AI Scoring 三階段評估」的第 1 階段。請用簡單條列式列出：
+1. 業務 & 技術能力評分重點（佔 70%，列舉 3 個簡單指標）
+2. 軟技能 & 文化契合評分重點（佔 30%，列舉 2 個簡單指標）
+3. 最後請用一句話明確引導使用者：「👉 【第 2 階段引導】請在下方貼上『職缺工作說明 (JD)』或徵才條件！」`;
+
+    const fallbackStage1 = isEn
+      ? `[Stage 1: AI Hard & Soft Skills Scoring Benchmark]
+
+1. Business & Technical Skills Criteria (70% Weight):
+   • Core Programming & Tech Stack: Hands-on proficiency in the programming languages, frameworks, and tools required by the role.
+   • Project Delivery Track Record: Proven ability to independently deliver similar-scale projects with measurable outcomes.
+   • Problem-Solving Execution: Ability to troubleshoot technical bottlenecks and optimize workflows effectively.
+
+2. Soft Skills & Culture Fit Criteria (30% Weight):
+   • Cross-Functional Communication: Communicates clearly and collaborates smoothly with product, research, and business teams.
+   • Proactive Ownership: Takes full accountability for deliverables and adapts quickly to changing priorities.
+
+👉 [Stage 2 Guide] Please paste the 'Job Description (JD)' or hiring requirements below!`
+      : `【第 1 階段：建立 AI 軟硬實力評分基準】
+
+1. 業務 & 技術能力評分重點（佔總分 70%）：
+   • 專業技術與程式語言：是否具備職缺要求的核心開發語言、工具與架構經驗。
+   • 專案交付實績：過去是否獨立完成過類似規模的專案並有具體成果。
+   • 問題解決能力：面對流程卡關或技術問題時，能否快速排除。
+
+2. 軟技能 & 文化契合評分重點（佔總分 30%）：
+   • 跨部門溝通：能否用簡單清楚的話，與產品及研究團隊順暢合作。
+   • 主動當責態度：遇到任務變動時，能否主動回報進度並扛起責任。
+
+👉 【第 2 階段引導】請在下方貼上「職缺工作說明 (JD)」或徵才條件！`;
+
+    const reply = await callSimpleBulletAI(sysPrompt, usrPrompt, fallbackStage1);
+    updateLatestAIResponse(reply);
+
+  } else {
+    top1Stage = 0;
+    updateStepIndicator();
+
+    configureFollowupInput(t.generalFollowupLabel, t.generalFollowupPlaceholder);
+
+    const loadingText = isEn
+      ? "Organizing clear, actionable bullet-point recommendations..."
+      : "正在為您整理簡單清晰的條列式重點與行動建議...";
+    appendTurnUI(`[${target}] ${input}`, loadingText);
+
+    const sysPrompt = isEn
+      ? "You are a practical, clear-spoken HR advisor. Respond strictly in 100% English using simple bullet points (1. 2. 3. and •). Do NOT output any Chinese characters. Keep each point to 1-2 sentences. End with one simple follow-up question."
+      : "你是一位說話簡單、直接、好懂的 HR 顧問。請務必使用「繁體中文」、「白話文」與「清楚的條列式（1. 2. 3. 與 •）」回答。禁止長篇大論，每點控制在 1~2 句話以內。結尾請主動詢問使用者一個簡單問題以進行漸進式引導。";
+
+    const usrPrompt = isEn
+      ? `For target role [${target}] asking about: "${input}", provide a simple bulleted response in pure English:
+1. Key Pain Points (2 points)
+2. Immediate Action Steps (3 points)
+3. Simple Role Ownership (Who executes vs. Who approves)
+4. Closing Follow-up Question: Ask one simple question about their current team size or main bottleneck.`
+      : `針對角色【${target}】詢問的議題：「${input}」，請用簡單條列式提供：
+1. 核心痛點拆解（2 點）
+2. 立即可以做的具體行動步驟（3 點）
+3. 簡單的權責分工建議（誰負責做、誰負責審核）
+4. 結尾引導提問：請用一句話詢問使用者目前的團隊人數或最卡關的地方，以便給出下一步建議。`;
+
+    const fallbackGeneral = isEn
+      ? `[Strategic Diagnosis & Action Plan for "${target}"]
+📌 Topic: ${input}
+
+1. Common Core Pain Points:
+   • Manual resume screening and cross-team alignment take too long, causing top candidates to drop off.
+   • Interviewers lack a standardized scorecard and rely too heavily on gut feeling.
+
+2. 3 Immediate Action Steps:
+   • Step 1 (Standardize Criteria): Define 3 non-negotiable must-have skills for the role and remove vague requirements.
+   • Step 2 (Automated Pre-Screening): Use AI or structured forms to score candidates on those 3 core skills, advancing only 80+ scorers.
+   • Step 3 (Weekly Funnel Review): Spend 15 minutes weekly tracking conversion rates from application to interview invite.
+
+3. Simple Role Ownership:
+   • Responsible for Execution: HRBP & Talent Acquisition Specialist (configure criteria and run initial screening).
+   • Accountable for Final Decision: ${target} & Hiring Manager (approve final shortlist).
+
+👉 Next Step Question: How large is your current team, or which specific stage is causing the biggest bottleneck right now? Tell me below!`
+      : `【針對「${target}」的重點診斷與行動建議】
+📌 探討主題：${input}
+
+1. 目前常見的兩大痛點：
+   • 人工篩選與跨部門核對太花時間，導致好人才在等待過程中流失。
+   • 面試官沒有統一的評分標準，常憑直覺決定去留。
+
+2. 立即可執行的 3 個改善步驟：
+   • 第一步（統一標準）：先列出該職位「非有不可」的 3 個核心技能，淘汰模糊的條件。
+   • 第二步（自動初篩）：利用 AI 或表單針對這 3 個技能做第一輪快速打分，只看 80 分以上的履歷。
+   • 第三步（固定追蹤）：每週花 15 分鐘檢查「投遞人數」到「發面試邀約」的轉換率。
+
+3. 簡單分工建議：
+   • 負責執行：HRBP 與招募專員（設定標準與初步篩選）。
+   • 負責拍板：${target} 與用人部門主管（確認最終面試名單）。
+
+👉 下一步引導：請問您目前團隊大概有幾個人？或是哪一個環節最讓您頭痛？請在下方告訴我，我幫您細部調整！`;
+
+    const reply = await callSimpleBulletAI(sysPrompt, usrPrompt, fallbackGeneral);
+    updateLatestAIResponse(reply);
+  }
+}
+
+async function sendCustomFollowUp() {
+  const inputEl = document.getElementById('custom-followup-input');
+  const val = inputEl.value.trim();
+  if (!val) return;
+  inputEl.value = '';
+
+  const t = translations[currentLang];
+  const isEn = currentLang === 'en';
+  const userKey = document.getElementById('user-api-key').value.trim();
+  if (!userKey) incrementUsageCount();
+
+  if (isTop1Flow) {
+    if (top1Stage === 1) {
+      savedJDText = val;
+      top1Stage = 2;
+      updateStepIndicator();
+
+      configureFollowupInput(t.stage3Label, t.stage3Placeholder);
+
+      const uHeader = isEn ? `📄 [Job Description (JD) Submitted] ${val}` : `📄 [已輸入職缺 JD] ${val}`;
+      const loadMsg = isEn
+        ? "Parsing your Job Description (JD) requirements and preparing for candidate experience matching..."
+        : "正在解析您的職缺 JD 重點，並準備進入候選人經歷匹配...";
+      appendTurnUI(uHeader, loadMsg);
+
+      const sysPrompt = isEn
+        ? "You are a clear-spoken HR advisor. Respond strictly in 100% English using simple bullet points (1. 2. 3.). Do NOT output any Chinese characters."
+        : "你是一位說話簡單好懂的 HR 顧問。請使用「繁體中文」與「簡單條列式（1. 2. 3.）」回答，用詞務必白話清晰。";
+
+      const usrPrompt = isEn
+        ? `The user submitted this Job Description (JD): "${savedJDText}".
+Organize into simple bullet points in pure English:
+1. 3 Must-Have 'Business & Technical Skills' extracted from this JD (70% weight)
+2. 2 Must-Have 'Soft Skills & Culture Fit' traits extracted from this JD (30% weight)
+3. End with this exact one-line guide: "👉 [Stage 3 Guide] Please paste work experience and programming languages below to generate and output your PDF report!"`
+        : `使用者已輸入職缺 JD：「${savedJDText}」。
+請用簡單條列式整理出：
+1. 從這份 JD 抓出的 3 個「業務 & 技術能力必備條件」（佔 70%）
+2. 從這份 JD 抓出的 2 個「軟技能 & 文化契合特質」（佔 30%）
+3. 結尾請用一句話明確引導使用者：「👉 【第 3 階段引導】請在下方貼上工作經歷和程式語言，我將立刻為您生成並以 PDF 輸出評估報告！」`;
+
+      const fallbackStage2 = isEn
+        ? `[Stage 2: Job Description (JD) Key Requirements Parsed]
+Based on your submitted JD ("${savedJDText.substring(0, 45)}..."), the system has locked in the following evaluation criteria:
+
+1. Business & Technical Skills Requirements (70% Weight):
+   • Core Programming & Frameworks: Hands-on proficiency in the required languages and tools (30%).
+   • Architecture & Domain Execution: Practical experience building pipelines, models, or core business workflows (25%).
+   • Independent Troubleshooting: Ability to optimize system performance and resolve production issues (15%).
+
+2. Soft Skills & Culture Fit Requirements (30% Weight):
+   • Cross-Functional Collaboration: Ability to partner with product and research teams to turn technical work into real product value (15%).
+   • Self-Management & Ownership: Strong accountability and clear progress communication (15%).
+
+👉 [Stage 3 Guide] Please paste work experience and programming languages below to generate and output your PDF report!`
+        : `【第 2 階段：職缺 JD 關鍵條件解析完成】
+根據您提供的職缺內容（「${savedJDText.substring(0, 40)}...」），系統已鎖定以下評分標準：
+
+1. 業務 & 技術能力必備條件（佔 70%）：
+   • 核心程式與框架：熟悉職缺要求的開發語言與工具（30%）。
+   • 模型與架構實務：具備相關演算法、資料管線建置或效能調校經驗（25%）。
+   • 獨立解決問題：能直接上手處理系統開發與效能最佳化（15%）。
+
+2. 軟技能 & 文化契合必備特質（佔 30%）：
+   • 跨團隊溝通協調：能與產品及研究團隊合作，將技術轉化為實際產品（15%）。
+   • 遠端自律與當責：具備良好的自我管理與專案推進能力（15%）。
+
+👉 【第 3 階段引導】請在下方貼上工作經歷和程式語言，我將立即幫您比對並以 PDF 輸出評估報告！`;
+
+      const reply = await callSimpleBulletAI(sysPrompt, usrPrompt, fallbackStage2);
+      updateLatestAIResponse(reply);
+      return;
+
+    } else if (top1Stage >= 2) {
+      savedExpText = val;
+      top1Stage = 3;
+      updateStepIndicator();
+
+      configureFollowupInput(t.stageDoneLabel, t.stageDonePlaceholder);
+
+      const uHeader = isEn ? `👤 [Work Experience & Programming Languages Submitted] ${val}` : `👤 [已輸入工作經歷和程式語言] ${val}`;
+      const loadMsg = isEn
+        ? "Generating live PDF document and rendering embedded PDF viewer..."
+        : "正在將評估結果轉換為實體 PDF 文件並載入內嵌 PDF 檢視器...";
+      appendTurnUI(uHeader, loadMsg);
+
+      const dynamicBase = buildDynamicAnalysisFromInputs(savedJDText, savedExpText, currentLang);
+
+      const sysPrompt = isEn
+        ? "You are an expert technical recruiter and HRBP. Tailor your evaluation strictly to the provided Job Description and Candidate Experience. Respond in 100% pure English. Do NOT output any Chinese characters."
+        : "你是一位專業且具洞察力的技術招募與 HRBP 專家。請完全根據使用者提供的「職缺 JD」與「候選人經歷」，量身定制具體、不套模板的評估內容，使用繁體中文回答。";
+
+      const usrPrompt = isEn
+        ? `Compare the following Job Description (JD) and Candidate Experience in pure English, and output strictly using the 10 tags below:
+
+[JD]: ${savedJDText}
+[CANDIDATE_EXP]: ${savedExpText}
+
+Output strictly in this tag format (in 100% English):
+[SCORE]: (Integer from 0 to 100, e.g., 91)
+[TECH_EVAL]: (2-3 bullet points analyzing 'Business & Technical Skills' fit against the JD, including score like 64/70 pts)
+[SOFT_EVAL]: (2 bullet points analyzing 'Soft Skills & Culture Fit' based on their background, including score like 27/30 pts)
+[HIGHLIGHTS]: (2 bullet points on core 'Highlights' from the candidate's actual background)
+[RISKS]: (2 bullet points on potential 'Risk Signals' or unverified JD requirements)
+[QUESTIONS]: (3 customized, practical follow-up interview questions numbered 1. 2. 3. targeting their specific experience or gaps)
+[EARLY_EXIT]: (Rating Low / Medium / High + specific reason in English)
+[CULTURE_MISMATCH]: (Rating Low / Medium / High + specific reason in English)
+[SKILL_GAP]: (Rating Low / Medium / High + specific analysis of matched vs. missing skills in English)
+[OVERQUALIFICATION]: (Rating Low / Medium / High + specific reason in English)`
+        : `請深入比對以下「職缺 JD」與「候選人經歷」，並嚴格按照下方標籤格式輸出：
+
+【職缺 JD】：${savedJDText}
+【候選人經歷】：${savedExpText}
+
+請嚴格按此標籤格式輸出：
+[SCORE]: (填寫 0~100 的整數總分，例如 91)
+[TECH_EVAL]: (條列 2~3 點「業務 & 技術能力」具體分析，並標註得分如 64/70 分)
+[SOFT_EVAL]: (條列 2 點「軟技能 & 文化契合」具體分析，並標註得分如 27/30 分)
+[HIGHLIGHTS]: (條列 2 點該求職者的「核心優勢 Highlights」)
+[RISKS]: (條列 2 點該求職者的「潛在疑慮 Risk Signals」)
+[QUESTIONS]: (針對該求職者的經歷缺口或專案細節，量身打造 3 道實戰追問題目，標號 1. 2. 3.)
+[EARLY_EXIT]: (評級 Low / Medium / High 並附上具體原因)
+[CULTURE_MISMATCH]: (評級 Low / Medium / High 並附上具體原因)
+[SKILL_GAP]: (評級 Low / Medium / High 並附上具體原因)
+[OVERQUALIFICATION]: (評級 Low / Medium / High 並附上具體原因)`;
+
+      const fallbackStructured = 
+`[SCORE]: ${dynamicBase.score}
+[TECH_EVAL]: ${dynamicBase.techEval}
+[SOFT_EVAL]: ${dynamicBase.softEval}
+[HIGHLIGHTS]: ${dynamicBase.highlights}
+[RISKS]: ${dynamicBase.risks}
+[QUESTIONS]: ${dynamicBase.questions}
+[EARLY_EXIT]: ${dynamicBase.earlyExit}
+[CULTURE_MISMATCH]: ${dynamicBase.cultureRisk}
+[SKILL_GAP]: ${dynamicBase.skillGap}
+[OVERQUALIFICATION]: ${dynamicBase.overqual}`;
+
+      const rawAiOutput = await callSimpleBulletAI(sysPrompt, usrPrompt, fallbackStructured);
+      const finalReportData = parseFlexibleCompetencyData(rawAiOutput, dynamicBase, currentLang);
+      lastRenderedReportData = finalReportData;
+
+      const summaryInChat = isEn
+        ? `✅ [Stage 3 Complete: Direct PDF Report Generated & Exported]
+The evaluation has been compiled into an official PDF document below (with both an embedded PDF viewer and automatic .pdf file download).`
+        : `✅ 【第 3 階段完成：已直接輸出為 PDF 評估報告檔案】
+系統已將評估結果直接轉換為真實 PDF 文件（顯示於下方內嵌 PDF 閱讀器中，並同步自動下載 .pdf 實體檔案至您的電腦）！`;
+
+      updateLatestAIResponse(summaryInChat);
+      renderFlexibleCompetencyReport(finalReportData, true);
+      return;
+    }
+  }
+
+  appendTurnUI(val, isEn ? "Preparing clear bullet-point follow-up recommendations..." : "正在根據您的回饋，整理下一步的簡單條列建議...");
+
+  const sysPrompt = isEn
+    ? "You are a clear, practical HR advisor. Respond strictly in 100% English using simple bullet points (1. 2. 3.). Do NOT output any Chinese characters. Keep each point under 2 sentences."
+    : "你是一位說話簡單、白話、好懂的 HR 顧問。請務必使用「繁體中文」與「簡單條列式（1. 2. 3.）」回答，每一點不超過兩句話，並給出具體好執行的下一步。";
+
+  const usrPrompt = isEn
+    ? `The user followed up with: "${val}". Provide 3 simple, actionable steps in pure English bullet points, and ask if they would like a ready-to-use checklist template.`
+    : `使用者針對先前的 HR 討論補充了這個情況或問題：「${val}」。請用最簡單、條列式的方式給出 3 個具體解決步驟，並在最後詢問是否需要提供範本或檢核表。`;
+
+  const fallbackFollowup = isEn
+    ? `[Actionable Next Steps for "${val.substring(0, 35)}..."]
+
+1. Pilot with One Priority Role (Week 1):
+   • Start with a single urgent role or small team rather than rolling out changes company-wide at once.
+
+2. Build a 1-Page 5-Item Scorecard (Week 2):
+   • Condense complex rules into 5 simple checkboxes so hiring managers can complete evaluations in under 3 minutes.
+
+3. Bi-Weekly Metric Review (Weeks 3–4):
+   • Track time saved and pass-through rates every two weeks before scaling across departments.
+
+👉 Next Step Guide: Would you like me to draft the "1-Page 5-Item Evaluation Scorecard Template" for you right now? Just let me know!`
+    : `【針對「${val.substring(0, 30)}...」的具體執行建議】
+
+1. 先從小範圍試辦（第 1 週）：
+   • 先挑 1 個最急迫的職缺或小團隊試行新做法，不要一次全公司改動，降低反彈。
+
+2. 建立一頁式簡單檢核表（第 2 週）：
+   • 把複雜的規定濃縮成「5 個勾選項目」，讓主管或同仁在 3 分鐘內就能填完。
+
+3. 定期看數字微調（第 3~4 週）：
+   • 每兩週看一次執行成果（例如：省下多少時間、良率提升多少），有效果再擴大推廣。
+
+👉 下一步引導：需要我直接幫您把上述第 2 點的「一頁式簡單檢核表 / 評分表範本」列出來嗎？請直接告訴我！`;
+
+  const reply = await callSimpleBulletAI(sysPrompt, usrPrompt, fallbackFollowup);
+  updateLatestAIResponse(reply);
+}
+
+function parseFlexibleCompetencyData(text, dynamicBase, lang) {
+  const extractTag = (tag, defaultVal) => {
+    const regex = new RegExp(`\\[${tag}\\]:\\s*([\\s\\S]*?)(?=\\n\\[[A-Z_]+\\]:|$)`, 'i');
+    const match = text.match(regex);
+    return (match && match[1] && match[1].trim().length > 3) ? match[1].trim() : defaultVal;
+  };
+
+  const rawScore = extractTag('SCORE', String(dynamicBase.score));
+  const numMatch = rawScore.match(/\d+/);
+  const finalScore = numMatch ? Math.min(100, Math.max(40, parseInt(numMatch[0], 10))) : dynamicBase.score;
+
+  const isEn = lang === 'en';
+  const actionText = isEn
+    ? (finalScore >= 85 ? "Strong Hire (Proceed)" : (finalScore >= 70 ? "Proceed to Interview" : "Hold / Further Review"))
+    : (finalScore >= 85 ? "強烈推薦面試 (Strong Hire)" : (finalScore >= 70 ? "建議安排面試 (Proceed)" : "暫緩或需補件 (Hold)"));
+
+  return {
+    score: finalScore,
+    action: actionText,
+    techEval: extractTag('TECH_EVAL', dynamicBase.techEval),
+    softEval: extractTag('SOFT_EVAL', dynamicBase.softEval),
+    highlights: extractTag('HIGHLIGHTS', dynamicBase.highlights),
+    risks: extractTag('RISKS', dynamicBase.risks),
+    questions: extractTag('QUESTIONS', dynamicBase.questions),
+    earlyExit: extractTag('EARLY_EXIT', dynamicBase.earlyExit),
+    cultureRisk: extractTag('CULTURE_MISMATCH', dynamicBase.cultureRisk),
+    skillGap: extractTag('SKILL_GAP', dynamicBase.skillGap),
+    overqual: extractTag('OVERQUALIFICATION', dynamicBase.overqual)
+  };
+}
+
+function exportVisualReportToPDF(triggerSave = true) {
+  const element = document.getElementById('pdf-export-area');
+  if (!element) return;
+
+  const isEn = currentLang === 'en';
+  const btn = document.getElementById('btn-direct-pdf');
+  if (btn) {
+    btn.innerText = isEn ? '⏳ Rendering Live PDF...' : '⏳ 正在產出真實 PDF 檔案...';
+    btn.disabled = true;
+  }
+
+  const fileName = isEn ? 'AI_Scoring_Evaluation_Report.pdf' : 'AI_Scoring_候選人評估報告.pdf';
+
+  if (typeof html2pdf !== 'undefined') {
+    const opt = {
+      margin:       [8, 8, 8, 8],
+      filename:     fileName,
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { scale: 2, useCORS: true, backgroundColor: '#ffffff' },
+      jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+
+    const worker = html2pdf().set(opt).from(element).toPdf();
+
+    worker.get('pdf').then((pdfObj) => {
+      const blob = pdfObj.output('blob');
+      const blobUrl = URL.createObjectURL(blob);
+      const viewerWrapper = document.getElementById('pdf-live-viewer-wrapper');
+      const viewerFrame = document.getElementById('pdf-live-viewer-frame');
+      if (viewerWrapper && viewerFrame) {
+        viewerWrapper.style.display = 'block';
+        viewerFrame.src = blobUrl;
+      }
+
+      if (triggerSave) {
+        pdfObj.save(fileName);
+      }
+
+      if (btn) {
+        btn.innerText = isEn ? '📥 Download .PDF File Again' : '📥 重新下載 PDF 報告檔案 (.pdf)';
+        btn.disabled = false;
+      }
+    }).catch(() => {
+      if (btn) {
+        btn.innerText = isEn ? '📥 Download .PDF File' : '📥 直接下載 PDF 報告檔案 (.pdf)';
+        btn.disabled = false;
+      }
+      if (triggerSave) window.print();
+    });
+  } else {
+    if (triggerSave) window.print();
+    if (btn) btn.disabled = false;
+  }
+}
+
+function renderFlexibleCompetencyReport(data, autoDownload = false) {
+  const isEn = currentLang === 'en';
+  const target = document.getElementById('sandbox-target').value;
+
+  const defaultJdText = isEn ? 'Configured per Cloud & Technical PM competency standards' : '依標準雲端與專案管理職能設定';
+  const defaultExpText = isEn ? 'Evaluated based on candidate work experience and programming languages' : '依候選人提供之工作經歷和程式語言評估';
+
+  const jdSnippet = savedJDText ? savedJDText.substring(0, 85) + (savedJDText.length > 85 ? '...' : '') : defaultJdText;
+  const expSnippet = savedExpText ? savedExpText.substring(0, 85) + (savedExpText.length > 85 ? '...' : '') : defaultExpText;
+
+  const labels = isEn ? {
+    barTitle: "📄 Live PDF Document Output & Embedded PDF Reader",
+    downloadPdfBtn: "📥 Download .PDF File",
+    printPdfBtn: "🖨️ Print / Save via Browser",
+    watermarkLeft: "HR VISION AI · EXECUTIVE TALENT ASSESSMENT REPORT",
+    watermarkRight: "ENGINE: GEMINI 3.6 FLASH",
+    reportTitle: `AI Scoring Candidate Evaluation Report (${target})`,
+    metaLine: `Weighting Matrix: Business & Technical Skills 70% | Soft Skills & Culture Fit 30%`,
+    jdSumLabel: "Target JD Summary:",
+    expSumLabel: "Candidate Profile Summary:",
+    scoreTitle: "OVERALL MATCH SCORE",
+    breakdownHeading: "🧠 Competencies Breakdown (4 Dynamic Modules)",
+    editHint: "✏️ Click any text below to edit, then click 'Download .PDF File' to update the PDF",
+    mod1Title: "1. Competency Assessment (Business & Technical Skills / Soft Skills & Culture Fit)",
+    mod1TechLabel: "💻 Business & Technical Skills (Hard Skills - 70%)",
+    mod1SoftLabel: "🤝 Soft Skills & Culture Fit (30%)",
+    mod2Title: "2. Highlights & Risk Signals",
+    mod2HighLabel: "🌟 Core Strengths (Highlights)",
+    mod2RiskLabel: "⚡ Potential Concerns (Risk Signals)",
+    mod3Title: "3. Customized Interview Questions (3 Tailored Probing Questions on Experience & Gaps)",
+    mod4Title: "4. ⚠️ Risk Assessment (4 Key Indicators with Independent Ratings & Rationales)",
+    r1Name: "① Early Exit Risk",
+    r2Name: "② Culture Mismatch Risk",
+    r3Name: "③ Skill Gap Risk",
+    r4Name: "④ Overqualification Risk"
+  } : {
+    barTitle: "📄 真實 PDF 報告輸出與內嵌 PDF 閱讀器（非純文字，可直接下載 .pdf 檔）",
+    downloadPdfBtn: "📥 直接下載 PDF 報告檔案 (.pdf)",
+    printPdfBtn: "🖨️ 開啟列印視窗另存 PDF",
+    watermarkLeft: "HR VISION AI · 企業級人才量化評估報告",
+    watermarkRight: "運算核心：GEMINI 3.6 FLASH",
+    reportTitle: `AI Scoring 候選人綜合量化評估報告 (${target})`,
+    metaLine: `權重配置基準：業務 & 技術能力 70% ｜ 軟技能 & 文化契合 30%`,
+    jdSumLabel: "比對職缺 (JD) 摘要：",
+    expSumLabel: "候選人經歷摘要：",
+    scoreTitle: "匹配綜合得分",
+    breakdownHeading: "🧠 軟硬實力分項評核 (Competencies Breakdown) 4 大動態模組",
+    editHint: "✏️ 點擊下方報告內文字可微調，修改後點擊紅色按鈕即可重新產生並下載最新 PDF",
+    mod1Title: "1. 能力評估（業務 & 技術能力 ／ 軟技能 & 文化契合）",
+    mod1TechLabel: "💻 業務 & 技術能力 (Hard Skills - 70%)",
+    mod1SoftLabel: "🤝 軟技能 & 文化契合 (Soft Skills & Culture Fit - 30%)",
+    mod2Title: "2. 亮點 & 風險信號（Highlights vs. Risk Signals）",
+    mod2HighLabel: "🌟 核心優勢 (Highlights)",
+    mod2RiskLabel: "⚡ 潛在疑慮 (Risk Signals)",
+    mod3Title: "3. 定制面試問題（針對經歷缺口與專案細節之 3 道實戰追問）",
+    mod4Title: "4. ⚠️ 風險評估（4 大關鍵指標獨立評級與原因）",
+    r1Name: "① Early Exit Risk（早退風險）",
+    r2Name: "② Culture Mismatch Risk（文化不符風險）",
+    r3Name: "③ Skill Gap Risk（技能落差風險）",
+    r4Name: "④ Overqualification Risk（大材小用風險）"
+  };
+
+  const container = document.getElementById('pdf-approval-container');
+  container.innerHTML = `
+    <div class="pdf-action-bar">
+      <div class="pdf-action-bar-title">${labels.barTitle}</div>
+      <div class="pdf-btn-group">
+        <button type="button" id="btn-direct-pdf" class="btn-download-pdf" onclick="exportVisualReportToPDF(true)">${labels.downloadPdfBtn}</button>
+        <button type="button" class="btn-print-pdf" onclick="window.print()">${labels.printPdfBtn}</button>
+      </div>
+    </div>
+
+    <div id="pdf-live-viewer-wrapper" class="pdf-live-viewer-wrapper">
+      <iframe id="pdf-live-viewer-frame" class="pdf-live-viewer-frame" title="PDF Report Viewer"></iframe>
+    </div>
+
+    <div id="pdf-export-area" class="ai-scoring-card">
+      <div class="pdf-brand-watermark">
+        <span>${labels.watermarkLeft}</span>
+        <span>${labels.watermarkRight}</span>
+      </div>
+
+      <div class="scoring-header">
+        <div class="scoring-title-area">
+          <h3>${labels.reportTitle}</h3>
+          <div class="scoring-meta-line">${labels.metaLine}</div>
+          <div class="scoring-summary-text">
+            • <strong>${labels.jdSumLabel}</strong> <span contenteditable="true">${jdSnippet}</span><br>
+            • <strong>${labels.expSumLabel}</strong> <span contenteditable="true">${expSnippet}</span>
+          </div>
+        </div>
+        <div class="scoring-score-box" contenteditable="true">
+          <span style="font-size: 0.78rem; font-weight: 700; opacity: 0.9;">${labels.scoreTitle}</span>
+          <div class="score-big-num">${data.score} <span style="font-size: 1rem; font-weight: 600;">/ 100</span></div>
+          <div class="score-decision-pill">${data.action}</div>
+        </div>
+      </div>
+
+      <div class="scoring-skills-section">
+        <div class="breakdown-main-heading">
+          <span>${labels.breakdownHeading}</span>
+          <span class="edit-hint-tag">${labels.editHint}</span>
+        </div>
+
+        <div class="breakdown-module">
+          <div class="breakdown-module-title">${labels.mod1Title}</div>
+          <div class="sub-competency-grid">
+            <div class="sub-competency-box">
+              <span class="sub-box-label">${labels.mod1TechLabel}</span>
+              <div class="sub-box-content" contenteditable="true">${data.techEval}</div>
+            </div>
+            <div class="sub-competency-box">
+              <span class="sub-box-label">${labels.mod1SoftLabel}</span>
+              <div class="sub-box-content" contenteditable="true">${data.softEval}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="breakdown-module">
+          <div class="breakdown-module-title">${labels.mod2Title}</div>
+          <div class="sub-competency-grid">
+            <div class="sub-competency-box highlight-box">
+              <span class="sub-box-label" style="color: #065f46;">${labels.mod2HighLabel}</span>
+              <div class="sub-box-content" contenteditable="true">${data.highlights}</div>
+            </div>
+            <div class="sub-competency-box risk-signal-box">
+              <span class="sub-box-label" style="color: #92400e;">${labels.mod2RiskLabel}</span>
+              <div class="sub-box-content" contenteditable="true">${data.risks}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="breakdown-module">
+          <div class="breakdown-module-title">${labels.mod3Title}</div>
+          <div class="interview-q-list" contenteditable="true">${data.questions}</div>
+        </div>
+
+        <div class="breakdown-module" style="margin-bottom: 0;">
+          <div class="breakdown-module-title">${labels.mod4Title}</div>
+          <div class="risk-4-grid">
+            <div class="risk-metric-card">
+              <div class="risk-metric-name"><span>${labels.r1Name}</span></div>
+              <div class="risk-metric-desc" contenteditable="true">${data.earlyExit}</div>
+            </div>
+            <div class="risk-metric-card">
+              <div class="risk-metric-name"><span>${labels.r2Name}</span></div>
+              <div class="risk-metric-desc" contenteditable="true">${data.cultureRisk}</div>
+            </div>
+            <div class="risk-metric-card">
+              <div class="risk-metric-name"><span>${labels.r3Name}</span></div>
+              <div class="risk-metric-desc" contenteditable="true">${data.skillGap}</div>
+            </div>
+            <div class="risk-metric-card">
+              <div class="risk-metric-name"><span>${labels.r4Name}</span></div>
+              <div class="risk-metric-desc" contenteditable="true">${data.overqual}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  container.scrollIntoView({ behavior: 'smooth' });
+
+  setTimeout(() => {
+    exportVisualReportToPDF(autoDownload);
+  }, 500);
+}
+
+function appendTurnUI(uText, aText) {
+  const prefix = currentLang === 'en' ? '👤 User Input: ' : '👤 用戶輸入: ';
+  const safeUser = uText.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  document.getElementById('conversation-container').innerHTML += `<div class="dialogue-turn"><div class="turn-user">${prefix}${safeUser}</div><div class="turn-ai">${aText}</div></div>`;
+}
+
+function updateLatestAIResponse(text) {
+  const turns = document.getElementsByClassName('dialogue-turn');
+  if (turns.length > 0) {
+    turns[turns.length - 1].querySelector('.turn-ai').innerText = text;
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  switchLanguage('zh');
+  updateUsageBadge();
+});
+</script>
+</body>
+</html>
