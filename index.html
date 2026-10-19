@@ -82,21 +82,24 @@ header { background-color: var(--white); border-bottom: 1px solid var(--border-c
 .tag-btn { background: #fff; border: 1px solid var(--border-color); border-radius: 50px; padding: 0.45rem 1rem; font-size: 0.85rem; color: #334155; cursor: pointer; transition: all 0.2s; }
 .tag-btn:hover { background: #f0fdf4; border-color: #0f766e; color: #0f766e; }
 
-/* 知識庫卡片樣式 */
-.kb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; text-align: left; margin-top: 1rem; }
-.kb-card { background: #fff; border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; display: flex; flex-direction: column; }
-.kb-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
-.kb-card-img { width: 100%; height: 160px; background: #e2e8f0; object-fit: cover; }
+/* 知識庫卡片與真實職場圖片樣式 */
+.kb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; text-align: left; margin-top: 1rem; }
+.kb-card { background: #fff; border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; cursor: pointer; transition: transform 0.25s ease, box-shadow 0.25s ease; display: flex; flex-direction: column; }
+.kb-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(15, 118, 110, 0.12); border-color: #99f6e4; }
+.kb-card-img-wrapper { position: relative; width: 100%; height: 175px; overflow: hidden; background: linear-gradient(135deg, #0f766e 0%, #0284c7 100%); }
+.kb-card-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.35s ease; }
+.kb-card:hover .kb-card-img { transform: scale(1.05); }
 .kb-card-body { padding: 1.25rem; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
 .kb-card-title { font-size: 1.05rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem; }
 .kb-card-text { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.0rem; line-height: 1.5; }
-.kb-card-tag { align-self: flex-start; font-size: 0.75rem; font-weight: 600; color: #0f766e; background: #ccfbf1; padding: 0.2rem 0.6rem; border-radius: 4px; }
+.kb-card-tag { align-self: flex-start; font-size: 0.75rem; font-weight: 600; color: #0f766e; background: #ccfbf1; padding: 0.25rem 0.65rem; border-radius: 4px; }
 
-/* Subpage 容器樣式 */
+/* Subpage 容器與橫幅圖片樣式 */
 .subpage-container { display: none; text-align: left; }
-.subpage-header-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; }
+.subpage-header-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; }
 .btn-back { background: #f1f5f9; border: 1px solid var(--border-color); padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600; cursor: pointer; color: #334155; }
 .btn-back:hover { background: #e2e8f0; }
+.subpage-hero-img { width: 100%; height: 240px; object-fit: cover; border-radius: 12px; margin-bottom: 1.25rem; border: 1px solid var(--border-color); background: #e2e8f0; }
 .subpage-title { font-size: 1.5rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem; }
 .subpage-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
 
@@ -398,7 +401,7 @@ footer { background: var(--white); border-top: 1px solid var(--border-color); pa
     </div>
   </section>
 
-  <!-- 專業知識庫主頁面 (支援 100% 雙語切換) -->
+  <!-- 專業知識庫主頁面 (支援 100% 雙語切換 + 真實職場圖片與防破圖機制) -->
   <section id="view-kb" class="sandbox-card" style="display: none;">
     <div id="kb-main-view">
       <div class="sandbox-header">
@@ -414,6 +417,7 @@ footer { background: var(--white); border-top: 1px solid var(--border-color); pa
         <button type="button" class="btn-back" id="btn-kb-back" onclick="backToKbMain()">← 返回知識庫列表</button>
         <span id="subpage-category-tag" class="kb-card-tag">分類標籤</span>
       </div>
+      <img id="subpage-hero-img" class="subpage-hero-img" src="" alt="" referrerpolicy="no-referrer">
       <h2 id="subpage-title" class="subpage-title">卡片標題</h2>
       <p id="subpage-desc" class="subpage-desc">卡片詳細簡介說明...</p>
 
@@ -430,7 +434,7 @@ footer { background: var(--white); border-top: 1px solid var(--border-color); pa
   </section>
 </div>
 
-<!-- 每日 AIGEO 文章：貼在 </div>（.container 結束）之後、<footer> 之前 -->
+<!-- 每日 AIGEO 文章 -->
 <style>
 #daily-articles{max-width:1100px;margin:0 auto;padding:0 1.5rem 2rem}
 #daily-articles h2{font-size:1.5rem;font-weight:800;margin-bottom:.5rem}
@@ -563,7 +567,6 @@ footer { background: var(--white); border-top: 1px solid var(--border-color); pa
 <h3>常見問題 FAQ</h3><h4>多久校準一次？</h4><p>每個新職缺一次，招募中途視情況調整。</p><h4>主管沒時間？</h4><p>提供一頁式預填表。</p>
 <p class="da-cta">👉 選擇「HRBP 主管教練引導」標籤。</p>
 </details></article>
-<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Article", "headline": "什麼是 AIGEO？雇主與人資為什麼需要「被 AI 推薦」", "description": "AIGEO 是讓企業內容被 AI 理解、引用與推薦的優化方法。本文說明 HR 與雇主品牌如何布局。", "datePublished": "2026-10-20", "dateModified": "2026-10-20", "inLanguage": "zh-Hant", "author": {"@type": "Organization", "name": "HR Vision AI"}, "publisher": {"@type": "Organization", "name": "HR Vision AI"}, "mainEntityOfPage": "https://hr-vision-ai-new-v5.vercel.app/#article-day1"}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "AIGEO 會取代 SEO 嗎？", "acceptedAnswer": {"@type": "Answer", "text": "不會，兩者並行；SEO 是基礎，AIGEO 是延伸。"}}, {"@type": "Question", "name": "小公司有機會嗎？", "acceptedAnswer": {"@type": "Answer", "text": "有；AI 重視內容清晰與一致，不只看規模。"}}]}, {"@context": "https://schema.org", "@type": "Article", "headline": "AI 如何決定推薦哪家公司？5 大推薦排名原理", "description": "AI 推薦並非隨機。掌握清晰度、一致性、結構、可信度、持續性五原理。", "datePublished": "2026-10-21", "dateModified": "2026-10-21", "inLanguage": "zh-Hant", "author": {"@type": "Organization", "name": "HR Vision AI"}, "publisher": {"@type": "Organization", "name": "HR Vision AI"}, "mainEntityOfPage": "https://hr-vision-ai-new-v5.vercel.app/#article-day2"}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "多久見效？", "acceptedAnswer": {"@type": "Answer", "text": "內容需長期累積，成效依產業競爭與內容品質而異。"}}, {"@type": "Question", "name": "要用多少篇？", "acceptedAnswer": {"@type": "Answer", "text": "先以每週 3–7 篇建立主題群集。"}}]}, {"@context": "https://schema.org", "@type": "Article", "headline": "AI 如何評分硬技能與軟技能？人才評分模型設計", "description": "說明 AI 人才評分的維度、權重與人工校準方式。", "datePublished": "2026-10-22", "dateModified": "2026-10-22", "inLanguage": "zh-Hant", "author": {"@type": "Organization", "name": "HR Vision AI"}, "publisher": {"@type": "Organization", "name": "HR Vision AI"}, "mainEntityOfPage": "https://hr-vision-ai-new-v5.vercel.app/#article-day3"}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "軟技能能量化嗎？", "acceptedAnswer": {"@type": "Answer", "text": "可用行為描述與情境證據半量化，不宜單靠 AI 推測。"}}, {"@type": "Question", "name": "權重怎麼定？", "acceptedAnswer": {"@type": "Answer", "text": "由 HRBP 與用人主管共同校準。"}}]}, {"@context": "https://schema.org", "@type": "Article", "headline": "JD 解析三步驟：把職缺描述變成可量化能力清單", "description": "用三步驟將 JD 轉為可評估的能力清單。", "datePublished": "2026-10-23", "dateModified": "2026-10-23", "inLanguage": "zh-Hant", "author": {"@type": "Organization", "name": "HR Vision AI"}, "publisher": {"@type": "Organization", "name": "HR Vision AI"}, "mainEntityOfPage": "https://hr-vision-ai-new-v5.vercel.app/#article-day4"}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "JD 要寫多長？", "acceptedAnswer": {"@type": "Answer", "text": "以資訊完整且可掃讀為準。"}}, {"@type": "Question", "name": "AI 解析結果可直接用嗎？", "acceptedAnswer": {"@type": "Answer", "text": "需人工確認再發布。"}}]}, {"@context": "https://schema.org", "@type": "Article", "headline": "工作經歷與程式語言匹配：避開關鍵字比對的盲點", "description": "匹配不只比關鍵字，需看使用深度與脈絡。", "datePublished": "2026-10-24", "dateModified": "2026-10-24", "inLanguage": "zh-Hant", "author": {"@type": "Organization", "name": "HR Vision AI"}, "publisher": {"@type": "Organization", "name": "HR Vision AI"}, "mainEntityOfPage": "https://hr-vision-ai-new-v5.vercel.app/#article-day5"}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "轉職者怎麼評？", "acceptedAnswer": {"@type": "Answer", "text": "看可遷移能力與學習證據。"}}, {"@type": "Question", "name": "要不要看 GitHub？", "acceptedAnswer": {"@type": "Answer", "text": "可作為佐證之一，非唯一依據。"}}]}, {"@context": "https://schema.org", "@type": "Article", "headline": "AI 招募自動化漏斗：從投遞到面試的 5 個節點", "description": "拆解招募漏斗並說明各節點可自動化的工作。", "datePublished": "2026-10-25", "dateModified": "2026-10-25", "inLanguage": "zh-Hant", "author": {"@type": "Organization", "name": "HR Vision AI"}, "publisher": {"@type": "Organization", "name": "HR Vision AI"}, "mainEntityOfPage": "https://hr-vision-ai-new-v5.vercel.app/#article-day6"}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "會取代招募人員嗎？", "acceptedAnswer": {"@type": "Answer", "text": "取代的是重複工作，不是專業判斷。"}}, {"@type": "Question", "name": "如何衡量成效？", "acceptedAnswer": {"@type": "Answer", "text": "比較導入前後的篩選時間與回覆速度。"}}]}, {"@context": "https://schema.org", "@type": "Article", "headline": "預測型人資分析：如何提早發現關鍵人才離職風險", "description": "以資料訊號建立離職風險預警並設計留才行動。", "datePublished": "2026-10-26", "dateModified": "2026-10-26", "inLanguage": "zh-Hant", "author": {"@type": "Organization", "name": "HR Vision AI"}, "publisher": {"@type": "Organization", "name": "HR Vision AI"}, "mainEntityOfPage": "https://hr-vision-ai-new-v5.vercel.app/#article-day7"}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "需要多少資料？", "acceptedAnswer": {"@type": "Answer", "text": "先從既有 HRIS 的 3–5 個欄位開始。"}}, {"@type": "Question", "name": "準確嗎？", "acceptedAnswer": {"@type": "Answer", "text": "以回測驗證，持續校正。"}}]}, {"@context": "https://schema.org", "@type": "Article", "headline": "Frontend Engineer 招募策略：如何寫出吸引前端人才的職缺", "description": "前端招募的 JD、評估與面試設計。", "datePublished": "2026-10-27", "dateModified": "2026-10-27", "inLanguage": "zh-Hant", "author": {"@type": "Organization", "name": "HR Vision AI"}, "publisher": {"@type": "Organization", "name": "HR Vision AI"}, "mainEntityOfPage": "https://hr-vision-ai-new-v5.vercel.app/#article-day8"}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "要考演算法嗎？", "acceptedAnswer": {"@type": "Answer", "text": "視職級，優先考實務情境。"}}, {"@type": "Question", "name": "如何吸引人才？", "acceptedAnswer": {"@type": "Answer", "text": "說清楚產品、技術與成長路徑。"}}]}, {"@context": "https://schema.org", "@type": "Article", "headline": "Backend Engineer 招募策略：評估系統設計與穩定性", "description": "後端招募的能力模型與面試方法。", "datePublished": "2026-10-28", "dateModified": "2026-10-28", "inLanguage": "zh-Hant", "author": {"@type": "Organization", "name": "HR Vision AI"}, "publisher": {"@type": "Organization", "name": "HR Vision AI"}, "mainEntityOfPage": "https://hr-vision-ai-new-v5.vercel.app/#article-day9"}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "資淺與資深差在哪？", "acceptedAnswer": {"@type": "Answer", "text": "資深者能說明取捨與影響。"}}, {"@type": "Question", "name": "多語言背景要加分嗎？", "acceptedAnswer": {"@type": "Answer", "text": "視團隊棧而定。"}}]}, {"@context": "https://schema.org", "@type": "Article", "headline": "INFRA／SRE 工程師招募策略：雲端、自動化與可觀測性", "description": "基礎設施人才的評估重點與面談設計。", "datePublished": "2026-10-29", "dateModified": "2026-10-29", "inLanguage": "zh-Hant", "author": {"@type": "Organization", "name": "HR Vision AI"}, "publisher": {"@type": "Organization", "name": "HR Vision AI"}, "mainEntityOfPage": "https://hr-vision-ai-new-v5.vercel.app/#article-day10"}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "證照重要嗎？", "acceptedAnswer": {"@type": "Answer", "text": "可參考，實務經驗更關鍵。"}}, {"@type": "Question", "name": "輪值如何談？", "acceptedAnswer": {"@type": "Answer", "text": "事先說明並設計補償機制。"}}]}, {"@context": "https://schema.org", "@type": "Article", "headline": "雇主品牌 AIGEO 實作清單：讓 AI 讀懂你的公司", "description": "10 項雇主品牌 AIGEO 檢查清單。", "datePublished": "2026-10-30", "dateModified": "2026-10-30", "inLanguage": "zh-Hant", "author": {"@type": "Organization", "name": "HR Vision AI"}, "publisher": {"@type": "Organization", "name": "HR Vision AI"}, "mainEntityOfPage": "https://hr-vision-ai-new-v5.vercel.app/#article-day11"}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "需要多少內容？", "acceptedAnswer": {"@type": "Answer", "text": "先完成 10 項，再持續擴充。"}}, {"@type": "Question", "name": "如何確認有效？", "acceptedAnswer": {"@type": "Answer", "text": "定期用 AI 搜尋你的品牌並記錄結果。"}}]}, {"@context": "https://schema.org", "@type": "Article", "headline": "跨國團隊合規與入職：流程清單與常見風險", "description": "跨國招聘與入職的合規流程與檢查點。", "datePublished": "2026-10-31", "dateModified": "2026-10-31", "inLanguage": "zh-Hant", "author": {"@type": "Organization", "name": "HR Vision AI"}, "publisher": {"@type": "Organization", "name": "HR Vision AI"}, "mainEntityOfPage": "https://hr-vision-ai-new-v5.vercel.app/#article-day12"}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "可用 EOR 嗎？", "acceptedAnswer": {"@type": "Answer", "text": "視情況，需評估成本與控管。"}}, {"@type": "Question", "name": "試用期怎麼訂？", "acceptedAnswer": {"@type": "Answer", "text": "依當地法規。"}}]}, {"@context": "https://schema.org", "@type": "Article", "headline": "招募數據儀表板：該看哪 7 個指標", "description": "用 7 項指標掌握招募效率與品質。", "datePublished": "2026-11-01", "dateModified": "2026-11-01", "inLanguage": "zh-Hant", "author": {"@type": "Organization", "name": "HR Vision AI"}, "publisher": {"@type": "Organization", "name": "HR Vision AI"}, "mainEntityOfPage": "https://hr-vision-ai-new-v5.vercel.app/#article-day13"}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "資料不完整怎麼辦？", "acceptedAnswer": {"@type": "Answer", "text": "從 3 項開始累積。"}}, {"@type": "Question", "name": "用什麼工具？", "acceptedAnswer": {"@type": "Answer", "text": "以現有表單或 HRIS 匯出即可起步。"}}]}, {"@context": "https://schema.org", "@type": "Article", "headline": "HRBP 與用人主管校準：如何開好需求校準會議", "description": "以結構化流程縮短需求落差。", "datePublished": "2026-11-02", "dateModified": "2026-11-02", "inLanguage": "zh-Hant", "author": {"@type": "Organization", "name": "HR Vision AI"}, "publisher": {"@type": "Organization", "name": "HR Vision AI"}, "mainEntityOfPage": "https://hr-vision-ai-new-v5.vercel.app/#article-day14"}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "多久校準一次？", "acceptedAnswer": {"@type": "Answer", "text": "每個新職缺一次，招募中途視情況調整。"}}, {"@type": "Question", "name": "主管沒時間？", "acceptedAnswer": {"@type": "Answer", "text": "提供一頁式預填表。"}}]}]</script>
 </section>
 
 <footer>
@@ -584,7 +587,7 @@ let savedExpText = "";
 let lastRenderedReportData = null;
 let currentActiveCardId = null;
 
-// 8 張知識庫卡片完整中英雙語資料庫
+// 8 張知識庫卡片完整中英雙語資料庫（搭配高穩定度真實職場攝影圖與 Pexels 雙重防破圖備援）
 const kbCardsData = {
   zh: [
     {
@@ -592,7 +595,8 @@ const kbCardsData = {
       title: "AI Scoring 軟硬實力評估模型",
       desc: "透過大語言模型進行多階段動態經歷與程式語言自動化匹配分析。",
       tag: "核心演算法",
-      imageUrl: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80",
+      imageUrl: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800",
+      fallbackUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&auto=format&fit=crop&q=80",
       subpages: [
         { title: "核心架構與定義", content: "AI Scoring 模型結合了自然語言處理 (NLP) 與深度特徵萃取技術。透過解析履歷中的程式語言、框架與專案背景，與職缺 JD 進行矩陣式對齊，實現高精準度的客觀評分機制。" },
         { title: "實務應用與案例", content: "企業在面對每天數百份履歷時，常因面試官主觀意識導致標準不一。導入 AI Scoring 後，系統可自動產出包含能力評估、亮點與風險訊號、定制面試問題及 4 大風險指標的實體 PDF 報告，篩選效率提升 300%。" },
@@ -604,7 +608,8 @@ const kbCardsData = {
       title: "AI 招募自動化漏斗優化",
       desc: "打造零人工干預的智慧應徵管道，全面提升招募轉換率。",
       tag: "招募自動化",
-      imageUrl: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=600&q=80",
+      imageUrl: "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=800",
+      fallbackUrl: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&auto=format&fit=crop&q=80",
       subpages: [
         { title: "核心架構與定義", content: "自動化漏斗串接履歷投遞、智慧篩選、自動預約面試與適性測驗，將傳統耗時 3 週的流程縮短至 72 小時內完成初篩。" },
         { title: "實務應用與案例", content: "針對高流動率的雲端工程師職缺，系統會自動發送線上技術檢核並即時回傳評分，HR 僅需介入最終複試，大幅降低人事營運成本。" },
@@ -616,7 +621,8 @@ const kbCardsData = {
       title: "預測性人資分析與離職預警",
       desc: "運用大數據與機器學習提前識別關鍵人才流失風險。",
       tag: "預測分析",
-      imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80",
+      imageUrl: "https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=800",
+      fallbackUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80",
       subpages: [
         { title: "核心架構與定義", content: "分析員工專案負載、薪酬競爭力與組織互動頻率，建立離職機率預測模型，在關鍵人才萌生去意前主動發出預警。" },
         { title: "實務應用與案例", content: "研發主管可透過儀表板掌握團隊穩定度指數，當核心工程師的工作負荷超標時，系統會自動提醒 HRBP 進行關懷訪談。" },
@@ -628,7 +634,8 @@ const kbCardsData = {
       title: "雲端工程師招募與題庫策略",
       desc: "針對 Frontend、Backend 與 INFRA 架構師的精準考核指南。",
       tag: "技術招募",
-      imageUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80",
+      imageUrl: "https://images.pexels.com/photos/3861958/pexels-photo-3861958.jpeg?auto=compress&cs=tinysrgb&w=800",
+      fallbackUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop&q=80",
       subpages: [
         { title: "核心架構與定義", content: "針對現代雲端原生架構（Cloud-Native）設計的專業能力檢核表，涵蓋分散式系統設計、容器化技術與資安合規標準。" },
         { title: "實務應用與案例", content: "提供各職位專屬的實戰面試題庫與情境題（例如：系統遭遇突發流量飆高時的排查步驟），協助用人主管快速鑑別技術深度。" },
@@ -640,7 +647,8 @@ const kbCardsData = {
       title: "AIGEO 雇主品牌搜尋優化",
       desc: "在 AI 搜尋時代搶佔頂尖人才心佔率的關鍵戰略。",
       tag: "雇主品牌",
-      imageUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80",
+      imageUrl: "https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=800",
+      fallbackUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&auto=format&fit=crop&q=80",
       subpages: [
         { title: "核心架構與定義", content: "優化企業在各大生成式 AI 搜尋引擎與語意圖譜中的能見度，確保當求職者詢問「最佳雲端與 AI 創新企業」時名列前茅。" },
         { title: "實務應用與案例", content: "透過結構化語意標記與技術白皮書發表，建立企業在技術社群中的權威形象，吸引主動投遞的優秀人才佔比提升 50%。" },
@@ -652,7 +660,8 @@ const kbCardsData = {
       title: "跨國團隊合規與遠端入職",
       desc: "無縫對接全球勞動法規與多文化遠端工作者 Onboarding。",
       tag: "全球合規",
-      imageUrl: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=600&q=80",
+      imageUrl: "https://images.pexels.com/photos/4226140/pexels-photo-4226140.jpeg?auto=compress&cs=tinysrgb&w=800",
+      fallbackUrl: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&auto=format&fit=crop&q=80",
       subpages: [
         { title: "核心架構與定義", content: "自動化處理跨國薪資、稅務、智慧財產權歸屬與各地勞動合約範本，降低跨國遠端雇用的法律風險。" },
         { title: "實務應用與案例", content: "新進遠端員工透過數位化入職平台在 24 小時內完成合約簽署、資安培訓與權限開通，大幅提升遠端團隊歸屬感。" },
@@ -664,7 +673,8 @@ const kbCardsData = {
       title: "自動化招募數據儀表板設定",
       desc: "透過視覺化指標追蹤招募漏斗、成本與各渠道 ROI。",
       tag: "數據儀表",
-      imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
+      imageUrl: "https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=800",
+      fallbackUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80",
       subpages: [
         { title: "核心架構與定義", content: "建立即時更新的 Recruitment Analytics Dashboard，整合 Time-to-Fill、Cost-per-Hire 與 Offer Acceptance Rate 等關鍵指標。" },
         { title: "實務應用與案例", content: "管理階層可一目了然各招聘管道的轉換效益，精準將預算配置在錄取率最高的高效能獵才渠道。" },
@@ -676,7 +686,8 @@ const kbCardsData = {
       title: "HRBP 主管教練與人才留任指南",
       desc: "賦能 HRBP 成為企業營運夥伴與技術主管的最佳領導教練。",
       tag: "人才發展",
-      imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=600&q=80",
+      imageUrl: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800",
+      fallbackUrl: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&auto=format&fit=crop&q=80",
       subpages: [
         { title: "核心架構與定義", content: "提供 HRBP 標準化教練框架與溝通腳本，協助用人主管解決團隊衝突、績效面談與關鍵人才留任挑戰。" },
         { title: "實務應用與案例", content: "透過結構化一對一訪談指引與情境訓練，提升技術主管的同理心溝通技巧，使部門非自願與自願離職率顯著下降。" },
@@ -690,7 +701,8 @@ const kbCardsData = {
       title: "AI Scoring Hard & Soft Skills Model",
       desc: "Multi-stage dynamic resume, project experience, and programming language matching powered by LLMs.",
       tag: "Core Algorithm",
-      imageUrl: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80",
+      imageUrl: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800",
+      fallbackUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&auto=format&fit=crop&q=80",
       subpages: [
         { title: "Core Architecture & Definition", content: "The AI Scoring Model combines Natural Language Processing (NLP) with deep feature extraction. By parsing programming languages, frameworks, and project achievements from resumes and aligning them against Job Descriptions (JD), it delivers objective, bias-free candidate evaluations." },
         { title: "Practical Use Cases", content: "When facing hundreds of applications daily, inconsistent interviewer standards often lead to missed talent. With AI Scoring, the system dynamically generates a 4-Module PDF Report covering Competency Assessment, Highlights vs. Risk Signals, Customized Interview Questions, and 4 Risk Metrics—boosting screening efficiency by 300%." },
@@ -702,7 +714,8 @@ const kbCardsData = {
       title: "AI Automated Recruitment Funnel",
       desc: "Build zero-touch smart application pipelines to maximize hiring conversion rates.",
       tag: "Automation",
-      imageUrl: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=600&q=80",
+      imageUrl: "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=800",
+      fallbackUrl: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&auto=format&fit=crop&q=80",
       subpages: [
         { title: "Core Architecture & Definition", content: "The automated funnel connects resume intake, AI pre-screening, automated interview scheduling, and skill assessments—shrinking traditional 3-week screening cycles into under 72 hours." },
         { title: "Practical Use Cases", content: "For high-demand cloud engineering roles, the system automatically dispatches technical evaluations and scores responses in real time, allowing HRBPs to focus exclusively on final-round cultural and executive alignment." },
@@ -714,7 +727,8 @@ const kbCardsData = {
       title: "Predictive HR Analytics & Retention",
       desc: "Leverage machine learning and workforce data to identify key talent turnover risks early.",
       tag: "Predictive Analytics",
-      imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80",
+      imageUrl: "https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=800",
+      fallbackUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80",
       subpages: [
         { title: "Core Architecture & Definition", content: "By analyzing project workload, compensation benchmarks, and engagement signals, the predictive model identifies flight risks before key contributors decide to leave." },
         { title: "Practical Use Cases", content: "Engineering leaders monitor team stability indices via real-time dashboards. When burnout indicators rise for core architects, the system alerts HRBPs to initiate proactive stay interviews." },
@@ -726,7 +740,8 @@ const kbCardsData = {
       title: "Cloud Engineer Hiring & Question Bank",
       desc: "Precision evaluation guidelines for Frontend, Backend, and INFRA / DevOps Architects.",
       tag: "Tech Recruiting",
-      imageUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80",
+      imageUrl: "https://images.pexels.com/photos/3861958/pexels-photo-3861958.jpeg?auto=compress&cs=tinysrgb&w=800",
+      fallbackUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop&q=80",
       subpages: [
         { title: "Core Architecture & Definition", content: "Structured competency rubrics tailored for modern Cloud-Native architectures, covering distributed systems, container orchestration, and security compliance." },
         { title: "Practical Use Cases", content: "Provides role-specific scenario questions (e.g., live troubleshooting steps during sudden traffic spikes or memory leaks) to help hiring managers verify true production depth." },
@@ -738,7 +753,8 @@ const kbCardsData = {
       title: "AIGEO Employer Branding Optimization",
       desc: "Capture top talent mindshare in the era of generative AI search engines.",
       tag: "Employer Brand",
-      imageUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80",
+      imageUrl: "https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=800",
+      fallbackUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&auto=format&fit=crop&q=80",
       subpages: [
         { title: "Core Architecture & Definition", content: "Optimizes your organization's visibility across generative AI search summaries and semantic knowledge graphs when candidates search for top innovative employers." },
         { title: "Practical Use Cases", content: "Through structured semantic declarations and technical whitepapers, companies build high authority in developer communities—increasing inbound senior applications by 50%." },
@@ -750,7 +766,8 @@ const kbCardsData = {
       title: "Global Compliance & Remote Onboarding",
       desc: "Seamlessly manage cross-border labor laws and multicultural remote onboarding.",
       tag: "Global Compliance",
-      imageUrl: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=600&q=80",
+      imageUrl: "https://images.pexels.com/photos/4226140/pexels-photo-4226140.jpeg?auto=compress&cs=tinysrgb&w=800",
+      fallbackUrl: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&auto=format&fit=crop&q=80",
       subpages: [
         { title: "Core Architecture & Definition", content: "Automates cross-border payroll, tax compliance, IP assignment, and localized employment contracts to eliminate international hiring risks." },
         { title: "Practical Use Cases", content: "New remote hires complete digital contract signing, security training, and system provisioning within 24 hours, fostering strong day-one engagement." },
@@ -762,7 +779,8 @@ const kbCardsData = {
       title: "Automated Recruitment Analytics Dashboard",
       desc: "Track hiring funnels, cost-per-hire, and channel ROI through real-time visual metrics.",
       tag: "Analytics Dashboard",
-      imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
+      imageUrl: "https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=800",
+      fallbackUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80",
       subpages: [
         { title: "Core Architecture & Definition", content: "Establishes a real-time Recruitment Analytics Dashboard integrating Time-to-Fill, Cost-per-Hire, Pass-Through Rates, and Offer Acceptance Rates." },
         { title: "Practical Use Cases", content: "Executives and HRBPs gain instant visibility into channel ROI, eliminating bottlenecks between resume review and technical panel interviews." },
@@ -774,7 +792,8 @@ const kbCardsData = {
       title: "HRBP Leadership Coaching & Retention Guide",
       desc: "Empower HRBPs with structured coaching frameworks to support engineering and business leaders.",
       tag: "Talent Development",
-      imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=600&q=80",
+      imageUrl: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800",
+      fallbackUrl: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&auto=format&fit=crop&q=80",
       subpages: [
         { title: "Core Architecture & Definition", content: "Equips HRBPs with actionable coaching scripts and RACI governance frameworks to help managers resolve team friction, conduct performance reviews, and retain top performers." },
         { title: "Practical Use Cases", content: "Through structured 1-on-1 templates and scenario coaching, technical leads improve empathetic communication—significantly reducing regrettable attrition." },
@@ -850,7 +869,14 @@ function renderKbCards() {
     cardEl.className = 'kb-card';
     cardEl.onclick = () => openKbSubpage(card.id);
     cardEl.innerHTML = `
-      <img src="${card.imageUrl}" alt="${card.title}" class="kb-card-img" loading="lazy">
+      <div class="kb-card-img-wrapper">
+        <img src="${card.imageUrl}" 
+             alt="${card.title}" 
+             class="kb-card-img" 
+             loading="lazy" 
+             referrerpolicy="no-referrer"
+             onerror="if(this.src!=='${card.fallbackUrl}'){this.src='${card.fallbackUrl}';}">
+      </div>
       <div class="kb-card-body">
         <div>
           <h3 class="kb-card-title">${card.title}</h3>
@@ -871,6 +897,13 @@ function openKbSubpage(cardId) {
 
   document.getElementById('kb-main-view').style.display = 'none';
   document.getElementById('kb-subpage-view').style.display = 'block';
+
+  const heroImg = document.getElementById('subpage-hero-img');
+  heroImg.src = card.imageUrl;
+  heroImg.alt = card.title;
+  heroImg.onerror = function() {
+    if (this.src !== card.fallbackUrl) this.src = card.fallbackUrl;
+  };
 
   document.getElementById('subpage-title').innerText = card.title;
   document.getElementById('subpage-desc').innerText = card.desc;
@@ -1111,7 +1144,6 @@ function switchLanguage(lang) {
   }
 }
 
-// 點擊任何標籤：填入文字並「零阻礙立即執行 AI 診斷」
 function triggerTopicByKey(key) {
   const t = translations[currentLang];
   const inputEl = document.getElementById('challenge-input');
@@ -1119,7 +1151,6 @@ function triggerTopicByKey(key) {
   executeWithQuota(startInitialDiagnosis);
 }
 
-// 檢查 20 次額度並直接執行（移除會卡住點擊的 Modal 攔截）
 function executeWithQuota(actionCallback) {
   const userKey = document.getElementById('user-api-key').value.trim();
   if (!userKey && getUsageCount() >= MAX_FREE_USES) {
@@ -1354,7 +1385,6 @@ async function startInitialDiagnosis() {
 
   if (!userKey) incrementUsageCount();
 
-  // 立即平滑捲動至結果區，讓使用者清楚看到 AI 已經啟動
   resBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
   if (isTop1Flow) {
@@ -1710,7 +1740,6 @@ function parseFlexibleCompetencyData(text, dynamicBase, lang) {
   };
 }
 
-// 同時生成「內嵌真實 PDF 預覽視窗 (Blob URL)」並自動下載實體 .pdf 檔案！
 function exportVisualReportToPDF(triggerSave = true) {
   const element = document.getElementById('pdf-export-area');
   if (!element) return;
@@ -1736,7 +1765,6 @@ function exportVisualReportToPDF(triggerSave = true) {
     const worker = html2pdf().set(opt).from(element).toPdf();
 
     worker.get('pdf').then((pdfObj) => {
-      // 產生真實 PDF Blob URL 並塞入內嵌 PDF 閱讀器視窗，讓使用者直接看到真正的 PDF 檔案！
       const blob = pdfObj.output('blob');
       const blobUrl = URL.createObjectURL(blob);
       const viewerWrapper = document.getElementById('pdf-live-viewer-wrapper');
@@ -1839,12 +1867,10 @@ function renderFlexibleCompetencyReport(data, autoDownload = false) {
       </div>
     </div>
 
-    <!-- 內嵌真實 PDF 檔案預覽視窗 (Blob PDF Viewer) -->
     <div id="pdf-live-viewer-wrapper" class="pdf-live-viewer-wrapper">
       <iframe id="pdf-live-viewer-frame" class="pdf-live-viewer-frame" title="PDF Report Viewer"></iframe>
     </div>
 
-    <!-- 實體 PDF 匯出畫布區域 -->
     <div id="pdf-export-area" class="ai-scoring-card">
       <div class="pdf-brand-watermark">
         <span>${labels.watermarkLeft}</span>
@@ -1932,7 +1958,6 @@ function renderFlexibleCompetencyReport(data, autoDownload = false) {
   `;
   container.scrollIntoView({ behavior: 'smooth' });
 
-  // 自動轉成真實 PDF 預覽並下載 .pdf 檔案
   setTimeout(() => {
     exportVisualReportToPDF(autoDownload);
   }, 500);
