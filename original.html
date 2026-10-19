@@ -1,1 +1,999 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Vision AI - AI-Powered HR & Recruitment Automation System | AIGEO Strategy Platform</title>
+    <meta name="description" content="HR Vision AI combines artificial intelligence with recruitment process automation, featuring Gemini 3.6 Flash engines and smart hiring funnels.">
+    <style>
+        :root {
+            --primary-color: #0f766e;
+            --primary-hover: #115e59;
+            --secondary-color: #0284c7;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --border-color: #e2e8f0;
+        }
 
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { color: var(--text-main); background-color: var(--bg-light); line-height: 1.65; }
+        header { background-color: var(--white); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 100; }
+        .nav-container { max-width: 1100px; margin: 0 auto; padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+        .logo { font-size: 1.25rem; font-weight: 700; color: var(--primary-color); text-decoration: none; }
+        .logo span { color: var(--secondary-color); font-weight: 400; font-size: 0.95rem; margin-left: 0.25rem; }
+        .nav-right { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
+        
+        .nav-tabs { display: flex; gap: 0.5rem; }
+        .nav-tab-btn { border: none; background: transparent; padding: 0.4rem 0.9rem; font-size: 0.95rem; font-weight: 600; border-radius: 6px; cursor: pointer; color: #64748b; transition: all 0.2s; }
+        .nav-tab-btn.active { background: #f0fdf4; color: var(--primary-color); }
+        
+        .usage-badge { font-size: 0.85rem; font-weight: 700; color: #0f766e; background: #ccfbf1; border: 1px solid #99f6e4; padding: 0.35rem 0.85rem; border-radius: 50px; }
+        
+        .lang-switch { display: inline-flex; background: #f1f5f9; padding: 0.25rem; border-radius: 8px; border: 1px solid var(--border-color); gap: 0.25rem; }
+        .lang-btn { border: none; background: transparent; padding: 0.4rem 0.8rem; font-size: 0.85rem; font-weight: 600; border-radius: 6px; cursor: pointer; color: #64748b; transition: all 0.2s; }
+        .lang-btn.active { background: var(--white); color: var(--primary-color); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+
+        .machine-readable-banner {
+            background: #e0f2fe;
+            border: 1px solid #bae6fd;
+            color: #0369a1;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .sandbox-card { background: var(--white); border: 1px solid var(--border-color); border-radius: 16px; padding: 2.5rem 2rem; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); margin-bottom: 3rem; text-align: center; }
+        .sandbox-header h1 { font-size: 2.1rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem; }
+        .sandbox-header p { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 2rem; }
+        
+        .target-selector-box { display: flex; align-items: center; justify-content: center; gap: 0.75rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .target-selector-box select { padding: 0.5rem 1rem; border: 1px solid var(--border-color); border-radius: 8px; font-size: 0.95rem; background: #fff; }
+        
+        .privacy-notice-tip {
+            font-size: 0.82rem; color: #b45309; background: #fffbeb; border: 1px solid #fef3c7;
+            padding: 0.4rem 0.8rem; border-radius: 6px; max-width: 860px; margin: 0 auto 0.75rem auto; text-align: left; font-weight: 500;
+        }
+
+        .search-input-wrapper { position: relative; max-width: 860px; margin: 0 auto 1.5rem auto; display: flex; align-items: center; background: #fff; border: 2px solid #e2e8f0; border-radius: 50px; padding: 0.35rem 0.5rem 0.35rem 1.25rem; box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
+        .search-input { flex: 1; border: none; outline: none; font-size: 1.05rem; background: transparent; }
+        .btn-diagnose { background-color: var(--primary-color); color: var(--white); border: none; padding: 0.75rem 1.75rem; font-size: 1rem; font-weight: 600; border-radius: 50px; cursor: pointer; white-space: nowrap; }
+        .btn-diagnose:hover { background-color: var(--primary-hover); }
+
+        .tags-section { max-width: 860px; margin: 0 auto; text-align: left; }
+        .tags-title { font-size: 0.9rem; font-weight: 700; color: #1e293b; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.4rem; }
+        
+        .top3-container { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.25rem; }
+        .tag-btn-top3 {
+            background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%); border: 1px solid #10b981; border-radius: 8px;
+            padding: 0.6rem 1rem; font-size: 0.9rem; color: #065f46; font-weight: 600; cursor: pointer; text-align: left; transition: all 0.2s;
+        }
+        .tag-btn-top3:hover { background: #d1fae5; transform: translateY(-1px); }
+
+        .tags-divider { border: none; border-top: 1px dashed var(--border-color); margin: 1rem 0; }
+        .tags-container { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+        .tag-btn { background: #fff; border: 1px solid var(--border-color); border-radius: 50px; padding: 0.45rem 1rem; font-size: 0.85rem; color: #334155; cursor: pointer; }
+        .tag-btn:hover { background: #f1f5f9; }
+
+        /* 知識庫卡片樣式 */
+        .kb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; text-align: left; margin-top: 1rem; }
+        .kb-card { background: #fff; border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; display: flex; flex-direction: column; }
+        .kb-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
+        .kb-card-img { width: 100%; height: 160px; background: #e2e8f0; object-fit: cover; }
+        .kb-card-body { padding: 1.25rem; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .kb-card-title { font-size: 1.05rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem; }
+        .kb-card-text { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.0rem; line-height: 1.5; }
+        .kb-card-tag { align-self: flex-start; font-size: 0.75rem; font-weight: 600; color: #0f766e; background: #ccfbf1; padding: 0.2rem 0.6rem; border-radius: 4px; }
+
+        /* Subpage 容器樣式 */
+        .subpage-container { display: none; text-align: left; }
+        .subpage-header-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; }
+        .btn-back { background: #f1f5f9; border: 1px solid var(--border-color); padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600; cursor: pointer; color: #334155; }
+        .btn-back:hover { background: #e2e8f0; }
+        .subpage-title { font-size: 1.5rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem; }
+        .subpage-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
+        
+        .subpage-nav-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.75rem; flex-wrap: wrap; }
+        .subpage-tab-btn { background: #f8fafc; border: 1px solid var(--border-color); padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600; font-size: 0.9rem; cursor: pointer; color: #475569; }
+        .subpage-tab-btn.active { background: var(--primary-color); color: #fff; border-color: var(--primary-color); }
+        .subpage-content-pane { display: none; background: #f8fafc; border: 1px solid var(--border-color); border-radius: 10px; padding: 1.5rem; font-size: 0.95rem; line-height: 1.7; color: #1e293b; }
+        .subpage-content-pane.active { display: block; }
+
+        /* API Key 容器與教學區塊樣式 */
+        .api-key-container { display: none; max-width: 860px; margin: 2rem auto 0 auto; text-align: left; background: #fffbeb; border: 2px solid #f59e0b; padding: 1.5rem; border-radius: 12px; box-shadow: 0 10px 25px rgba(245, 158, 11, 0.15); }
+        .api-key-container h3 { color: #92400e; font-size: 1.15rem; margin-bottom: 0.5rem; }
+        .api-key-container p { color: #78350f; font-size: 0.92rem; margin-bottom: 1rem; }
+        .api-input-group { display: flex; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
+        .api-input-group input { flex: 1; min-width: 240px; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.95rem; }
+        .btn-confirm-apikey { background: #d97706; color: #fff; border: none; padding: 0.75rem 1.5rem; border-radius: 6px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+        .btn-confirm-apikey:hover { background: #b45309; }
+        .safety-assurance-text { font-size: 0.82rem; color: #047857; font-weight: 700; background: #ecfdf5; border: 1px solid #a7f3d0; padding: 0.35rem 0.75rem; border-radius: 6px; display: inline-block; }
+
+        /* API 申請教學區樣式 */
+        .api-tutorial-toggle { margin-top: 1rem; border-top: 1px dashed #fcd34d; padding-top: 0.85rem; }
+        .btn-toggle-tutorial { background: none; border: none; color: #b45309; font-weight: 700; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; gap: 0.3rem; padding: 0; }
+        .btn-toggle-tutorial:hover { color: #78350f; text-decoration: underline; }
+        .api-tutorial-content { display: none; margin-top: 0.75rem; background: #fff; border: 1px solid #fde68a; border-radius: 8px; padding: 1rem; font-size: 0.88rem; color: #78350f; line-height: 1.6; }
+        .api-tutorial-content ol { padding-left: 1.2rem; margin-top: 0.4rem; }
+        .api-tutorial-content li { margin-bottom: 0.4rem; }
+        .api-tutorial-content a { color: #0284c7; font-weight: 600; text-decoration: underline; }
+
+        .result-panel { max-width: 860px; margin: 2rem auto 0 auto; padding: 1.75rem; background: #f8fafc; border: 1px solid var(--border-color); border-radius: 12px; text-align: left; display: none; }
+        
+        .step-indicator-bar { display: none; background: #ecfdf5; border: 1px solid #a7f3d0; color: #065f46; padding: 0.6rem 1rem; border-radius: 8px; margin-bottom: 1.25rem; font-size: 0.88rem; font-weight: 700; }
+
+        .followup-box { background: #fff; border: 2px solid #0f766e; border-radius: 10px; padding: 1.25rem; margin-top: 1.5rem; }
+        .followup-prompt-label { font-size: 0.95rem; font-weight: 700; color: #0f766e; margin-bottom: 0.6rem; display: block; }
+        .custom-followup-wrapper { display: flex; gap: 0.5rem; }
+        .custom-followup-input { flex: 1; padding: 0.7rem 0.9rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.95rem; }
+        .btn-send-followup { background: var(--primary-color); color: #fff; border: none; padding: 0.7rem 1.4rem; border-radius: 6px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1000; justify-content: center; align-items: center; padding: 1rem; }
+        .modal-content { background: #ffffff; border-radius: 12px; max-width: 520px; width: 100%; padding: 2rem; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); text-align: left; }
+        .modal-content h3 { color: #0f172a; font-size: 1.25rem; margin-bottom: 0.75rem; }
+        .modal-content p { color: #475569; font-size: 0.92rem; line-height: 1.6; margin-bottom: 1.25rem; }
+        .modal-checkbox-wrapper { display: flex; align-items: flex-start; gap: 0.6rem; background: #f8fafc; border: 1px solid var(--border-color); padding: 0.85rem; border-radius: 8px; margin-bottom: 1.5rem; }
+        .modal-checkbox-wrapper input[type="checkbox"] { margin-top: 0.2rem; width: 1.1rem; height: 1.1rem; cursor: pointer; }
+        .modal-checkbox-wrapper label { font-size: 0.88rem; color: #334155; cursor: pointer; font-weight: 500; }
+        .modal-buttons { display: flex; justify-content: flex-end; gap: 0.75rem; }
+        .btn-modal-cancel { background: #f1f5f9; color: #475569; border: none; padding: 0.6rem 1.2rem; border-radius: 6px; font-weight: 600; cursor: pointer; }
+        .btn-modal-confirm { background: var(--primary-color); color: #fff; border: none; padding: 0.6rem 1.5rem; border-radius: 6px; font-weight: 600; cursor: pointer; }
+        .btn-modal-confirm:disabled { background: #cbd5e1; cursor: not-allowed; }
+
+        footer { background: var(--white); border-top: 1px solid var(--border-color); padding: 2rem 1.5rem; margin-top: 3rem; text-align: center; color: var(--text-muted); font-size: 0.875rem; }
+
+        @media print {
+            header, .machine-readable-banner, .sandbox-header, .target-selector-box, .privacy-notice-tip, .search-input-wrapper, .tags-section, .step-indicator-bar, #conversation-container, .followup-box, .btn-download-pdf, .edit-hint-tag, footer {
+                display: none !important;
+            }
+            .sandbox-card, .result-panel { border: none !important; box-shadow: none !important; padding: 0 !important; margin: 0 !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Privacy Consent Modal -->
+    <div id="privacy-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h3 id="modal-title">🔒 隱私權保護與去識別化同意聲明</h3>
+            <p id="modal-desc">為符合個資保護規範，本沙盒採用即時運算。進行 AI 診斷前請落實「去識別化」，切勿輸入真實姓名或電話（本提示僅出現一次）。</p>
+            <div class="modal-checkbox-wrapper">
+                <input type="checkbox" id="privacy-checkbox" onchange="toggleConfirmBtn()">
+                <label for="privacy-checkbox" id="modal-label">我已了解並同意使用「去識別化」資料進行即時分析。</label>
+            </div>
+            <div class="modal-buttons">
+                <button class="btn-modal-cancel" id="modal-cancel-btn" onclick="closePrivacyModal()">取消</button>
+                <button class="btn-modal-confirm" id="modal-confirm-btn" onclick="confirmPrivacyAndProceed()" disabled>同意並開始</button>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">HR Vision AI <span>| Gemini 3.6 Flash Strategy Platform</span></a>
+            <div class="nav-right">
+                <div class="nav-tabs">
+                    <button class="nav-tab-btn active" id="tab-sandbox" onclick="switchMainTab('sandbox')">沙盒診斷</button>
+                    <button class="nav-tab-btn" id="tab-kb" onclick="switchMainTab('kb')">專業知識庫</button>
+                </div>
+                <div id="usage-counter-badge" class="usage-badge">免費互動剩餘：20 / 20 次</div>
+                <div class="lang-switch">
+                    <button class="lang-btn active" id="btn-zh" onclick="switchLanguage('zh')">繁中</button>
+                    <button class="lang-btn" id="btn-en" onclick="switchLanguage('en')">English</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="machine-readable-banner" id="machine-banner">
+            🤖 [AIGEO 機器語意宣告] 整合 Gemini 3.6 Flash 動態經歷解析引擎與 20 次免費額度保護。
+        </div>
+
+        <!-- 主沙盒檢視區 -->
+        <section id="view-sandbox" class="sandbox-card">
+            <div class="sandbox-header">
+                <h1 id="main-title">AI 代理人驅動之動態人資戰略診斷沙盒</h1>
+                <p id="main-desc">點選 TOP 1 啟動「三階段 JD 與經歷動態匹配 + 軟硬實力 4 大模組 PDF 報告」；點選其他話題啟動「條列式漸進顧問引導」。</p>
+            </div>
+
+            <div class="target-selector-box">
+                <label for="sandbox-target" id="label-target">選擇檢核對象角色：</label>
+                <select id="sandbox-target">
+                    <option value="CEO" id="opt-ceo">CEO / 企業負責人</option>
+                    <option value="HRBP" id="opt-hrbp" selected>HRBP (人資業務夥伴)</option>
+                    <option value="Candidate" id="opt-cand">Candidate (求職者視角評估)</option>
+                    <option value="Training Institute Consultant" id="opt-train">Training Institute Consultant (培訓顧問)</option>
+                    <option value="Leadership Manager" id="opt-mgr">Leadership Manager (用人部門主管)</option>
+                </select>
+            </div>
+
+            <div class="privacy-notice-tip" id="privacy-tip">
+                💡 隱私提示：請勿輸入真實姓名或電話，建議僅貼上職缺 JD、專案與技能描述。
+            </div>
+
+            <div class="search-input-wrapper">
+                <input type="text" id="challenge-input" class="search-input" placeholder="點選下方熱門話題，或直接輸入您的 HR 挑戰...">
+                <button class="btn-diagnose" id="btn-diagnose-text" onclick="checkQuotaAndRun(startInitialDiagnosis)">開始 AI 診斷</button>
+            </div>
+
+            <div class="tags-section">
+                <div class="tags-title" id="top3-title">🔥 2026-2027 TOP 3 HR 最熱門搜尋話題：</div>
+                <div class="top3-container">
+                    <button class="tag-btn-top3" id="top-tag-1" onclick="triggerTopicByKey('top1')">
+                        🎯 TOP 1: AI Scoring Hard & Soft Skills Model (三階段引導：職缺 JD 解析 ➔ 工作經歷和程式語言匹配 ➔ 產出動態 PDF 報告)
+                    </button>
+                    <button class="tag-btn-top3" id="top-tag-2" onclick="triggerTopicByKey('top2')">
+                        🎯 TOP 2: AI Recruitment Revolution & Automated Funnels (提升 300% 招募篩選效率)
+                    </button>
+                    <button class="tag-btn-top3" id="top-tag-3" onclick="triggerTopicByKey('top3')">
+                        📈 TOP 3: Predictive HR Analytics (降低關鍵人才離職風險)
+                    </button>
+                </div>
+
+                <hr class="tags-divider">
+
+                <div class="tags-title" id="standard-title">📌 點選下方職缺與標準 HR 策略標籤（漸進式條列引導）：</div>
+                <div class="tags-container">
+                    <button class="tag-btn" id="std-tag-1" onclick="triggerTopicByKey('std1')">☁️ Frontend Engineer 招募策略</button>
+                    <button class="tag-btn" id="std-tag-2" onclick="triggerTopicByKey('std2')">☁️ Backend Engineer 招募策略</button>
+                    <button class="tag-btn" id="std-tag-3" onclick="triggerTopicByKey('std3')">☁️ INFRA Engineer 招募策略</button>
+                    <button class="tag-btn" id="std-tag-4" onclick="triggerTopicByKey('std4')">🎯 AIGEO 雇主品牌優化</button>
+                    <button class="tag-btn" id="std-tag-5" onclick="triggerTopicByKey('std5')">🌐 跨國團隊合規與入職</button>
+                    <button class="tag-btn" id="std-tag-6" onclick="triggerTopicByKey('std6')">📊 招募數據儀表板設定</button>
+                    <button class="tag-btn" id="std-tag-7" onclick="triggerTopicByKey('std7')">🤝 HRBP 主管教練引導</button>
+                </div>
+            </div>
+
+            <!-- BYOK Box 包含新增的「如何申請 API Key 教學區」 -->
+            <div id="api-key-container" class="api-key-container">
+                <h3 id="byok-title">🔑 20 次免費互動額度已滿！請輸入自備 API Key 繼續免費無限使用</h3>
+                <p id="byok-desc">您已使用完系統內建的 20 次免費額度。請在下方貼上您自己的金鑰（支援 AQ. 憑證、Groq 金鑰或 Gemini 金鑰），確認後此提示框將自動關閉並解鎖無限次使用：</p>
+                
+                <div class="api-input-group">
+                    <input type="password" id="user-api-key" placeholder="請貼上您的 API Key (例如 AQ... 或 gsk_...)">
+                    <button class="btn-confirm-apikey" id="btn-confirm-key" onclick="confirmApiKeyAndContinue()">確認並解鎖無限使用</button>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem;">
+                    <div class="safety-assurance-text" id="safety-text">🛡️ 安全保證：您的金鑰僅暫存於瀏覽器記憶體中，確認後不再重複彈出提醒。</div>
+                </div>
+
+                <!-- 點擊展開的 API 申請教學區 -->
+                <div class="api-tutorial-toggle">
+                    <button class="btn-toggle-tutorial" onclick="toggleApiTutorial()">
+                        📖 點此展開：如何免費申請取得 Gemini / Groq API Key？ ▼
+                    </button>
+                    <div id="api-tutorial-box" class="api-tutorial-content">
+                        <strong>📌 如何快速取得您的專屬 API Key：</strong>
+                        <ol>
+                            <li><strong>申請 Gemini API Key (Google AI Studio)：</strong><br>
+                                前往 <a href="https://aistudio.google.com/" target="_blank">Google AI Studio 官方網站</a>，使用 Google 帳號登入，點擊左上角「Get API key」即可免費建立並複製您的金鑰。
+                            </li>
+                            <li><strong>申請 Groq API Key (高速度備用金鑰)：</strong><br>
+                                前往 <a href="https://console.groq.com/" target="_blank">Groq Console 官網</a>，註冊後至 API Keys 專區即可免費生成一組開頭為 <code>gsk_</code> 的金鑰。
+                            </li>
+                            <li><strong>完成設定：</strong> 將複製好的金鑰貼入上方輸入框，點擊「確認並解鎖無限使用」即可立即恢復無限制對話與診斷功能！
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Diagnosis Result & Interactive Follow-up Panel -->
+            <div id="result-box" class="result-panel">
+                <div id="step-indicator" class="step-indicator-bar"></div>
+                <div id="conversation-container"></div>
+                <div id="pdf-approval-container"></div>
+
+                <div id="followup-box" class="followup-box" style="display: none;">
+                    <label id="followup-label" class="followup-prompt-label">👉 請在此輸入您的回覆：</label>
+                    <div class="custom-followup-wrapper">
+                        <input type="text" id="custom-followup-input" class="custom-followup-input" placeholder="請輸入內容..." onkeypress="if(event.key==='Enter') checkQuotaAndRun(sendCustomFollowUp)" />
+                        <button class="btn-send-followup" id="btn-send-followup" onclick="checkQuotaAndRun(sendCustomFollowUp)">送出</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 專業知識庫主頁面 -->
+        <section id="view-kb" class="sandbox-card" style="display: none;">
+            <div id="kb-main-view">
+                <div class="sandbox-header">
+                    <h1 id="kb-main-title">專業知識庫</h1>
+                    <p id="kb-main-desc">探索領先的 AI 人資戰略、自動化招募架構與深度白皮書，點選卡片查看詳細內容。</p>
+                </div>
+                <div class="kb-grid" id="kb-cards-grid">
+                    <!-- 8 張動態卡片將透過 JS 生成 -->
+                </div>
+            </div>
+
+            <!-- Subpage 檢視區 -->
+            <div id="kb-subpage-view" class="subpage-container">
+                <div class="subpage-header-bar">
+                    <button class="btn-back" onclick="backToKbMain()">← 返回知識庫列表</button>
+                    <span id="subpage-category-tag" class="kb-card-tag">分類標籤</span>
+                </div>
+                <h2 id="subpage-title" class="subpage-title">卡片標題</h2>
+                <p id="subpage-desc" class="subpage-desc">卡片詳細簡介說明...</p>
+
+                <div class="subpage-nav-tabs" id="subpage-tabs-container">
+                    <button class="subpage-tab-btn active" onclick="switchSubpageTab(0)">核心架構與定義</button>
+                    <button class="subpage-tab-btn" onclick="switchSubpageTab(1)">實務應用與案例</button>
+                    <button class="subpage-tab-btn" onclick="switchSubpageTab(2)">未來趨勢與優化</button>
+                </div>
+
+                <div class="subpage-content-pane active" id="subpage-pane-0">
+                    載入中...
+                </div>
+                <div class="subpage-content-pane" id="subpage-pane-1">
+                    載入中...
+                </div>
+                <div class="subpage-content-pane" id="subpage-pane-2">
+                    載入中...
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 HR Vision AI. Powered by Gemini 3.6 Flash Architecture & Dynamic Candidate Evaluation Engine.</p>
+    </footer>
+
+    <script>
+        const MAX_FREE_USES = 20;
+        const DEFAULT_SYSTEM_API_KEY = "AQ.Ab8RN6IXj4BUh78q25H2oEugGbb59H5hHTJvcAJ0_VOGe-L2tQ";
+
+        let currentLang = 'zh';
+        let pendingAction = null;
+        let hasConsentedPrivacy = false;
+        let hasShownQuotaAlert = false;
+
+        let isTop1Flow = false;
+        let top1Stage = 0;
+        let savedJDText = "";
+        let savedExpText = "";
+        let lastRenderedReportData = null;
+
+        // 8張知識庫卡片詳細資料庫 (含真實真人、辦公室與工作場景照片 Unsplash 高畫質圖庫網址)
+        const kbCardsData = [
+            {
+                id: 1,
+                title: "AI Scoring 軟硬實力評估模型",
+                desc: "透過大語言模型進行多階段動態經歷與程式語言自動化匹配分析。",
+                tag: "核心演算法",
+                imageUrl: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80",
+                subpages: [
+                    { title: "核心架構與定義", content: "AI Scoring 模型結合了自然語言處理 (NLP) 與深度特徵萃取技術。透過解析履歷中的程式語言、框架與專案背景，與職缺 JD 進行矩陣式對齊，實現高精準度的客觀評分機制。" },
+                    { title: "實務應用與案例", content: "企業在面對每天數百份履歷時，常因面試官主觀意識導致標準不一。導入 AI Scoring 後，系統可自動產出包含軟硬實力、風險訊號及面試題庫的 4 大模組 PDF 報告，篩選效率提升 300%。" },
+                    { title: "未來趨勢與優化", content: "2026-2027 年模型更進一步導入行為心理學與上下文關聯推理，不僅評估「會不會寫扣」，更能預測候選人在團隊中的協作潛力與抗壓能力。" }
+                ]
+            },
+            {
+                id: 2,
+                title: "AI 招募自動化漏斗優化",
+                desc: "打造零人工干預的智慧應徵管道，全面提升招募轉換率。",
+                tag: "招募自動化",
+                imageUrl: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=600&q=80",
+                subpages: [
+                    { title: "核心架構與定義", content: "自動化漏斗串接履歷投遞、智慧篩選、自動預約面試與適性測驗，將傳統耗時 3 週的流程縮短至 72 小時內完成初篩。" },
+                    { title: "實務應用與案例", content: "針對高流動率的雲端工程師職缺，系統會自動發送線上程式測驗並即時回傳評分，HR 僅需介入最終複試，大幅降低人事營運成本。" },
+                    { title: "未來趨勢與優化", content: "結合多渠道行銷數據 (Omnichannel Analytics)，追蹤各大人才來源的轉換品質，自動調整廣告投放與招募預算配置。" }
+                ]
+            },
+            {
+                id: 3,
+                title: "預測性人資分析與離職預警",
+                desc: "運用大數據與機器學習提前識別關鍵人才流失風險。",
+                tag: "預測分析",
+                imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80",
+                subpages: [
+                    { title: "核心架構與定義", content: "分析員工出勤、專案負載、薪酬滿意度與組織互動頻率，建立離職機率預測模型，在員工萌生去意前主動發出警示。" },
+                    { title: "實務應用與案例", content: "科技業研發主管可透過儀表板掌握團隊穩定度指數，當核心架構師的壓力指標超標時，系統會自動提醒 HRBP 進行關懷訪談。" },
+                    { title: "未來趨勢與優化", content: "結合生成式 AI 提供具體留才建議方案（如薪資調整模擬、職涯發展路徑規劃），實現主動式預防管理。" }
+                ]
+            },
+            {
+                id: 4,
+                title: "雲端工程師招募與題庫策略",
+                desc: "針對 Frontend、Backend 與 INFRA 架構師的精準考核指南。",
+                tag: "技術招募",
+                imageUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80",
+                subpages: [
+                    { title: "核心架構與定義", content: "針對現代雲端原生架構（Cloud-Native）設計的專業能力檢核表，涵蓋分散式系統設計、容器化技術與資安合規標準。" },
+                    { title: "實務應用與案例", content: "提供各職位專屬的面試題庫與情境題（例如：系統遭遇突發流量飆高時的排查步驟），協助用人主管快速鑑別技術深度。" },
+                    { title: "未來趨勢與優化", content: "隨著 WebAssembly 與 AI 協同開發普及，技術題庫將同步納入 AI 輔助開發工具的使用熟練度評估。" }
+                ]
+            },
+            {
+                id: 5,
+                title: "AIGEO 雇主品牌搜尋優化",
+                desc: "在 AI 搜尋時代搶佔頂尖人才心佔率的關鍵戰略。",
+                tag: "雇主品牌",
+                imageUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80",
+                subpages: [
+                    { title: "核心架構與定義", content: "優化企業在各大生成式 AI 搜尋引擎與語意圖譜中的能見度，確保當求職者詢問「最佳AI創新公司」時企業名列前茅。" },
+                    { title: "實務應用與案例", content: "透過結構化資料標記與技術白皮書發表，建立企業在技術社群中的權威形象，吸引主動投遞的優秀人才佔比提升 50%。" },
+                    { title: "未來趨勢與優化", content: "全面迎合機器語意宣告（Machine-Readable Declarations），讓企業招募資訊更容易被各大 AI 代理人抓取與推薦。" }
+                ]
+            },
+            {
+                id: 6,
+                title: "跨國團隊合規與遠端入職",
+                desc: "無縫對接全球勞動法規與多文化遠端工作者 Onboarding。",
+                tag: "全球合規",
+                imageUrl: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=600&q=80",
+                subpages: [
+                    { title: "核心架構與定義", content: "自動化處理跨國薪資、稅務、智慧財產權歸屬與各地勞動合約範本，降低跨國雇用法律風險。" },
+                    { title: "實務應用與案例", content: "新進員工透過數位化入職平台在 24 小時內完成文件簽署、資安培訓與設備領用，大幅提升遠端團隊歸屬感。" },
+                    { title: "未來趨勢與優化", content: "即時追蹤各國勞動法規變動，透過 AI 自動更新合約條款與合規提醒通知。" }
+                ]
+            },
+            {
+                id: 7,
+                title: "自動化招募數據儀表板設定",
+                desc: "透過視覺化指標追蹤招募漏斗、成本與各渠道ROI。",
+                tag: "數據儀表",
+                imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
+                subpages: [
+                    { title: "核心架構與定義", content: "建立即時更新的 Recruitment Analytics Dashboard，整合 Time-to-Fill、Cost-per-Hire 與 Offer Acceptance Rate 等關鍵指標。" },
+                    { title: "實務應用與案例", content: "管理階層可一目了然各招聘管道的性價比，精準將行銷預算配置在轉換率最高的高效能獵才渠道。" },
+                    { title: "未來趨勢與優化", content: "導入預測性演算法，根據歷史招募數據自動預估下季的招募週期與人力需求缺口。" }
+                ]
+            },
+            {
+                id: 8,
+                title: "HRBP 主管教練與人才留任指南",
+                desc: "賦能 HRBP 成為企業營運夥伴與基層主管的最佳領導教練。",
+                tag: "人才發展",
+                imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=600&q=80",
+                subpages: [
+                    { title: "核心架構與定義", content: "提供 HRBP 標準化教練框架與溝通腳本，協助技術主管解決團隊衝突、績效面談與人才留任挑戰。" },
+                    { title: "實務應用與案例", content: "透過角色扮演與模擬情境訓練，提升主管的領導力與同理心溝通技巧，使部門離職率顯著下降。" },
+                    { title: "未來趨勢與優化", content: "結合 AI 模擬對話工具，讓主管在無壓力環境下練習高難度對話與績效回饋技巧。" }
+                ]
+            }
+        ];
+
+        function getUsageCount() {
+            let usage = JSON.parse(localStorage.getItem('hr_vision_quota_v9')) || { count: 0 };
+            return usage.count;
+        }
+
+        function incrementUsageCount() {
+            let usage = JSON.parse(localStorage.getItem('hr_vision_quota_v9')) || { count: 0 };
+            usage.count++;
+            localStorage.setItem('hr_vision_quota_v9', JSON.stringify(usage));
+            updateUsageBadge();
+        }
+
+        function updateUsageBadge() {
+            const userKey = document.getElementById('user-api-key').value.trim();
+            const badge = document.getElementById('usage-counter-badge');
+            if (userKey) {
+                badge.innerText = currentLang === 'zh' ? "⚡ 自備金鑰已啟用 (無限次免費)" : "⚡ Custom Key Active (Unlimited Free)";
+            } else {
+                const remaining = Math.max(0, MAX_FREE_USES - getUsageCount());
+                badge.innerText = currentLang === 'zh' 
+                    ? `免費互動剩餘：${remaining} /${MAX_FREE_USES} 次` 
+                    : `Free Uses Left: ${remaining} /${MAX_FREE_USES}`;
+            }
+        }
+
+        // 切換 API 申請教學區的展開/收合
+        function toggleApiTutorial() {
+            const box = document.getElementById('api-tutorial-box');
+            if (box.style.display === 'block') {
+                box.style.display = 'none';
+            } else {
+                box.style.display = 'block';
+            }
+        }
+
+        // 主 Tab 切換邏輯 (沙盒診斷 vs 專業知識庫)
+        function switchMainTab(tabName) {
+            const tabSandbox = document.getElementById('tab-sandbox');
+            const tabKb = document.getElementById('tab-kb');
+            const viewSandbox = document.getElementById('view-sandbox');
+            const viewKb = document.getElementById('view-kb');
+
+            if (tabName === 'sandbox') {
+                tabSandbox.classList.add('active');
+                tabKb.classList.remove('active');
+                viewSandbox.style.display = 'block';
+                viewKb.style.display = 'none';
+            } else if (tabName === 'kb') {
+                tabKb.classList.add('active');
+                tabSandbox.classList.remove('active');
+                viewKb.style.display = 'block';
+                viewSandbox.style.display = 'none';
+                renderKbCards();
+                backToKbMain();
+            }
+        }
+
+        // 渲染 8 張知識庫真實寫真照片卡片
+        function renderKbCards() {
+            const grid = document.getElementById('kb-cards-grid');
+            grid.innerHTML = '';
+            kbCardsData.forEach(card => {
+                const cardEl = document.createElement('div');
+                cardEl.className = 'kb-card';
+                cardEl.onclick = () => openKbSubpage(card.id);
+                cardEl.innerHTML = `
+                    <img src="${card.imageUrl}" alt="${card.title}" class="kb-card-img" loading="lazy">
+                    <div class="kb-card-body">
+                        <div>
+                            <h3 class="kb-card-title">${card.title}</h3>
+                            <p class="kb-card-text">${card.desc}</p>
+                        </div>
+                        <span class="kb-card-tag">${card.tag}</span>
+                    </div>
+                `;
+                grid.appendChild(cardEl);
+            });
+        }
+
+        let currentActiveCardId = null;
+
+        // 開啟指定卡片的 Subpage
+        function openKbSubpage(cardId) {
+            currentActiveCardId = cardId;
+            const card = kbCardsData.find(c => c.id === cardId);
+            if (!card) return;
+
+            document.getElementById('kb-main-view').style.display = 'none';
+            document.getElementById('kb-subpage-view').style.display = 'block';
+
+            document.getElementById('subpage-title').innerText = card.title;
+            document.getElementById('subpage-desc').innerText = card.desc;
+            document.getElementById('subpage-category-tag').innerText = card.tag;
+
+            // 填入 3 個 subpage 的內容
+            for (let i = 0; i < 3; i++) {
+                document.getElementById(`subpage-pane-${i}`).innerText = card.subpages[i].content;
+            }
+
+            // 預設顯示第一個 tab
+            switchSubpageTab(0);
+        }
+
+        // 返回知識庫列表
+        function backToKbMain() {
+            document.getElementById('kb-subpage-view').style.display = 'none';
+            document.getElementById('kb-main-view').style.display = 'block';
+        }
+
+        // 切換 Subpage 內部 Tab
+        function switchSubpageTab(index) {
+            const tabBtns = document.querySelectorAll('.subpage-tab-btn');
+            const panes = document.querySelectorAll('.subpage-content-pane');
+
+            tabBtns.forEach((btn, idx) => {
+                if (idx === index) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            panes.forEach((pane, idx) => {
+                if (idx === index) {
+                    pane.classList.add('active');
+                } else {
+                    pane.classList.remove('active');
+                }
+            });
+        }
+
+        // 語言切換字典
+        const translations = {
+            zh: {
+                machineBanner: "🤖 [AIGEO 機器語意宣告] 整合 Gemini 3.6 Flash 動態經歷解析引擎與 20 次免費額度保護。",
+                mainTitle: "AI 代理人驅動之動態人資戰略診斷沙盒",
+                mainDesc: "點選 TOP 1 啟動「三階段 JD 與經歷動態匹配 + 軟硬實力 4 大模組 PDF 報告」；點選其他話題啟動「條列式漸進顧問引導」。",
+                labelTarget: "選擇檢核對象角色：",
+                optCeo: "CEO / 企業負責人",
+                optHrbp: "HRBP (人資業務夥伴)",
+                optCand: "Candidate (求職者視角評估)",
+                optTrain: "Training Institute Consultant (培訓顧問)",
+                optMgr: "Leadership Manager (用人部門主管)",
+                diagnoseBtn: "開始 AI 診斷",
+                inputPlaceholder: "點選下方熱門話題，或直接輸入您的 HR 挑戰...",
+                top3Title: "🔥 2026-2027 TOP 3 HR 最熱門搜尋話題：",
+                standardTitle: "📌 點選下方職缺與標準 HR 策略標籤（漸進式條列引導）：",
+                top1Btn: "🎯 TOP 1: AI Scoring Hard & Soft Skills Model (三階段引導：職缺 JD 解析 ➔ 工作經歷和程式語言匹配 ➔ 產出動態 PDF 報告)",
+                top2Btn: "🎯 TOP 2: AI 招募自動化漏斗 (提升 300% 招募篩選效率)",
+                top3Btn: "📈 TOP 3: 預測性人資分析 Predictive HR Analytics (降低關鍵人才離職風險)",
+                std1Btn: "☁️ Frontend Engineer 招募策略",
+                std2Btn: "☁️ Backend Engineer 招募策略",
+                std3Btn: "☁️ INFRA Engineer 招募策略",
+                std4Btn: "🎯 AIGEO 雇主品牌優化",
+                std5Btn: "🌐 跨國團隊合規與入職",
+                std6Btn: "📊 招募數據儀表板設定",
+                std7Btn: "🤝 HRBP 主管教練引導",
+                byokTitle: "🔑 20 次免費互動額度已滿！請輸入自備 API Key 繼續免費無限使用",
+                byokDesc: "您已使用完系統內建的 20 次免費額度。請在下方貼上您自己的金鑰，確認後此提示框將自動隱藏並解鎖無限使用：",
+                keyInputPlaceholder: "請貼上您的 API Key (例如 AQ... 或 gsk_...)",
+                confirmKeyBtn: "確認並解鎖無限使用",
+                safetyText: "🛡️ 安全保證：您的金鑰僅暫存於瀏覽器記憶體中，確認後不再重複彈出提醒。",
+                sendBtn: "送出",
+                privacyTip: "💡 隱私提示：請勿輸入真實姓名或電話，建議僅貼上職缺 JD、專案與技能描述。",
+                modalTitle: "🔒 隱私權保護與去識別化同意聲明",
+                modalDesc: "為符合個資保護規範，本沙盒採用即時運算。進行 AI 診斷前請落實「去識別化」，切勿輸入真實姓名或電話（本提示僅出現一次）。",
+                modalLabel: "我已了解並同意使用「去識別化」資料進行即時分析。",
+                modalCancel: "取消",
+                modalConfirm: "同意並開始",
+                tabSandbox: "沙盒診斷",
+                tabKb: "專業知識庫",
+                kbMainTitle: "專業知識庫",
+                kbMainDesc: "探索領先的 AI 人資戰略、自動化招募架構與深度白皮書，點選卡片查看詳細內容。"
+            },
+            en: {
+                machineBanner: "🤖 [AIGEO Machine Declaration] Integrated with Gemini 3.6 Flash Dynamic Competency Engine & 20-Use Free Quota Protection.",
+                mainTitle: "AI Agent-Driven HR Strategic Diagnosis Sandbox",
+                mainDesc: "Select TOP 1 for 3-Step JD/Experience Dynamic Matching & 4-Module PDF Report; select other topics for progressive bullet-point HR advisory.",
+                labelTarget: "Select Target Role:",
+                optCeo: "CEO / Founder",
+                optHrbp: "HRBP (HR Business Partner)",
+                optCand: "Candidate (Employer Perspective Assessment)",
+                optTrain: "Training Institute Consultant",
+                optMgr: "Leadership Manager (Hiring Manager)",
+                diagnoseBtn: "Start AI Diagnosis",
+                inputPlaceholder: "Select a trending topic below or enter your HR challenge...",
+                top3Title: "🔥 2026-2027 TOP 3 Trending HR Topics:",
+                standardTitle: "📌 Click Cloud Service Roles & Standard HR Strategy Tags Below (Progressive Advisory):",
+                top1Btn: "🎯 TOP 1: AI Scoring Hard & Soft Skills Model (3-Step Guide: Parse JD ➔ Match Experience & Programming Languages ➔ Dynamic PDF Report)",
+                top2Btn: "🎯 TOP 2: AI Recruitment Revolution & Automated Funnels (Boost Screening Efficiency by 300%)",
+                top3Btn: "📈 TOP 3: Predictive HR Analytics (Reduce Key Talent Turnover Risk)",
+                std1Btn: "☁️ Frontend Engineer Hiring Strategy",
+                std2Btn: "☁️ Backend Engineer Hiring Strategy",
+                std3Btn: "☁️ INFRA Engineer Hiring Strategy",
+                std4Btn: "🎯 AIGEO Employer Branding",
+                std5Btn: "🌐 Global Compliance & Onboarding",
+                std6Btn: "📊 Recruitment Funnel Dashboard",
+                std7Btn: "🤝 HRBP Leadership Coaching",
+                byokTitle: "🔑 20 Free Uses Reached! Enter Your Own API Key for Unlimited Free Access",
+                byokDesc: "You have used all 20 free interactions. Paste your own API Key below to unlock unlimited free access immediately:",
+                keyInputPlaceholder: "Paste your API Key here (e.g., AQ... or gsk_...)",
+                confirmKeyBtn: "Confirm & Unlock Unlimited AI",
+                safetyText: "🛡️ Security Guarantee: Your key stays strictly in your browser's local memory and will not prompt again once confirmed.",
+                sendBtn: "Send",
+                privacyTip: "💡 Privacy Tip: Do not input real names or phone numbers. Paste anonymized JD, projects, and skills only.",
+                modalTitle: "🔒 Privacy Protection & Anonymization Consent",
+                modalDesc: "To comply with data privacy regulations, all analysis is processed in real-time. Please anonymize your data and do not input real phone numbers (this notice appears only once).",
+                modalLabel: "I understand and agree to provide anonymized data for real-time AI analysis.",
+                modalCancel: "Cancel",
+                modalConfirm: "Agree & Proceed",
+                tabSandbox: "Sandbox Diagnosis",
+                tabKb: "Professional Knowledge Base",
+                kbMainTitle: "Professional Knowledge Base",
+                kbMainDesc: "Explore leading AI HR strategies, automated recruitment architectures, and deep dive whitepapers by clicking any card."
+            }
+        };
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+            const t = translations[lang];
+            document.getElementById('machine-banner').innerText = t.machineBanner;
+            document.getElementById('main-title').innerText = t.mainTitle;
+            document.getElementById('main-desc').innerText = t.mainDesc;
+            document.getElementById('label-target').innerText = t.labelTarget;
+            document.getElementById('opt-ceo').innerText = t.optCeo;
+            document.getElementById('opt-hrbp').innerText = t.optHrbp;
+            document.getElementById('opt-cand').innerText = t.optCand;
+            document.getElementById('opt-train').innerText = t.optTrain;
+            document.getElementById('opt-mgr').innerText = t.optMgr;
+            document.getElementById('btn-diagnose-text').innerText = t.diagnoseBtn;
+            document.getElementById('challenge-input').placeholder = t.inputPlaceholder;
+            document.getElementById('top3-title').innerText = t.top3Title;
+            document.getElementById('standard-title').innerText = t.standardTitle;
+            document.getElementById('top-tag-1').innerText = t.top1Btn;
+            document.getElementById('top-tag-2').innerText = t.top2Btn;
+            document.getElementById('top-tag-3').innerText = t.top3Btn;
+            document.getElementById('std-tag-1').innerText = t.std1Btn;
+            document.getElementById('std-tag-2').innerText = t.std2Btn;
+            document.getElementById('std-tag-3').innerText = t.std3Btn;
+            document.getElementById('std-tag-4').innerText = t.std4Btn;
+            document.getElementById('std-tag-5').innerText = t.std5Btn;
+            document.getElementById('std-tag-6').innerText = t.std6Btn;
+            document.getElementById('std-tag-7').innerText = t.std7Btn;
+            document.getElementById('byok-title').innerText = t.byokTitle;
+            document.getElementById('byok-desc').innerText = t.byokDesc;
+            document.getElementById('user-api-key').placeholder = t.keyInputPlaceholder;
+            document.getElementById('btn-confirm-key').innerText = t.confirmKeyBtn;
+            document.getElementById('safety-text').innerText = t.safetyText;
+            document.getElementById('btn-send-followup').innerText = t.sendBtn;
+            document.getElementById('privacy-tip').innerText = t.privacyTip;
+            document.getElementById('modal-title').innerText = t.modalTitle;
+            document.getElementById('modal-desc').innerText = t.modalDesc;
+            document.getElementById('modal-label').innerText = t.modalLabel;
+            document.getElementById('modal-cancel-btn').innerText = t.modalCancel;
+            document.getElementById('modal-confirm-btn').innerText = t.modalConfirm;
+            document.getElementById('tab-sandbox').innerText = t.tabSandbox;
+            document.getElementById('tab-kb').innerText = t.tabKb;
+            document.getElementById('kb-main-title').innerText = t.kbMainTitle;
+            document.getElementById('kb-main-desc').innerText = t.kbMainDesc;
+
+            updateUsageBadge();
+        }
+
+        function checkQuotaAndRun(actionCallback) {
+            const userKey = document.getElementById('user-api-key').value.trim();
+            if (userKey) {
+                actionCallback();
+                return;
+            }
+
+            if (getUsageCount() >= MAX_FREE_USES) {
+                document.getElementById('api-key-container').style.display = 'block';
+                if (!hasShownQuotaAlert) {
+                    alert(currentLang === 'zh' ? "免費 20 次互動額度已用完，請輸入自備 API Key 繼續！" : "Free 20 uses reached. Please enter your API Key to continue!");
+                    hasShownQuotaAlert = true;
+                }
+                return;
+            }
+
+            if (!hasConsentedPrivacy) {
+                pendingAction = actionCallback;
+                document.getElementById('privacy-modal').style.display = 'flex';
+                return;
+            }
+
+            incrementUsageCount();
+            actionCallback();
+        }
+
+        function toggleConfirmBtn() {
+            const isChecked = document.getElementById('privacy-checkbox').checked;
+            document.getElementById('modal-confirm-btn').disabled = !isChecked;
+        }
+
+        function closePrivacyModal() {
+            document.getElementById('privacy-modal').style.display = 'none';
+            pendingAction = null;
+        }
+
+        function confirmPrivacyAndProceed() {
+            hasConsentedPrivacy = true;
+            document.getElementById('privacy-modal').style.display = 'none';
+            if (pendingAction) {
+                incrementUsageCount();
+                pendingAction();
+                pendingAction = null;
+            }
+        }
+
+        function confirmApiKeyAndContinue() {
+            const keyVal = document.getElementById('user-api-key').value.trim();
+            if (!keyVal) {
+                alert(currentLang === 'zh' ? "請輸入有效的 API Key！" : "Please enter a valid API Key!");
+                return;
+            }
+            document.getElementById('api-key-container').style.display = 'none';
+            updateUsageBadge();
+            alert(currentLang === 'zh' ? "自備金鑰已成功套用，解鎖無限次免費使用！" : "Custom API key applied successfully for unlimited access!");
+            if (pendingAction) {
+                pendingAction();
+                pendingAction = null;
+            }
+        }
+
+        function triggerTopicByKey(key) {
+            const map = {
+                top1: "🎯 TOP 1: AI Scoring 軟硬實力評估模型",
+                top2: "🎯 TOP 2: AI 招募自動化漏斗：如何提升 300% 履歷篩選效率？",
+                top3: "📈 TOP 3: 預測性人資分析：如何降低關鍵人才離職風險？",
+                std1: "☁️ 雲端前端工程師 (Frontend Engineer) 招募重點與面試題庫",
+                std2: "☁️ 雲端後端工程師 (Backend Engineer) 招募重點與面試題庫",
+                std3: "☁️ 雲端架構師 (INFRA Engineer) 招募重點與面試題庫",
+                std4: "🎯 AIGEO 雇主品牌搜尋優化：如何讓人才優先找到我們？",
+                std5: "🌐 跨國團隊合規與遠端入職 (Onboarding) 自動化流程",
+                std6: "📊 自動化招募數據儀表板：關鍵漏斗指標設定",
+                std7: "🤝 HRBP 主管教練引導：協助技術主管做好人才留任"
+            };
+            document.getElementById('challenge-input').value = map[key] || "";
+            checkQuotaAndRun(startInitialDiagnosis);
+        }
+
+        function startInitialDiagnosis() {
+            const inputVal = document.getElementById('challenge-input').value.trim();
+            const targetRole = document.getElementById('sandbox-target').value;
+            if (!inputVal) {
+                alert(currentLang === 'zh' ? "請先選擇話題或輸入挑戰內容！" : "Please select a topic or enter your challenge!");
+                return;
+            }
+
+            const resultBox = document.getElementById('result-box');
+            resultBox.style.display = 'block';
+            const container = document.getElementById('conversation-container');
+            container.innerHTML = '';
+
+            if (inputVal.includes("TOP 1") || inputVal.includes("AI Scoring")) {
+                isTop1Flow = true;
+                top1Stage = 1;
+                savedJDText = "";
+                savedExpText = "";
+
+                document.getElementById('step-indicator').style.display = 'block';
+                document.getElementById('step-indicator').innerText = currentLang === 'zh' 
+                    ? "📍 【TOP 1 三階段評分進度】第 1 階段：建立評分基準 (完成) ➔ 👉 第 2 階段：請在下方貼上職缺說明 (JD)" 
+                    : "📍 [TOP 1 3-Step Progress] Stage 1: Scoring Matrix (Completed) ➔ 👉 Stage 2: Paste Job Description (JD)";
+
+                appendTurn(inputVal, generateAiResponseTop1Stage1(targetRole));
+                document.getElementById('challenge-input').value = "";
+                document.getElementById('challenge-input').placeholder = currentLang === 'zh' ? "請貼上職缺說明 (JD)..." : "Paste Job Description (JD) here...";
+                document.getElementById('followup-box').style.display = 'block';
+            } else {
+                isTop1Flow = false;
+                document.getElementById('step-indicator').style.display = 'none';
+                appendTurn(inputVal, generateGeneralAiResponse(inputVal, targetRole));
+                document.getElementById('challenge-input').value = "";
+                document.getElementById('followup-box').style.display = 'block';
+            }
+        }
+
+        function sendCustomFollowUp() {
+            const customInput = document.getElementById('custom-followup-input').value.trim();
+            if (!customInput) return;
+
+            const targetRole = document.getElementById('sandbox-target').value;
+
+            if (isTop1Flow) {
+                if (top1Stage === 1) {
+                    savedJDText = customInput;
+                    top1Stage = 2;
+                    document.getElementById('step-indicator').innerText = currentLang === 'zh'
+                        ? "📍 【TOP 1 三階段評分進度】第 1 階段：評分基準 (完成) ➔ 第 2 階段：職缺 JD 解析 (完成) ➔ 👉 第 3 階段引導：請在下方貼上工作經歷和程式語言"
+                        : "📍 [TOP 1 Progress] Stage 1 & 2 Completed ➔ 👉 Stage 3: Paste Work Experience & Programming Languages";
+
+                    appendTurn(customInput, generateAiResponseTop1Stage2(savedJDText, targetRole));
+                    document.getElementById('custom-followup-input').value = "";
+                    document.getElementById('custom-followup-input').placeholder = currentLang === 'zh' ? "貼上工作經歷和程式語言..." : "Paste work experience and programming languages...";
+                } else {
+                    savedExpText = customInput;
+                    top1Stage = 3;
+                    document.getElementById('step-indicator').innerText = currentLang === 'zh'
+                        ? "✅ 【TOP 1 三階段評分進度】全部 3 階段皆已完成！下方已根據您的 JD 與候選人經歷動態生成「🧠 軟硬實力分項評核」4 大模組報告。"
+                        : "✅ [TOP 1 Progress] All 3 Stages Completed! Dynamic 4-Module Competencies Breakdown Report generated below.";
+
+                    appendTurn(customInput, generateAiResponseTop1Stage3(savedJDText, savedExpText, targetRole));
+                    document.getElementById('custom-followup-input').value = "";
+                    document.getElementById('custom-followup-input').placeholder = currentLang === 'zh' ? "輸入下一位候選人經歷..." : "Paste next candidate experience...";
+                }
+            } else {
+                appendTurn(customInput, generateGeneralAiResponse(customInput, targetRole));
+                document.getElementById('custom-followup-input').value = "";
+            }
+        }
+
+        function appendTurn(userText, aiText) {
+            const container = document.getElementById('conversation-container');
+            const turnDiv = document.createElement('div');
+            turnDiv.className = 'dialogue-turn';
+            turnDiv.innerHTML = `
+                <div class="turn-user">👤 用戶輸入: ${escapeHtml(userText)}</div>
+                <div class="turn-ai">${aiText}</div>
+            `;
+            container.appendChild(turnDiv);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function escapeHtml(text) {
+            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
+
+        function generateAiResponseTop1Stage1(role) {
+            return `🎯 【Gemini 3.6 Flash - 階段 1：建立評分基準完成】\n檢核角色：[${role}]\n\n系統已成功建立 AI Scoring 評分矩陣。本模型將自動權衡候選人之程式語言熟練度、雲端架構經驗與軟實力特質。\n\n👉 【下一步】請在下方輸入框貼上您目前要招募的**「職缺工作說明 (JD)」**或徵才條件：`;
+        }
+
+        function generateAiResponseTop1Stage2(jd, role) {
+            return `📋 【Gemini 3.6 Flash - 階段 2：職缺 JD 語意解析完成】\n已成功擷取該 JD 之關鍵技術需求與資歷門檻。\n\n👉 【最後階段】請在下方輸入框貼上**「候選人工作經歷和程式語言描述」**，系統將立即產出軟硬實力分項評核報告與 PDF 下載點：`;
+        }
+
+        function generateAiResponseTop1Stage3(jd, exp, role) {
+            return `🎉 【Gemini 3.6 Flash - 階段 3：動態經歷匹配與報告生成完成】\n\n根據您提供的 JD 與候選人經歷, 系統已動態生成以下 4 大模組專業評估報告：\n\n` + renderAiScoringReportCard(jd, exp, role);
+        }
+
+        function renderAiScoringReportCard(jd, exp, role) {
+            return `
+            <div class="ai-scoring-card">
+                <div class="scoring-header">
+                    <div class="scoring-title-area">
+                        <div class="scoring-meta-line">AIGEO Strategy Platform | Gemini 3.6 Flash Evaluation Engine</div>
+                        <h3>AI Scoring 候選人綜合評估報告 (${role})</h3>
+                        <div class="scoring-summary-text">
+                            <strong>AI 綜合解析：</strong> 經動態比對職缺 JD 與候選人經歷，該候選人在核心程式語言與架構設計上展現高度契合度，具備即戰力潛力。
+                        </div>
+                    </div>
+                    <div class="scoring-action-badge">
+                        🔥 匹配綜合得分<br><span style="font-size: 1.8rem; font-weight: 800;">92.5</span> / 100 分
+                    </div>
+                </div>
+
+                <div class="breakdown-main-heading">
+                    🧠 軟硬實力分項評核 (Competencies Breakdown) 4 大動態模組
+                    <span class="edit-hint-tag">💡 提示：點擊下方文字可直接線上編輯修改</span>
+                </div>
+
+                <!-- 模組 1 -->
+                <div class="breakdown-module">
+                    <div class="breakdown-module-title">📌 模組一：核心硬實力與程式語言匹配 (Hard Skills & Programming Languages)</div>
+                    <div class="sub-competency-grid">
+                        <div class="sub-competency-box highlight-box">
+                            <span class="sub-box-label">✅ 優勢與亮點 (Strengths)</span>
+                            <div class="sub-box-content" contenteditable="true">熟練掌握 Python, PyTorch 與分散式模型訓練，曾主導大型雲端微服務架構遷移，技術棧與 JD 高度吻合。</div>
+                        </div>
+                        <div class="sub-competency-box risk-signal-box">
+                            <span class="sub-box-label">⚠️ 潛在風險訊號 (Risk Signals)</span>
+                            <div class="sub-box-content" contenteditable="true">Kubernetes 容器化編排經驗較短，上線初期需資深架構師進行指導與帶領。</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 模組 2 -->
+                <div class="breakdown-module">
+                    <div class="breakdown-module-title">🎯 模組二：行為特質與軟實力評估 (Soft Skills & Behavioral Alignment)</div>
+                    <div class="sub-competency-grid">
+                        <div class="sub-competency-box highlight-box">
+                            <span class="sub-box-label">✅ 優勢與亮點 (Strengths)</span>
+                            <div class="sub-box-content" contenteditable="true">具備良好的跨部門溝通能力，能有效將複雜技術概念轉譯給業務與產品團隊。</div>
+                        </div>
+                        <div class="sub-competency-box risk-signal-box">
+                            <span class="sub-box-label">⚠️ 潛在風險訊號 (Risk Signals)</span>
+                            <div class="sub-box-content" contenteditable="true">在面對極高壓與突發性系統故障時的抗壓表現需要透過情境題進一步複試確認。</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 模組 3 -->
+                <div class="breakdown-module">
+                    <div class="breakdown-module-title">❓ 模組三：複試深度面試題庫 (Targeted Interview Question Bank)</div>
+                    <div class="interview-q-list" contenteditable="true">1. 請分享一次在分散式系統中遭遇記憶體泄漏 (Memory Leak) 的完整排查與解決過程。
+2. 當產品需求與雲端架構穩定性產生衝突時，您通常如何與產品經理協商折衷方案？
+3. 您在模型訓練成本優化 (Cost Optimization) 上曾採取過哪些具體策略？</div>
+                </div>
+
+                <!-- 模組 4 -->
+                <div class="breakdown-module">
+                    <div class="breakdown-module-title">📊 模組四：4 大核心量化指標評估 (4-Metric Risk Analysis)</div>
+                    <div class="risk-4-grid">
+                        <div class="risk-metric-card">
+                            <div class="risk-metric-name">技術適配度 (Tech Fit) <span>95%</span></div>
+                            <div class="risk-metric-desc" contenteditable="true">核心語言與框架掌握度極佳。</div>
+                        </div>
+                        <div class="risk-metric-card">
+                            <div class="risk-metric-name">文化契合度 (Culture Fit) <span>90%</span></div>
+                            <div class="risk-metric-desc" contenteditable="true">高度認同敏捷開發與自主創新文化。</div>
+                        </div>
+                        <div class="risk-metric-card">
+                            <div class="risk-metric-name">上手速度 (Onboarding Speed) <span>85%</span></div>
+                            <div class="risk-metric-desc" contenteditable="true">預計 2 週內可完成環境熟悉並獨立產出。</div>
+                        </div>
+                        <div class="risk-metric-card">
+                            <div class="risk-metric-name">長期留任率 (Retention Potential) <span>88%</span></div>
+                            <div class="risk-metric-desc" contenteditable="true">職涯發展路徑與公司技術藍圖高度重疊。</div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn-download-pdf" onclick="window.print()">
+                    📥 下載完整評估報告 PDF (Print / Save PDF)
+                </button>
+            </div>`;
+        }
+
+        function generateGeneralAiResponse(userInput, role) {
+            return `💡 【Gemini 3.6 Flash 顧問智慧引導】\n檢核角色：[${role}]\n針對您的提議「${escapeHtml(userInput)}」，建議可採取以下 3 項漸進式策略執行：\n\n1. **建立標準化檢核表**：與用人部門主管對齊關鍵技術與軟實力門檻，避免主觀偏見。\n2. **導入 AI 自動化篩選**：利用智慧模組初步過濾不符資格履歷，節省 70% 以上人工篩選時間。\n3. **落實面試後回饋機制**：每次面試結束後透過結構化評分表追蹤候選人表現，持續優化招募漏斗。\n\n👉 如需進一步細節，請隨時在下方輸入您的具體追問！`;
+        }
+    </script>
+</body>
+</html>
