@@ -468,6 +468,107 @@ footer{ background:var(--hi-deep); color:#cfe0da; border-top:none; }
 .hi-stage:fullscreen{ height:100vh; }
 @media print{ #hr-island{ display:none !important; } }
 </style>
+<style>
+/* ================= AIGEO 每日專欄（改版） ================= */
+#daily-articles{ max-width:1240px; padding:3rem 1.5rem 2rem; font-family:"Noto Sans TC",-apple-system,"Microsoft JhengHei",sans-serif; }
+.da-head{ display:flex; justify-content:space-between; align-items:flex-end; gap:1.5rem; flex-wrap:wrap; margin-bottom:1.25rem; }
+.da-kicker{ font-size:.7rem; letter-spacing:.22em; font-weight:700; color:var(--hi-orange); margin-bottom:.35rem; }
+#daily-articles #da-main-title{ font-family:"Noto Serif TC",serif; font-size:2rem; line-height:1.25; color:var(--hi-deep); margin:0 0 .35rem; }
+#da-main-subtitle{ color:var(--hi-ink-soft); font-size:.95rem; }
+.da-stats{ display:grid; grid-template-columns:auto auto; column-gap:.5rem; align-items:baseline; background:var(--hi-paper); border:1px solid var(--hi-line); border-radius:16px; padding:.7rem 1.1rem; }
+.da-stats b{ font-family:"Noto Serif TC",serif; font-size:1.35rem; color:var(--hi-deep); text-align:right; }
+.da-stats span{ font-size:.78rem; color:var(--hi-ink-soft); }
+
+.da-toolbar{ display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap; margin-bottom:1.25rem; padding-bottom:1rem; border-bottom:1px solid var(--hi-line); }
+.da-chips{ display:flex; gap:.5rem; flex-wrap:wrap; }
+.da-chip{ --c:var(--hi-deep); display:inline-flex; align-items:center; gap:.4rem; border:1px solid var(--hi-line); background:#fff; color:var(--hi-ink); border-radius:999px; padding:.42rem .9rem; font-size:.85rem; font-weight:600; cursor:pointer; transition:all .2s; }
+.da-chip i{ width:8px; height:8px; border-radius:50%; background:var(--c); }
+.da-chip em{ font-style:normal; font-size:.72rem; color:var(--hi-ink-soft); background:#f3ece0; border-radius:999px; padding:0 .45rem; }
+.da-chip:hover{ border-color:var(--c); }
+.da-chip.on{ background:var(--c); border-color:var(--c); color:#fff; }
+.da-chip.on i{ background:#fff; }
+.da-chip.on em{ background:rgba(255,255,255,.25); color:#fff; }
+.da-tools{ display:flex; gap:.5rem; }
+.da-search{ border:1px solid var(--hi-line); background:#fff; border-radius:999px; padding:.5rem 1rem; font-size:.88rem; width:220px; outline:none; }
+.da-search:focus{ border-color:var(--hi-orange); }
+.da-sort{ border:1px solid var(--hi-line); background:#fff; border-radius:999px; padding:.5rem .95rem; font-size:.82rem; font-weight:600; cursor:pointer; color:var(--hi-ink); white-space:nowrap; }
+
+/* 精選 */
+.da-featured{ display:grid; grid-template-columns:220px 1fr; gap:1.5rem; background:var(--hi-deep); color:#fff; border-radius:22px; padding:1.75rem 2rem; margin-bottom:1.25rem; cursor:pointer; position:relative; overflow:hidden; transition:transform .25s, box-shadow .25s; }
+.da-featured::after{ content:""; position:absolute; right:-60px; top:-60px; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle,rgba(224,119,59,.45),transparent 70%); }
+.da-featured:hover{ transform:translateY(-3px); box-shadow:0 20px 40px -20px rgba(29,58,51,.6); }
+.da-f-left{ display:flex; flex-direction:column; align-items:flex-start; gap:.6rem; border-right:1px solid rgba(255,255,255,.15); padding-right:1.25rem; }
+.da-f-flag{ font-size:.72rem; font-weight:700; letter-spacing:.12em; color:#ffd2b5; }
+.da-f-day{ font-family:"Noto Serif TC",serif; font-size:3rem; font-weight:800; line-height:1; }
+.da-f-right{ position:relative; z-index:1; }
+.da-featured h3{ font-family:"Noto Serif TC",serif; font-size:1.5rem; line-height:1.4; margin-bottom:.6rem; }
+.da-f-meta{ color:#cfe0da; font-size:.95rem; line-height:1.7; margin-bottom:1rem; }
+.da-f-foot{ display:flex; gap:.6rem; align-items:center; font-size:.82rem; color:#a9c4bc; flex-wrap:wrap; }
+.da-f-foot b{ margin-left:auto; color:#fff; background:var(--hi-orange); border-radius:999px; padding:.45rem 1rem; font-size:.85rem; }
+
+.da-tag{ --c:var(--hi-orange); display:inline-block; font-size:.74rem; font-weight:700; border-radius:999px; padding:.22rem .7rem; background:var(--c); color:#fff; }
+
+/* 卡片 */
+.da-grid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; }
+.da-card{ --c:var(--hi-deep); background:#fff; border:1px solid var(--hi-line); border-radius:18px; padding:1.2rem 1.25rem 1rem; display:flex; flex-direction:column; cursor:pointer; position:relative; overflow:hidden; transition:transform .22s, box-shadow .22s, border-color .22s; }
+.da-card::before{ content:""; position:absolute; left:0; top:0; right:0; height:4px; background:var(--c); }
+.da-card:hover,.da-card:focus-visible{ transform:translateY(-4px); border-color:var(--c); box-shadow:0 16px 30px -18px rgba(29,58,51,.45); outline:none; }
+.da-card-top{ display:flex; justify-content:space-between; align-items:center; margin-bottom:.7rem; gap:.5rem; }
+.da-card-day{ font-family:"Noto Serif TC",serif; font-weight:800; font-size:1.05rem; color:var(--c); }
+.da-card-cat{ font-size:.72rem; font-weight:700; color:var(--c); background:color-mix(in srgb, var(--c) 12%, #fff); border-radius:999px; padding:.18rem .6rem; }
+.da-card h3{ font-size:1.02rem; line-height:1.5; color:var(--hi-ink); font-weight:700; margin-bottom:.45rem; }
+.da-card p{ font-size:.86rem; color:var(--hi-ink-soft); line-height:1.6; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; flex:1; }
+.da-card-foot{ display:flex; justify-content:space-between; font-size:.76rem; color:#8b9893; margin-top:.9rem; padding-top:.7rem; border-top:1px dashed var(--hi-line); }
+.da-empty{ grid-column:1/-1; text-align:center; padding:2.5rem; color:var(--hi-ink-soft); background:var(--hi-paper); border-radius:16px; border:1px dashed var(--hi-line); }
+.da-more-wrap{ text-align:center; margin-top:1.25rem; }
+.da-more{ border:1px solid var(--hi-deep); background:transparent; color:var(--hi-deep); border-radius:999px; padding:.6rem 1.6rem; font-weight:700; cursor:pointer; }
+.da-more:hover{ background:var(--hi-deep); color:#fff; }
+
+/* 閱讀器 */
+.da-reader{ position:fixed; inset:0; z-index:500; display:none; }
+.da-reader.show{ display:block; }
+.da-reader-backdrop{ position:absolute; inset:0; background:rgba(18,32,28,.55); backdrop-filter:blur(3px); -webkit-backdrop-filter:blur(3px); animation:daFade .2s ease; }
+.da-reader-sheet{ position:absolute; right:0; top:0; bottom:0; width:min(760px,100%); background:var(--hi-paper); display:flex; flex-direction:column; box-shadow:-20px 0 50px rgba(0,0,0,.2); animation:daSlide .28s ease; }
+@keyframes daFade{ from{opacity:0} to{opacity:1} }
+@keyframes daSlide{ from{transform:translateX(40px);opacity:0} to{transform:none;opacity:1} }
+.da-reader-progress{ height:4px; background:#efe6d8; }
+.da-reader-progress i{ display:block; height:100%; width:0; background:var(--hi-orange); transition:width .1s; }
+.da-reader-top{ display:flex; justify-content:space-between; align-items:center; padding:.9rem 1.5rem; border-bottom:1px solid var(--hi-line); }
+.da-reader-close{ border:none; background:#f3ece0; width:36px; height:36px; border-radius:50%; font-size:1rem; cursor:pointer; color:var(--hi-ink); }
+.da-reader-scroll{ flex:1; overflow-y:auto; padding:1.75rem 2rem 2.5rem; }
+.da-r-day{ font-family:"Noto Serif TC",serif; font-weight:800; font-size:1.1rem; margin-bottom:.3rem; }
+.da-reader-scroll h2{ font-family:"Noto Serif TC",serif; font-size:1.65rem; line-height:1.4; color:var(--hi-ink); margin-bottom:.6rem; }
+.da-r-meta{ font-size:.85rem; color:var(--hi-ink-soft); margin-bottom:1.25rem; line-height:1.6; }
+.da-r-summary{ background:#fdf3ea; border-left:4px solid var(--hi-orange); border-radius:10px; padding:.9rem 1.1rem; font-size:.95rem; line-height:1.75; margin-bottom:1.5rem; }
+.da-r-body{ font-size:.98rem; line-height:1.85; color:#24332f; }
+.da-r-body h3{ font-family:"Noto Serif TC",serif; font-size:1.2rem; color:var(--hi-deep); margin:1.6rem 0 .6rem; padding-left:.7rem; border-left:4px solid var(--hi-teal); }
+.da-r-body h4{ font-size:1rem; margin:1rem 0 .3rem; color:var(--hi-ink); }
+.da-r-body p,.da-r-body li{ margin-bottom:.5rem; }
+.da-r-body ul,.da-r-body ol{ padding-left:1.4rem; }
+.da-r-body table{ border-collapse:collapse; width:100%; margin:.75rem 0; font-size:.9rem; background:#fff; border-radius:10px; overflow:hidden; }
+.da-r-body th,.da-r-body td{ border:1px solid var(--hi-line); padding:.55rem .75rem; text-align:left; }
+.da-r-body th{ background:var(--hi-deep); color:#fff; font-weight:600; }
+.da-r-body tr:nth-child(even) td{ background:#fbf6ee; }
+.da-r-body .da-cta{ color:var(--hi-orange); font-weight:700; }
+.da-reader-nav{ display:grid; grid-template-columns:1fr 1fr; gap:.75rem; padding:.9rem 1.5rem; border-top:1px solid var(--hi-line); }
+.da-reader-nav button{ border:1px solid var(--hi-line); background:#fff; border-radius:12px; padding:.7rem; font-weight:700; cursor:pointer; color:var(--hi-ink); }
+.da-reader-nav button:hover:not(:disabled){ border-color:var(--hi-orange); color:var(--hi-orange); }
+.da-reader-nav button:disabled{ opacity:.35; cursor:default; }
+
+@media (max-width:960px){ .da-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (max-width:640px){
+  #daily-articles{ padding:2rem 12px; }
+  #daily-articles #da-main-title{ font-size:1.5rem; }
+  .da-grid{ grid-template-columns:1fr; }
+  .da-featured{ grid-template-columns:1fr; padding:1.4rem; }
+  .da-f-left{ flex-direction:row; align-items:center; border-right:none; border-bottom:1px solid rgba(255,255,255,.15); padding:0 0 .9rem; }
+  .da-f-day{ font-size:2rem; }
+  .da-featured h3{ font-size:1.2rem; }
+  .da-tools{ width:100%; } .da-search{ flex:1; width:auto; }
+  .da-reader-scroll{ padding:1.25rem 1.1rem 2rem; }
+}
+@media print{ .da-reader{ display:none !important; } }
+</style>
 </head>
 <body>
 
@@ -679,11 +780,48 @@ footer{ background:var(--hi-deep); color:#cfe0da; border-top:none; }
   </section>
 </div>
 
-<!-- 每日 AIGEO 專欄：動態支援繁中 / English 100% 雙語切換 -->
+<!-- 每日 AIGEO 專欄：動態支援繁中 / English 100% 雙語切換（改版：雜誌式卡片 + 閱讀器） -->
 <section id="daily-articles">
-  <h2 id="da-main-title">AIGEO 每日專欄：AI 人資與招募策略</h2>
-  <p id="da-main-subtitle" style="color:var(--text-muted);margin-bottom:1rem">每日更新，讓 AI 看懂 HR Vision AI。</p>
+  <div class="da-head">
+    <div>
+      <div class="da-kicker">AIGEO DAILY COLUMN</div>
+      <h2 id="da-main-title">AIGEO 每日專欄：AI 人資與招募策略</h2>
+      <p id="da-main-subtitle">每日更新，讓 AI 看懂 HR Vision AI。</p>
+    </div>
+    <div class="da-stats" id="da-stats"></div>
+  </div>
+  <div class="da-toolbar">
+    <div class="da-chips" id="da-chips"></div>
+    <div class="da-tools">
+      <input type="search" id="da-search" class="da-search" placeholder="搜尋文章…">
+      <button type="button" id="da-sort" class="da-sort"></button>
+    </div>
+  </div>
+  <div id="da-featured"></div>
   <div id="da-articles-list"></div>
+  <div class="da-more-wrap"><button type="button" id="da-more" class="da-more"></button></div>
+
+  <div class="da-reader" id="da-reader" aria-hidden="true">
+    <div class="da-reader-backdrop" data-close="1"></div>
+    <div class="da-reader-sheet" role="dialog" aria-modal="true" aria-labelledby="da-r-title">
+      <div class="da-reader-progress"><i id="da-r-progress"></i></div>
+      <div class="da-reader-top">
+        <span id="da-r-tag" class="da-tag"></span>
+        <button type="button" class="da-reader-close" data-close="1" aria-label="Close">✕</button>
+      </div>
+      <div class="da-reader-scroll" id="da-r-scroll">
+        <div class="da-r-day" id="da-r-day"></div>
+        <h2 id="da-r-title"></h2>
+        <p class="da-r-meta" id="da-r-meta"></p>
+        <div class="da-r-summary" id="da-r-summary"></div>
+        <div class="da-r-body" id="da-r-body"></div>
+      </div>
+      <div class="da-reader-nav">
+        <button type="button" id="da-r-prev"></button>
+        <button type="button" id="da-r-next"></button>
+      </div>
+    </div>
+  </div>
 </section>
 
 <footer>
@@ -1152,29 +1290,179 @@ const dailyArticlesData = {
   ]
 };
 
+// ===== AIGEO 每日專欄：雜誌式卡片 + 篩選 + 閱讀器（全文仍保留於 DOM，供 AI 讀取） =====
+const daState = { cat: 'all', q: '', sort: 'new', shown: 9, openIdx: null, bound: false };
+const daCats = {
+  brand: { color: '#e0773b', zh: 'AIGEO 雇主品牌', en: 'AIGEO & Brand' },
+  score: { color: '#2f8f80', zh: 'AI 人才評分', en: 'AI Talent Scoring' },
+  hire:  { color: '#4a6fa5', zh: '招募策略', en: 'Hiring Strategy' },
+  data:  { color: '#8a5cc2', zh: '數據與留才', en: 'Data & Retention' },
+  team:  { color: '#c9962a', zh: '合規與協作', en: 'Compliance & Teams' }
+};
+const daUI = {
+  zh: { all: '全部', search: '搜尋文章…', newest: '↓ 最新優先', oldest: '↑ 最舊優先', more: (n) => `再看 ${n} 篇`, none: '沒有符合的文章',
+        read: (m) => `約 ${m} 分鐘`, latest: '最新一篇', readFull: '閱讀全文 →', prev: '← 上一篇', next: '下一篇 →',
+        stats: (n, d) => `<b>${n}</b><span>篇專欄</span><b>${d}</b><span>最新更新</span>` },
+  en: { all: 'All', search: 'Search articles…', newest: '↓ Newest first', oldest: '↑ Oldest first', more: (n) => `Show ${n} more`, none: 'No matching articles',
+        read: (m) => `${m} min read`, latest: 'Latest', readFull: 'Read article →', prev: '← Previous', next: 'Next →',
+        stats: (n, d) => `<b>${n}</b><span>articles</span><b>${d}</b><span>last update</span>` }
+};
+function daCategoryOf(title) {
+  if (/AIGEO|品牌|推薦|brand|recommend/i.test(title)) return 'brand';
+  if (/評分|JD|經歷|解析|scor|match|parse|job description/i.test(title)) return 'score';
+  if (/預測|離職|儀表板|指標|predict|dashboard|metric|attrition|retention/i.test(title)) return 'data';
+  if (/合規|入職|校準|HRBP|compliance|onboard|calibrat/i.test(title)) return 'team';
+  return 'hire';
+}
+function daReadMinutes(art) {
+  const text = (art.summary + ' ' + art.body).replace(/<[^>]+>/g, ' ');
+  const mins = currentLang === 'en' ? text.split(/\s+/).filter(Boolean).length / 200 : text.replace(/\s/g, '').length / 400;
+  return Math.max(1, Math.round(mins));
+}
+function daList() {
+  const articles = (dailyArticlesData[currentLang] || dailyArticlesData.zh).map((art, idx) => ({ art, idx, cat: daCategoryOf(art.title) }));
+  return articles;
+}
+function daFiltered() {
+  const q = daState.q.toLowerCase();
+  let list = daList().filter(x => (daState.cat === 'all' || x.cat === daState.cat) &&
+    (!q || (x.art.title + ' ' + x.art.meta + ' ' + x.art.summary + ' ' + x.art.body).replace(/<[^>]+>/g, ' ').toLowerCase().includes(q)));
+  list.sort((a, b) => daState.sort === 'new' ? b.idx - a.idx : a.idx - b.idx);
+  return list;
+}
+
 function renderDailyArticles() {
   const listContainer = document.getElementById('da-articles-list');
   if (!listContainer) return;
+  const L = currentLang === 'en' ? 'en' : 'zh', ui = daUI[L];
+  const all = daList();
 
-  // 記錄使用者目前已展開的文章編號，切換語言時保持展開狀態
-  const openIndices = [];
-  listContainer.querySelectorAll('details').forEach((det, idx) => {
-    if (det.open) openIndices.push(idx);
-  });
+  // 統計
+  const latest = all[all.length - 1];
+  document.getElementById('da-stats').innerHTML = latest ? ui.stats(all.length, latest.art.date.slice(5).replace('-', '/')) : '';
 
-  const articles = dailyArticlesData[currentLang] || dailyArticlesData.zh;
-  listContainer.innerHTML = articles.map((art, idx) => {
-    const isOpen = openIndices.includes(idx) ? ' open' : '';
+  // 分類籤
+  const counts = all.reduce((m, x) => (m[x.cat] = (m[x.cat] || 0) + 1, m), {});
+  document.getElementById('da-chips').innerHTML =
+    `<button type="button" class="da-chip${daState.cat === 'all' ? ' on' : ''}" data-cat="all">${ui.all}<em>${all.length}</em></button>` +
+    Object.keys(daCats).filter(k => counts[k]).map(k =>
+      `<button type="button" class="da-chip${daState.cat === k ? ' on' : ''}" data-cat="${k}" style="--c:${daCats[k].color}"><i></i>${daCats[k][L]}<em>${counts[k]}</em></button>`).join('');
+  document.getElementById('da-search').placeholder = ui.search;
+  document.getElementById('da-sort').textContent = daState.sort === 'new' ? ui.newest : ui.oldest;
+
+  const list = daFiltered();
+  const isDefault = daState.cat === 'all' && !daState.q && daState.sort === 'new';
+
+  // 精選（最新一篇）
+  const featured = document.getElementById('da-featured');
+  let rest = list;
+  if (isDefault && list.length) {
+    const f = list[0]; rest = list.slice(1);
+    const c = daCats[f.cat];
+    featured.innerHTML = `
+      <article id="article-day${f.idx + 1}" class="da-featured" data-idx="${f.idx}" tabindex="0">
+        <div class="da-f-left">
+          <span class="da-f-flag">${ui.latest}</span>
+          <div class="da-f-day">${f.art.day}</div>
+          <span class="da-tag" style="--c:${c.color}">${c[L]}</span>
+        </div>
+        <div class="da-f-right">
+          <h3>${f.art.title}</h3>
+          <p class="da-f-meta">${f.art.meta}</p>
+          <div class="da-f-foot"><time datetime="${f.art.date}">${f.art.date}</time><span>·</span><span>${ui.read(daReadMinutes(f.art))}</span><b>${ui.readFull}</b></div>
+        </div>
+        <div class="da-full" hidden><p>${f.art.summary}</p>${f.art.body}</div>
+      </article>`;
+  } else featured.innerHTML = '';
+
+  // 卡片格
+  const visible = rest.slice(0, daState.shown);
+  listContainer.className = 'da-grid';
+  listContainer.innerHTML = visible.length ? visible.map(x => {
+    const c = daCats[x.cat];
     return `
-      <article id="article-day${idx + 1}" class="da-article">
-        <details${isOpen}>
-          <summary><span class="da-day">${art.day}</span>${art.title}</summary>
-          <p class="da-meta"><time datetime="${art.date}">${art.date}</time>｜${art.meta}</p>
-          <p class="da-summary">${art.summary}</p>${art.body}
-        </details>
-      </article>
-    `;
-  }).join('');
+      <article id="article-day${x.idx + 1}" class="da-card" data-idx="${x.idx}" tabindex="0" style="--c:${c.color}">
+        <div class="da-card-top"><span class="da-card-day">${x.art.day}</span><span class="da-card-cat">${c[L]}</span></div>
+        <h3>${x.art.title}</h3>
+        <p>${x.art.meta}</p>
+        <div class="da-card-foot"><time datetime="${x.art.date}">${x.art.date}</time><span>${ui.read(daReadMinutes(x.art))}</span></div>
+        <div class="da-full" hidden><p>${x.art.summary}</p>${x.art.body}</div>
+      </article>`;
+  }).join('') : (featured.innerHTML ? '' : `<div class="da-empty">${ui.none}</div>`);
+
+  const moreBtn = document.getElementById('da-more');
+  const left = rest.length - visible.length;
+  moreBtn.style.display = left > 0 ? '' : 'none';
+  moreBtn.textContent = ui.more(Math.min(left, 9));
+
+  document.getElementById('da-r-prev').textContent = ui.prev;
+  document.getElementById('da-r-next').textContent = ui.next;
+  if (daState.openIdx !== null) daOpen(daState.openIdx, true);
+
+  if (!daState.bound) daBind();
+}
+
+function daOpen(idx, keepScroll) {
+  const all = daList(), x = all[idx]; if (!x) return;
+  const L = currentLang === 'en' ? 'en' : 'zh', ui = daUI[L], c = daCats[x.cat];
+  daState.openIdx = idx;
+  const tag = document.getElementById('da-r-tag');
+  tag.textContent = c[L]; tag.style.setProperty('--c', c.color);
+  document.getElementById('da-r-day').textContent = x.art.day;
+  document.getElementById('da-r-day').style.color = c.color;
+  document.getElementById('da-r-title').textContent = x.art.title;
+  document.getElementById('da-r-meta').innerHTML = `<time datetime="${x.art.date}">${x.art.date}</time>｜${ui.read(daReadMinutes(x.art))}｜${x.art.meta}`;
+  document.getElementById('da-r-summary').innerHTML = x.art.summary;
+  document.getElementById('da-r-body').innerHTML = x.art.body;
+  const prev = document.getElementById('da-r-prev'), next = document.getElementById('da-r-next');
+  prev.disabled = idx === 0; next.disabled = idx === all.length - 1;
+  const reader = document.getElementById('da-reader');
+  reader.classList.add('show'); reader.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  if (!keepScroll) document.getElementById('da-r-scroll').scrollTop = 0;
+  daProgress();
+  try { history.replaceState(null, '', '#article-day' + (idx + 1)); } catch (e) {}
+}
+function daClose() {
+  daState.openIdx = null;
+  const reader = document.getElementById('da-reader');
+  reader.classList.remove('show'); reader.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+  try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+}
+function daProgress() {
+  const s = document.getElementById('da-r-scroll');
+  const p = s.scrollHeight - s.clientHeight;
+  document.getElementById('da-r-progress').style.width = (p > 0 ? (s.scrollTop / p) * 100 : 100) + '%';
+}
+function daBind() {
+  daState.bound = true;
+  const sec = document.getElementById('daily-articles');
+  sec.addEventListener('click', e => {
+    const chip = e.target.closest('.da-chip');
+    if (chip) { daState.cat = chip.dataset.cat; daState.shown = 9; renderDailyArticles(); return; }
+    if (e.target.closest('[data-close]')) { daClose(); return; }
+    const card = e.target.closest('.da-card, .da-featured');
+    if (card) daOpen(+card.dataset.idx);
+  });
+  sec.addEventListener('keydown', e => {
+    const card = e.target.closest && e.target.closest('.da-card, .da-featured');
+    if (card && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); daOpen(+card.dataset.idx); }
+  });
+  document.getElementById('da-search').addEventListener('input', e => { daState.q = e.target.value.trim(); daState.shown = 9; renderDailyArticles(); });
+  document.getElementById('da-sort').addEventListener('click', () => { daState.sort = daState.sort === 'new' ? 'old' : 'new'; renderDailyArticles(); });
+  document.getElementById('da-more').addEventListener('click', () => { daState.shown += 9; renderDailyArticles(); });
+  document.getElementById('da-r-prev').addEventListener('click', () => daOpen(daState.openIdx - 1));
+  document.getElementById('da-r-next').addEventListener('click', () => daOpen(daState.openIdx + 1));
+  document.getElementById('da-r-scroll').addEventListener('scroll', daProgress);
+  document.addEventListener('keydown', e => {
+    if (daState.openIdx === null) return;
+    if (e.key === 'Escape') daClose();
+    if (e.key === 'ArrowRight') document.getElementById('da-r-next').click();
+    if (e.key === 'ArrowLeft') document.getElementById('da-r-prev').click();
+  });
+  const m = location.hash.match(/^#article-day(\d+)$/);
+  if (m) setTimeout(() => daOpen(+m[1] - 1), 300);
 }
 
 function getUsageCount() {
