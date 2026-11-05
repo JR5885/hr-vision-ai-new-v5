@@ -299,6 +299,175 @@ footer { background: var(--white); border-top: 1px solid var(--border-color); pa
   .ai-scoring-card { border: 1px solid #000 !important; box-shadow: none !important; border-radius: 0 !important; }
 }
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;800&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   HR Vision AI｜靜態 UI 改版 + HR 戰略島（不影響沙盒診斷區）
+   ========================================================= */
+:root{
+  --hi-ink:#1f2f2b; --hi-ink-soft:#5b6b66; --hi-cream:#fbf6ee; --hi-paper:#fffdf9;
+  --hi-line:#eadfce; --hi-deep:#1d3a33; --hi-teal:#2f8f80; --hi-orange:#e0773b;
+  --hi-gold:#d3a32a; --hi-blue:#4a6fa5; --hi-sea:#5f9aa1;
+}
+body{ background:linear-gradient(180deg,#fbf6ee 0%,#f8fafc 520px); }
+
+/* ---- Header ---- */
+header{ background:rgba(255,253,249,.88); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border-bottom:1px solid var(--hi-line); }
+.logo{ font-family:"Noto Serif TC",serif; font-weight:800; color:var(--hi-deep); letter-spacing:.02em; }
+.logo span{ font-family:"Noto Sans TC",sans-serif; color:var(--hi-orange); }
+.nav-tab-btn{ border-radius:999px; font-family:"Noto Sans TC",sans-serif; }
+.nav-tab-btn:hover{ background:#f3ece0; color:var(--hi-deep); }
+.nav-tab-btn.active{ background:var(--hi-deep); color:#fff; }
+.hi-nav-island{ border:1px solid var(--hi-line)!important; background:#fff!important; color:var(--hi-deep)!important; }
+.hi-nav-island:hover{ background:#f3ece0!important; }
+.lang-switch{ border-radius:999px; background:#f3ece0; border-color:var(--hi-line); }
+.lang-btn{ border-radius:999px; }
+.lang-btn.active{ color:var(--hi-deep); }
+
+/* ---- 機器語意宣告 banner ---- */
+.machine-readable-banner{ background:var(--hi-paper); border:1px dashed var(--hi-line); color:var(--hi-ink-soft); border-radius:12px; font-weight:500; font-size:.85rem; }
+
+/* ---- 知識庫（#view-kb） ---- */
+#view-kb{ background:var(--hi-paper); border-color:var(--hi-line); border-radius:22px; }
+#kb-main-title{ font-family:"Noto Serif TC",serif; color:var(--hi-deep); font-size:2rem; }
+#view-kb .kb-card{ border-color:var(--hi-line); border-radius:16px; background:#fff; }
+#view-kb .kb-card:hover{ border-color:var(--hi-orange); box-shadow:0 14px 28px rgba(29,58,51,.12); }
+#view-kb .kb-card-img-wrapper{ background:linear-gradient(135deg,var(--hi-deep),var(--hi-teal)); }
+#view-kb .kb-card-tag{ background:#fdeee4; color:#b85a24; border-radius:999px; }
+#view-kb .subpage-tab-btn{ border-radius:999px; }
+#view-kb .subpage-tab-btn.active{ background:var(--hi-deep); border-color:var(--hi-deep); }
+#view-kb .subpage-content-pane{ background:var(--hi-cream); border-color:var(--hi-line); }
+#view-kb .btn-back{ border-radius:999px; }
+
+/* ---- 每日專欄 ---- */
+#daily-articles h2{ font-family:"Noto Serif TC",serif; color:var(--hi-deep); }
+#daily-articles .da-article{ border-color:var(--hi-line); border-radius:14px; transition:box-shadow .2s, border-color .2s; }
+#daily-articles .da-article:hover{ border-color:var(--hi-orange); box-shadow:0 8px 20px rgba(29,58,51,.08); }
+#daily-articles .da-day{ background:var(--hi-deep); color:#fff; border-radius:999px; }
+#daily-articles .da-article h3{ color:var(--hi-teal); }
+#daily-articles .da-summary{ background:#fdf3ea; border-left-color:var(--hi-orange); }
+#daily-articles .da-cta{ color:var(--hi-orange); }
+
+/* ---- Footer ---- */
+footer{ background:var(--hi-deep); color:#cfe0da; border-top:none; }
+
+/* =========================================================
+   HR 戰略島
+   ========================================================= */
+#hr-island{ max-width:1240px; margin:1.5rem auto 0; padding:0 1.5rem; font-family:"Noto Sans TC",-apple-system,"Microsoft JhengHei",sans-serif; }
+.hi-shell{ display:grid; grid-template-columns:minmax(0,1fr) 340px; border-radius:24px; overflow:hidden; border:1px solid var(--hi-line); box-shadow:0 24px 50px -24px rgba(29,58,51,.35); background:var(--hi-paper); height:640px; }
+.hi-stage{ position:relative; overflow:hidden; background:var(--hi-sea); touch-action:none; }
+.hi-stage canvas{ display:block; width:100%; height:100%; cursor:grab; }
+.hi-stage canvas.dragging{ cursor:grabbing; }
+.hi-stage canvas.hovering{ cursor:pointer; }
+
+.hi-brand{ position:absolute; left:16px; top:16px; background:var(--hi-paper); border-radius:16px; padding:10px 16px; display:flex; gap:12px; align-items:center; box-shadow:0 6px 18px rgba(0,0,0,.12); z-index:3; }
+.hi-brand-big{ font-family:"Noto Serif TC",serif; font-weight:800; font-size:1.35rem; line-height:1.1; color:var(--hi-teal); }
+.hi-brand-big b{ color:var(--hi-orange); display:block; }
+.hi-brand-sub{ font-size:.82rem; color:var(--hi-ink); font-weight:700; line-height:1.4; }
+.hi-brand-sub span{ color:var(--hi-orange); display:block; font-weight:600; }
+
+.hi-finder-btn{ position:absolute; left:16px; top:92px; z-index:3; background:var(--hi-deep); color:#fff; border:none; border-radius:999px; padding:9px 16px; font-weight:700; font-size:.88rem; cursor:pointer; display:flex; align-items:center; gap:8px; box-shadow:0 6px 16px rgba(0,0,0,.18); }
+.hi-finder-btn i{ width:12px; height:12px; border-radius:50%; border:3px solid #8be38b; display:inline-block; }
+
+.hi-topbar{ position:absolute; right:14px; top:14px; display:flex; gap:8px; z-index:3; }
+.hi-chip{ background:var(--hi-paper); border:none; border-radius:12px; padding:8px 13px; font-size:.85rem; font-weight:700; color:var(--hi-ink); cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,.12); }
+.hi-chip:hover{ background:#fff; }
+
+.hi-labels{ position:absolute; inset:0; pointer-events:none; z-index:2; }
+.hi-label{ position:absolute; transform:translate(-50%,-100%); pointer-events:auto; display:flex; align-items:center; gap:6px; background:#fff; border-radius:999px; padding:3px 11px 3px 3px; font-size:.8rem; font-weight:700; color:var(--hi-ink); white-space:nowrap; box-shadow:0 3px 10px rgba(0,0,0,.18); cursor:pointer; transition:opacity .25s, transform .2s; }
+.hi-label:hover,.hi-label.active{ transform:translate(-50%,-100%) scale(1.08); }
+.hi-label.dim{ opacity:.28; }
+.hi-label em{ font-style:normal; width:22px; height:22px; border-radius:50%; color:#fff; display:grid; place-items:center; font-size:.7rem; }
+.hi-labels.off .hi-label{ opacity:0; pointer-events:none; }
+
+.hi-dock{ position:absolute; left:50%; bottom:16px; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:8px; z-index:3; }
+.hi-dock-row{ display:flex; gap:4px; background:rgba(255,253,249,.94); border-radius:16px; padding:5px; box-shadow:0 6px 18px rgba(0,0,0,.15); }
+.hi-dock button{ border:none; background:transparent; border-radius:11px; min-width:44px; padding:6px 10px; cursor:pointer; color:var(--hi-ink); font-size:.74rem; font-weight:600; display:flex; flex-direction:column; align-items:center; gap:2px; }
+.hi-dock button svg{ width:18px; height:18px; }
+.hi-dock button.on{ background:var(--hi-deep); color:#fff; }
+
+.hi-help{ position:absolute; inset:0; background:rgba(20,35,31,.55); z-index:6; display:none; align-items:center; justify-content:center; padding:20px; }
+.hi-help.show{ display:flex; }
+.hi-help-card{ background:var(--hi-paper); border-radius:18px; padding:22px 24px; max-width:420px; width:100%; color:var(--hi-ink); }
+.hi-help-card h3{ font-family:"Noto Serif TC",serif; color:var(--hi-deep); margin-bottom:10px; }
+.hi-help-card ul{ padding-left:1.1rem; font-size:.9rem; line-height:1.8; }
+.hi-help-card .hi-role-grid{ display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:6px; }
+.hi-role-grid button{ border:1px solid var(--hi-line); background:#fff; border-radius:12px; padding:10px; font-weight:700; cursor:pointer; color:var(--hi-ink); text-align:left; font-size:.86rem; }
+.hi-role-grid button small{ display:block; font-weight:500; color:var(--hi-ink-soft); font-size:.74rem; }
+.hi-role-grid button:hover{ border-color:var(--hi-orange); }
+.hi-close{ margin-top:14px; border:none; background:var(--hi-deep); color:#fff; border-radius:999px; padding:8px 18px; font-weight:700; cursor:pointer; }
+
+/* ---- 右側面板 ---- */
+.hi-panel{ background:var(--hi-cream); border-left:1px solid var(--hi-line); display:flex; flex-direction:column; min-height:0; }
+.hi-panel-head{ padding:20px 20px 12px; }
+.hi-kicker{ font-size:.68rem; letter-spacing:.2em; font-weight:700; color:var(--hi-orange); }
+.hi-panel-head h2{ font-family:"Noto Serif TC",serif; font-size:1.45rem; color:var(--hi-ink); margin:4px 0 6px; line-height:1.3; }
+.hi-panel-head p{ font-size:.8rem; color:var(--hi-ink-soft); line-height:1.6; }
+.hi-search{ width:100%; margin-top:12px; border:1px solid var(--hi-line); background:#fff; border-radius:14px; padding:11px 14px; font-size:.88rem; outline:none; }
+.hi-search:focus{ border-color:var(--hi-orange); }
+.hi-tabs{ display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:10px; }
+.hi-tabs button{ border:1px solid var(--hi-line); background:#fff; border-radius:12px; padding:10px; font-weight:700; font-size:.86rem; cursor:pointer; color:var(--hi-ink); }
+.hi-tabs button.on{ background:var(--hi-deep); color:#fff; border-color:var(--hi-deep); }
+.hi-list{ overflow-y:auto; padding:0 20px 20px; flex:1; min-height:0; }
+.hi-group{ font-size:.76rem; font-weight:700; color:#b85a24; margin:14px 0 4px; }
+.hi-item{ display:grid; grid-template-columns:44px 1fr auto; align-items:center; padding:13px 2px; border-bottom:1px solid var(--hi-line); cursor:pointer; transition:background .2s; border-radius:6px; }
+.hi-item:hover{ background:#fff; }
+.hi-item .n{ font-family:"Noto Serif TC",serif; font-style:italic; font-size:1.2rem; }
+.hi-item .t{ font-size:.92rem; color:var(--hi-ink); font-weight:500; }
+.hi-item .c{ font-size:.72rem; color:var(--hi-ink-soft); }
+.hi-edge{ padding:12px 2px; border-bottom:1px solid var(--hi-line); font-size:.85rem; cursor:pointer; }
+.hi-edge:hover{ background:#fff; }
+.hi-edge b{ color:var(--hi-ink); }
+.hi-edge span{ display:block; color:var(--hi-ink-soft); font-size:.78rem; margin-top:2px; }
+.hi-empty{ font-size:.85rem; color:var(--hi-ink-soft); padding:20px 0; }
+
+/* 細項 */
+.hi-detail{ padding:4px 20px 20px; overflow-y:auto; flex:1; min-height:0; display:none; }
+.hi-detail.show{ display:block; }
+.hi-back{ border:none; background:none; color:var(--hi-ink-soft); font-weight:700; cursor:pointer; padding:4px 0; font-size:.85rem; }
+.hi-d-num{ font-family:"Noto Serif TC",serif; font-style:italic; font-size:2.4rem; line-height:1; margin-top:8px; }
+.hi-d-cat{ display:inline-block; font-size:.72rem; font-weight:700; color:#fff; border-radius:999px; padding:3px 10px; margin:8px 0 6px; }
+.hi-detail h3{ font-family:"Noto Serif TC",serif; font-size:1.3rem; color:var(--hi-ink); line-height:1.35; }
+.hi-d-desc{ font-size:.86rem; color:var(--hi-ink-soft); margin:6px 0 12px; line-height:1.65; }
+.hi-d-items{ list-style:none; counter-reset:it; }
+.hi-d-items li{ counter-increment:it; background:#fff; border:1px solid var(--hi-line); border-radius:12px; padding:10px 12px 10px 40px; margin-bottom:7px; font-size:.86rem; position:relative; color:var(--hi-ink); }
+.hi-d-items li::before{ content:counter(it,decimal-leading-zero); position:absolute; left:12px; top:10px; font-weight:800; font-size:.75rem; color:var(--hi-orange); }
+.hi-d-sub{ font-size:.78rem; font-weight:700; color:#b85a24; margin:14px 0 6px; }
+.hi-d-links{ display:flex; flex-wrap:wrap; gap:6px; }
+.hi-d-links button{ border:1px solid var(--hi-line); background:#fff; border-radius:999px; padding:5px 11px; font-size:.78rem; cursor:pointer; color:var(--hi-ink); }
+.hi-d-links button:hover{ border-color:var(--hi-orange); }
+.hi-cta{ display:grid; gap:8px; margin-top:16px; }
+.hi-cta button{ border:none; border-radius:14px; padding:12px; font-weight:800; font-size:.92rem; cursor:pointer; }
+.hi-cta .go{ background:var(--hi-orange); color:#fff; box-shadow:0 8px 18px -8px rgba(224,119,59,.8); }
+.hi-cta .go:hover{ background:#c9632a; }
+.hi-cta .kb{ background:#fff; color:var(--hi-deep); border:1px solid var(--hi-line); }
+
+/* 依角色找議題（島下方） */
+.hi-strip{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:16px; }
+.hi-strip-card{ background:var(--hi-paper); border:1px solid var(--hi-line); border-radius:16px; padding:14px 16px; cursor:pointer; transition:transform .2s, border-color .2s; }
+.hi-strip-card:hover{ transform:translateY(-3px); border-color:var(--hi-orange); }
+.hi-strip-card b{ display:block; color:var(--hi-ink); font-size:.95rem; }
+.hi-strip-card span{ font-size:.78rem; color:var(--hi-ink-soft); }
+
+@media (max-width:900px){
+  .hi-shell{ grid-template-columns:1fr; height:auto; }
+  .hi-stage{ height:480px; }
+  .hi-panel{ border-left:none; border-top:1px solid var(--hi-line); max-height:520px; }
+  .hi-strip{ grid-template-columns:1fr 1fr; }
+}
+@media (max-width:560px){
+  #hr-island{ padding:0 12px; }
+  .hi-stage{ height:420px; }
+  .hi-brand{ padding:8px 12px; } .hi-brand-big{ font-size:1.1rem; }
+  .hi-finder-btn{ top:80px; }
+  .hi-topbar{ top:auto; bottom:110px; right:10px; flex-direction:column; }
+  .hi-dock button span{ display:none; }
+}
+.hi-stage:fullscreen{ height:100vh; }
+@media print{ #hr-island{ display:none !important; } }
+</style>
 </head>
 <body>
 
@@ -318,6 +487,66 @@ footer { background: var(--white); border-top: 1px solid var(--border-color); pa
     </div>
   </div>
 </header>
+
+<!-- =================== HR 戰略島（新增互動區） =================== -->
+<section id="hr-island" aria-label="HR Strategy Island">
+  <div class="hi-shell">
+    <div class="hi-stage" id="hi-stage">
+      <canvas id="hi-canvas"></canvas>
+      <div class="hi-labels" id="hi-labels"></div>
+
+      <div class="hi-brand">
+        <div class="hi-brand-big" id="hi-brand-big">選人才<b>看得清</b></div>
+        <div class="hi-brand-sub" id="hi-brand-sub">HR Vision AI<span>人資戰略島</span></div>
+      </div>
+      <button type="button" class="hi-finder-btn" id="hi-finder-btn"><i></i><span id="hi-finder-txt">找我的 HR 議題</span></button>
+
+      <div class="hi-topbar">
+        <button type="button" class="hi-chip" id="hi-btn-reset">↗ <span id="hi-t-reset">全景</span></button>
+        <button type="button" class="hi-chip" id="hi-btn-list">☰ <span id="hi-t-list">清單</span></button>
+        <button type="button" class="hi-chip" id="hi-btn-full">⤢ <span id="hi-t-full">全螢幕</span></button>
+        <button type="button" class="hi-chip" id="hi-btn-help">?</button>
+      </div>
+
+      <div class="hi-dock">
+        <div class="hi-dock-row" id="hi-time-row">
+          <button type="button" data-time="dawn" title="Dawn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 18h16M7 14a5 5 0 0 1 10 0M12 4v3M5 8l2 2M19 8l-2 2"/></svg></button>
+          <button type="button" data-time="day" class="on" title="Day"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5 19 19M5 19l1.5-1.5M17.5 6.5 19 5"/></svg></button>
+          <button type="button" data-time="dusk" title="Dusk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 18h16M7 14a5 5 0 0 1 10 0M12 9V4M9.5 6.5 12 4l2.5 2.5"/></svg></button>
+          <button type="button" data-time="night" title="Night"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg></button>
+        </div>
+        <div class="hi-dock-row">
+          <button type="button" id="hi-tg-label" class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="6" width="16" height="12" rx="3"/></svg><span id="hi-t-label">名牌</span></button>
+          <button type="button" id="hi-tg-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="5" cy="17" r="2"/><circle cx="19" cy="7" r="2"/><path d="M7 15.5 17 8.5"/></svg><span id="hi-t-link">協作線</span></button>
+          <button type="button" id="hi-tg-pause"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5v14M15 5v14"/></svg><span id="hi-t-pause">暫停</span></button>
+          <button type="button" id="hi-tg-bird"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m12 3 9 5-9 5-9-5 9-5z"/><path d="m3 13 9 5 9-5"/></svg><span id="hi-t-bird">鳥瞰</span></button>
+        </div>
+      </div>
+
+      <div class="hi-help" id="hi-help">
+        <div class="hi-help-card" id="hi-help-card"></div>
+      </div>
+    </div>
+
+    <aside class="hi-panel" id="hi-panel">
+      <div class="hi-panel-head">
+        <div class="hi-kicker">HR VISION STRATEGY INDEX</div>
+        <h2 id="hi-p-title">十大 HR 議題，一座島看懂。</h2>
+        <p id="hi-p-sub"></p>
+        <input type="search" class="hi-search" id="hi-search" placeholder="搜尋議題、關鍵字…">
+        <div class="hi-tabs">
+          <button type="button" class="on" id="hi-tab-topic">議題主題</button>
+          <button type="button" id="hi-tab-edge">協作關係</button>
+        </div>
+      </div>
+      <div class="hi-list" id="hi-list"></div>
+      <div class="hi-detail" id="hi-detail"></div>
+    </aside>
+  </div>
+
+  <div class="hi-strip" id="hi-strip"></div>
+</section>
+<!-- =================== /HR 戰略島 =================== -->
 
 <div class="container">
   <div class="machine-readable-banner" id="machine-banner">
@@ -2134,5 +2363,651 @@ document.addEventListener('DOMContentLoaded', () => {
   updateUsageBadge();
 });
 </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+/* =========================================================
+   HR 戰略島：獨立模組。只「呼叫」既有的 switchMainTab / triggerTopicByKey /
+   openKbSubpage，不改動沙盒診斷任何程式與文字。
+   ========================================================= */
+(function(){
+  'use strict';
+
+  /* ---------- 資料 ---------- */
+  const CATS = {
+    A:{ color:'#e0773b', zh:'智慧招募引擎', en:'Smart Hiring Engine' },
+    B:{ color:'#2f8f80', zh:'留才與領導力', en:'Retention & Leadership' },
+    C:{ color:'#d3a32a', zh:'雇主品牌與合規', en:'Brand & Compliance' },
+    D:{ color:'#4a6fa5', zh:'數據決策', en:'Data-Driven Decisions' }
+  };
+
+  const TOPICS = [
+    { id:1, key:'top1', cat:'A', q:0,  r:0,  kb:1, mark:'tower',
+      zh:{ n:'AI 軟硬實力評分', s:'三階段 JD 匹配＋PDF 報告',
+           d:'建立評分基準、解析職缺 JD，再比對工作經歷與程式語言，自動輸出可下載的 PDF 評估報告。',
+           i:['建立軟硬實力評分基準矩陣','職缺 JD 關鍵能力自動解析','工作經歷與程式語言動態匹配','一鍵輸出實體 PDF 評估報告'] },
+      en:{ n:'AI Skills Scoring', s:'3-step JD match + PDF report',
+           d:'Build a scoring baseline, parse the JD, match experience and languages, and export a downloadable PDF report.',
+           i:['Hard & soft skill scoring matrix','Automatic JD competency parsing','Experience & language matching','One-click PDF assessment report'] } },
+    { id:2, key:'top2', cat:'A', q:1,  r:-1, kb:2, mark:'funnel',
+      zh:{ n:'招募自動化漏斗', s:'篩選效率提升 300%',
+           d:'把履歷收件、初篩、排程面試串成零人工干預的自動化管道，將初篩時間縮短到 72 小時內。',
+           i:['多渠道履歷自動收件','AI 初篩與候選人排序','面試時段自動預約','各階段轉換率追蹤'] },
+      en:{ n:'Automated Hiring Funnel', s:'+300% screening efficiency',
+           d:'Connect intake, screening and interview scheduling into a hands-off pipeline that finishes first-round screening in 72 hours.',
+           i:['Multi-channel CV intake','AI screening & ranking','Auto interview scheduling','Stage conversion tracking'] } },
+    { id:3, key:'top3', cat:'B', q:1,  r:0,  kb:3, mark:'chart',
+      zh:{ n:'預測性人資分析', s:'提前看見離職風險',
+           d:'用工作負荷、薪酬競爭力與互動頻率建立離職預測模型，在關鍵人才萌生去意前發出預警。',
+           i:['負荷與薪酬競爭力指標','離職機率預測模型','HRBP 關懷提醒','留才方案模擬'] },
+      en:{ n:'Predictive HR Analytics', s:'See attrition risk early',
+           d:'Model attrition from workload, pay competitiveness and engagement signals, and alert before key talent leaves.',
+           i:['Workload & pay indicators','Attrition probability model','HRBP check-in alerts','Retention plan simulation'] } },
+    { id:4, key:'std1', cat:'A', q:-1, r:0,  kb:4, mark:'office',
+      zh:{ n:'前端工程師招募', s:'技能樹與面試題庫',
+           d:'針對前端職缺整理技能樹、作品集評估重點與實戰面試題，讓用人主管快速鑑別技術深度。',
+           i:['React／Vue／TypeScript 技能樹','作品集與 UI 實作評估','情境式技術面試題庫','市場薪資行情參考'] },
+      en:{ n:'Frontend Hiring', s:'Skill tree & question bank',
+           d:'Skill tree, portfolio review criteria and hands-on interview questions for frontend roles.',
+           i:['React / Vue / TypeScript skill tree','Portfolio & UI review','Scenario interview questions','Market pay benchmarks'] } },
+    { id:5, key:'std2', cat:'A', q:-1, r:1,  kb:4, mark:'office',
+      zh:{ n:'後端工程師招募', s:'系統設計與程式測驗',
+           d:'聚焦 API 設計、資料庫與效能調校，搭配系統設計題與線上程式測驗。',
+           i:['API 與資料庫能力檢核','系統設計面試題','線上程式測驗','人才來源與管道'] },
+      en:{ n:'Backend Hiring', s:'System design & coding tests',
+           d:'API design, databases and performance tuning, with system design questions and online coding tests.',
+           i:['API & database checklist','System design questions','Online coding test','Talent sourcing channels'] } },
+    { id:6, key:'std3', cat:'A', q:0,  r:1,  kb:4, mark:'cloud',
+      zh:{ n:'INFRA 工程師招募', s:'雲端架構與值班文化',
+           d:'評估雲端、容器與基礎設施即程式碼能力，並在面試中清楚說明值班與事故處理文化。',
+           i:['Cloud／K8s／IaC 能力檢核','突發流量排查情境題','值班文化說明','證照與實務經驗權重'] },
+      en:{ n:'INFRA Hiring', s:'Cloud architecture & on-call',
+           d:'Assess cloud, container and IaC skills, and explain on-call and incident culture clearly.',
+           i:['Cloud / K8s / IaC checklist','Traffic-spike scenario','On-call culture briefing','Certs vs. hands-on weighting'] } },
+    { id:7, key:'std4', cat:'C', q:0,  r:-1, kb:5, mark:'beacon',
+      zh:{ n:'AIGEO 雇主品牌', s:'讓人才與 AI 先找到你',
+           d:'把職缺頁與企業故事做成 AI 讀得懂的語意結構，提高在 AI 搜尋與求職平台上的曝光。',
+           i:['職缺頁語意結構化','員工故事與文化內容','AI 搜尋曝光檢核','評價與口碑管理'] },
+      en:{ n:'AIGEO Employer Brand', s:'Be found by talent and AI',
+           d:'Structure job pages and company stories so AI search engines understand them, and raise visibility.',
+           i:['Semantic job page markup','Employee stories & culture','AI search visibility audit','Review & reputation care'] } },
+    { id:8, key:'std5', cat:'C', q:-1, r:-1, kb:6, mark:'globe',
+      zh:{ n:'跨國合規與入職', s:'遠端 Onboarding 自動化',
+           d:'檢核各國勞動法規，把文件簽核與遠端入職流程自動化，並安排新人前 90 天的陪跑。',
+           i:['各國勞動法規檢核','電子文件簽核','遠端入職流程自動化','新人 90 天陪跑'] },
+      en:{ n:'Global Compliance & Onboarding', s:'Automated remote onboarding',
+           d:'Check labor rules by country, automate e-signing and remote onboarding, and support the first 90 days.',
+           i:['Country labor law checks','E-signature workflow','Remote onboarding automation','First-90-day support'] } },
+    { id:9, key:'std6', cat:'D', q:1,  r:1,  kb:7, mark:'dash',
+      zh:{ n:'招募數據儀表板', s:'關鍵漏斗指標設定',
+           d:'設定招募週期、來源品質與錄取率等關鍵指標，讓主管一眼看懂招募健康度。',
+           i:['關鍵漏斗指標定義','Time-to-hire 招募週期','來源品質與成本','用人主管滿意度'] },
+      en:{ n:'Hiring Dashboard', s:'Key funnel metrics',
+           d:'Define time-to-hire, source quality and offer rate so leaders can read hiring health at a glance.',
+           i:['Funnel KPI definitions','Time-to-hire','Source quality & cost','Hiring manager satisfaction'] } },
+    { id:10, key:'std7', cat:'B', q:2, r:-1, kb:8, mark:'table',
+      zh:{ n:'HRBP 主管教練', s:'協助主管留住人才',
+           d:'提供一對一對話框架與留任訪談方法，協助技術主管建立回饋文化與接班規劃。',
+           i:['一對一對話框架','留任訪談引導','回饋文化建立','關鍵職位接班規劃'] },
+      en:{ n:'HRBP Leader Coaching', s:'Help managers retain talent',
+           d:'1:1 frameworks and stay-interview methods that help tech leads build feedback culture and succession plans.',
+           i:['1:1 conversation framework','Stay interview guide','Feedback culture','Succession planning'] } }
+  ];
+
+  const EDGES = [
+    [1,2,'評分模型嵌入漏斗初篩','Scoring model powers funnel screening'],
+    [1,4,'同一套評分矩陣套用前端職缺','Same matrix applied to frontend roles'],
+    [1,5,'同一套評分矩陣套用後端職缺','Same matrix applied to backend roles'],
+    [1,6,'同一套評分矩陣套用 INFRA 職缺','Same matrix applied to INFRA roles'],
+    [5,6,'後端與架構職缺共用面試官','Backend & INFRA share interviewers'],
+    [7,2,'品牌流量導入招募漏斗','Brand traffic feeds the funnel'],
+    [7,4,'工程師雇主品牌內容','Engineering employer brand content'],
+    [2,9,'漏斗數據即時進儀表板','Funnel data flows into the dashboard'],
+    [3,9,'離職風險指標共用資料源','Attrition signals share the data layer'],
+    [3,10,'離職預警觸發主管教練','Risk alerts trigger leader coaching'],
+    [8,2,'錄取後無縫接軌入職','Offers flow straight into onboarding'],
+    [8,10,'新人 90 天由主管陪跑','Managers support the first 90 days'],
+    [9,10,'團隊健康數據給主管看','Team health data for managers'],
+    [7,8,'跨國品牌與合規一致','Consistent global brand & compliance']
+  ];
+
+  const ROLES = [
+    { zh:['CEO／企業負責人','看全局與成本'], en:['CEO / Founder','Big picture & cost'], ids:[2,7,9,3] },
+    { zh:['HRBP','招募到留才一條龍'], en:['HRBP','Hire to retain'], ids:[1,2,3,10,8] },
+    { zh:['求職者','了解企業怎麼評估你'], en:['Candidate','How you are assessed'], ids:[1,4,5,6] },
+    { zh:['用人主管','面試題與帶人'], en:['Hiring Manager','Interviews & leading'], ids:[4,5,6,10] }
+  ];
+
+  const UI = {
+    zh:{ big:'選人才<b>看得清</b>', sub:'HR Vision AI<span>人資戰略島</span>', finder:'找我的 HR 議題',
+         reset:'全景', list:'清單', full:'全螢幕', label:'名牌', link:'協作線', pause:'暫停', play:'播放', bird:'鳥瞰',
+         title:'十大 HR 議題，一座島看懂。', sub2:(t,i)=>`${t} 項議題／${i} 個細項・選一項議題，看它和哪些議題一起推動。`,
+         search:'搜尋議題、關鍵字…', tabT:'議題主題', tabE:(n)=>`協作關係 ${n}`, empty:'找不到符合的議題',
+         back:'← 返回清單', items:'推動細項', links:'協作議題', go:'啟動 AI 診斷 →', kb:'看知識庫深度解析',
+         help:'怎麼逛這座島？', helpList:['拖曳旋轉、滾輪或雙指縮放','點島塊或右側清單，看議題細項','開「協作線」看議題如何互相支援','點「啟動 AI 診斷」直接帶入下方沙盒'],
+         finderT:'你是哪一種角色？', finderS:'選一個角色，島上會亮起最相關的議題。', close:'知道了', clear:'顯示全部',
+         nav:'🏝️ 戰略島' },
+    en:{ big:'Hire<b>Clearly</b>', sub:'HR Vision AI<span>Strategy Island</span>', finder:'Find my HR topic',
+         reset:'Overview', list:'List', full:'Fullscreen', label:'Labels', link:'Links', pause:'Pause', play:'Play', bird:'Top view',
+         title:'Ten HR topics, one island.', sub2:(t,i)=>`${t} topics / ${i} items · pick one to see what it works with.`,
+         search:'Search topics or keywords…', tabT:'Topics', tabE:(n)=>`Links ${n}`, empty:'No matching topics',
+         back:'← Back to list', items:'Key items', links:'Works with', go:'Start AI diagnosis →', kb:'Read in knowledge base',
+         help:'How to explore', helpList:['Drag to rotate, scroll or pinch to zoom','Click a tile or list item for details','Turn on Links to see collaboration','Start AI diagnosis sends it to the sandbox below'],
+         finderT:'Which role are you?', finderS:'Pick a role and the most relevant topics light up.', close:'Got it', clear:'Show all',
+         nav:'🏝️ Island' }
+  };
+
+  const lang = () => (typeof currentLang !== 'undefined' && currentLang === 'en') ? 'en' : 'zh';
+  const T = () => UI[lang()];
+  const byId = (id) => TOPICS.find(t => t.id === id);
+  const pad = (n) => String(n).padStart(2,'0');
+  const $ = (id) => document.getElementById(id);
+
+  let selected = null, roleFilter = null, panelMode = 'topic', searchText = '', paused = false, ready = false;
+  const labelBox = $('hi-labels'), labelEls = {}, tiles = [], flows = [];
+
+  /* ---------- 面板 / 文字 ---------- */
+  function renderStatic(){
+    const t = T();
+    $('hi-brand-big').innerHTML = t.big; $('hi-brand-sub').innerHTML = t.sub;
+    $('hi-finder-txt').textContent = roleFilter ? t.clear : t.finder;
+    $('hi-t-reset').textContent = t.reset; $('hi-t-list').textContent = t.list; $('hi-t-full').textContent = t.full;
+    $('hi-t-label').textContent = t.label; $('hi-t-link').textContent = t.link; $('hi-t-bird').textContent = t.bird;
+    $('hi-t-pause').textContent = paused ? t.play : t.pause;
+    $('hi-p-title').textContent = t.title;
+    $('hi-p-sub').textContent = t.sub2(TOPICS.length, TOPICS.reduce((a,b)=>a+b.zh.i.length,0));
+    $('hi-search').placeholder = t.search;
+    $('hi-tab-topic').textContent = t.tabT; $('hi-tab-edge').textContent = t.tabE(EDGES.length);
+    const nav = $('hi-nav-btn'); if (nav) nav.textContent = t.nav;
+    renderStrip(); renderList(); if (selected) renderDetail(selected); renderLabels();
+  }
+
+  function matches(tp){
+    if (!searchText) return true;
+    const L = tp[lang()], s = searchText.toLowerCase();
+    return [L.n,L.s,L.d,...L.i, tp.zh.n, tp.en.n].join(' ').toLowerCase().includes(s);
+  }
+
+  function renderList(){
+    const box = $('hi-list'), L = lang();
+    if (panelMode === 'topic'){
+      let html = '';
+      Object.keys(CATS).forEach(c => {
+        const list = TOPICS.filter(tp => tp.cat === c && matches(tp));
+        if (!list.length) return;
+        html += `<div class="hi-group">${CATS[c][L]}</div>`;
+        list.forEach(tp => {
+          const links = EDGES.filter(e => e[0]===tp.id || e[1]===tp.id).length;
+          html += `<div class="hi-item" data-id="${tp.id}"><span class="n" style="color:${CATS[tp.cat].color}">${pad(tp.id)}</span>
+            <div><div class="t">${tp[L].n}</div><div class="c">${tp[L].s}</div></div><span class="c">${links} ↗</span></div>`;
+        });
+      });
+      box.innerHTML = html || `<div class="hi-empty">${T().empty}</div>`;
+    } else {
+      const list = EDGES.filter(e => matches(byId(e[0])) || matches(byId(e[1])));
+      box.innerHTML = list.map(e => {
+        const a = byId(e[0]), b = byId(e[1]);
+        return `<div class="hi-edge" data-id="${a.id}"><b>${pad(a.id)} ${a[L].n} ↔ ${pad(b.id)} ${b[L].n}</b><span>${L==='zh'?e[2]:e[3]}</span></div>`;
+      }).join('') || `<div class="hi-empty">${T().empty}</div>`;
+    }
+    box.querySelectorAll('[data-id]').forEach(el => el.addEventListener('click', () => selectTopic(+el.dataset.id)));
+  }
+
+  function renderDetail(id){
+    const tp = byId(id), L = lang(), t = T(), c = CATS[tp.cat];
+    const linked = EDGES.filter(e => e[0]===id || e[1]===id).map(e => e[0]===id ? e[1] : e[0]);
+    $('hi-detail').innerHTML = `
+      <button type="button" class="hi-back" id="hi-back">${t.back}</button>
+      <div class="hi-d-num" style="color:${c.color}">${pad(tp.id)}</div>
+      <span class="hi-d-cat" style="background:${c.color}">${c[L]}</span>
+      <h3>${tp[L].n}</h3>
+      <p class="hi-d-desc">${tp[L].d}</p>
+      <div class="hi-d-sub">${t.items}</div>
+      <ol class="hi-d-items">${tp[L].i.map(x=>`<li>${x}</li>`).join('')}</ol>
+      <div class="hi-d-sub">${t.links}</div>
+      <div class="hi-d-links">${linked.map(l=>`<button type="button" data-id="${l}">${pad(l)} ${byId(l)[L].n}</button>`).join('')}</div>
+      <div class="hi-cta">
+        <button type="button" class="go" id="hi-go">${t.go}</button>
+        <button type="button" class="kb" id="hi-kb">${t.kb}</button>
+      </div>`;
+    $('hi-back').onclick = clearSelection;
+    $('hi-detail').querySelectorAll('.hi-d-links button').forEach(b => b.onclick = () => selectTopic(+b.dataset.id));
+    $('hi-go').onclick = () => launchDiagnosis(tp.key);
+    $('hi-kb').onclick = () => openKb(tp.kb);
+  }
+
+  function renderStrip(){
+    const L = lang();
+    $('hi-strip').innerHTML = ROLES.map((r,i) => `<div class="hi-strip-card" data-role="${i}"><b>${r[L][0]}</b><span>${r[L][1]} · ${r.ids.map(pad).join(' ')}</span></div>`).join('');
+    $('hi-strip').querySelectorAll('[data-role]').forEach(el => el.onclick = () => {
+      applyRole(+el.dataset.role);
+      $('hi-stage').scrollIntoView({ behavior:'smooth', block:'center' });
+    });
+  }
+
+  function showHelp(mode){
+    const t = T(), L = lang();
+    const card = $('hi-help-card');
+    if (mode === 'finder'){
+      card.innerHTML = `<h3>${t.finderT}</h3><p style="font-size:.86rem;color:var(--hi-ink-soft);margin-bottom:8px">${t.finderS}</p>
+        <div class="hi-role-grid">${ROLES.map((r,i)=>`<button type="button" data-role="${i}">${r[L][0]}<small>${r[L][1]}</small></button>`).join('')}</div>
+        <button type="button" class="hi-close" id="hi-close">${t.close}</button>`;
+      card.querySelectorAll('[data-role]').forEach(b => b.onclick = () => { applyRole(+b.dataset.role); $('hi-help').classList.remove('show'); });
+    } else {
+      card.innerHTML = `<h3>${t.help}</h3><ul>${t.helpList.map(x=>`<li>${x}</li>`).join('')}</ul><button type="button" class="hi-close" id="hi-close">${t.close}</button>`;
+    }
+    $('hi-close').onclick = () => $('hi-help').classList.remove('show');
+    $('hi-help').classList.add('show');
+  }
+
+  function applyRole(i){
+    roleFilter = (i === null) ? null : ROLES[i].ids;
+    $('hi-finder-txt').textContent = roleFilter ? T().clear : T().finder;
+    renderLabels();
+  }
+
+  /* ---------- 與既有功能串接（只呼叫，不修改） ---------- */
+  function launchDiagnosis(key){
+    if (typeof switchMainTab === 'function') switchMainTab('sandbox');
+    const target = $('view-sandbox');
+    if (target) target.scrollIntoView({ behavior:'smooth', block:'start' });
+    if (typeof triggerTopicByKey === 'function') setTimeout(() => triggerTopicByKey(key), 350);
+  }
+  function openKb(id){
+    if (typeof switchMainTab === 'function') switchMainTab('kb');
+    if (typeof openKbSubpage === 'function') openKbSubpage(id);
+    const v = $('view-kb'); if (v) v.scrollIntoView({ behavior:'smooth', block:'start' });
+  }
+
+  /* 語言切換：在既有按鈕之後追加監聽，不改原函式 */
+  ['btn-zh','btn-en'].forEach(id => { const b = $(id); if (b) b.addEventListener('click', () => setTimeout(renderStatic, 0)); });
+
+  /* Header 加入「戰略島」入口（新增按鈕，不動原有分頁） */
+  const tabs = document.querySelector('.nav-tabs');
+  if (tabs){
+    const nb = document.createElement('button');
+    nb.type = 'button'; nb.className = 'nav-tab-btn hi-nav-island'; nb.id = 'hi-nav-btn';
+    nb.onclick = () => $('hr-island').scrollIntoView({ behavior:'smooth', block:'start' });
+    tabs.insertBefore(nb, tabs.firstChild);
+  }
+
+  /* ---------- 3D 場景 ---------- */
+  if (typeof THREE === 'undefined'){ $('hi-stage').style.display='none'; renderStatic(); return; }
+
+  const stage = $('hi-stage'), canvas = $('hi-canvas');
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias:true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+  const scene = new THREE.Scene();
+  scene.fog = new THREE.Fog(0x9cc7cf, 26, 60);
+  const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 200);
+
+  const hemi = new THREE.HemisphereLight(0xffffff, 0x6b8f8a, 0.65); scene.add(hemi);
+  const sun = new THREE.DirectionalLight(0xfff4e0, 1.0);
+  sun.castShadow = true; sun.shadow.mapSize.set(2048,2048);
+  Object.assign(sun.shadow.camera, { left:-12, right:12, top:12, bottom:-12, near:1, far:60 }); sun.shadow.camera.updateProjectionMatrix();
+  scene.add(sun);
+
+  const M = (c, o={}) => new THREE.MeshLambertMaterial(Object.assign({ color:c }, o));
+  const mats = {
+    trunk:M(0x8a5a3b), leaf:M(0x5c9a5a), leaf2:M(0x7cb36b), wall:M(0xf3ece0), wall2:M(0xe8dccb),
+    roofR:M(0xc45a3c), roofB:M(0x3f6e9e), roofG:M(0x4c8b6c), glass:M(0x9fc4d6), dark:M(0x3b4a48),
+    person:M(0x2f3b39), skin:M(0xe9c4a0), white:M(0xffffff), sand:M(0xe8dcc3), rock:M(0x9aa39a),
+    win:new THREE.MeshLambertMaterial({ color:0x3b4a48, emissive:0x000000 })
+  };
+
+  /* 海面 */
+  const sea = new THREE.Mesh(new THREE.CircleGeometry(80, 64), M(0x5f9aa1));
+  sea.rotation.x = -Math.PI/2; sea.position.y = -0.5; sea.receiveShadow = true; scene.add(sea);
+  const shallow = new THREE.Mesh(new THREE.CircleGeometry(8.8, 48), M(0x86b9b4));
+  shallow.rotation.x = -Math.PI/2; shallow.position.y = -0.48; scene.add(shallow);
+
+  const HEX = 1.12, GAP = 1.04;
+  const hexPos = (q,r) => new THREE.Vector3(HEX*Math.sqrt(3)*(q + r/2)*GAP, 0, HEX*1.5*r*GAP);
+
+  const center = new THREE.Vector3();
+  TOPICS.forEach(tp => center.add(hexPos(tp.q,tp.r))); center.divideScalar(TOPICS.length);
+
+  const pickables = [], walkers = [], spinners = [];
+
+  function tree(g, x, z, s=1){
+    const t = new THREE.Mesh(new THREE.CylinderGeometry(.03*s,.04*s,.18*s,6), mats.trunk); t.position.set(x,.09*s,z);
+    const l = new THREE.Mesh(new THREE.ConeGeometry(.13*s,.32*s,7), Math.random()>.5?mats.leaf:mats.leaf2); l.position.set(x,.32*s,z);
+    [t,l].forEach(m=>{ m.castShadow = true; g.add(m); });
+  }
+  function house(g, x, z, rot, roof){
+    const b = new THREE.Mesh(new THREE.BoxGeometry(.3,.2,.26), mats.wall); b.position.set(x,.1,z);
+    const r = new THREE.Mesh(new THREE.ConeGeometry(.24,.16,4), roof); r.position.set(x,.28,z); r.rotation.y = Math.PI/4;
+    const w = new THREE.Mesh(new THREE.BoxGeometry(.08,.07,.01), mats.win); w.position.set(x,.11,z+.131);
+    const h = new THREE.Group(); [b,r,w].forEach(m=>{ m.castShadow = true; h.add(m); });
+    h.rotation.y = rot; g.add(h);
+  }
+  function person(g, radius, speed, phase){
+    const p = new THREE.Group();
+    const body = new THREE.Mesh(new THREE.CylinderGeometry(.025,.03,.09,6), mats.person); body.position.y = .045;
+    const head = new THREE.Mesh(new THREE.SphereGeometry(.022,8,6), mats.skin); head.position.y = .11;
+    p.add(body, head); g.add(p);
+    walkers.push({ p, radius, speed, phase });
+  }
+  function landmark(g, kind, col){
+    const C = new THREE.Color(col);
+    const accent = M(C), accentL = M(C.clone().lerp(new THREE.Color(0xffffff), .45));
+    const add = (geo, mat, x, y, z) => { const m = new THREE.Mesh(geo, mat); m.position.set(x,y,z); m.castShadow = true; g.add(m); return m; };
+    if (kind === 'tower'){
+      add(new THREE.BoxGeometry(.38,.9,.38), mats.wall2, .05,.45,-.05);
+      for (let i=0;i<4;i++) add(new THREE.BoxGeometry(.39,.04,.39), mats.win, .05,.25+i*.18,-.05);
+      add(new THREE.BoxGeometry(.5,.32,.04), accent, .05,1.12,-.05);
+      add(new THREE.BoxGeometry(.42,.24,.045), mats.glass, .05,1.12,-.04);
+    } else if (kind === 'funnel'){
+      const f = add(new THREE.ConeGeometry(.34,.55,16,1,true), new THREE.MeshLambertMaterial({ color:C, side:THREE.DoubleSide }), 0,.62,0); f.rotation.x = Math.PI;
+      add(new THREE.CylinderGeometry(.05,.05,.3,10), accentL, 0,.18,0);
+      for (let i=0;i<5;i++){ const b = add(new THREE.SphereGeometry(.04,8,6), mats.white, Math.cos(i)*0.18, .9+(i%2)*.06, Math.sin(i)*0.18); spinners.push({ m:b, base:b.position.clone(), i }); }
+    } else if (kind === 'chart'){
+      [.25,.45,.35,.65].forEach((h,i)=> add(new THREE.BoxGeometry(.12,h,.12), i===3?accent:accentL, -.24+i*.16, h/2, 0));
+      add(new THREE.BoxGeometry(.7,.03,.2), mats.dark, 0,.015,0);
+    } else if (kind === 'office'){
+      add(new THREE.BoxGeometry(.5,.55,.36), mats.wall, 0,.275,0);
+      for (let i=0;i<3;i++) add(new THREE.BoxGeometry(.51,.05,.37), mats.win, 0,.15+i*.15,0);
+      add(new THREE.BoxGeometry(.54,.04,.4), accent, 0,.57,0);
+    } else if (kind === 'cloud'){
+      add(new THREE.BoxGeometry(.32,.4,.32), mats.wall2, 0,.2,0);
+      add(new THREE.BoxGeometry(.33,.04,.33), mats.win, 0,.28,0);
+      [[0,.72,0,.16],[.16,.68,0,.12],[-.16,.68,0,.12],[.06,.8,.04,.11]].forEach(([x,y,z,s])=>{ const c = add(new THREE.SphereGeometry(s,12,10), mats.white, x,y,z); spinners.push({ m:c, base:c.position.clone(), i:x*10, bob:true }); });
+    } else if (kind === 'beacon'){
+      add(new THREE.CylinderGeometry(.1,.16,.85,12), mats.white, 0,.425,0);
+      add(new THREE.CylinderGeometry(.165,.165,.12,12), accent, 0,.3,0);
+      add(new THREE.CylinderGeometry(.165,.165,.12,12), accent, 0,.6,0);
+      const lamp = add(new THREE.SphereGeometry(.09,12,10), new THREE.MeshLambertMaterial({ color:0xfff1a8, emissive:0x553c00 }), 0,.92,0);
+      lamp.userData.lamp = true; tiles.lamps = (tiles.lamps||[]).concat(lamp);
+    } else if (kind === 'globe'){
+      const s = add(new THREE.SphereGeometry(.3,18,14), accentL, 0,.55,0);
+      add(new THREE.TorusGeometry(.33,.018,6,30), accent, 0,.55,0).rotation.x = Math.PI/2.4;
+      add(new THREE.CylinderGeometry(.05,.12,.25,10), mats.dark, 0,.12,0);
+      spinners.push({ m:s, spin:true });
+    } else if (kind === 'dash'){
+      add(new THREE.BoxGeometry(.7,.42,.05), mats.dark, 0,.42,-.1);
+      add(new THREE.BoxGeometry(.03,.21,.03), mats.dark, 0,.1,-.1);
+      [.12,.2,.15,.26].forEach((h,i)=> add(new THREE.BoxGeometry(.08,h,.02), i%2?accent:accentL, -.21+i*.14, .25+h/2, -.07));
+    } else if (kind === 'table'){
+      add(new THREE.CylinderGeometry(.24,.24,.04,20), accentL, 0,.2,0);
+      add(new THREE.CylinderGeometry(.04,.04,.18,8), mats.dark, 0,.09,0);
+      [[.36,0],[-.36,0]].forEach(([x,z])=>{ add(new THREE.CylinderGeometry(.045,.05,.16,8), accent, x,.08,z); add(new THREE.SphereGeometry(.04,8,6), mats.skin, x,.2,z); });
+    }
+  }
+
+  TOPICS.forEach(tp => {
+    const pos = hexPos(tp.q, tp.r);
+    const col = new THREE.Color(CATS[tp.cat].color);
+    const g = new THREE.Group(); g.position.copy(pos); scene.add(g);
+
+    const base = new THREE.Mesh(new THREE.CylinderGeometry(HEX, HEX, .42, 6), M(col.clone().multiplyScalar(.92)));
+    base.position.y = -.21; base.castShadow = true; base.receiveShadow = true;
+    const top = new THREE.Mesh(new THREE.CylinderGeometry(HEX*.97, HEX*.97, .05, 6), M(new THREE.Color(0xe7ddca).lerp(col, .12)));
+    top.position.y = .0; top.receiveShadow = true;
+    const ring = new THREE.Mesh(new THREE.CylinderGeometry(HEX*.6, HEX*.6, .052, 6), M(new THREE.Color(0xd9ccb3)));
+    ring.position.y = .002; ring.receiveShadow = true;
+    g.add(base, top, ring);
+    [base, top, ring].forEach(m => { m.userData.id = tp.id; pickables.push(m); });
+
+    const deco = new THREE.Group(); deco.position.y = .025; g.add(deco);
+    landmark(deco, tp.mark, CATS[tp.cat].color);
+    const roofs = [mats.roofR, mats.roofB, mats.roofG];
+    for (let i=0;i<2;i++){ const a = tp.id*1.7 + i*2.3; house(deco, Math.cos(a)*.68, Math.sin(a)*.68, a, roofs[(tp.id+i)%3]); }
+    for (let i=0;i<4;i++){ const a = tp.id*.9 + i*1.6 + .7; tree(deco, Math.cos(a)*.82, Math.sin(a)*.82, .8+Math.random()*.4); }
+    for (let i=0;i<3;i++) person(deco, .45 + i*.08, (.25+Math.random()*.25)*(i%2?1:-1), Math.random()*6.28);
+
+    tiles.push({ tp, g, base, top, baseColor:col, lift:0, liftTarget:0 });
+  });
+
+  /* 外圍小島與燈塔 */
+  function islet(x, z, s, lighthouse){
+    const g = new THREE.Group(); g.position.set(x,-.45,z); scene.add(g);
+    const b = new THREE.Mesh(new THREE.CylinderGeometry(s, s*1.15, .35, 7), mats.sand); b.position.y = .17; b.receiveShadow = true; b.castShadow = true; g.add(b);
+    const grass = new THREE.Mesh(new THREE.CylinderGeometry(s*.85, s*.85, .06, 7), M(0x8fbf7a)); grass.position.y = .37; g.add(grass);
+    if (lighthouse){
+      const t = new THREE.Mesh(new THREE.CylinderGeometry(.1,.16,.8,10), mats.white); t.position.y = .78; t.castShadow = true; g.add(t);
+      const s2 = new THREE.Mesh(new THREE.CylinderGeometry(.17,.17,.1,10), M(0xc45a3c)); s2.position.y = .6; g.add(s2);
+      const l = new THREE.Mesh(new THREE.SphereGeometry(.08,10,8), new THREE.MeshLambertMaterial({ color:0xfff1a8, emissive:0x553c00 })); l.position.y = 1.25; g.add(l);
+      tiles.lamps = (tiles.lamps||[]).concat(l);
+    } else {
+      const deco = new THREE.Group(); deco.position.y = .4; g.add(deco);
+      for (let i=0;i<3;i++) tree(deco, Math.cos(i*2)*s*.45, Math.sin(i*2)*s*.45, .9);
+    }
+  }
+  islet(center.x+6.2, center.z-4.8, .7, true);
+  islet(center.x-6.5, center.z-3.6, .9, false);
+  islet(center.x+5.8, center.z+4.6, .8, false);
+  islet(center.x-5.2, center.z+5.4, .6, false);
+
+  const boat = new THREE.Group();
+  const hull = new THREE.Mesh(new THREE.BoxGeometry(.5,.12,.2), M(0xc4864a)); hull.position.y = -.42;
+  const mast = new THREE.Mesh(new THREE.BoxGeometry(.03,.35,.03), mats.dark); mast.position.y = -.2;
+  const sail = new THREE.Mesh(new THREE.ConeGeometry(.14,.3,3), mats.white); sail.position.set(.06,-.2,0);
+  boat.add(hull, mast, sail); scene.add(boat);
+
+  /* 協作線 */
+  const linkGroup = new THREE.Group(); linkGroup.visible = false; scene.add(linkGroup);
+  EDGES.forEach(e => {
+    const a = hexPos(byId(e[0]).q, byId(e[0]).r).setY(.35), b = hexPos(byId(e[1]).q, byId(e[1]).r).setY(.35);
+    const mid = a.clone().add(b).multiplyScalar(.5); mid.y = 1.6 + a.distanceTo(b)*.25;
+    const curve = new THREE.QuadraticBezierCurve3(a, mid, b);
+    const line = new THREE.Mesh(new THREE.TubeGeometry(curve, 32, .022, 6, false), new THREE.MeshBasicMaterial({ color:0x1d3a33, transparent:true, opacity:.55 }));
+    line.userData.edge = e; linkGroup.add(line);
+    const dot = new THREE.Mesh(new THREE.SphereGeometry(.06,10,8), new THREE.MeshBasicMaterial({ color:0xffffff }));
+    linkGroup.add(dot); flows.push({ curve, dot, t:Math.random(), line });
+  });
+
+  /* ---------- 名牌 ---------- */
+  function renderLabels(){
+    const L = lang();
+    labelBox.innerHTML = '';
+    TOPICS.forEach(tp => {
+      const el = document.createElement('div');
+      el.className = 'hi-label';
+      el.innerHTML = `<em style="background:${CATS[tp.cat].color}">${pad(tp.id)}</em>${tp[L].n}`;
+      el.onclick = () => selectTopic(tp.id);
+      labelBox.appendChild(el); labelEls[tp.id] = el;
+    });
+    refreshHighlight();
+  }
+  function refreshHighlight(){
+    const focus = selected ? [selected, ...EDGES.filter(e=>e[0]===selected||e[1]===selected).map(e=>e[0]===selected?e[1]:e[0])] : roleFilter;
+    tiles.forEach(t => {
+      const on = !focus || focus.includes(t.tp.id);
+      const el = labelEls[t.tp.id];
+      if (el){ el.classList.toggle('dim', !on); el.classList.toggle('active', t.tp.id === selected); }
+      t.base.material.color.copy(t.baseColor).multiplyScalar(on ? .92 : .5);
+      t.liftTarget = (t.tp.id === selected) ? .28 : (roleFilter && roleFilter.includes(t.tp.id) && !selected ? .14 : 0);
+    });
+    flows.forEach(f => {
+      const e = f.line.userData.edge;
+      const hot = selected && (e[0]===selected || e[1]===selected);
+      f.line.material.opacity = selected ? (hot ? .9 : .12) : .55;
+      f.line.material.color.set(hot ? CATS[byId(selected).cat].color : 0x1d3a33);
+      f.dot.visible = !selected || hot;
+    });
+  }
+
+  /* ---------- 相機控制 ---------- */
+  const cam = { theta:-.55, phi:.95, radius:15, target:center.clone() };
+  const goal = { theta:-.55, phi:.95, radius:15, target:center.clone() };
+  const HOME = { theta:-.55, phi:.95, radius:15 };
+  let birdOn = false;
+
+  function setGoal(o){ Object.assign(goal, o); if (o.target) goal.target = o.target.clone(); }
+  function resetView(){ birdOn = false; $('hi-tg-bird').classList.remove('on'); setGoal({ ...HOME, target:center }); }
+
+  let dragging = false, moved = 0, last = null, pinch = null;
+  const pointers = new Map();
+  canvas.addEventListener('pointerdown', e => {
+    canvas.setPointerCapture(e.pointerId); pointers.set(e.pointerId, { x:e.clientX, y:e.clientY });
+    dragging = true; moved = 0; last = { x:e.clientX, y:e.clientY }; canvas.classList.add('dragging');
+    if (pointers.size === 2){ const [a,b] = [...pointers.values()]; pinch = { d:Math.hypot(a.x-b.x, a.y-b.y), r:goal.radius }; }
+  });
+  canvas.addEventListener('pointermove', e => {
+    if (pointers.has(e.pointerId)) pointers.set(e.pointerId, { x:e.clientX, y:e.clientY });
+    if (pinch && pointers.size === 2){
+      const [a,b] = [...pointers.values()];
+      goal.radius = THREE.MathUtils.clamp(pinch.r * pinch.d / Math.max(20, Math.hypot(a.x-b.x, a.y-b.y)), 6, 26);
+      moved = 99; return;
+    }
+    if (dragging && last){
+      const dx = e.clientX - last.x, dy = e.clientY - last.y; moved += Math.abs(dx)+Math.abs(dy);
+      goal.theta -= dx * .006; goal.phi = THREE.MathUtils.clamp(goal.phi - dy * .005, .25, 1.35);
+      last = { x:e.clientX, y:e.clientY };
+    } else hover(e);
+  });
+  const endPtr = e => {
+    pointers.delete(e.pointerId); if (pointers.size < 2) pinch = null;
+    if (dragging && moved < 6 && e.type === 'pointerup') click(e);
+    if (pointers.size === 0){ dragging = false; last = null; canvas.classList.remove('dragging'); }
+  };
+  canvas.addEventListener('pointerup', endPtr);
+  canvas.addEventListener('pointercancel', endPtr);
+  canvas.addEventListener('wheel', e => { e.preventDefault(); goal.radius = THREE.MathUtils.clamp(goal.radius * (1 + Math.sign(e.deltaY)*.08), 6, 26); }, { passive:false });
+
+  const ray = new THREE.Raycaster(), ndc = new THREE.Vector2();
+  function pick(e){
+    const r = canvas.getBoundingClientRect();
+    ndc.set(((e.clientX-r.left)/r.width)*2-1, -((e.clientY-r.top)/r.height)*2+1);
+    ray.setFromCamera(ndc, camera);
+    const hit = ray.intersectObjects(pickables, false)[0];
+    return hit ? hit.object.userData.id : null;
+  }
+  let hovered = null;
+  function hover(e){
+    const id = pick(e);
+    if (id !== hovered){ hovered = id; canvas.classList.toggle('hovering', !!id); }
+  }
+  function click(e){ const id = pick(e); if (id) selectTopic(id); else if (selected) clearSelection(); }
+
+  /* ---------- 選取 ---------- */
+  function selectTopic(id){
+    if (!byId(id)) return;
+    selected = id;
+    const tp = byId(id);
+    if (ready) setGoal({ target:hexPos(tp.q, tp.r), radius:9.5, phi:Math.min(goal.phi, 1.0) });
+    $('hi-list').style.display = 'none';
+    $('hi-detail').classList.add('show'); renderDetail(id); $('hi-detail').scrollTop = 0;
+    refreshHighlight();
+    if (window.innerWidth <= 900) $('hi-panel').scrollIntoView({ behavior:'smooth', block:'nearest' });
+  }
+  function clearSelection(){
+    selected = null;
+    $('hi-detail').classList.remove('show'); $('hi-list').style.display = '';
+    if (ready) setGoal({ target:center, radius:birdOn ? 17 : HOME.radius });
+    refreshHighlight();
+  }
+
+  /* ---------- 光影時段 ---------- */
+  const TIMES = {
+    dawn:{ bg:0xf1d6c0, sea:0x7fa6a8, sh:0xa7c3bb, hs:0xffd9b6, hg:0x7c8c86, hi:.6, sc:0xffb27a, si:.85, sp:[-10,5,6], night:false },
+    day:{ bg:0x9cc7cf, sea:0x5f9aa1, sh:0x86b9b4, hs:0xffffff, hg:0x6b8f8a, hi:.65, sc:0xfff4e0, si:1.0, sp:[6,14,8], night:false },
+    dusk:{ bg:0xe2a483, sea:0x6c8b9a, sh:0x8fa8aa, hs:0xffc59a, hg:0x5e6b78, hi:.55, sc:0xff8a4c, si:.8, sp:[10,4,-6], night:false },
+    night:{ bg:0x1a2737, sea:0x1f3a4a, sh:0x2b4e5c, hs:0x6c7fb8, hg:0x101820, hi:.42, sc:0xa9bcff, si:.35, sp:[-6,12,-4], night:true }
+  };
+  function setTime(k){
+    const t = TIMES[k];
+    scene.background = new THREE.Color(t.bg); scene.fog.color.set(t.bg);
+    sea.material.color.set(t.sea); shallow.material.color.set(t.sh);
+    hemi.color.set(t.hs); hemi.groundColor.set(t.hg); hemi.intensity = t.hi;
+    sun.color.set(t.sc); sun.intensity = t.si; sun.position.set(center.x+t.sp[0], t.sp[1], center.z+t.sp[2]); sun.target.position.copy(center); sun.target.updateMatrixWorld();
+    mats.win.emissive.set(t.night ? 0xffc760 : 0x000000);
+    (tiles.lamps||[]).forEach(l => l.material.emissive.set(t.night ? 0xffd34d : 0x553c00));
+    stage.style.background = '#' + new THREE.Color(t.bg).getHexString();
+    document.querySelectorAll('#hi-time-row button').forEach(b => b.classList.toggle('on', b.dataset.time === k));
+  }
+
+  /* ---------- 控制列 ---------- */
+  document.querySelectorAll('#hi-time-row button').forEach(b => b.onclick = () => setTime(b.dataset.time));
+  $('hi-tg-label').onclick = function(){ this.classList.toggle('on'); labelBox.classList.toggle('off', !this.classList.contains('on')); };
+  $('hi-tg-link').onclick = function(){ this.classList.toggle('on'); linkGroup.visible = this.classList.contains('on'); };
+  $('hi-tg-pause').onclick = function(){ paused = !paused; this.classList.toggle('on', paused); $('hi-t-pause').textContent = paused ? T().play : T().pause; };
+  $('hi-tg-bird').onclick = function(){
+    birdOn = !birdOn; this.classList.toggle('on', birdOn);
+    setGoal(birdOn ? { phi:.12, radius:17 } : { phi:HOME.phi, radius:selected ? 9.5 : HOME.radius });
+  };
+  $('hi-btn-reset').onclick = () => { if (selected) clearSelection(); applyRole(null); resetView(); };
+  $('hi-btn-list').onclick = () => {
+    if (selected) clearSelection();
+    panelMode = 'topic'; $('hi-tab-topic').classList.add('on'); $('hi-tab-edge').classList.remove('on'); renderList();
+    $('hi-panel').scrollIntoView({ behavior:'smooth', block:'nearest' }); $('hi-search').focus({ preventScroll:true });
+  };
+  $('hi-btn-full').onclick = () => {
+    if (document.fullscreenElement) document.exitFullscreen();
+    else if (stage.requestFullscreen) stage.requestFullscreen();
+  };
+  $('hi-btn-help').onclick = () => showHelp('help');
+  $('hi-finder-btn').onclick = () => { if (roleFilter){ applyRole(null); } else showHelp('finder'); };
+  $('hi-search').addEventListener('input', e => { searchText = e.target.value.trim(); if (selected) clearSelection(); renderList(); });
+  $('hi-tab-topic').onclick = () => { panelMode = 'topic'; $('hi-tab-topic').classList.add('on'); $('hi-tab-edge').classList.remove('on'); if (selected) clearSelection(); renderList(); };
+  $('hi-tab-edge').onclick = () => {
+    panelMode = 'edge'; $('hi-tab-edge').classList.add('on'); $('hi-tab-topic').classList.remove('on');
+    if (selected) clearSelection(); renderList();
+    if (!linkGroup.visible) $('hi-tg-link').click();
+  };
+
+  /* ---------- 尺寸 / 動畫 ---------- */
+  function resize(){
+    const w = stage.clientWidth, h = stage.clientHeight;
+    renderer.setSize(w, h, false); camera.aspect = w / Math.max(1,h); camera.updateProjectionMatrix();
+  }
+  new ResizeObserver(resize).observe(stage);
+
+  const tmp = new THREE.Vector3();
+  let clock = 0, prev = performance.now(), visible = true;
+  new IntersectionObserver(es => { visible = es[0].isIntersecting; }, { threshold:0 }).observe(stage);
+
+  function frame(now){
+    requestAnimationFrame(frame);
+    const dt = Math.min(.05, (now - prev) / 1000); prev = now;
+    if (!visible) return;
+    if (!paused){ clock += dt; if (!dragging && !selected && !birdOn) goal.theta += dt * .035; }
+
+    const k = 1 - Math.pow(.002, dt);
+    cam.theta += (goal.theta - cam.theta) * k; cam.phi += (goal.phi - cam.phi) * k;
+    cam.radius += (goal.radius - cam.radius) * k; cam.target.lerp(goal.target, k);
+    camera.position.set(
+      cam.target.x + cam.radius * Math.sin(cam.phi) * Math.sin(cam.theta),
+      cam.target.y + cam.radius * Math.cos(cam.phi),
+      cam.target.z + cam.radius * Math.sin(cam.phi) * Math.cos(cam.theta));
+    camera.lookAt(cam.target);
+
+    tiles.forEach(t => {
+      const tgt = t.liftTarget + (t.tp.id === hovered ? .08 : 0);
+      t.lift += (tgt - t.lift) * Math.min(1, dt*8); t.g.position.y = t.lift;
+    });
+    walkers.forEach(w => { const a = w.phase + clock * w.speed; w.p.position.set(Math.cos(a)*w.radius, Math.abs(Math.sin(clock*8+w.phase))*.015, Math.sin(a)*w.radius); w.p.rotation.y = -a; });
+    spinners.forEach(s => {
+      if (s.spin) s.m.rotation.y = clock * .6;
+      else if (s.bob) s.m.position.y = s.base.y + Math.sin(clock*1.5 + s.i)*.03;
+      else { const a = clock*1.4 + s.i*1.25; s.m.position.set(Math.cos(a)*.18, s.base.y - ((clock*.5 + s.i*.2)%1)*.35, Math.sin(a)*.18); }
+    });
+    if (linkGroup.visible) flows.forEach(f => { f.t = (f.t + dt*.35) % 1; f.dot.position.copy(f.curve.getPoint(f.t)); });
+    const ba = clock * .08; boat.position.set(center.x + Math.cos(ba)*7.4, Math.sin(clock*1.6)*.02, center.z + Math.sin(ba)*7.4); boat.rotation.y = -ba;
+
+    renderer.render(scene, camera);
+
+    const w = stage.clientWidth, h = stage.clientHeight;
+    tiles.forEach(t => {
+      const el = labelEls[t.tp.id]; if (!el) return;
+      tmp.set(t.g.position.x, t.g.position.y + 1.25, t.g.position.z).project(camera);
+      const behind = tmp.z > 1;
+      el.style.left = ((tmp.x+1)/2*w) + 'px'; el.style.top = ((1-tmp.y)/2*h) + 'px';
+      el.style.visibility = behind ? 'hidden' : 'visible';
+      el.style.zIndex = String(1000 - Math.round(tmp.z*1000));
+    });
+  }
+
+  ready = true;
+  setTime('day');
+  renderStatic();
+  resize();
+  requestAnimationFrame(frame);
+})();
+</script>
+
 </body>
 </html>
